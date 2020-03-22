@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>v2ray on LitMing</title>
+    <link>https://litmingc.github.io/tags/v2ray/</link>
+    <description>Recent content in v2ray on LitMing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 12 Mar 2020 14:28:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://litmingc.github.io/tags/v2ray/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[rpi]树莓派使用v2ray</title>
+      <link>https://litmingc.github.io/post/linux/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8v2ray/</link>
+      <pubDate>Thu, 12 Mar 2020 14:28:00 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/linux/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8v2ray/</guid>
+      <description>摘录自链接 安装v2ray GitHub下载相应版本【https://github.com/v2ray/v2ray-core/releases】</description>
+    </item>
+    
+  </channel>
+</rss>

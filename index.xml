@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LitMing</title>
+    <link>https://litmingc.github.io/</link>
+    <description>Recent content on LitMing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 12 Aug 2019 11:16:18 +0800</lastBuildDate>
+    
+	<atom:link href="https://litmingc.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[rpi]树莓派使用v2ray</title>
+      <link>https://litmingc.github.io/post/linux/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8v2ray/</link>
+      <pubDate>Thu, 12 Mar 2020 14:28:00 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/linux/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8v2ray/</guid>
+      <description>摘录自链接 安装v2ray GitHub下载相应版本【https://github.com/v2ray/v2ray-core/releases】</description>
+    </item>
+    
+    <item>
+      <title>[linux]目录的含义与相关操作</title>
+      <link>https://litmingc.github.io/post/linux/%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E7%BB%84%E7%BB%87/</link>
+      <pubDate>Mon, 09 Mar 2020 20:52:35 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/linux/%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E7%BB%84%E7%BB%87/</guid>
+      <description>目录的一般含义 摘录自【链接】 一级目录 含义 /bin/ 系统命令，普通用户、root都可以执行。 /boot/ 系统启动目录，如：内核文件、引导程序等。 /dev/ 设备文件 /etc/ 配置</description>
+    </item>
+    
+    <item>
+      <title>[Tips]Raspberrypi相关</title>
+      <link>https://litmingc.github.io/post/tips/raspberrypi%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Wed, 04 Mar 2020 16:10:52 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/tips/raspberrypi%E7%9B%B8%E5%85%B3/</guid>
+      <description>挂载移动硬盘 NTFS 安装ntfs-3g sudo apt-get install ntfs-3g 查看设备 fdisk -l 准备挂载目录 sudo mkdir /mnt/dir 暂时挂载硬盘 ntfs-3g /dev/sda1 /mnt/dir 开机自动挂载 修改文件 /etc/fstab 添加如下内容： /dev/sda1 /mnt/dir ntfs utf8,uid=1000,gid=1000,umask=022 0 0 berryconda 环</description>
+    </item>
+    
+    <item>
+      <title>[linux]常见命令</title>
+      <link>https://litmingc.github.io/post/linux/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Fri, 28 Feb 2020 12:56:00 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/linux/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</guid>
+      <description>linux使用过程中自己会用到的一些“小”命令 uname 查看系统内核以及系统版本 参数： -a或&amp;ndash;all 显示全部的信息。 -m或&amp;ndash;</description>
+    </item>
+    
+    <item>
+      <title>[Tips]Hugo相关</title>
+      <link>https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Thu, 27 Feb 2020 16:40:46 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/</guid>
+      <description>环境： hugo_extended_0.55.6_Windows-64bit 表达数学公式 参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 在math.html文件的适当地添加如下代码： &amp;lt;script type=&amp;#34;text/x-mathjax-config&amp;#34;&amp;gt; MathJax.Hub.Config({ &amp;#34;HTML-CSS&amp;#34;: { scale: 175}</description>
+    </item>
+    
+    <item>
+      <title>[linux]进程管理</title>
+      <link>https://litmingc.github.io/post/linux/%E8%BF%9B%E7%A8%8B%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Mon, 24 Feb 2020 20:14:38 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/linux/%E8%BF%9B%E7%A8%8B%E7%9B%B8%E5%85%B3/</guid>
+      <description>相关字段的含义 表头 含义 USER 进程由哪个用户产生 PID 进程id PPID 父进程id %CPU 或者 C 占用cpu %MEM 占用物理内存 VSC 占用虚拟内存的大小，单位KB RSS 占用物理内存</description>
+    </item>
+    
+    <item>
+      <title>QLineEdit</title>
+      <link>https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/</link>
+      <pubDate>Mon, 12 Aug 2019 14:17:58 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/</guid>
+      <description>环境： python 3.7 PyQt5 5.13.0 QLineEdit 控制输入 正则表达式 Validator = QRegExpValidator(self) # 校验器 # 为校验器配置QRegExp(), 参数r&amp;#34;[0-9]&amp;#34;为正则表达式 Validator.setRegExp(QRegExp(r&amp;#34;[0-9]&amp;#34;)) c = QLineEdit() c.setValidator(Validator)</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://litmingc.github.io/about/</link>
+      <pubDate>Mon, 12 Aug 2019 11:16:18 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/about/</guid>
+      <description>刺猬边城附近小白的笔记本</description>
+    </item>
+    
+  </channel>
+</rss>

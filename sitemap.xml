@@ -1,0 +1,197 @@
+<search>
+    
+     <entry>
+        <title>[rpi]树莓派使用v2ray</title>
+        <url>https://litmingc.github.io/post/linux/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8v2ray/</url>
+        <categories>
+          <category>学习笔记</category><category>Linux</category>
+        </categories>
+        <tags>
+          <tag>RaspberryPi</tag><tag>v2ray</tag>
+        </tags>
+        <content type="html"> 摘录自链接
+安装v2ray   GitHub下载相应版本【https://github.com/v2ray/v2ray-core/releases】
+树莓派4下载linux-arm.zip，树莓派的官方系统目前(2020.03.12)还是32位。
+  下载安装脚本
+wget https://install.direct/go.sh  执行安装脚本
+sudo bash go.sh --local ./v2ray-linux-arm.zip  配置v2ray
+编辑/etc/v2ray/config.json文件进行配置
+  v2ray的使用
+service命令
+service v2ray start //启动v2rayservice v2ray status //查看v2ray状态service v2ray stop //停止v2ray  使用代理   安装proxychains
+sudo apt install proxychains  配置proxychains
+sudo vim /etc/proxychains.conf在proxychains.conf文件末尾修改你的socks5服务地址，可以把sock4删除
+[ProxyList]socks5 127.0.0.1 1080此处的配置与v2ray中的配置对应，即port字段：
+&amp;quot;inbounds&amp;quot;: [{&amp;quot;tag&amp;quot;: &amp;quot;proxy&amp;quot;,&amp;quot;port&amp;quot;: 1080,&amp;quot;listen&amp;quot;: &amp;quot;0.0.0.0&amp;quot;,&amp;quot;protocol&amp;quot;: &amp;quot;socks&amp;quot;,# ...},]  使用
+在命令前加上proxychains( 此方法只能代理TCP链接，我只要TCP就够了 )
+proxychains curl https://www.google.com  </content>
+    </entry>
+    
+     <entry>
+        <title>[linux]目录的含义与相关操作</title>
+        <url>https://litmingc.github.io/post/linux/%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E7%BB%84%E7%BB%87/</url>
+        <categories>
+          <category>学习笔记</category><category>Linux</category>
+        </categories>
+        <tags>
+          <tag>目录</tag><tag>文件类型</tag>
+        </tags>
+        <content type="html"> 目录的一般含义 摘录自【链接】
+   一级目录 含义     /bin/ 系统命令，普通用户、root都可以执行。   /boot/ 系统启动目录，如：内核文件、引导程序等。   /dev/ 设备文件   /etc/ 配置文件。默认安装方式下的服务配置文件，如：用户信息、启动脚本、常用服务的配置文件等。   /home/ 存放普通用户的主目录   /lib/ 系统调用的函数库   lost&#43;found 系统意外崩溃或意外关机时的恢复目录，不同分区可能都有此目录   /media/ 挂载目录，建议光盘等媒体设备   /mnt/ 挂载目录，挂载额外设备   /misc/ 挂载目录，建议挂载NFS服务的共享目录。（有的系统无此目录，挂载目录的类别不是必须的）   /opt/ 第三方软件安装目录。   /proc/ 虚拟文件系统。保存系统内核进程、外部设备、网络状态等。&amp;lt;br &amp;gt;数据在内存中。因此，在此文件夹中写入数据会使得可用内存越来越小，其它存储在内存中的文件夹同理。   /root/ root的主目录   /run/ 系统启动后的一些运行数据，临时的文件系统，数据不在硬盘中。   /sbin/ 与系统环境设置相关的命令，只有root可以使用这些命令进行环境设置，普通用户可以查看部分命令   /usr/ Unix Software Resource，系统软件资源。   /srv/ 部分系统服务启动后的数据目录   /sys/ 虚拟文件系统，多为内核相关。   /tmp/ 临时目录，所有用户都可以访问和写入。   /var/ 储存动态数据，如：缓存、日志等。    /usr/目录  /usr/bin: 与系统启动无关的系统命令。普通用户和root用户可执行。 /usr/sbin: 存放根文件系统不必要的系统管理命令，如多数服务程序。只有root用户可以使用。 /usr/lib: 应用程序调用的程序库。 /usr/local: 手工安装的软件保存位置。一般建议源码包软件安装在这个位置。 /usr/share: 应用程序的资源文件保存位置，如帮助文档、说明文档和字体目录. /usr/src: 源码包保存位置，手工下载的源码包和内核源码包都可以保存到这里。 /usr/include: C/C&#43;&#43;等编程语言的放置目录。  /var/目录  /var/lib: 程序运行中需要调用或改变的数据保存位置。如,MySQL的数据库保存在/var/lib/mysql/目录中。 /var/log: 登陆文件放置的目录，其中所包含比较重要的文件如/var/log/messages, /var/log/wtmp。 /var/run/: 一些服务和程序运行后，其PID保存位置。 /var/www/: 系统的包工具（yum，apt）安装的Apache等程序的网页主目录。 /var/tmp: 一些应用程序在安装或执行时，需要在重启后使用的某些文件，此目录能将该类文件暂时存放起来，完成后再行删除。  部分软件的目录说明 python 摘录自【链接】，如下：
+ python的可执行文件的目录一般在 /usr/bin下，通过apt-get安装的应用一般会在这个目录
+自行安装的一般在/usr/local/bin下
+python3.5的自带库目录在
+/usr/lib/python3/dist-packages
+/usr/lib/python3.5/
+python2.7的自带库目录在
+/usr/lib/python2.6/dist-packages
+/usr/lib/python2.7/
+通过pip安装的模块目录在
+~/.local/lib/python3.5/site-packages
+~/.local/lib/python2.7/site-packages
+或者
+/usr/local/lib/python2.7/dist-packages
+————————————————
+版权声明：本文为CSDN博主「sodawaterer」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。 原文链接：https://blog.csdn.net/sodawaterer/article/details/72795468
+ 文件类型 文件类型的符号标识（ls -l命令下）
+ - 普通文件 d 目录 b 块设备文件：保存大块数据的设备，比如硬盘。 s 套接字文件：网络数据连接过程中，通过套接字进行数据通信。 p 管道文件：用于解决多个程序同时存取同一个文件所造成的错误。 l 链接文件：快捷方式 c 字符设备文件：键盘、鼠标等。  </content>
+    </entry>
+    
+     <entry>
+        <title>[Tips]Raspberrypi相关</title>
+        <url>https://litmingc.github.io/post/tips/raspberrypi%E7%9B%B8%E5%85%B3/</url>
+        <categories>
+          <category>学习笔记</category><category>Linux</category>
+        </categories>
+        <tags>
+          <tag>挂载硬盘</tag><tag>berryconda</tag><tag>RaspberryPi</tag>
+        </tags>
+        <content type="html"> 挂载移动硬盘 NTFS  安装ntfs-3g sudo apt-get install ntfs-3g 查看设备 fdisk -l 准备挂载目录 sudo mkdir /mnt/dir 暂时挂载硬盘 ntfs-3g /dev/sda1 /mnt/dir 开机自动挂载
+修改文件 /etc/fstab
+添加如下内容： /dev/sda1 /mnt/dir ntfs utf8,uid=1000,gid=1000,umask=022 0 0  berryconda  环境：raspbian armv7l    问题：网络不佳，使用conda insatll无法下载openssl
+解决：
+ 使用wget下载目标 conda insatll --use-local openssl本地文件安装    问题：conda insatll --use-local openssl本地文件安装出错
+错误信息：CondaError: EOFError(&#39;Compressed file ended before the end-of-stream marker was reached&#39;,)
+可能的原因：berryconda/pkgs/存在未正确下载的文件，安装时可能并没有用指定本地文件，而是用了缓存的文件？
+解决： 删除berryconda/pkgs/目录下的相关文件，再次安装
+  修改主机名后，sudo有异常提示  环境：Linux raspberrypi 4.19.88-OPENFANS&#43;20191229-v8 aarch64   问题：在cockpit中修改主机名，sudo功能正常，但有提示信息
+信息：sudo: unable to resolve host raspberrypi: Name or service not known
+解决：
+修改/etc/hosts文件，将127.0.0.1映射到当前主机名。主机名所在文件为/etc/hostname。  安装Aria2  环境：Linux raspberrypi 4.19.88-OPENFANS&#43;20191229-v8 aarch64   下载对应的build包
+【下载地址】 arm似乎没有，可以使用apt-get install aria2安装，但版本可能不是最新的。  </content>
+    </entry>
+    
+     <entry>
+        <title>[linux]常见命令</title>
+        <url>https://litmingc.github.io/post/linux/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</url>
+        <categories>
+          <category>学习笔记</category><category>Linux</category>
+        </categories>
+        <tags>
+          
+        </tags>
+        <content type="html"> linux使用过程中自己会用到的一些“小”命令
+  uname
+查看系统内核以及系统版本
+参数：
+ -a或&amp;ndash;all 显示全部的信息。 -m或&amp;ndash;machine 显示电脑类型。 -n或-nodename 显示在网络上的主机名称。 -r或&amp;ndash;release 显示操作系统的发行编号。 -s或&amp;ndash;sysname 显示操作系统名称。 -v 显示操作系统的版本。    getconf LONG_BIT
+看看系统是32位还是64位
+  uptime
+查看负载信息
+  free
+显示当前系统中内存使用量信息
+  </content>
+    </entry>
+    
+     <entry>
+        <title>[Tips]Hugo相关</title>
+        <url>https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/</url>
+        <categories>
+          <category>Hugo</category>
+        </categories>
+        <tags>
+          <tag>MathJax</tag>
+        </tags>
+        <content type="html"> 环境：
+ hugo_extended_0.55.6_Windows-64bit    表达数学公式
+参考：
+MathJax Support
+在Hugo中使用MathJax
+修改公式显示的大小：
+在math.html文件的适当地添加如下代码：
+&amp;lt;script type=&amp;#34;text/x-mathjax-config&amp;#34;&amp;gt;MathJax.Hub.Config({&amp;#34;HTML-CSS&amp;#34;: { scale: 175}});&amp;lt;/script&amp;gt;  修改代码块的样式
+主题：pure
+修改css文件的&amp;lt;pre&amp;gt;标签的样式，样式参考
+  使用tab键可能造成奇怪的渲染结局，应使用空格为宜
+  </content>
+    </entry>
+    
+     <entry>
+        <title>[linux]进程管理</title>
+        <url>https://litmingc.github.io/post/linux/%E8%BF%9B%E7%A8%8B%E7%9B%B8%E5%85%B3/</url>
+        <categories>
+          <category>学习笔记</category><category>Linux</category>
+        </categories>
+        <tags>
+          
+        </tags>
+        <content type="html"> 相关字段的含义    表头 含义     USER 进程由哪个用户产生   PID 进程id   PPID 父进程id   %CPU 或者 C 占用cpu   %MEM 占用物理内存   VSC 占用虚拟内存的大小，单位KB   RSS 占用物理内存的大小，单位KB   PRI 进程优先级，数值越小，优先级越高。PRI &#43;= nice   NI 即nice，用户可修改。   WCHAN 是否在运行，-表示在运行   TTY tty1 ~ tty7 代表本地控制台终端，tty7 是图型终端。
+pts/0 ~ 255 代表虚拟终端，一般是远程连接的终端，第一个远程连接占用 pts/0，第二个远程连接占用 pts/1，依次増长。   STAT 或者 S 进程状态。常见的状态有以下几种： 1. -D：不可被唤醒的睡眠状态，通常用于 I/O 情况。 2. -R：该进程正在运行。 3. -S：该进程处于睡眠状态，可被唤醒。 4. -T：停止状态，可能是在后台暂停或进程处于除错状态。 5. -W：内存交互状态（从 2.6 内核开始无效）。 6. -X：死掉的进程（应该不会出现）。 7. -Z：僵尸进程。进程已经中止，但是部分程序还在内存当中。 8. -&amp;lt;：高优先级（以下状态在 BSD 格式中出现）。 9. -N：低优先级。 10. -L：被锁入内存。 11. -s：包含子进程。 12. -l：多线程（小写 L）。
+13. -&#43;：位于后台。   TIME 占用cpu的时间   COMMAND 命令   FD 文件描述符   TYPE REG：文件；DIR：目录；CHR：字符；BLK：块设备；UNIX：unix套接字；FIFO：先进先出队列；IPv4等：IP套接字   DEVICE 指定磁盘名称   NODE 索引节点（文件在磁盘中的标识）    进程后台执行   在命令后使用 &amp;amp; 符号
+后台运行
+find / -name abc.jpg &amp;amp;常见搭配：输出重定向，使用&amp;gt;符号，如下
+# 命令 &amp;gt; 目标文件 &amp;amp;# 将命令在后台运行，并将输出导出到目标文件cat a.txt &amp;gt; 目标文件 &amp;amp;  nohup命令
+进程脱离终端执行：当前终端退出时，进程不被打断
+ no hang up，即不挂断，但不是在后台运行，搭配&amp;amp;使用。  nohup find / -name abc.jpg &amp;amp;  jobs命令
+查看当前终端的后台工作
+jobs [options]options:
+ -l：列出进程PID号 -n：只显示状态改变的进程 -p：只显示PID -r：筛选running状态的进程 -s：筛选stoppde状态的进程  输出
+工作号 &#43;- status commend
+&#43;表示新增工作
+  fg命令
+将后台命令恢复到前台
+fg [[%]工作号]工作号为jobs输出[]中的数字 默认恢复最新命令，即带&#43;的工作
+  bg命令
+将后台暂停的工作启动
+bg [[%]工作号]  查看进程信息——ps命令    命令选项 含义     a 显示一个终端的所有进程，除会话引线外   u 显示进程的归属用户及内存的使用情况   x 显示没有控制终端的进程   -l 长格式显示更加详细的信息   -e 显示所有进程        实时监听进程信息——top命令   交互操作
+ ？或者 h ：帮助 p ：按cpu占用排序 m ：按照内存占用排序 t ：按TIME排序 k ：终止（kill）进程，指定PID，Esc退出 r ：重新设置nice值，指定PID，Esc退出 q ：退出top    命令选项
+ -d 秒数：top命令几秒更新一次。默认3秒 -b：使用批处理模式。据说，用于将信息保存输出到文件。 -n 次数：指定top命令的执行次数。 -p 进程PID：查看指定进程。 -s：安全模式。避免在交互过程中出错。 -u 用户名：只监听某个用户的进程。    注：cache 、 buffer的区别部分显示注解：
+ cache：读取硬盘的数据缓存 buffer：写入硬盘的数据缓存  查看进程树——pstree命令 pstree [option] [PID or username]
+option:
+ -a：显示启动每个进程对应的完整指令 -c：不使用精简法显示进程信息 -n：根据PID排序 -p：显示PID -u：显示用户名  查看文件调用——lsof命令 lsof [options] [filename]
+option：
+ -c 字符串：筛选以此字符串开头的命令 &#43;d 目录：筛选目录 -u 用户名：筛选用户 -p PID：筛选PID  调整进程优先级 进程优先级涉及到的参数问题 PRI:Priority，越小优先级越高 NI:nice  PRI(new) = PRI(old) &#43; nice ，
+其中：
+ NI $\epsilon$ [-20,19] 普通用户只能调整自己的进程，只能调高NI值，且调整范围为[0,19] ；root用户不受限    nice命令
+nice [-n NI值] commend
+  renice命令
+renice [NI值] PID 与nice不同，可以在命令运行中修改NI值
+  终止进程   kill命令
+kill [signal] PIDkill [-信号编号] PID   信号编号 信号名 含义     1 HUP    9 KILL 杀死进程   15 TERM 正常结束进程，kill默认信号      killall命令
+killall [options] [signal] 进程名options:
+ -i:交互式，询问是否杀死进程 -l:忽略进程名的大小写    pkill命令
+pkill [signal] [-t tty] [进程名]重要功能 -t：指定终端
+# 例如：# 强制杀死从pts/1虚拟终端登录的进程pkill -9 -t pts/1  </content>
+    </entry>
+    
+     <entry>
+        <title>QLineEdit</title>
+        <url>https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/</url>
+        <categories>
+          <category>学习笔记</category><category>python</category>
+        </categories>
+        <tags>
+          <tag>PyQt5</tag>
+        </tags>
+        <content type="html">   环境：
+ python 3.7 PyQt5 5.13.0    QLineEdit   控制输入   正则表达式
+Validator = QRegExpValidator(self) # 校验器 # 为校验器配置QRegExp(), 参数r&amp;#34;[0-9]&amp;#34;为正则表达式  Validator.setRegExp(QRegExp(r&amp;#34;[0-9]&amp;#34;))c = QLineEdit()c.setValidator(Validator)  掩码
+掩码对比正则表达式：掩码使用占位符；正则表达式则没有占位。所以，在没有输入的情况下，掩码的光标可以在占下的位置间移动，而且输入方式相当于更新，而不是插入。
+c = QLineEdit()c.setInputMask(&amp;#39;0&amp;#39;) # 设置掩码：一位 0-9 的字符 c.setInputMask(&amp;#39;000&amp;#39;) # 设置掩码：三位 0-9 的字符 掩码占位符表
+参考网上搜到的表格，但在应用时，原表中“必须输入”以及“不是必需的”的差异未有体现，下表为个人试验得出的意见。
+【注】试验时，有效的代码部分仅为上述代码更换掩码而已。
+   占位字符 含义     A，a 只允许输入【A~Z, a~z】以及汉字   N，n 只允许输入【A~Z, a~z, 0~9】以及汉字   X，x 允许输入各种字符，标点   9，0 只允许输入0-9的数字   D，d 只允许输入1-9的数字   # 只允许输入1-9的数字、加号&#43;、减号-   H，h 只允许输入A~F、 a~f、0-9，即十六进制数字   B，b 只允许输入0、1，即二进制数字   &amp;gt; 搭配上述字符，将字符自动变大写，可输入汉字   &amp;lt; 搭配上述字符，将字符自动变小写，可输入汉字   ! 搭配上述字符，从！的位置开始，关闭 &amp;gt; 、&amp;lt;的大小写转换效果。
+例如：&#39;&amp;lt;aaa!aaa&amp;rsquo;，前三个字符会转换为小写，后三个字符不会被转换成小写      </content>
+    </entry>
+    
+</search>
