@@ -7,11 +7,11 @@
     <title>[Tips]算法小抄 - LitMing</title><meta name="keywords" content="notebooks,linux,python,go,书摘文录,学习笔记">
     <meta property="og:title" content="[Tips]算法小抄">
     <meta property="og:site_name" content="LitMing">
-    <meta property="og:image" content="/img/i.png"> 
+    <meta property="og:image" content="/img/izip.png"> 
     <meta name="title" content="[Tips]算法小抄 - LitMing" />
     <meta name="description" content="[Tips]算法小抄" />
      
-	<link rel="shortcut icon" href="https://litmingc.github.io/img/i.png" />
+	<link rel="shortcut icon" href="https://litmingc.github.io/img/izip30.png" />
     <link rel="apple-touch-icon" href="" />
     <link rel="apple-touch-icon-precomposed" href="" />
     <link href="https://litmingc.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
@@ -27,6 +27,7 @@
     motion: true
   };
 </script>
+
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145827411-1"></script>
 <script>
@@ -158,7 +159,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">570 字 ~2分钟</span>
+<span class="leancloud-visitors-count">655 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -181,6 +182,10 @@ $\therefore$若$k_2$与$(k_1-k_2*q)$互质，则$r$和$b$的最大公约数也�
 $a$、$b$最大公约数为$mc$,矛盾。<br />
 所以，<code>$k_2$</code>与<code>$(k_1-k_2*q)$</code>互质，$c$为$b$、$r$的最大公约数。
 即，<code>$gcd(a,b)=gcd(b,r)=gcd(b,a\%b)=c$</code></p>
+<p>从上述证明中不难发现a、b、r（$a%b$）有共同的最大公约数，所以不断取其中最小的两个数相除得到更小的一组数，直到这组数中一个数本身就是最大公约数，算法结束。<br />
+$$
+\left{\begin{aligned}k_2=&amp;xm \ (k_1-k_2*q)=&amp;ym\end{aligned}\right.
+$$</p>
 <div class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
@@ -216,18 +221,17 @@ $a$、$b$最大公约数为$mc$,矛盾。<br />
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <div id="vcomments"></div>
 <script>
-	new Valine({
+  new Valine({
         el: '#vcomments',
         appId: "2guSOLy9NcQHOtR6lwkFIrmp-MdYXbMMI",
         appKey: "xhgDfd5tc8sl0ODNj7ER8pND",
-        notify: false , 
-        verify: false , 
-        avatar:"mp",
-		visitor:  true ,
+        notify:  false ,
+        verify:  false ,
+        avatar: "mp",
+        visitor:  true ,
         placeholder: "just go go" 
-	})
+  })
 </script>
-
 <style>
 .icon-bigger {
   width: 1.5em;
@@ -259,9 +263,6 @@ $a$、$b$最大公约数为$mc$,矛盾。<br />
 </span>
 
 
-
-
-
     </footer>
   </article>
 </section></div>
@@ -278,7 +279,7 @@ $a$、$b$最大公约数为$mc$,矛盾。<br />
     <section class="site-overview sidebar-panel  sidebar-panel-active ">
       <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image"
-        src="https://litmingc.github.io/img/i.png"
+        src="https://litmingc.github.io/img/izip.png"
         alt="litmingc" />
     <p class="site-author-name" itemprop="name">litmingc</p>
     <p class="site-description motion-element" itemprop="description"> 
@@ -384,7 +385,15 @@ $a$、$b$最大公约数为$mc$,矛盾。<br />
 <script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<style>
+  code.mathcode {
+    font: inherit;
+    font-size: 110%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+  }
+</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
 <script>
@@ -400,21 +409,15 @@ renderMathInElement(document.body,
   }
 );
 var all=document.getElementsByClassName('katex'),i;
-    for(i = 0; i < all.length; i += 1) {
-        if(all[i].parentNode.parentNode.nodeName == 'CODE')
-        all[i].parentNode.parentNode.className += ' hasKatex';
-    }
-</script>
-<style>
-code.hasKatex {
-  font: inherit;
-  font-size: 110%;
-  background: inherit;
-  border: inherit;
-  color: #515151;
+for(i = 0; i < all.length; i += 1){
+     
+     
+    var tmp=all[i].parentNode;
+    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
+    if(tmp.nodeName == 'CODE')
+      tmp.className += ' mathcode';
 }
-</style>
-
+</script>
 <script src="https://litmingc.github.io/js/iconfont.js"></script>
 <style>
 .icon {
