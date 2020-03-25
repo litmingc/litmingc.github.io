@@ -1,6 +1,30 @@
 <search>
     
      <entry>
+        <title>[Tips]算法小抄</title>
+        <url>https://litmingc.github.io/post/tips/tips%E7%AE%97%E6%B3%95%E5%B0%8F%E6%8A%84/</url>
+        <categories>
+          
+        </categories>
+        <tags>
+          
+        </tags>
+        <content type="html"> 欧几里得算法证明（最大公约数）1  $a$ 整除 $b$ 表示$b\%a为0$； $a$ 除以 $b$ 表示 $b/a$；我总把除和除以搞混。 $gcd(a,b)$表示$a$，$b$的最大公约数。  证明：
+设·a·，$b$($a&amp;gt;b$)的最大公约数为$c$。
+$\because$存在$q,r,k_1,k_2$ ，使得$\left\{ \begin{aligned}a=&amp;amp;b*q&#43;r \\ a=&amp;amp;c*k_1 \\ b=&amp;amp;c*k_2 \end{aligned}\right.$，
+$\therefore r=a-bq=ck_1-ck_2q=c(k_1-k_2q) $,
+又$\because b=ck_2$
+$\therefore$若$k_2$与$(k_1-k_2*q)$互质，则$r$和$b$的最大公约数也是$c$。
+下面证明，$k_2$与$(k_1-k_2*q)$互质：
+假设$k_2$与$(k_1-k_2*q)$不互质，即有大于1的公约数$m$，
+则存在$x$、$y$，使得$\left\{\begin{aligned}k_2=&amp;amp;xm \\ (k_1-k_2*q)=&amp;amp;ym\end{aligned}\right.$，
+代入$a$、$b$，得$\left\{\begin{aligned} a=&amp;amp;b*q&#43;r=xmc*q&#43;ymc=mc(x*q&#43;y)\\ b=&amp;amp;xmc \end{aligned}\right.$， $a$、$b$最大公约数为$mc$,矛盾。
+所以，$k_2$与$(k_1-k_2*q)$互质，$c$为$b$、$r$的最大公约数。 即，$gcd(a,b)=gcd(b,r)=gcd(b,a\%b)=c$
+ https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;amp;utm_source=distribute.pc_relevant.none-task &amp;ldquo;欧几里德算法 CSDN&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
+   </content>
+    </entry>
+    
+     <entry>
         <title>[rpi]树莓派使用v2ray</title>
         <url>https://litmingc.github.io/post/linux/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8v2ray/</url>
         <categories>
@@ -114,16 +138,23 @@ python2.7的自带库目录在
         </tags>
         <content type="html"> 环境：
  hugo_extended_0.55.6_Windows-64bit    表达数学公式
-参考：
-MathJax Support
-在Hugo中使用MathJax
+ hugo主题：Next  先上参考：
+MathJax Support 在Hugo中使用MathJax
 修改公式显示的大小：
-在math.html文件的适当地添加如下代码：
-&amp;lt;script type=&amp;#34;text/x-mathjax-config&amp;#34;&amp;gt;MathJax.Hub.Config({&amp;#34;HTML-CSS&amp;#34;: { scale: 175}});&amp;lt;/script&amp;gt;  修改代码块的样式
+方法一：修改上述参考中的style。
+方法二：使用如下代码：
+&amp;lt;script type=&amp;#34;text/x-mathjax-config&amp;#34;&amp;gt;MathJax.Hub.Config({&amp;#34;HTML-CSS&amp;#34;: { scale: 175}});&amp;lt;/script&amp;gt;但是，MathJax在渲染的时候，速度有些慢。总要等很久。 又因为听说KaTeX挺快的（用了一下，还真的）。
+参考上述改法，KaTeX的配置如下：
+&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-9tPv11A&#43;glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL&#43;6DuH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;renderMathInElement(document.body,{delimiters: [{left: &amp;#34;$$&amp;#34;, right: &amp;#34;$$&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false},],ignoredTags: [&amp;#39;script&amp;#39;, &amp;#39;noscript&amp;#39;, &amp;#39;style&amp;#39;, &amp;#39;textarea&amp;#39;, &amp;#39;pre&amp;#39;],});var all=document.getElementsByClassName(&amp;#39;katex&amp;#39;),i;for(i = 0; i &amp;lt; all.length; i &#43;= 1) {if(all[i].parentNode.parentNode.nodeName == &amp;#39;CODE&amp;#39;)all[i].parentNode.parentNode.className &#43;= &amp;#39; hasKatex&amp;#39;;}&amp;lt;/script&amp;gt;&amp;lt;style&amp;gt;code.hasKatex {font: inherit;font-size: 110%;background: inherit;border: inherit;color: #515151;}&amp;lt;/style&amp;gt;如同参考教程12所说的一样，公式中使用_等符号会和Markdown冲突造成渲染失败，上述解决方法是在公式外加一对``解决，同时调整公式父层code标签的样式（因为原先的code的样式背景是灰的）。
+  修改代码块的样式
 主题：pure
 修改css文件的&amp;lt;pre&amp;gt;标签的样式，样式参考
   使用tab键可能造成奇怪的渲染结局，应使用空格为宜
-  </content>
+  google analytic3
+{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
+ https://note.qidong.name/2018/03/hugo-mathjax/ &amp;#x21a9;&amp;#xfe0e;
+ https://note.qidong.name/2017/07/05/google-analytics-in-hugo/ &amp;#x21a9;&amp;#xfe0e;
+   </content>
     </entry>
     
      <entry>

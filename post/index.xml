@@ -6,10 +6,19 @@
     <description>Recent content in Posts on LitMing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 12 Mar 2020 14:28:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2020 10:04:26 +0800</lastBuildDate>
     
 	<atom:link href="https://litmingc.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Tips]算法小抄</title>
+      <link>https://litmingc.github.io/post/tips/tips%E7%AE%97%E6%B3%95%E5%B0%8F%E6%8A%84/</link>
+      <pubDate>Wed, 25 Mar 2020 10:04:26 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/tips/tips%E7%AE%97%E6%B3%95%E5%B0%8F%E6%8A%84/</guid>
+      <description>欧几里得算法证明（最大公约数）1 $a$ 整除 $b$ 表示$b\%a为0$； $a$ 除以 $b$ 表示 $b/a$；我总把除和除以搞混。 $gcd(a,b)$表示$a$，$</description>
+    </item>
     
     <item>
       <title>[rpi]树莓派使用v2ray</title>
@@ -53,7 +62,7 @@
       <pubDate>Thu, 27 Feb 2020 16:40:46 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/</guid>
-      <description>环境： hugo_extended_0.55.6_Windows-64bit 表达数学公式 参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 在math.html文件的适当地添加如下代码： &amp;lt;script type=&amp;#34;text/x-mathjax-config&amp;#34;&amp;gt; MathJax.Hub.Config({ &amp;#34;HTML-CSS&amp;#34;: { scale: 175}</description>
+      <description>环境： hugo_extended_0.55.6_Windows-64bit 表达数学公式 hugo主题：Next 先上参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 方法一：修改上述参考中的style</description>
     </item>
     
     <item>
