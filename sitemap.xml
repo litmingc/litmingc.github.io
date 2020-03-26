@@ -21,7 +21,6 @@ $\therefore$若$k_2$与$(k_1-k_2*q)$互质，则$r$和$b$的最大公约数也�
 代入$a$、$b$，得$\left\{\begin{aligned} a=&amp;amp;b*q&#43;r=xmc*q&#43;ymc=mc(x*q&#43;y)\\ b=&amp;amp;xmc \end{aligned}\right.$， $a$、$b$最大公约数为$mc$,矛盾。
 所以，$k_2$与$(k_1-k_2*q)$互质，$c$为$b$、$r$的最大公约数。 即，$gcd(a,b)=gcd(b,r)=gcd(b,a\%b)=c$
 从上述证明中不难发现a、b、r（$a%b$）有共同的最大公约数，所以不断取其中最小的两个数相除得到更小的一组数，直到这组数中一个数本身就是最大公约数，算法结束。
-$$ \left{\begin{aligned}k_2=&amp;amp;xm \ (k_1-k_2*q)=&amp;amp;ym\end{aligned}\right. $$
  https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;amp;utm_source=distribute.pc_relevant.none-task &amp;ldquo;欧几里德算法 CSDN&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
    </content>
     </entry>
