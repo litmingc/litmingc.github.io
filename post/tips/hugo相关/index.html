@@ -174,7 +174,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">430 字 ~1分钟</span>
+<span class="leancloud-visitors-count">571 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -249,6 +249,21 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 {{ template <span style="color:#4070a0">&#34;_internal/google_analytics_async.html&#34;</span> . }}
 {{ end }}
 </code></pre></div></li>
+<li>
+<p>samba安装</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt-get install samba samba-common-bin
+</code></pre></div><p>配置文件</p>
+<pre><code class="language-config" data-lang="config">[public]
+   comment = Public Storage
+   path = /home/pi
+   read only = no#任何人都具有了访问修改的权限
+   #因为是公共文件夹，所以给了所有用户全部权限，可以自定义
+   create mask = 0777#新创建文件的默认属性
+   directory mask = 0777#新创建文件夹的默认属性
+   guest ok = yes#默认的访问用户名为guest
+   browseable = yes
+</code></pre><p><a href="https://blog.csdn.net/qq_39626154/article/details/85335103">更多配置项</a><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+</li>
 </ol>
 <div class="footnotes" role="doc-endnotes">
 <hr />
@@ -261,6 +276,9 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 </li>
 <li id="fn:3" role="doc-endnote">
 <p><a href="https://note.qidong.name/2017/07/05/google-analytics-in-hugo/">https://note.qidong.name/2017/07/05/google-analytics-in-hugo/</a> <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://blog.csdn.net/qq_39626154/article/details/85335103">https://blog.csdn.net/qq_39626154/article/details/85335103</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>

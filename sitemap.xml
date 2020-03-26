@@ -153,9 +153,13 @@ MathJax Support 在Hugo中使用MathJax
 修改css文件的&amp;lt;pre&amp;gt;标签的样式，样式参考
   使用tab键可能造成奇怪的渲染结局，应使用空格为宜
   google analytic3
-{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
+{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}  samba安装
+sudo apt-get install samba samba-common-bin配置文件
+[public]comment = Public Storagepath = /home/piread only = no#任何人都具有了访问修改的权限#因为是公共文件夹，所以给了所有用户全部权限，可以自定义create mask = 0777#新创建文件的默认属性directory mask = 0777#新创建文件夹的默认属性guest ok = yes#默认的访问用户名为guestbrowseable = yes更多配置项4
+   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2018/03/hugo-mathjax/ &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2017/07/05/google-analytics-in-hugo/ &amp;#x21a9;&amp;#xfe0e;
+ https://blog.csdn.net/qq_39626154/article/details/85335103 &amp;#x21a9;&amp;#xfe0e;
    </content>
     </entry>
     
