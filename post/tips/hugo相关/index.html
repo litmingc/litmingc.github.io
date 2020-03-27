@@ -174,7 +174,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">1370 字 ~3分钟</span>
+<span class="leancloud-visitors-count">1394 字 ~3分钟</span>
 </span>
       </div>
     </header>
@@ -255,11 +255,12 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 &lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 </code></pre></div><p>然后，<a href="https://pandoc.org/installing.html">安装pandoc</a>。<br />
 最后，在MarkDown文件的front-matter部分加上<code>markup: &quot;pandoc&quot;</code>即可。<br />
-&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;手工分割线&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;
-这里还有一些问题。其中，无法像方案一那像配置<code>delimiters: </code>选项。一旦配置了就无法渲染，<del>我猜是不是pandoc和这个冲突？</del> 而且，front-matter部分加上<code>markup: &quot;pandoc&quot;</code>后不能渲染<code>&lt;details&gt;</code>标签了，可能需要pandoc额外的设置吧。
-于是，使用方案二就无法用一些html标签了，使用方案二又不便于编辑器预览。
-但是小孩子才做选择，而我全都要：<br />
-我用了如下的傻瓜方法，通过条件判断，给不同页面添加不同的代码。ミ(ﾉ゜д゜)ﾉ打你哦</p>
+&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;手工分割线&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;<br />
+这里还有一些问题。其中，无法像方案一那像配置<code>delimiters: </code>选项。一旦配置了就无法渲染，<del>我猜是不是pandoc和这个冲突？</del> 而且，front-matter部分加上<code>markup: &quot;pandoc&quot;</code>后不能渲染<code>&lt;details&gt;</code>标签了，可能需要pandoc额外的设置吧。<br />
+于是，使用方案二就无法用一些html标签了，使用方案二又不便于编辑器预览。但是不用纠结<br />
+因为小孩子才做选择，而我可以全都要：<br />
+我用了如下的傻瓜方法，通过条件判断，给不同页面添加不同的代码。<br />
+内心OS：什么妖魔鬼怪的方法啊！ミ(ﾉ゜д゜)ﾉ打你哦</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{- if (and .IsPage (eq .Params.markup &#34;pandoc&#34; ) ) -}}
 <span style="color:#60a0b0;font-style:italic">&lt;!-- 方案二 --&gt;</span>
 &lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;
