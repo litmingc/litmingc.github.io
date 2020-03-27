@@ -173,12 +173,12 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">571 字 ~2分钟</span>
+<span class="leancloud-visitors-count">1370 字 ~3分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    环境： hugo_extended_0.55.6_Windows-64bit 表达数学公式 hugo主题：Next 先上参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 方法一：修改上述参考中的style
+    环境： hugo_extended_0.55.6_Windows-64bit 表达数学公式 hugo主题：Next 方案一： 先上参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 方法一：修改上述参考中的s
     </div>
     
     <div class="post-more-link text-center">
@@ -439,39 +439,6 @@
   $('.archive-year').velocity('transition.slideLeftIn');
 </script><script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
-<style>
-  code.mathcode {
-    font: inherit;
-    font-size: 110%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-  }
-</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
-<script>
-renderMathInElement(document.body,
-  {
-    delimiters: [
-      {left: "$$", right: "$$", display: true},
-      {left: "$", right: "$", display: false},
-      {left: "··", right: "··", display: true},
-      {left: "·", right: "·", display: false}
-    ],
-    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-  }
-);
-var all=document.getElementsByClassName('katex'),i;
-for(i = 0; i < all.length; i += 1){
-     
-     
-    var tmp=all[i].parentNode;
-    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
-    if(tmp.nodeName == 'CODE')
-      tmp.className += ' mathcode';
-}
-</script>
 <script src="https://litmingc.github.io/js/iconfont.js"></script>
 <style>
 .icon {
@@ -482,6 +449,38 @@ for(i = 0; i < all.length; i += 1){
   overflow: hidden;
 }
 </style>
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></body>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><style>
+    code.mathcode {
+      font: inherit;
+      font-size: 110%;
+      background: inherit;
+      border: inherit;
+      color: #515151;
+    }
+</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+<script>
+renderMathInElement(document.body,
+{
+    delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "··", right: "··", display: true},
+    {left: "·", right: "·", display: false},
+    {left: "\\(", right: "\\)", display: false},
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+}
+);
+var all=document.getElementsByClassName('katex'),i;
+for(i = 0; i < all.length; i += 1){
+     
+     
+    var tmp=all[i].parentNode;
+    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
+    if(tmp.nodeName == 'CODE')
+    tmp.className += ' mathcode';
+}
+</script></body>
 </html>

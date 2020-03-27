@@ -181,12 +181,29 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">497 字 ~1分钟</span>
+<span class="leancloud-visitors-count">612 字 ~2分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
     <hr />
+<h3 id="常用初始化配置">常用初始化配置</h3>
+<p>新烧好系统之后，我常做的配置。列出来做个备忘。</p>
+<ol>
+<li>修改主机名
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo vim /etc/hostname
+</code></pre></div></li>
+<li>修改密码</li>
+<li>修改hosts
+主要是添加<code>127.0.0.1</code>对前面修改的主机名的映射
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo vim /etc/hosts
+</code></pre></div></li>
+<li><a href="">v2ray配置</a></li>
+<li><a href="">aria2配置*</a></li>
+<li><a href="">samba配置</a></li>
+<li><a href="">docker配置*</a></li>
+<li><a href="#%e6%8c%82%e8%bd%bd%e7%a7%bb%e5%8a%a8%e7%a1%ac%e7%9b%98">挂载移动硬盘</a></li>
+</ol>
 <h3 id="挂载移动硬盘">挂载移动硬盘</h3>
 <h4 id="ntfs">NTFS</h4>
 <ol>
@@ -300,7 +317,7 @@ arm似乎没有，可以使用<code>apt-get install aria2</code>安装，但版�
         verify:  false ,
         avatar: "mp",
         visitor:  true ,
-        placeholder: "just go go" 
+        placeholder: "留下邮箱会收到回复提醒哦" 
   })
 </script>
 <style>
@@ -347,7 +364,16 @@ arm似乎没有，可以使用<code>apt-get install aria2</code>安装，但版�
 <aside id="sidebar" class="sidebar">
   <div class="sidebar-inner">
 
-    <section class="site-overview sidebar-panel  sidebar-panel-active ">
+  <ul class="sidebar-nav motion-element">
+    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+      文章目录
+    </li>
+    <li class="sidebar-nav-overview" data-target="site-overview">
+      站点概览
+    </li>
+  </ul>
+
+    <section class="site-overview sidebar-panel ">
       <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image"
         src="https://litmingc.github.io/img/izip.png"
@@ -401,6 +427,24 @@ arm似乎没有，可以使用<code>apt-get install aria2</code>安装，但版�
       
     </section>
     
+<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+    <div class="post-toc">
+        <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#常用初始化配置">常用初始化配置</a></li>
+        <li><a href="#挂载移动硬盘">挂载移动硬盘</a></li>
+        <li><a href="#berryconda">berryconda</a></li>
+        <li><a href="#修改主机名后sudo有异常提示">修改主机名后，sudo有异常提示</a></li>
+        <li><a href="#安装aria2">安装Aria2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div>
+</section>
+
   </div>
 </aside>
 </div>
@@ -456,39 +500,6 @@ arm似乎没有，可以使用<code>apt-get install aria2</code>安装，但版�
 <script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
-<style>
-  code.mathcode {
-    font: inherit;
-    font-size: 110%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-  }
-</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
-<script>
-renderMathInElement(document.body,
-  {
-    delimiters: [
-      {left: "$$", right: "$$", display: true},
-      {left: "$", right: "$", display: false},
-      {left: "··", right: "··", display: true},
-      {left: "·", right: "·", display: false}
-    ],
-    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-  }
-);
-var all=document.getElementsByClassName('katex'),i;
-for(i = 0; i < all.length; i += 1){
-     
-     
-    var tmp=all[i].parentNode;
-    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
-    if(tmp.nodeName == 'CODE')
-      tmp.className += ' mathcode';
-}
-</script>
 <script src="https://litmingc.github.io/js/iconfont.js"></script>
 <style>
 .icon {
@@ -499,6 +510,38 @@ for(i = 0; i < all.length; i += 1){
   overflow: hidden;
 }
 </style>
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></body>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><style>
+    code.mathcode {
+      font: inherit;
+      font-size: 110%;
+      background: inherit;
+      border: inherit;
+      color: #515151;
+    }
+</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+<script>
+renderMathInElement(document.body,
+{
+    delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "··", right: "··", display: true},
+    {left: "·", right: "·", display: false},
+    {left: "\\(", right: "\\)", display: false},
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+}
+);
+var all=document.getElementsByClassName('katex'),i;
+for(i = 0; i < all.length; i += 1){
+     
+     
+    var tmp=all[i].parentNode;
+    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
+    if(tmp.nodeName == 'CODE')
+    tmp.className += ' mathcode';
+}
+</script></body>
 </html>

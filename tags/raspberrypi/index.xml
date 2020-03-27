@@ -26,7 +26,7 @@
       <pubDate>Wed, 04 Mar 2020 16:10:52 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/tips/raspberrypi%E7%9B%B8%E5%85%B3/</guid>
-      <description>挂载移动硬盘 NTFS 安装ntfs-3g sudo apt-get install ntfs-3g 查看设备 fdisk -l 准备挂载目录 sudo mkdir /mnt/dir 暂时挂载硬盘 ntfs-3g /dev/sda1 /mnt/dir 开机自动挂载 修改文件 /etc/fstab 添加如下内容： /dev/sda1 /mnt/dir ntfs utf8,uid=1000,gid=1000,umask=022 0 0 berryconda 环</description>
+      <description>常用初始化配置 新烧好系统之后，我常做的配置。列出来做个备忘。 修改主机名 sudo vim /etc/hostname 修改密码 修改hosts 主要是添加127.0.0.1对前面修改的主</description>
     </item>
     
   </channel>

@@ -321,7 +321,7 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
         verify:  false ,
         avatar: "mp",
         visitor:  true ,
-        placeholder: "just go go" 
+        placeholder: "留下邮箱会收到回复提醒哦" 
   })
 </script>
 <style>
@@ -477,39 +477,6 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
 <script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
-<style>
-  code.mathcode {
-    font: inherit;
-    font-size: 110%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-  }
-</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
-<script>
-renderMathInElement(document.body,
-  {
-    delimiters: [
-      {left: "$$", right: "$$", display: true},
-      {left: "$", right: "$", display: false},
-      {left: "··", right: "··", display: true},
-      {left: "·", right: "·", display: false}
-    ],
-    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-  }
-);
-var all=document.getElementsByClassName('katex'),i;
-for(i = 0; i < all.length; i += 1){
-     
-     
-    var tmp=all[i].parentNode;
-    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
-    if(tmp.nodeName == 'CODE')
-      tmp.className += ' mathcode';
-}
-</script>
 <script src="https://litmingc.github.io/js/iconfont.js"></script>
 <style>
 .icon {
@@ -520,6 +487,38 @@ for(i = 0; i < all.length; i += 1){
   overflow: hidden;
 }
 </style>
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></body>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><style>
+    code.mathcode {
+      font: inherit;
+      font-size: 110%;
+      background: inherit;
+      border: inherit;
+      color: #515151;
+    }
+</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+<script>
+renderMathInElement(document.body,
+{
+    delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "··", right: "··", display: true},
+    {left: "·", right: "·", display: false},
+    {left: "\\(", right: "\\)", display: false},
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+}
+);
+var all=document.getElementsByClassName('katex'),i;
+for(i = 0; i < all.length; i += 1){
+     
+     
+    var tmp=all[i].parentNode;
+    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
+    if(tmp.nodeName == 'CODE')
+    tmp.className += ' mathcode';
+}
+</script></body>
 </html>

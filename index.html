@@ -157,12 +157,12 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">651 字 ~2分钟</span>
+<span class="leancloud-visitors-count">730 字 ~2分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    欧几里得算法证明（最大公约数）1 $a$ 整除 $b$ 表示$b\%a为0$； $a$ 除以 $b$ 表示 $b/a$；我总把除和除以搞混。 $gcd(a,b)$表示$a$，$
+    欧几里得算法证明（最大公约数）1 \(a\) 整除 \(b\) 表示\(b\%a为0\)； \(a\) 除以 \(b\) 表示 \(b/a\)；我总把除和除以搞混。 \(gcd(a,b)\)表
     </div>
     
     <div class="post-more-link text-center">
@@ -343,12 +343,12 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">497 字 ~1分钟</span>
+<span class="leancloud-visitors-count">612 字 ~2分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    挂载移动硬盘 NTFS 安装ntfs-3g sudo apt-get install ntfs-3g 查看设备 fdisk -l 准备挂载目录 sudo mkdir /mnt/dir 暂时挂载硬盘 ntfs-3g /dev/sda1 /mnt/dir 开机自动挂载 修改文件 /etc/fstab 添加如下内容： /dev/sda1 /mnt/dir ntfs utf8,uid=1000,gid=1000,umask=022 0 0 berryconda 环
+    常用初始化配置 新烧好系统之后，我常做的配置。列出来做个备忘。 修改主机名 sudo vim /etc/hostname 修改密码 修改hosts 主要是添加127.0.0.1对前面修改的主
     </div>
     
     <div class="post-more-link text-center">
@@ -547,39 +547,6 @@
   $('.archive-year').velocity('transition.slideLeftIn');
 </script><script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
-<style>
-  code.mathcode {
-    font: inherit;
-    font-size: 110%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-  }
-</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
-<script>
-renderMathInElement(document.body,
-  {
-    delimiters: [
-      {left: "$$", right: "$$", display: true},
-      {left: "$", right: "$", display: false},
-      {left: "··", right: "··", display: true},
-      {left: "·", right: "·", display: false}
-    ],
-    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-  }
-);
-var all=document.getElementsByClassName('katex'),i;
-for(i = 0; i < all.length; i += 1){
-     
-     
-    var tmp=all[i].parentNode;
-    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
-    if(tmp.nodeName == 'CODE')
-      tmp.className += ' mathcode';
-}
-</script>
 <script src="https://litmingc.github.io/js/iconfont.js"></script>
 <style>
 .icon {
@@ -590,6 +557,38 @@ for(i = 0; i < all.length; i += 1){
   overflow: hidden;
 }
 </style>
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></body>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><style>
+    code.mathcode {
+      font: inherit;
+      font-size: 110%;
+      background: inherit;
+      border: inherit;
+      color: #515151;
+    }
+</style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+<script>
+renderMathInElement(document.body,
+{
+    delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "··", right: "··", display: true},
+    {left: "·", right: "·", display: false},
+    {left: "\\(", right: "\\)", display: false},
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+}
+);
+var all=document.getElementsByClassName('katex'),i;
+for(i = 0; i < all.length; i += 1){
+     
+     
+    var tmp=all[i].parentNode;
+    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
+    if(tmp.nodeName == 'CODE')
+    tmp.className += ' mathcode';
+}
+</script></body>
 </html>
