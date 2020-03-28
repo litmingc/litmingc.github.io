@@ -174,7 +174,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">1394 字 ~3分钟</span>
+<span class="leancloud-visitors-count">1316 字 ~3分钟</span>
 </span>
       </div>
     </header>
@@ -194,7 +194,7 @@
 <li>
 <p>方案一：
 先上参考：<br />
-<a href="https://www.gohugo.org/doc/tutorials/mathjax/">MathJax Support</a> 
+<a href="https://www.gohugo.org/doc/tutorials/mathjax/">MathJax Support</a><br />
 <a href="https://note.qidong.name/2018/03/hugo-mathjax/">在Hugo中使用MathJax</a></p>
 <p>修改公式显示的大小：<br />
 方法一：修改上述参考中的<code>style</code>。<br />
@@ -224,7 +224,7 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 <span style="color:#007020;font-weight:bold">var</span> tmp<span style="color:#666">=</span>all[i].parentNode;
 <span style="color:#007020;font-weight:bold">for</span>(;tmp.nodeName<span style="color:#666">==</span><span style="color:#4070a0">&#39;SPAN&#39;</span>;tmp<span style="color:#666">=</span>tmp.parentNode);
 <span style="color:#007020;font-weight:bold">if</span>(tmp.nodeName <span style="color:#666">==</span> <span style="color:#4070a0">&#39;CODE&#39;</span>)
-   tmp.className <span style="color:#666">+=</span> <span style="color:#4070a0">&#39; mathcode&#39;</span>;
+   tmp.className <span style="color:#666">+=</span> <span style="color:#4070a0">&#39; hasKatex&#39;</span>;
 }
 &lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 &lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
@@ -257,7 +257,7 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 最后，在MarkDown文件的front-matter部分加上<code>markup: &quot;pandoc&quot;</code>即可。<br />
 &laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;手工分割线&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;<br />
 这里还有一些问题。其中，无法像方案一那像配置<code>delimiters: </code>选项。一旦配置了就无法渲染，<del>我猜是不是pandoc和这个冲突？</del> 而且，front-matter部分加上<code>markup: &quot;pandoc&quot;</code>后不能渲染<code>&lt;details&gt;</code>标签了，可能需要pandoc额外的设置吧。<br />
-于是，使用方案二就无法用一些html标签了，使用方案二又不便于编辑器预览。但是不用纠结<br />
+于是，使用方案二就无法用一些html标签了，使用方案一又不便于编辑器预览。但是不用纠结<br />
 因为小孩子才做选择，而我可以全都要：<br />
 我用了如下的傻瓜方法，通过条件判断，给不同页面添加不同的代码。<br />
 内心OS：什么妖魔鬼怪的方法啊！ミ(ﾉ゜д゜)ﾉ打你哦</p>
@@ -302,7 +302,9 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 }
 &lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 <span style="color:#60a0b0;font-style:italic">&lt;!-- 下略 --&gt;</span>
-</code></pre></div></li>
+{{- end -}}
+</code></pre></div><p>这样的话，在文档中不指名使用pandoc则会使用方案一（需要设置.Site.Params.Math），算是个折中的方法。</p>
+</li>
 </ul>
 </li>
 <li>
@@ -319,21 +321,6 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 {{ template <span style="color:#4070a0">&#34;_internal/google_analytics_async.html&#34;</span> . }}
 {{ end }}
 </code></pre></div></li>
-<li>
-<p>samba安装</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt-get install samba samba-common-bin
-</code></pre></div><p>配置文件</p>
-<pre><code class="language-config" data-lang="config">[public]
-   comment = Public Storage
-   path = /home/pi
-   read only = no#任何人都具有了访问修改的权限
-   #因为是公共文件夹，所以给了所有用户全部权限，可以自定义
-   create mask = 0777#新创建文件的默认属性
-   directory mask = 0777#新创建文件夹的默认属性
-   guest ok = yes#默认的访问用户名为guest
-   browseable = yes
-</code></pre><p><a href="https://blog.csdn.net/qq_39626154/article/details/85335103">更多配置项</a><sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
-</li>
 </ol>
 <div class="footnotes" role="doc-endnotes">
 <hr />
@@ -349,9 +336,6 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 </li>
 <li id="fn:4" role="doc-endnote">
 <p><a href="https://note.qidong.name/2017/07/05/google-analytics-in-hugo/">https://note.qidong.name/2017/07/05/google-analytics-in-hugo/</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:5" role="doc-endnote">
-<p><a href="https://blog.csdn.net/qq_39626154/article/details/85335103">https://blog.csdn.net/qq_39626154/article/details/85335103</a> <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
@@ -459,7 +443,7 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://litmingc.github.io/post/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -514,7 +498,7 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.65.3</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.68.3</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

@@ -1,6 +1,19 @@
 <search>
     
      <entry>
+        <title>[Tips]颜色mark</title>
+        <url>https://litmingc.github.io/post/tips/tips%E9%A2%9C%E8%89%B2mark/</url>
+        <categories>
+          
+        </categories>
+        <tags>
+          
+        </tags>
+        <content type="html"> 也不知道哪儿来的颜色名ヾ(。￣□￣)ﾂ゜゜゜
+  玄青 #3d3b50   雪青 #b0a4e2   鸦青 #434a52   鸭卵青 #dfeee7   牙色 #efdeb0     枣红 #883040   章丹 #ee652e   正灰 #94a1a9   中棕灰 #a9987e   纸棕 #bba590   织锦灰 #758a8f   紫藤灰 #847f95   紫水晶 #c2a6cc  </content>
+    </entry>
+    
+     <entry>
         <title>[Tips]算法小抄</title>
         <url>https://litmingc.github.io/post/tips/tips%E7%AE%97%E6%B3%95%E5%B0%8F%E6%8A%84/</url>
         <categories>
@@ -21,7 +34,7 @@
 代入\(a\)、\(b\)，得\(\left\{\begin{aligned} a=&amp;amp;b*q&#43;r=xmc*q&#43;ymc=mc(x*q&#43;y)\\ b=&amp;amp;xmc \end{aligned}\right.\)， \(a\)、\(b\)最大公约数为\(mc\),矛盾。
 所以，\(k_2\)与\((k_1-k_2*q)\)互质，\(c\)为\(b\)、\(r\)的最大公约数。 即，\(gcd(a,b)=gcd(b,r)=gcd(b,a\%b)=c\)
 从上述证明中不难发现a、b、r（\(a\%b\)）有共同的最大公约数，所以不断取其中最小的两个数相除得到更小的一组数，直到这组数中一个数本身就是最大公约数，算法结束。
- https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;amp;utm_source=distribute.pc_relevant.none-task “欧几里德算法 CSDN”↩︎
+ https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;amp;utm_source=distribute.pc_relevant.none-task↩︎
    </content>
     </entry>
     
@@ -104,7 +117,10 @@ python2.7的自带库目录在
 信息：sudo: unable to resolve host raspberrypi: Name or service not known
 解决：
 修改/etc/hosts文件，将127.0.0.1映射到当前主机名。主机名所在文件为/etc/hostname。  安装Aria2  环境：Linux raspberrypi 4.19.88-OPENFANS&#43;20191229-v8 aarch64   下载对应的build包
-【下载地址】 arm似乎没有，可以使用apt-get install aria2安装，但版本可能不是最新的。  </content>
+【下载地址】 arm似乎没有，可以使用apt-get install aria2安装，但版本可能不是最新的。  samba安装 sudo apt-get install samba samba-common-bin配置文件
+[public]comment = Public Storagepath = /home/piread only = no#任何人都具有了访问修改的权限#因为是公共文件夹，所以给了所有用户全部权限，可以自定义create mask = 0777#新创建文件的默认属性directory mask = 0777#新创建文件夹的默认属性guest ok = yes#默认的访问用户名为guestbrowseable = yes更多配置项1
+ https://blog.csdn.net/qq_39626154/article/details/85335103 &amp;#x21a9;&amp;#xfe0e;
+   </content>
     </entry>
     
      <entry>
@@ -142,13 +158,14 @@ python2.7的自带库目录在
  hugo_extended_0.55.6_Windows-64bit    表达数学公式
   hugo主题：Next
   方案一： 先上参考：
-MathJax Support 在Hugo中使用MathJax
+MathJax Support
+在Hugo中使用MathJax
 修改公式显示的大小：
 方法一：修改上述参考中的style。
 方法二：使用如下代码：
 &amp;lt;script type=&amp;#34;text/x-mathjax-config&amp;#34;&amp;gt;MathJax.Hub.Config({&amp;#34;HTML-CSS&amp;#34;: { scale: 175}});&amp;lt;/script&amp;gt;但是，MathJax在渲染的时候，速度有些慢。总要等很久。 又因为听说KaTeX挺快的（用了一下，还真的）。
 参考上述改法，KaTeX的配置如下：
-&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-9tPv11A&#43;glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL&#43;6DuH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;renderMathInElement(document.body,{delimiters: [{left: &amp;#34;$$&amp;#34;, right: &amp;#34;$$&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false},],ignoredTags: [&amp;#39;script&amp;#39;, &amp;#39;noscript&amp;#39;, &amp;#39;style&amp;#39;, &amp;#39;textarea&amp;#39;, &amp;#39;pre&amp;#39;],});var all=document.getElementsByClassName(&amp;#39;katex&amp;#39;),i;for(i = 0; i &amp;lt; all.length; i &#43;= 1) {var tmp=all[i].parentNode;for(;tmp.nodeName==&amp;#39;SPAN&amp;#39;;tmp=tmp.parentNode);if(tmp.nodeName == &amp;#39;CODE&amp;#39;)tmp.className &#43;= &amp;#39; mathcode&amp;#39;;}&amp;lt;/script&amp;gt;&amp;lt;style&amp;gt;code.hasKatex {font: inherit;font-size: 110%;background: inherit;border: inherit;color: #515151;}&amp;lt;/style&amp;gt;如同参考教程12所说的一样，公式中使用_等符号会和Markdown冲突造成渲染失败，上述解决方法是在公式外加一对``解决，同时调整公式父层code标签的样式（因为原先的code的样式背景是灰的）。
+&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-9tPv11A&#43;glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL&#43;6DuH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;renderMathInElement(document.body,{delimiters: [{left: &amp;#34;$$&amp;#34;, right: &amp;#34;$$&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false},],ignoredTags: [&amp;#39;script&amp;#39;, &amp;#39;noscript&amp;#39;, &amp;#39;style&amp;#39;, &amp;#39;textarea&amp;#39;, &amp;#39;pre&amp;#39;],});var all=document.getElementsByClassName(&amp;#39;katex&amp;#39;),i;for(i = 0; i &amp;lt; all.length; i &#43;= 1) {var tmp=all[i].parentNode;for(;tmp.nodeName==&amp;#39;SPAN&amp;#39;;tmp=tmp.parentNode);if(tmp.nodeName == &amp;#39;CODE&amp;#39;)tmp.className &#43;= &amp;#39; hasKatex&amp;#39;;}&amp;lt;/script&amp;gt;&amp;lt;style&amp;gt;code.hasKatex {font: inherit;font-size: 110%;background: inherit;border: inherit;color: #515151;}&amp;lt;/style&amp;gt;如同参考教程12所说的一样，公式中使用_等符号会和Markdown冲突造成渲染失败，上述解决方法是在公式外加一对``解决，同时调整公式父层code标签的样式（因为原先的code的样式背景是灰的）。
   方案二
 上一种方案需要``把数学公式括起来，因而在使用vscode等编辑文档时非常不便于预览。幸运的是，在使用方案一的几天后，我又找到了方案二。
 先上参考3
@@ -157,23 +174,20 @@ MathJax Support 在Hugo中使用MathJax
 最后，在MarkDown文件的front-matter部分加上markup: &amp;quot;pandoc&amp;quot;即可。
 &amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;手工分割线&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;
 这里还有一些问题。其中，无法像方案一那像配置delimiters: 选项。一旦配置了就无法渲染，我猜是不是pandoc和这个冲突？ 而且，front-matter部分加上markup: &amp;quot;pandoc&amp;quot;后不能渲染&amp;lt;details&amp;gt;标签了，可能需要pandoc额外的设置吧。
-于是，使用方案二就无法用一些html标签了，使用方案二又不便于编辑器预览。但是不用纠结
+于是，使用方案二就无法用一些html标签了，使用方案一又不便于编辑器预览。但是不用纠结
 因为小孩子才做选择，而我可以全都要：
 我用了如下的傻瓜方法，通过条件判断，给不同页面添加不同的代码。
 内心OS：什么妖魔鬼怪的方法啊！ミ(ﾉ゜д゜)ﾉ打你哦
-{{- if (and .IsPage (eq .Params.markup &amp;#34;pandoc&amp;#34; ) ) -}}&amp;lt;!-- 方案二 --&amp;gt;&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/&#43;DiW/UqRcLbRjq&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-y23I5Q6l&#43;B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd&#43;qj&#43;o24G5ZU2zJz&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;document.addEventListener(&amp;#34;DOMContentLoaded&amp;#34;, function() {renderMathInElement(document.body, {// ...options... });});&amp;lt;/script&amp;gt;{{- else if eq .Site.Params.Math &amp;#34;katex&amp;#34; -}}&amp;lt;!-- 方案其它 --&amp;gt;&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-9tPv11A&#43;glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL&#43;6DuH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;renderMathInElement(document.body,{delimiters: [{left: &amp;#34;$$&amp;#34;, right: &amp;#34;$$&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false},// 注意看这里，pandoc似乎会把$$ 转成\( \) // Next主题中，博文在首页的summary的公式都是\( \)这样的 {left: &amp;#34;\\(&amp;#34;, right: &amp;#34;\\)&amp;#34;, display: false},],ignoredTags: [&amp;#39;script&amp;#39;, &amp;#39;noscript&amp;#39;, &amp;#39;style&amp;#39;, &amp;#39;textarea&amp;#39;, &amp;#39;pre&amp;#39;],});var all=document.getElementsByClassName(&amp;#39;katex&amp;#39;),i;for(i = 0; i &amp;lt; all.length; i &#43;= 1){/* if(all[i].parentNode.parentNode.nodeName == &amp;#39;CODE&amp;#39;) *//* all[i].parentNode.parentNode.className &#43;= &amp;#39; mathcode&amp;#39;; */var tmp=all[i].parentNode;for(;tmp.nodeName==&amp;#39;SPAN&amp;#39;;tmp=tmp.parentNode);if(tmp.nodeName == &amp;#39;CODE&amp;#39;)tmp.className &#43;= &amp;#39; mathcode&amp;#39;;}&amp;lt;/script&amp;gt;&amp;lt;!-- 下略 --&amp;gt;    修改代码块的样式
+{{- if (and .IsPage (eq .Params.markup &amp;#34;pandoc&amp;#34; ) ) -}}&amp;lt;!-- 方案二 --&amp;gt;&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/&#43;DiW/UqRcLbRjq&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-y23I5Q6l&#43;B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd&#43;qj&#43;o24G5ZU2zJz&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;document.addEventListener(&amp;#34;DOMContentLoaded&amp;#34;, function() {renderMathInElement(document.body, {// ...options... });});&amp;lt;/script&amp;gt;{{- else if eq .Site.Params.Math &amp;#34;katex&amp;#34; -}}&amp;lt;!-- 方案其它 --&amp;gt;&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-9tPv11A&#43;glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL&#43;6DuH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;renderMathInElement(document.body,{delimiters: [{left: &amp;#34;$$&amp;#34;, right: &amp;#34;$$&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false},// 注意看这里，pandoc似乎会把$$ 转成\( \) // Next主题中，博文在首页的summary的公式都是\( \)这样的 {left: &amp;#34;\\(&amp;#34;, right: &amp;#34;\\)&amp;#34;, display: false},],ignoredTags: [&amp;#39;script&amp;#39;, &amp;#39;noscript&amp;#39;, &amp;#39;style&amp;#39;, &amp;#39;textarea&amp;#39;, &amp;#39;pre&amp;#39;],});var all=document.getElementsByClassName(&amp;#39;katex&amp;#39;),i;for(i = 0; i &amp;lt; all.length; i &#43;= 1){/* if(all[i].parentNode.parentNode.nodeName == &amp;#39;CODE&amp;#39;) *//* all[i].parentNode.parentNode.className &#43;= &amp;#39; mathcode&amp;#39;; */var tmp=all[i].parentNode;for(;tmp.nodeName==&amp;#39;SPAN&amp;#39;;tmp=tmp.parentNode);if(tmp.nodeName == &amp;#39;CODE&amp;#39;)tmp.className &#43;= &amp;#39; mathcode&amp;#39;;}&amp;lt;/script&amp;gt;&amp;lt;!-- 下略 --&amp;gt;{{- end -}}这样的话，在文档中不指名使用pandoc则会使用方案一（需要设置.Site.Params.Math），算是个折中的方法。
+    修改代码块的样式
 主题：pure
 修改css文件的&amp;lt;pre&amp;gt;标签的样式，样式参考
   使用tab键可能造成奇怪的渲染结局，应使用空格为宜
   google analytic4
-{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}  samba安装
-sudo apt-get install samba samba-common-bin配置文件
-[public]comment = Public Storagepath = /home/piread only = no#任何人都具有了访问修改的权限#因为是公共文件夹，所以给了所有用户全部权限，可以自定义create mask = 0777#新创建文件的默认属性directory mask = 0777#新创建文件夹的默认属性guest ok = yes#默认的访问用户名为guestbrowseable = yes更多配置项5
-   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
+{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2018/03/hugo-mathjax/ &amp;#x21a9;&amp;#xfe0e;
  https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/ &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2017/07/05/google-analytics-in-hugo/ &amp;#x21a9;&amp;#xfe0e;
- https://blog.csdn.net/qq_39626154/article/details/85335103 &amp;#x21a9;&amp;#xfe0e;
    </content>
     </entry>
     

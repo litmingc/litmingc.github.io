@@ -181,7 +181,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">612 字 ~2分钟</span>
+<span class="leancloud-visitors-count">753 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -268,6 +268,27 @@
 <a href="http://aria2.github.io/">【下载地址】</a>
 arm似乎没有，可以使用<code>apt-get install aria2</code>安装，但版本可能不是最新的。</li>
 </ol>
+<h3 id="samba安装">samba安装</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt-get install samba samba-common-bin
+</code></pre></div><p>配置文件</p>
+<pre><code class="language-config" data-lang="config">[public]
+   comment = Public Storage
+   path = /home/pi
+   read only = no#任何人都具有了访问修改的权限
+   #因为是公共文件夹，所以给了所有用户全部权限，可以自定义
+   create mask = 0777#新创建文件的默认属性
+   directory mask = 0777#新创建文件夹的默认属性
+   guest ok = yes#默认的访问用户名为guest
+   browseable = yes
+</code></pre><p><a href="https://blog.csdn.net/qq_39626154/article/details/85335103">更多配置项</a><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<div class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://blog.csdn.net/qq_39626154/article/details/85335103">https://blog.csdn.net/qq_39626154/article/details/85335103</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
     </div>
     <footer class="post-footer">
@@ -385,7 +406,7 @@ arm似乎没有，可以使用<code>apt-get install aria2</code>安装，但版�
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://litmingc.github.io/post/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -438,6 +459,7 @@ arm似乎没有，可以使用<code>apt-get install aria2</code>安装，但版�
         <li><a href="#berryconda">berryconda</a></li>
         <li><a href="#修改主机名后sudo有异常提示">修改主机名后，sudo有异常提示</a></li>
         <li><a href="#安装aria2">安装Aria2</a></li>
+        <li><a href="#samba安装">samba安装</a></li>
       </ul>
     </li>
   </ul>
@@ -458,7 +480,7 @@ arm似乎没有，可以使用<code>apt-get install aria2</code>安装，但版�
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.65.3</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.68.3</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

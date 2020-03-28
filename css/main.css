@@ -52,6 +52,10 @@ template {
 a {
   background-color: transparent;
 }
+/* 正文a标签 */
+.post-body a {
+  color: rgb(123, 23, 238);
+}
 a:active,
 a:hover {
   outline: 0;
@@ -295,6 +299,7 @@ a {
   text-decoration: none;
   border-bottom: 1px solid #999;
   word-wrap: break-word;
+  background-color: transparent;
 }
 a:hover {
   color: #222;
@@ -999,7 +1004,7 @@ pre .javascript .function {
     margin-top: 10px;
   }
 }
-.menu .menu-item a {
+/* .menu .menu-item a {
   display: block;
   font-size: 13px;
   text-transform: capitalize;
@@ -1009,7 +1014,7 @@ pre .javascript .function {
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
-}
+} */
 .menu .menu-item a:hover,
 .menu-item-active a {
   border-bottom-color: #222;
@@ -2483,6 +2488,7 @@ body {
   margin: 0;
   list-style: none;
 }
+/* 修改
 .menu .menu-item a {
   position: relative;
   box-sizing: border-box;
@@ -2493,6 +2499,23 @@ body {
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
+}
+*/
+.menu .menu-item a {
+  /*color: #555555;*/
+  position: relative;
+  box-sizing: border-box;
+  padding: 5px 20px;
+  text-align: left;
+  line-height: inherit;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  display: block;
+  font-size: 13px;
+  text-transform: capitalize;
+  border-bottom: 1px solid transparent;
 }
 .menu .menu-item a:hover,
 .menu-item-active a {
