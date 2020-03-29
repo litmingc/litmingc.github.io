@@ -23,9 +23,10 @@
           
         </tags>
         <content type="html"> 欧几里得算法证明（最大公约数）1  \(a\) 整除 \(b\) 表示\(b\%a\)为\(0\)； \(a\) 除以 \(b\) 表示 \(b/a\)；我总把除和除以搞混。 \(gcd(a,b)\)表示\(a\)，\(b\)的最大公约数。  证明：
-设·a·，\(b\)(\(a&amp;gt;b\))的最大公约数为\(c\)。
-\(\because\)存在\(q,r,k_1,k_2\) ，使得\(\left\{ \begin{aligned}a=&amp;amp;b*q&#43;r \\ a=&amp;amp;c*k_1 \\ b=&amp;amp;c*k_2 \end{aligned}\right.\)，
-$r=a-bq=ck_1-ck_2q=c(k_1-k_2q) \(, 又\)b=ck_2$
+设\(a\)，\(b\) (\(a&amp;gt;b\))的最大公约数为\(c\)。
+\(\because\)存在\(q,r,k_1,k_2\) ，使得\(\left\{ \begin{aligned}a=&amp;amp;b*q&#43;r \\ a=&amp;amp;c*k_1 \\ b=&amp;amp;c*k_2 \end{aligned}\right.\) ，
+\(\therefore r=a-bq=ck\_1-ck\_2q=c(k\_1-k\_2q)\),
+又\(\because b=ck_2\)
 \(\therefore\)若\(k\_2\)与\((k\_1-k\_2*q)\)互质，则\(r\)和\(b\)的最大公约数也是\(c\)。
 下面证明，\(k_2\)与\((k_1-k_2*q)\)互质：
 假设\(k_2\)与\((k_1-k_2*q)\)不互质，即有大于1的公约数\(m\)，
