@@ -28,13 +28,18 @@
 </script>
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145827411-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-145827411-1' );
-</script><style>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-145827411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<style>
 @font-face {
   font-family: 'webfont';
   font-display: swap;
@@ -174,7 +179,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">1316 字 ~3分钟</span>
+<span class="leancloud-visitors-count">1429 字 ~3分钟</span>
 </span>
       </div>
     </header>
@@ -321,6 +326,17 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 {{ template <span style="color:#4070a0">&#34;_internal/google_analytics_async.html&#34;</span> . }}
 {{ end }}
 </code></pre></div></li>
+<li>
+<p>还没搞太懂<br />
+shortcode. 看起来很强大。这是个跳转的例子.<br />
+请忽略<code>\</code>符号，<code>{{}}</code>优先级好像特别高，我就乱加了这个符号让shortcode不要生效。</p>
+<pre><code class="language-hugo" data-lang="hugo">[Neat](\{\{&lt; ref &quot;/blog/neat.md&quot; &gt;\}\})
+</code></pre><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;/blog/neat&#34;</span>&gt;Neat&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;/about/#who:c28654c202e73453784cfd2c5ab356c0&#34;</span>&gt;Who&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</code></pre></div><p>试试</p>
+<pre><code class="language-hugo" data-lang="hugo">[lalala]( { {&lt; ref &quot;./[Tips]颜色mark.md&quot; &gt;} } ) 
+</code></pre><p><a href="https://litmingc.github.io/post/tips/tips%E9%A2%9C%E8%89%B2mark/">lalala</a></p>
+</li>
 </ol>
 <div class="footnotes" role="doc-endnotes">
 <hr />

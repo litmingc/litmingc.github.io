@@ -28,13 +28,18 @@
 </script>
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145827411-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-145827411-1' );
-</script><style>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-145827411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<style>
 @font-face {
   font-family: 'webfont';
   font-display: swap;
@@ -493,8 +498,18 @@ python2.7的自带库目录在<br />
   <ul>
     <li>
       <ul>
-        <li><a href="#目录的一般含义">目录的一般含义</a></li>
-        <li><a href="#文件类型">文件类型</a></li>
+        <li>
+          <ul>
+            <li><a href="#目录的一般含义">目录的一般含义</a>
+              <ul>
+                <li><a href="#usr目录"><code>/usr/</code>目录</a></li>
+                <li><a href="#var目录"><code>/var/</code>目录</a></li>
+                <li><a href="#部分软件的目录说明">部分软件的目录说明</a></li>
+              </ul>
+            </li>
+            <li><a href="#文件类型">文件类型</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>

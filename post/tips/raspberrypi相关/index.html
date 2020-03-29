@@ -28,13 +28,18 @@
 </script>
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145827411-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-145827411-1' );
-</script><style>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-145827411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<style>
 @font-face {
   font-family: 'webfont';
   font-display: swap;
@@ -454,12 +459,20 @@ arm似乎没有，可以使用<code>apt-get install aria2</code>安装，但版�
   <ul>
     <li>
       <ul>
-        <li><a href="#常用初始化配置">常用初始化配置</a></li>
-        <li><a href="#挂载移动硬盘">挂载移动硬盘</a></li>
-        <li><a href="#berryconda">berryconda</a></li>
-        <li><a href="#修改主机名后sudo有异常提示">修改主机名后，sudo有异常提示</a></li>
-        <li><a href="#安装aria2">安装Aria2</a></li>
-        <li><a href="#samba安装">samba安装</a></li>
+        <li>
+          <ul>
+            <li><a href="#常用初始化配置">常用初始化配置</a></li>
+            <li><a href="#挂载移动硬盘">挂载移动硬盘</a>
+              <ul>
+                <li><a href="#ntfs">NTFS</a></li>
+              </ul>
+            </li>
+            <li><a href="#berryconda">berryconda</a></li>
+            <li><a href="#修改主机名后sudo有异常提示">修改主机名后，sudo有异常提示</a></li>
+            <li><a href="#安装aria2">安装Aria2</a></li>
+            <li><a href="#samba安装">samba安装</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>

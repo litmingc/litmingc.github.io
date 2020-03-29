@@ -29,13 +29,18 @@
 </script>
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145827411-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-145827411-1' );
-</script><style>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-145827411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<style>
 @font-face {
   font-family: 'webfont';
   font-display: swap;
@@ -159,22 +164,21 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">879 字 ~2分钟</span>
+<span class="leancloud-visitors-count">731 字 ~2分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
     <h1 id="欧几里得算法证明最大公约数1">欧几里得算法证明（最大公约数）<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
 <ul>
-<li><span class="math inline">\(a\)</span> <strong>整除</strong> <span class="math inline">\(b\)</span> 表示<span class="math inline">\(b\%a\)</span>为0； <span class="math inline">\(a\)</span> <strong>除以</strong> <span class="math inline">\(b\)</span> 表示 <span class="math inline">\(b/a\)</span>；<del>我总把<strong>除</strong>和<strong>除以</strong>搞混。</del></li>
+<li><span class="math inline">\(a\)</span> <strong>整除</strong> <span class="math inline">\(b\)</span> 表示<span class="math inline">\(b\%a\)</span>为<span class="math inline">\(0\)</span>； <span class="math inline">\(a\)</span> <strong>除以</strong> <span class="math inline">\(b\)</span> 表示 <span class="math inline">\(b/a\)</span>；<del>我总把<strong>除</strong>和<strong>除以</strong>搞混。</del></li>
 <li><span class="math inline">\(gcd(a,b)\)</span>表示<span class="math inline">\(a\)</span>，<span class="math inline">\(b\)</span>的最大公约数。</li>
 </ul>
 <p>证明：<br />
-设<span class="math inline">\(a\)</span>，<span class="math inline">\(b\)</span>(<span class="math inline">\(a&gt;b\)</span>)的最大公约数为<span class="math inline">\(c\)</span>。<br />
-<span class="math inline">\(\because\)</span>存在<span class="math inline">\(q,r,k_1,k_2\)</span> ，使得<span class="math inline">\(\left\{ \begin{aligned}a= &amp; b*q+r \\ a=&amp;c*k_1 \\ b=&amp;c*k_2 \end{aligned}\right.\)</span>，<br />
-<span class="math inline">\(\therefore r=a-bq=ck_1-ck_2q=c(k_1-k_2q)\)</span>,<br />
-又<span class="math inline">\(\because b=ck_2\)</span><br />
-<span class="math inline">\(\therefore\)</span>若<span class="math inline">\(k_2\)</span>与<span class="math inline">\((k_1-k_2*q)\)</span>互质，则<span class="math inline">\(r\)</span>和<span class="math inline">\(b\)</span>的最大公约数也是<span class="math inline">\(c\)</span>。</p>
+设·a·，<span class="math inline">\(b\)</span>(<span class="math inline">\(a&gt;b\)</span>)的最大公约数为<span class="math inline">\(c\)</span>。<br />
+<span class="math inline">\(\because\)</span>存在<span class="math inline">\(q,r,k_1,k_2\)</span> ，使得<span class="math inline">\(\left\{ \begin{aligned}a=&amp;b*q+r \\ a=&amp;c*k_1 \\ b=&amp;c*k_2 \end{aligned}\right.\)</span>，<br />
+$r=a-bq=ck_1-ck_2q=c(k_1-k_2q) <span class="math inline">\(, 又\)</span>b=ck_2$<br />
+<span class="math inline">\(\therefore\)</span>若<span class="math inline">\(k\_2\)</span>与<span class="math inline">\((k\_1-k\_2*q)\)</span>互质，则<span class="math inline">\(r\)</span>和<span class="math inline">\(b\)</span>的最大公约数也是<span class="math inline">\(c\)</span>。</p>
 <p>下面证明，<span class="math inline">\(k_2\)</span>与<span class="math inline">\((k_1-k_2*q)\)</span>互质：<br />
 假设<span class="math inline">\(k_2\)</span>与<span class="math inline">\((k_1-k_2*q)\)</span>不互质，即有大于1的公约数<span class="math inline">\(m\)</span>，<br />
 则存在<span class="math inline">\(x\)</span>、<span class="math inline">\(y\)</span>，使得<span class="math inline">\(\left\{\begin{aligned}k_2=&amp;xm \\ (k_1-k_2*q)=&amp;ym\end{aligned}\right.\)</span>，<br />
@@ -184,7 +188,7 @@
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task “欧几里德算法 CSDN”<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

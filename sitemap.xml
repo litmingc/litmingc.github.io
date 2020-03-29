@@ -22,19 +22,18 @@
         <tags>
           
         </tags>
-        <content type="html"> 欧几里得算法证明（最大公约数）1  \(a\) 整除 \(b\) 表示\(b\%a\)为0； \(a\) 除以 \(b\) 表示 \(b/a\)；我总把除和除以搞混。 \(gcd(a,b)\)表示\(a\)，\(b\)的最大公约数。  证明：
-设\(a\)，\(b\)(\(a&amp;gt;b\))的最大公约数为\(c\)。
-\(\because\)存在\(q,r,k_1,k_2\) ，使得\(\left\{ \begin{aligned}a= &amp;amp; b*q&#43;r \\ a=&amp;amp;c*k_1 \\ b=&amp;amp;c*k_2 \end{aligned}\right.\)，
-\(\therefore r=a-bq=ck_1-ck_2q=c(k_1-k_2q)\),
-又\(\because b=ck_2\)
-\(\therefore\)若\(k_2\)与\((k_1-k_2*q)\)互质，则\(r\)和\(b\)的最大公约数也是\(c\)。
+        <content type="html"> 欧几里得算法证明（最大公约数）1  \(a\) 整除 \(b\) 表示\(b\%a\)为\(0\)； \(a\) 除以 \(b\) 表示 \(b/a\)；我总把除和除以搞混。 \(gcd(a,b)\)表示\(a\)，\(b\)的最大公约数。  证明：
+设·a·，\(b\)(\(a&amp;gt;b\))的最大公约数为\(c\)。
+\(\because\)存在\(q,r,k_1,k_2\) ，使得\(\left\{ \begin{aligned}a=&amp;amp;b*q&#43;r \\ a=&amp;amp;c*k_1 \\ b=&amp;amp;c*k_2 \end{aligned}\right.\)，
+$r=a-bq=ck_1-ck_2q=c(k_1-k_2q) \(, 又\)b=ck_2$
+\(\therefore\)若\(k\_2\)与\((k\_1-k\_2*q)\)互质，则\(r\)和\(b\)的最大公约数也是\(c\)。
 下面证明，\(k_2\)与\((k_1-k_2*q)\)互质：
 假设\(k_2\)与\((k_1-k_2*q)\)不互质，即有大于1的公约数\(m\)，
 则存在\(x\)、\(y\)，使得\(\left\{\begin{aligned}k_2=&amp;amp;xm \\ (k_1-k_2*q)=&amp;amp;ym\end{aligned}\right.\)，
 代入\(a\)、\(b\)，得\(\left\{\begin{aligned} a=&amp;amp;b*q&#43;r=xmc*q&#43;ymc=mc(x*q&#43;y)\\ b=&amp;amp;xmc \end{aligned}\right.\)， \(a\)、\(b\)最大公约数为\(mc\),矛盾。
 所以，\(k_2\)与\((k_1-k_2*q)\)互质，\(c\)为\(b\)、\(r\)的最大公约数。 即，\(gcd(a,b)=gcd(b,r)=gcd(b,a\%b)=c\)
 从上述证明中不难发现a、b、r（\(a\%b\)）有共同的最大公约数，所以不断取其中最小的两个数相除得到更小的一组数，直到这组数中一个数本身就是最大公约数，算法结束。
- https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;amp;utm_source=distribute.pc_relevant.none-task↩︎
+ https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;amp;utm_source=distribute.pc_relevant.none-task “欧几里德算法 CSDN”↩︎
    </content>
     </entry>
     
@@ -184,7 +183,12 @@ MathJax Support
 修改css文件的&amp;lt;pre&amp;gt;标签的样式，样式参考
   使用tab键可能造成奇怪的渲染结局，应使用空格为宜
   google analytic4
-{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
+{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}  还没搞太懂
+shortcode. 看起来很强大。这是个跳转的例子.
+请忽略\符号，{{}}优先级好像特别高，我就乱加了这个符号让shortcode不要生效。
+[Neat](\{\{&amp;lt; ref &amp;quot;/blog/neat.md&amp;quot; &amp;gt;\}\})&amp;lt;a href=&amp;#34;/blog/neat&amp;#34;&amp;gt;Neat&amp;lt;/a&amp;gt;&amp;lt;a href=&amp;#34;/about/#who:c28654c202e73453784cfd2c5ab356c0&amp;#34;&amp;gt;Who&amp;lt;/a&amp;gt;试试
+[lalala]( { {&amp;lt; ref &amp;quot;./[Tips]颜色mark.md&amp;quot; &amp;gt;} } ) lalala
+   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2018/03/hugo-mathjax/ &amp;#x21a9;&amp;#xfe0e;
  https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/ &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2017/07/05/google-analytics-in-hugo/ &amp;#x21a9;&amp;#xfe0e;
