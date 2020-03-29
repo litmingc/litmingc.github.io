@@ -184,12 +184,10 @@ MathJax Support
 修改css文件的&amp;lt;pre&amp;gt;标签的样式，样式参考
   使用tab键可能造成奇怪的渲染结局，应使用空格为宜
   google analytic4
-{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}  还没搞太懂
-shortcode. 看起来很强大。这是个跳转的例子.
-请忽略\符号，{{}}优先级好像特别高，我就乱加了这个符号让shortcode不要生效。
-[Neat](\{\{&amp;lt; ref &amp;quot;/blog/neat.md&amp;quot; &amp;gt;\}\})&amp;lt;a href=&amp;#34;/blog/neat&amp;#34;&amp;gt;Neat&amp;lt;/a&amp;gt;&amp;lt;a href=&amp;#34;/about/#who:c28654c202e73453784cfd2c5ab356c0&amp;#34;&amp;gt;Who&amp;lt;/a&amp;gt;试试
-[lalala]( { {&amp;lt; ref &amp;quot;./[Tips]颜色mark.md&amp;quot; &amp;gt;} } ) lalala
-   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
+{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}  好想用其它主题的shortcode
+shortcode. 很强大。这是个ref的例子.
+ [Neat]({{&amp;lt; ref &amp;ldquo;/blog/neat.md&amp;rdquo; &amp;gt;}}) 
+&amp;lt;a href=&amp;#34;/blog/neat&amp;#34;&amp;gt;Neat&amp;lt;/a&amp;gt;   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2018/03/hugo-mathjax/ &amp;#x21a9;&amp;#xfe0e;
  https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/ &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2017/07/05/google-analytics-in-hugo/ &amp;#x21a9;&amp;#xfe0e;
