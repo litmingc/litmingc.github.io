@@ -203,9 +203,9 @@ shortcode. 很强大。这是个ref的例子.
         <tags>
           
         </tags>
-        <content type="html"> 相关字段的含义    表头 含义     USER 进程由哪个用户产生   PID 进程id   PPID 父进程id   %CPU 或者 C 占用cpu   %MEM 占用物理内存   VSC 占用虚拟内存的大小，单位KB   RSS 占用物理内存的大小，单位KB   PRI 进程优先级，数值越小，优先级越高。PRI &#43;= nice   NI 即nice，用户可修改。   WCHAN 是否在运行，-表示在运行   TTY tty1 ~ tty7 代表本地控制台终端，tty7 是图型终端。
+        <content type="html"> 相关字段的含义 表太长，我折叠了     表头 含义     USER 进程由哪个用户产生   PID 进程id   PPID 父进程id   %CPU 或者 C 占用cpu   %MEM 占用物理内存   VSC 占用虚拟内存的大小，单位KB   RSS 占用物理内存的大小，单位KB   PRI 进程优先级，数值越小，优先级越高。PRI &#43;= nice   NI 即nice，用户可修改。   WCHAN 是否在运行，-表示在运行   TTY tty1 ~ tty7 代表本地控制台终端，tty7 是图型终端。
 pts/0 ~ 255 代表虚拟终端，一般是远程连接的终端，第一个远程连接占用 pts/0，第二个远程连接占用 pts/1，依次増长。   STAT 或者 S 进程状态。常见的状态有以下几种： 1. -D：不可被唤醒的睡眠状态，通常用于 I/O 情况。 2. -R：该进程正在运行。 3. -S：该进程处于睡眠状态，可被唤醒。 4. -T：停止状态，可能是在后台暂停或进程处于除错状态。 5. -W：内存交互状态（从 2.6 内核开始无效）。 6. -X：死掉的进程（应该不会出现）。 7. -Z：僵尸进程。进程已经中止，但是部分程序还在内存当中。 8. -&amp;lt;：高优先级（以下状态在 BSD 格式中出现）。 9. -N：低优先级。 10. -L：被锁入内存。 11. -s：包含子进程。 12. -l：多线程（小写 L）。
-13. -&#43;：位于后台。   TIME 占用cpu的时间   COMMAND 命令   FD 文件描述符   TYPE REG：文件；DIR：目录；CHR：字符；BLK：块设备；UNIX：unix套接字；FIFO：先进先出队列；IPv4等：IP套接字   DEVICE 指定磁盘名称   NODE 索引节点（文件在磁盘中的标识）    进程后台执行   在命令后使用 &amp;amp; 符号
+13. -&#43;：位于后台。   TIME 占用cpu的时间   COMMAND 命令   FD 文件描述符   TYPE REG：文件；DIR：目录；CHR：字符；BLK：块设备；UNIX：unix套接字；FIFO：先进先出队列；IPv4等：IP套接字   DEVICE 指定磁盘名称   NODE 索引节点（文件在磁盘中的标识）     进程后台执行   在命令后使用 &amp;amp; 符号
 后台运行
 find / -name abc.jpg &amp;amp;常见搭配：输出重定向，使用&amp;gt;符号，如下
 # 命令 &amp;gt; 目标文件 &amp;amp;# 将命令在后台运行，并将输出导出到目标文件cat a.txt &amp;gt; 目标文件 &amp;amp;  nohup命令
