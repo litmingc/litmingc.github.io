@@ -8,11 +8,7 @@ body {
   margin: 0;
 }
 
-.post-body ul {
-  margin-block-start: auto;
-  margin-block-end: auto;
-  padding-inline-start: 2em;
-}
+.post-body ul,
 .post-body ol {
   margin-block-start: auto;
   margin-block-end: auto;
@@ -1661,7 +1657,8 @@ pre .javascript .function {
 .post-toc {
   overflow: auto;
 }
-.post-toc ul {
+.post-toc ul,
+.post-toc ol {
   margin: 0;
   padding: 0 2px 5px 10px;
   text-align: left;
