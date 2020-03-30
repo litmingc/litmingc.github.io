@@ -14,7 +14,8 @@
     <link rel="shortcut icon" href="https://litmingc.github.io/img/izip30.png" />
     <link rel="apple-touch-icon" href="" />
     <link rel="apple-touch-icon-precomposed" href="" />
-    <link href="https://litmingc.github.io/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+    <link href="https://litmingc.github.io/lib/fontawesome-free-5.11.2-web/css/all.min.css" rel="stylesheet" type="text/css" />
+    
     <link href="https://litmingc.github.io/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
     <link href="https://litmingc.github.io/css/main.css" rel="stylesheet" type="text/css" />
     <link href="https://litmingc.github.io/css/syntax.css" rel="stylesheet" type="text/css" />
@@ -71,7 +72,10 @@ if (!doNotTrack) {
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">云深不知处，花鸟易相逢</p>
+  <p class="site-subtitle">
+    <span id="typeitElement">云深不知处，花鸟易相逢</span>
+  </p>
+
 </div>
 
 <div class="site-nav-toggle">
@@ -88,41 +92,41 @@ if (!doNotTrack) {
       
         <li class="menu-item ">
           <a href="https://litmingc.github.io/" rel="section">
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页
+              <i class="menu-item-icon fas fa-fw fa-home"></i> <br />首页
           </a>
         </li>
       
         <li class="menu-item ">
           <a href="https://litmingc.github.io/post/" rel="section">
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档
+              <i class="menu-item-icon fas fa-fw fa-archive"></i> <br />归档
           </a>
         </li>
       
         <li class="menu-item ">
           <a href="https://litmingc.github.io/categories/" rel="section">
-              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br />分类
+              <i class="menu-item-icon fas fa-fw fa-folder"></i> <br />分类
           </a>
         </li>
       
         <li class="menu-item ">
           <a href="https://litmingc.github.io/tags/" rel="section">
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签
+              <i class="menu-item-icon fas fa-fw fa-tags"></i> <br />标签
           </a>
         </li>
       
         <li class="menu-item ">
           <a href="https://litmingc.github.io/about/" rel="section">
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于
+              <i class="menu-item-icon fas fa-fw fa-user"></i> <br />关于
           </a>
         </li>
       
       <li class="menu-item menu-item-search">
-        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fas fa-search fa-fw"></i> <br /> 搜索</a>
       </li>
     </ul>
     <div class="site-search">
       <div class="popup">
- <span class="search-icon fa fa-search"></span>
+ <span class="search-icon fas fa-search"></span>
  <input type="text" id="local-search-input">
  <div id="local-search-result"></div>
  <span class="popup-btn-close">close</span>
@@ -638,13 +642,12 @@ pkill -9 -t pts/1
     
         <span class="links-of-author-item">
         <a href="https://github.com/litmingc" target="_blank" title="GitHub">
-            <i class="fa fa-fw fa-github"></i>
+            <i class="fab fa-fw fa-github"></i>
             GitHub
         </a>
         </span>
     
 </div>
-
 
       
 
@@ -773,5 +776,13 @@ for(i = 0; i < all.length; i += 1){
     if(tmp.nodeName == 'CODE')
     tmp.className += ' mathcode';
 }
+</script><script src="https://litmingc.github.io/js/typeit.min.js"></script>
+<script>
+  new TypeIt("#typeitElement", {
+    cursor: false,
+    lifeLike: false,
+    speed: 100,
+    startDelay: 1000,
+  }).go();
 </script></body>
 </html>
