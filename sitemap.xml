@@ -22,7 +22,8 @@
         <tags>
           
         </tags>
-        <content type="html"> 欧几里得算法证明（最大公约数）1  \(a\) 整除 \(b\) 表示\(b\%a\)为\(0\)； \(a\) 除以 \(b\) 表示 \(b/a\)；我总把除和除以搞混。 \(gcd(a,b)\)表示\(a\)，\(b\)的最大公约数。  证明：
+        <content type="html"> 说在前头，打小抄可不是什么可耻的事儿！
+欧几里得算法证明（最大公约数）1  \(a\) 整除 \(b\) 表示\(b\%a\)为\(0\)； \(a\) 除以 \(b\) 表示 \(b/a\)；我总把除和除以搞混。 \(gcd(a,b)\)表示\(a\)，\(b\)的最大公约数。  问题描述  求\(a\)，\(b\)的最大公约数， 这么简单有啥好描述的啊  证明：
 设\(a\)，\(b\) (\(a&amp;gt;b\))的最大公约数为\(c\)。
 \(\because\)存在\(q,r,k_1,k_2\) ，使得\(\left\{ \begin{aligned}a=&amp;amp;b*q&#43;r \\ a=&amp;amp;c*k_1 \\ b=&amp;amp;c*k_2 \end{aligned}\right.\) ，
 \(\therefore r=a-bq=ck\_1-ck\_2q=c(k\_1-k\_2q)\),
@@ -34,7 +35,31 @@
 代入\(a\)、\(b\)，得\(\left\{\begin{aligned} a=&amp;amp;b*q&#43;r=xmc*q&#43;ymc=mc(x*q&#43;y)\\ b=&amp;amp;xmc \end{aligned}\right.\)， \(a\)、\(b\)最大公约数为\(mc\),矛盾。
 所以，\(k_2\)与\((k_1-k_2*q)\)互质，\(c\)为\(b\)、\(r\)的最大公约数。 即，\(gcd(a,b)=gcd(b,r)=gcd(b,a\%b)=c\)
 从上述证明中不难发现a、b、r（\(a\%b\)）有共同的最大公约数，所以不断取其中最小的两个数相除得到更小的一组数，直到这组数中一个数本身就是最大公约数，算法结束。
+约瑟夫环 原问题的描述令人悲伤，这里还是借用leetcode的问题描述吧。
+问题描述
+0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。  例子  例如，0、1、2、3、4这5个数字组成一个圆圈，从数字0开始每次删除第3个数字，则删除的前4个数字依次是2、0、4、1，因此最后剩下的数字是3。  解析过程： 定义函数\(f(n,m)=x\)：现有\(n\)个数，从下标 \(0\) 开始，依次删去第\(m\)个数，最后留下的数字下标为 \(x\)。（下标与数已经一一对应）
+易得：
+1. \(f(1,m)\)：只有一个数字时，最后剩下的就是下标\(0\)。
+2. \(f(2,m)\)：删去第\(m\)个，也就是第\(m\%2\)个，其下标为\((m-1)\%2\)。此外，仅剩一个数字，它的下标为\(m\%2\)（第\(m&#43;1\)个数）。
+3. \(f(3,m)\)：删去第\(m\%3\)个数，剩下两个数… …
+从描述过程中，很容易可以感受到：\(n\)个数的问题，在执行了一次的删除之后，可以转化为\(n&#43;1\)个数的问题。
+唯一的障碍就是，下标的变化。
+如，3.中删去第\(m\%3\)个数后，下一次删除的起点是它的后一个数。从这个数开始，下标依次为\(m\%3\)，\((m&#43;1)\%3\)，\((m&#43;2)\%3\)… ；而，2.中的下标依次是\(0\%2\)，\(1\%2\)，\(2\%2\)…
+3.到2.的过程中，下标的变化如下，可以看作全员向前移动\(m\)个位置：
+\[ \left \{ \begin{aligned} &amp;amp; (m&#43;0)\%3 &amp;amp; \rightarrow &amp;amp; 0\%2 \\ &amp;amp; (m&#43;1)\%3 &amp;amp; \rightarrow &amp;amp; 1\%2 \\ &amp;amp; \mathellipsis &amp;amp; \rightarrow &amp;amp; \mathellipsis \end{aligned} \right . \]
+亦作
+\[ \left \{ \begin{aligned} &amp;amp; (m&#43;0)\%3 &amp;amp; = &amp;amp; (0\%2&#43;m)\%3 \\ &amp;amp; (m&#43;1)\%3 &amp;amp; = &amp;amp; (1\%2&#43;m)\%3 \\ &amp;amp; \mathellipsis &amp;amp; = &amp;amp; \mathellipsis \end{aligned} \right . \]
+换句话说，\(f(n,m) \rightarrow f(n-1,m)\)的过程可以看作，n个数全部向前移动\(m\)个位置，再切掉第\(n\)个数。\(f(n,m) \leftarrow f(n-1,m)\)的过程可以看作，尾巴上先插一个\(n\)，然后\(n\)个数全部向后移动\(m\)个位置。
+删除的过程是不断地进行\(f(n,m) \rightarrow f(n-1,m)\)，倒过来想，若已知最后留下的数（代号A），那么只要不断执行\(f(n,m) \leftarrow f(n-1,m)\)，便可以还原这个数A在任何时候的位置了。
+1. \(f(1,m)=0\)；
+2. \(f(2,m)=(f(1,m)&#43;m)\%2\)；
+3. \(f(3,m)=(f(2,m)&#43;m)\%3\)；
+4. \(\dotso\)
+不断递推，直到目标\(n\)。
+写得乱糟糟，还不如原文一个图来的清楚，【传送门1】2【传送门2】3
  https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;amp;utm_source=distribute.pc_relevant.none-task “欧几里德算法 CSDN”↩︎
+ https://lele16.me/posts/leetcode%E9%9D%A2%E8%AF%95%E9%A2%9862.-%E5%9C%86%E5%9C%88%E4%B8%AD%E6%9C%80%E5%90%8E%E5%89%A9%E4%B8%8B%E7%9A%84%E6%95%B0%E5%AD%97-%E9%9A%8F%E7%AC%94/↩︎
+ https://blog.csdn.net/u011500062/article/details/72855826↩︎
    </content>
     </entry>
     
@@ -173,24 +198,16 @@ MathJax Support
 &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/&#43;DiW/UqRcLbRjq&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-y23I5Q6l&#43;B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd&#43;qj&#43;o24G5ZU2zJz&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;document.addEventListener(&amp;#34;DOMContentLoaded&amp;#34;, function() {renderMathInElement(document.body, {// ...options... });});&amp;lt;/script&amp;gt;然后，安装pandoc。
 最后，在MarkDown文件的front-matter部分加上markup: &amp;quot;pandoc&amp;quot;即可。
 &amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;手工分割线&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;
-这里还有一些问题。其中，无法像方案一那像配置delimiters: 选项。一旦配置了就无法渲染，我猜是不是pandoc和这个冲突？ 而且，front-matter部分加上markup: &amp;quot;pandoc&amp;quot;后不能渲染&amp;lt;details&amp;gt;标签了，可能需要pandoc额外的设置吧。
-于是，使用方案二就无法用一些html标签了，使用方案一又不便于编辑器预览。但是不用纠结
-因为小孩子才做选择，而我可以全都要：
-我用了如下的傻瓜方法，通过条件判断，给不同页面添加不同的代码。
-内心OS：什么妖魔鬼怪的方法啊！ミ(ﾉ゜д゜)ﾉ打你哦
-{{- if (and .IsPage (eq .Params.markup &amp;#34;pandoc&amp;#34; ) ) -}}&amp;lt;!-- 方案二 --&amp;gt;&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/&#43;DiW/UqRcLbRjq&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-y23I5Q6l&#43;B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd&#43;qj&#43;o24G5ZU2zJz&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;document.addEventListener(&amp;#34;DOMContentLoaded&amp;#34;, function() {renderMathInElement(document.body, {// ...options... });});&amp;lt;/script&amp;gt;{{- else if eq .Site.Params.Math &amp;#34;katex&amp;#34; -}}&amp;lt;!-- 方案其它 --&amp;gt;&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css&amp;#34; integrity=&amp;#34;sha384-9tPv11A&#43;glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL&#43;6DuH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js&amp;#34; integrity=&amp;#34;sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js&amp;#34; integrity=&amp;#34;sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;renderMathInElement(document.body,{delimiters: [{left: &amp;#34;$$&amp;#34;, right: &amp;#34;$$&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false},// 注意看这里，pandoc似乎会把$$ 转成\( \) // Next主题中，博文在首页的summary的公式都是\( \)这样的 {left: &amp;#34;\\(&amp;#34;, right: &amp;#34;\\)&amp;#34;, display: false},],ignoredTags: [&amp;#39;script&amp;#39;, &amp;#39;noscript&amp;#39;, &amp;#39;style&amp;#39;, &amp;#39;textarea&amp;#39;, &amp;#39;pre&amp;#39;],});var all=document.getElementsByClassName(&amp;#39;katex&amp;#39;),i;for(i = 0; i &amp;lt; all.length; i &#43;= 1){/* if(all[i].parentNode.parentNode.nodeName == &amp;#39;CODE&amp;#39;) *//* all[i].parentNode.parentNode.className &#43;= &amp;#39; mathcode&amp;#39;; */var tmp=all[i].parentNode;for(;tmp.nodeName==&amp;#39;SPAN&amp;#39;;tmp=tmp.parentNode);if(tmp.nodeName == &amp;#39;CODE&amp;#39;)tmp.className &#43;= &amp;#39; mathcode&amp;#39;;}&amp;lt;/script&amp;gt;&amp;lt;!-- 下略 --&amp;gt;{{- end -}}这样的话，在文档中不指名使用pandoc则会使用方案一（需要设置.Site.Params.Math），算是个折中的方法。
+这里还有一些问题。其中，如果配置delimiters: 选项，一定要把符号配全，pandoc似乎会把美元符号自动替换成其他符号。
+不用pandoc，用mmark也行，但官方表示mmark未来将会被移除。
     修改代码块的样式
 主题：pure
 修改css文件的&amp;lt;pre&amp;gt;标签的样式，样式参考
   使用tab键可能造成奇怪的渲染结局，应使用空格为宜
-  google analytic4
-{{ if not .Site.IsServer }}{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}{{ end }}  好想用其它主题的shortcode
-shortcode. 很强大。这是个ref的例子.
- [Neat]({{&amp;lt; ref &amp;ldquo;/blog/neat.md&amp;rdquo; &amp;gt;}}) 
-&amp;lt;a href=&amp;#34;/blog/neat&amp;#34;&amp;gt;Neat&amp;lt;/a&amp;gt;   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
+分割线上下最好留空行
+   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2018/03/hugo-mathjax/ &amp;#x21a9;&amp;#xfe0e;
  https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/ &amp;#x21a9;&amp;#xfe0e;
- https://note.qidong.name/2017/07/05/google-analytics-in-hugo/ &amp;#x21a9;&amp;#xfe0e;
    </content>
     </entry>
     
