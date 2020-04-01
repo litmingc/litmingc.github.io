@@ -149,16 +149,16 @@ python2.7的自带库目录在
     </entry>
     
      <entry>
-        <title>[linux]常见命令</title>
+        <title>[linux]Linux命令</title>
         <url>https://litmingc.github.io/post/linux/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</url>
         <categories>
           <category>学习笔记</category><category>Linux</category>
         </categories>
         <tags>
-          
+          <tag>tar</tag>
         </tags>
-        <content type="html"> linux使用过程中自己会用到的一些“小”命令
-  uname
+        <content type="html"> 【宝贝网站】
+“小”命令   uname
 查看系统内核以及系统版本
 参数：
  -a或&amp;ndash;all 显示全部的信息。 -m或&amp;ndash;machine 显示电脑类型。 -n或-nodename 显示在网络上的主机名称。 -r或&amp;ndash;release 显示操作系统的发行编号。 -s或&amp;ndash;sysname 显示操作系统名称。 -v 显示操作系统的版本。    getconf LONG_BIT
@@ -167,7 +167,60 @@ python2.7的自带库目录在
 查看负载信息
   free
 显示当前系统中内存使用量信息
-  </content>
+  打包与压缩 打包和压缩是不一样的 打包
+利用tar命令，可以把一大堆的文件和目录全部打包成一个文件  压缩
+利用gzip bzip2命令进行压缩 
+命令tar .tar包并没有被压缩，tar只做打包功能，需要其他工具进行压缩。
+解压命令格式：tar [选项] 压缩包
+压缩命令格式：tar [选项] 压缩包 源文件或目录
+示例
+解压tar zxvf log.tar.gz
+压缩tar zcvf log.tar.gz log2012.log 
+选项(-)：
+   短 长 备注     z gzip，ungzip 调用gzip执行压缩或解压缩。 .tar.gz文件使用。   j bzip2 调用bzip2执行压缩或解压缩。 .tar.bz2文件使用。   v verbose 显示处理过程   x extract，get 从打包文件中还原文件，解压用。   C  这个选项用在解压缩，在指定目录解压缩，-C 目录。   f file 指定目标文件。tar -f 文件路径或tar --file=文件路径。
+所以，常用的解压组合中tar zxvf 文件路径中f必须放在最后，以获取参数。        c create 建立新的备份文件，新建打包。压缩用。    压缩/解压缩gzip 没咋单独用过。
+执行压缩后，在原文件名后添加.gz后缀。 选项   -a或--ascii：使用ASCII文字模式；
+-d或--decompress或--uncompress：解开压缩文件；
+-f或--force：强行压缩文件。不理会文件名称或硬连接是否存在以及该文件是否为符号连接；
+-h或--help：在线帮助；
+-l或--list：列出压缩文件的相关信息；
+-L或--license：显示版本与版权信息；
+-n或--no-name：压缩文件时，不保存原来的文件名称及时间戳记；
+-N或--name：压缩文件时，保存原来的文件名称及时间戳记；
+-q或--quiet：不显示警告信息；
+-r或--recursive：递归处理，将指定目录下的所有文件及子目录一并处理；
+-S或&amp;lt;压缩字尾字符串&amp;gt;或&amp;mdash;-suffix&amp;lt;压缩字尾字符串&amp;gt;：更改压缩字尾字符串；
+-t或--test：测试压缩文件是否正确无误；
+-v或--verbose：显示指令执行过程；
+-V或--version：显示版本信息；
+-&amp;lt;压缩效率&amp;gt;：压缩效率是一个介于1~9的数值，预设值为“6”，指定愈大的数值，压缩效率就会愈高；
+--best：此参数的效果和指定“-9”参数相同；
+--fast：此参数的效果和指定“-1”参数相同。
+ 
+压缩/解压缩bzip2 没咋单独用过。
+执行压缩后，在原文件名后添加.bz2后缀。 选项   -c或--stdout：将压缩与解压缩的结果送到标准输出；
+-d或--decompress：执行解压缩；
+-f或--force：bzip2在压缩或解压缩时，若输出文件与现有文件同名，预设不会覆盖现有文件。若要覆盖。请使用此参数；
+-h或--help：在线帮助；
+-k或--keep：bzip2在压缩或解压缩后，会删除原始文件。若要保留原始文件，请使用此参数；
+-s或--small：降低程序执行时内存的使用量；
+-t或--test：测试.bz2压缩文件的完整性；
+-v或--verbose：压缩或解压缩文件时，显示详细的信息；
+-z或--compress：强制执行压缩；
+-V或--version：显示版本信息；
+--repetitive-best：若文件中有重复出现的资料时，可利用此参数提高压缩效果；
+--repetitive-fast：若文件中有重复出现的资料时，可利用此参数加快执行效果。
+ 
+备份系统与还原 就是，打包压缩整个系统。毕竟，linux一切都是以文件形式存在的。 但我没试过。 备份：
+sudo tar cvpzf backup.tgz --exclude=/proc --exclude=/mnt --exclude=/sys --exclude=/backup.tgz / 这个命令，需要注意的就是排除一些不要备份的文件。
+还原：
+tar xvpfz backup.tgz -C /
+此外，最好的选择还是备份工具。比如Rsync。
+备份：
+sudo rsync -Pa / /backup_20141216 --exclude=/media/* --exclude=/sys/* --exclude=/proc/* --exclude=/mnt/* --exclude=/tmp/*
+还原：
+sudo rsync -Pa /backup_20160511 /
+</content>
     </entry>
     
      <entry>
