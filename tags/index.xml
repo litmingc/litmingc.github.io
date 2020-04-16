@@ -6,10 +6,28 @@
     <description>Recent content in Tags on LitMing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 12 Mar 2020 14:28:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 04 Apr 2020 12:21:55 +0800</lastBuildDate>
     
 	<atom:link href="https://litmingc.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>whoosh</title>
+      <link>https://litmingc.github.io/tags/whoosh/</link>
+      <pubDate>Sat, 04 Apr 2020 12:21:55 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/tags/whoosh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>文档检索</title>
+      <link>https://litmingc.github.io/tags/%E6%96%87%E6%A1%A3%E6%A3%80%E7%B4%A2/</link>
+      <pubDate>Sat, 04 Apr 2020 12:21:55 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/tags/%E6%96%87%E6%A1%A3%E6%A3%80%E7%B4%A2/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>RaspberryPi</title>

@@ -1,6 +1,163 @@
 <search>
     
      <entry>
+        <title>[Translation]Whoosh 2.7.4 Documentation</title>
+        <url>https://litmingc.github.io/post/translation/whoosh/</url>
+        <categories>
+          <category>Translation</category><category>Python</category>
+        </categories>
+        <tags>
+          <tag>whoosh</tag><tag>文档检索</tag>
+        </tags>
+        <content type="html"> 英语小白，【原文地址】。store不知道怎么翻译合适，存储？
+ Quick start  A quick introduction The Index and Schema objects The IndexWriter object The Searcher object   Designing a schema  About schemas and fields Built-in field types Creating a Schema Modifying the schema after indexing Dynamic fields Advanced schema setup  Field boosts Field types Formats Vectors     How to index documents  Creating an Index object Clearing the index Indexing documents Indexing and storing different values for the same field Finishing adding documents Merging segments Deleting documents Updating documents Incremental indexing Clearing the index    Quick start whoosh是一个为文本建立索引并搜索这个索引的方法库和类库。它允许你针对自己的内容开发自定义的搜索引擎。比如，如果你正在建立一个博客写作软件，你就可以使用Whoosh添加搜索方法，让用户搜索博文。
+A quick introduction from whoosh.index import create_in from whoosh.fields import * schema = Schema(title=TEXT(stored=True), path=ID(stored=True), content=TEXT) ix = create_in(&amp;#34;indexdir&amp;#34;, schema) writer = ix.writer() writer.add_document(title=u&amp;#34;First document&amp;#34;, path=u&amp;#34;/a&amp;#34;,content=u&amp;#34;This is the first document we&amp;#39;ve added!&amp;#34;) writer.add_document(title=u&amp;#34;Second document&amp;#34;, path=u&amp;#34;/b&amp;#34;,content=u&amp;#34;The second one is even more interesting!&amp;#34;) writer.commit() from whoosh.qparser import QueryParser with ix.searcher() as searcher: query = QueryParser(&amp;#34;content&amp;#34;, ix.schema).parse(&amp;#34;first&amp;#34;) results = searcher.search(query) print(results[0]) 输出：
+{&amp;quot;title&amp;quot;: u&amp;quot;First document&amp;quot;, &amp;quot;path&amp;quot;: u&amp;quot;/a&amp;quot;}
+The Index and Schema objects 首先，使用whoosh前，你需要有一个索引（index）对象；
+其次，使用index前，你必须定义好index的schema(结构模式)。
+schema列出了index中的字段（field）。一个字段（field）就是索引中记录的文档的一项信息。field能够被索引(indexed)（可以搜索field）、被存储(stored)（被索引的field的值会和结果一起返回；在标题等字段中，这一点很有用）。
+下面的schema示例中有两个字段，“title”和“content”：
+from whoosh.fields import Schema, TEXT schema = Schema(title=TEXT, content=TEXT) 创建index时，你只需要创建一个schema。这个schema和index深度绑定。
+创建schema对象时，你使用关键字参数来把字段名和字段类型绑定在一起。字段列表以及他们的类型决定了“哪些会被索引，哪些能被检索”。Whoosh自带了一些非常有用的字段类型，并且你也可以轻易的定义自己的类型。
+ whoosh.fields.ID
+这种类型简单地把整个字段的值索引成一个单元(a single unit，也就是说，它不会把字段的值切分成单独的词语)，同时也可以选择存储这个值。这在诸如文件路径、URL、日期以及分类等字段中很有用。 whoosh.fields.STORED
+使用这个类型的字段会被储存为文档，但是不会为它建立索引。这个字段类型不会被索引，也不可搜索。它可以用在一些文档信息上，而你只是想把这些文档信息呈现在搜索结果中。 whoosh.fields.KEYWORD
+这个类型是为那些用空格和逗号分隔的关键字设计的，可以被索引、被搜索，也可以选择将其存储。为了节省空间，这个类型的字段的搜索并不允许部分匹配（phrase searching）。 whoosh.fields.TEXT
+这是用于正文的字段类型。它为文本建立索引（可选择存储与否）并且储存词语的位置用于片言搜索（phrase searching） whoosh.fields.NUMERIC
+用于数字，可以存储整型和浮点数。 whoosh.fields.BOOLEAN
+用于布尔值（true，false） whoosh.fields.DATETIME
+用于datatime对象。更多信息参见Indexing and parsing dates/times whoosh.fields.NGRAM 和 whoosh.fields.NGRAMWORDS
+这个类型把字段的文本以及单个的术语打散，将它们组成N元组(N-grams)。更多信息参见Indexing and searching N-grams  （如果你不需要向字段类型传递参数，那么只要给出类名就可以了。Whoosh会帮你实例化。）
+from whoosh.fields import Schema, STORED, ID, KEYWORD, TEXT schema = Schema(title=TEXT(stored=True), content=TEXT, path=ID(stored=True), tags=KEYWORD, icon=STORED) 更多信息参见Designing a schema
+一旦你有了schema，你就可以使用create_in方法创建index:
+import os.path from whoosh.index import create_in if not os.path.exists(&amp;#34;index&amp;#34;): os.mkdir(&amp;#34;index&amp;#34;) ix = create_in(&amp;#34;index&amp;#34;, schema) （这一步创建了一个包含索引&amp;quot;index&amp;quot;的存储对象。Storage对象是将被储存的index的中间件。通常，存储对象会是FileStorage对象，将index存储为一组文件，存储到某个文件夹中。）
+在创建了一个index之后，你可以使用open_dir方法，很方便的打开它：
+from whoosh.index import open_dir ix = open_dir(&amp;#34;index&amp;#34;) The IndexWriter object 好的，既然我们已经有的index对象了，那现在就可以添加文档了。index对象的writer()方法会返回一个IndexWriter对象，可以用来将文档添加进index。IndexWriter对象的add_document(**kwargs)方法通过传入的关键字参数，将字段名映射到具体的值。
+writer = ix.writer() writer.add_document(title=u&amp;#34;My document&amp;#34;, content=u&amp;#34;This is my document!&amp;#34;, path=u&amp;#34;/a&amp;#34;, tags=u&amp;#34;first short&amp;#34;, icon=u&amp;#34;/icons/star.png&amp;#34;) writer.add_document(title=u&amp;#34;Second try&amp;#34;, content=u&amp;#34;This is the second example.&amp;#34;, path=u&amp;#34;/b&amp;#34;, tags=u&amp;#34;second short&amp;#34;, icon=u&amp;#34;/icons/sheep.png&amp;#34;) writer.add_document(title=u&amp;#34;Third time&amp;#39;s the charm&amp;#34;, content=u&amp;#34;Examples are many.&amp;#34;, path=u&amp;#34;/c&amp;#34;, tags=u&amp;#34;short&amp;#34;, icon=u&amp;#34;/icons/book.png&amp;#34;) writer.commit() 其中，有两点需要注意：
+ 你不一定要为所有的字段赋值。Whoosh根本不在乎。 建立索引的字段的文本参数必须是以unicode编码的字符串。那些只存储不建立索引的字段（STORED类型）可以传入任何编码的对象。  如果你有一个文本字段，既要建立索引，也要被存储，那么你可以为unicode编码值建立索引，然后再用下面展示的技巧存储一个不同的对象（如果必要的话，但是通常没必要。 又 但是，有时候，这真的很有用）：
+writer.add_document(title=u&amp;#34;Title to be indexed&amp;#34;, _stored_title=u&amp;#34;Stored title&amp;#34;) 调用IndexWriter的commit()来提交那些添加到index中的文档：
+writer.commit() 更多信息参见How to index documents
+一旦文档被提交到index中，那你就可以搜索它们了。
+The Searcher object 为了检索index，我们需要一个Searcher对象：
+searcher = ix.searcher() 你通常会想要通过with语句打开检索器(Searcher)。这样，当你使用完检索器，它就会自动关闭了（Searcher对象表示很多打开的文件。所以，如果你没有显式地关闭他们，而且系统收集他们的速度也慢的话，你可能会花光文件句柄）。
+with ix.searcher() as searcher: pass 等价于：
+try: searcher = ix.searcher() pass finally: searcher.close() Searcher对象的search()方法需要一个查询(Query)对象。你可以直接构造query对象，也可以使用query分析器分析query字符串。
+比如，下面的查询对象将会匹配在“content”字段中同时包含“apple”和“bear”的文档：
+# Construct query objects directly from whoosh.query import * myquery = And([Term(&amp;#34;content&amp;#34;, u&amp;#34;apple&amp;#34;), Term(&amp;#34;content&amp;#34;, &amp;#34;bear&amp;#34;)]) 此外，你也可以使用qparser模块中默认的查询分析器去分析查询字符串。QueryParser构造器的第一个参数是默认的搜索字段，它通常传入“文本主体”所在的字段。第二个可选参数是一个schema，用来让分析器理解如何分析字段：
+# Parse a query string from whoosh.qparser import QueryParser parser = QueryParser(&amp;#34;content&amp;#34;, ix.schema) myquery = parser.parse(querystring) 只要你有了Searcher和query对象，你就可以使用Searcher的search()方法来执行查询，获得Results对象：
+&amp;gt;&amp;gt;&amp;gt; results = searcher.search(myquery) &amp;gt;&amp;gt;&amp;gt; print(len(results)) 1 &amp;gt;&amp;gt;&amp;gt; print(results[0]) {&amp;#34;title&amp;#34;: &amp;#34;Second try&amp;#34;, &amp;#34;path&amp;#34;: &amp;#34;/b&amp;#34;, &amp;#34;icon&amp;#34;: &amp;#34;/icons/sheep.png&amp;#34;} 默认的QueryParser实现查询语言的方式和Lucene中的非常相似。它允许使用AND或者OR联系语句，使用NOT排除语句，把语句组合成带括号的子句，进行范围、前缀以及通配符查询，并指定不同字段去搜索。默认情况下，它使用AND组合查询子句（所以，默认情况下，你所指定的全部搜索词必须全在文档中，文档才能被匹配）：
+&amp;gt;&amp;gt;&amp;gt; print(parser.parse(u&amp;#34;render shade animate&amp;#34;)) And([Term(&amp;#34;content&amp;#34;, &amp;#34;render&amp;#34;), Term(&amp;#34;content&amp;#34;, &amp;#34;shade&amp;#34;), Term(&amp;#34;content&amp;#34;, &amp;#34;animate&amp;#34;)]) &amp;gt;&amp;gt;&amp;gt; print(parser.parse(u&amp;#34;render OR (title:shade keyword:animate)&amp;#34;)) Or([Term(&amp;#34;content&amp;#34;, &amp;#34;render&amp;#34;), And([Term(&amp;#34;title&amp;#34;, &amp;#34;shade&amp;#34;), Term(&amp;#34;keyword&amp;#34;, &amp;#34;animate&amp;#34;)])]) &amp;gt;&amp;gt;&amp;gt; print(parser.parse(u&amp;#34;rend*&amp;#34;)) Prefix(&amp;#34;content&amp;#34;, &amp;#34;rend&amp;#34;) Whoosh还有额外的功能处理检索结果，比如：
+ 以索引字段的值排序，而不是相关程度 在原文的节选中，高亮搜索字段 基于检索到的前几个文档，扩展搜索选项 分页显示结果（例如，“显示结果 1-20 ，页面1 of 4”）
+更多内容参见How to search  Designing a schema About schemas and fields schema指定了文档在索引中的字段。
+每一篇文档都可以有多个字段，比如title、content、url、date等等。
+某些字段可以被索引。某些字段可以和文档一起存储，用于在检索的结果中显示这些字段的值。某些字段既可以被索引，也可以被存储。
+schema是文档中可能出现的字段的集合，每一篇文档都可能仅仅使用它的子集。
+比如，一个用于索引邮件的schame可能的字段有from_addr、 to_addr、subject、body以及attachments，attachments字段可能以列表形式列出了邮件的附件名。对于没有附件的邮件，你就可以忽略这个字段。
+Built-in field types Whoosh提供了一些实用的预设字段类型：
+ whoosh.fields.TEXT
+这个类型用于文本主体。它为文本建立索引，并且记录词语的位置以便短语检索；亦可增选存储起来。
+TEXT字段默认使用StandarAnalyzer进行分词。要指定不同的分词器，你可以为字段的构造器使用analyzer参数，比如TEXT(analyzer=analysis.StemmingAnalyzer())。详情见See About analyzers
+TEXT字段默认储存词语的位置，用于短语检索。如果你不需要这个功能，你可以关闭它以节省存储空间。使用TEXT(phrase=False)关闭此功能。 TEXT字段默认不存储字段的值。通常，你不会希望在索引中储存文档的正文。因为一般情况下，你可以从检索结果中直接读取或者链接到文档本身，所以无需在索引中存储文本。但是，在某些情况下，储存字段的值会是实用的，比如How to create highlighted search result excerpts。使用TEXT(stored=True)将文本存储到索引中。 whoosh.fields.KEYWORD
+这个类型是设计给以空格、逗号分隔的关键词的。此类型可索引，也可存储展示。为了节省空间，它不支持短语检索。
+在构造器中使用stored=True存储展示字段的值；使用lowercase=True将在索引建立前自动小写关键字。
+默认情况下，它认为关键字是以空格为分割符的，可设置commas=True使用逗号替代空格成为分隔符（注意，此时即允许关键字中含有空格）。
+如果你的使用者将使用关键字字段进行检索，请设置scorable=True。 whoosh.fields.ID
+ID类型简单地将字段的整个值当作一个单元（不会将字段分隔成一个一个词语）进行索引（and optionally stores）。这个类型不会存储词频，因此它完成得很快，但对于文档相关度的计算就没啥用了。
+ID类型一般用于URL、文件路径、日期、分类等字段，这些字段通常需要当成整体来对待，并且一个文档只有一个值。
+默认情况下，ID类型也不被存储展示。设置ID(stored=true)，使指定的字段可以被存储，用于在检索结果中展示。比如，你可以存储URL的值，以便在检索结果中提供文档的链接。 whoosh.fields.STORED
+这个类型用于存储文档，但是不能建立索引也不能检索，主要用在你希望在检索结果中展示，却不必检索得到的文档信息上。 whoosh.fields.NUMERIC
+用紧凑、可排序得形式存储int、long、浮点数。 whoosh.fields.DATETIME
+用紧凑、可排序得形式存储日期对象。 whoosh.fields.BOOLEAN
+用于索引布尔值。用户可以使用yes no true false 1 0 t f检索到这个类型的字段。 whoosh.fields.NGRAM
+TBD.  Creating a Schema 举个栗子：
+from whoosh.fields import Schema, TEXT, KEYWORD, ID, STORED from whoosh.analysis import StemmingAnalyzer schema = Schema(from_addr=ID(stored=True), to_addr=ID(stored=True), subject=TEXT(stored=True), body=TEXT(analyzer=StemmingAnalyzer()), tags=KEYWORD) 如果不需要为原生的字段类型构造器提供参数，可以省略()（比如，用fieldname=TEXT代替fieldname=TEXT()）。whoosh会帮你实例化。
+此外，你还可以使用SchemaClass基础类来声明一个Schema：
+from whoosh.fields import SchemaClass, TEXT, KEYWORD, ID, STORED class MySchema(SchemaClass): path = ID(stored=True) title = TEXT(stored=True) content = TEXT tags = KEYWORD 你可以将上述声明类当参数传给方法create_in()或者create_index()，而不必使用Schema实例。
+Modifying the schema after indexing 在已经建立索引之后，你可以使用add_field()和remove_field()增减字段。这两个方法是writer对象的成员方法：
+writer = ix.writer() writer.add_field(&amp;#34;fieldname&amp;#34;, fields.TEXT(stored=True)) writer.remove_field(&amp;#34;content&amp;#34;) writer.commit() （如果增减字段和添加文档使用的是同一个writer，你必须确保在添加文档前调用add_field()以及remove_field()。）
+在index对象中，这些方法使用起来也很方便：
+ix.add_field(&amp;#34;fieldname&amp;#34;, fields.KEYWORD) 但是，当你这么用的时候，index对象实际上是创建了writer，并调用了对应的函数再提交（commit）的。所以，若是你想增减多个字段，使用writer会更有效率。
+在filedb后台，移除一个字段仅仅对schema做了修改，index并不会变小，index有关那个字段的数据仍然存在，除非你commit的时候使用了optimize（优化）。优化可以重构索引，移除相应字段的引用。示例如下：
+writer = ix.writer() writer.add_field(&amp;#34;uuid&amp;#34;, fields.ID(stored=True)) writer.remove_field(&amp;#34;path&amp;#34;) writer.commit(optimize=True) 因为数据是和字段名一起存储在磁盘上的，所以不要在移除字段且不设置optimize的情况下，添加同名的字段：
+writer = ix.writer() writer.delete_field(&amp;#34;path&amp;#34;) # Don&amp;#39;t do this!!! writer.add_field(&amp;#34;path&amp;#34;, fields.KEYWORD) （未来，whoosh也许会自动避免这个错误。）
+Dynamic fields 动态字段就是把类型与一组字段联系起来，这些字段能够被给定的“通配符”匹配（通配符（glob）指一种命名模板，包含*、？以及[abc]通配符）。
+你可以使用带glob关键字的add()方法添加动态字段（设置glob=True：
+schema = fields.Schema(...) # Any name ending in &amp;#34;_d&amp;#34; will be treated as a stored # DATETIME field schema.add(&amp;#34;*_d&amp;#34;, fields.DATETIME(stored=True), glob=True) 和添加普通的字段一样，你可以使用IndexWriter.add_field()添加动态字段。但是，需要设置glob=True：
+writer = ix.writer() writer.add_field(&amp;#34;*_d&amp;#34;, fields.DATETIME(stored=True), glob=True) writer.commit() 移除动态字段时，使用IndexWriter.remove_field()，并给出“统配符字段名”：
+writer = ix.writer() writer.remove_field(&amp;#34;*_d&amp;#34;) writer.commit() 下面是一个示例，展示了如何允许文档包含任何以_id结尾的字段名，并指定其为ID类型：
+schema = fields.Schema(path=fields.ID) schema.add(&amp;#34;*_id&amp;#34;, fields.ID, glob=True) ix = index.create_in(&amp;#34;myindex&amp;#34;, schema) w = ix.writer() w.add_document(path=u&amp;#34;/a&amp;#34;, test_id=u&amp;#34;alfa&amp;#34;) w.add_document(path=u&amp;#34;/b&amp;#34;, class_id=u&amp;#34;MyClass&amp;#34;) # ... w.commit() qp = qparser.QueryParser(&amp;#34;path&amp;#34;, schema=schema) q = qp.parse(u&amp;#34;test_id:alfa&amp;#34;) with ix.searcher() as s: results = s.search(q) Advanced schema setup Field boosts 你可以为字段指定field boost（字段增强器），它可以倍增某个字段中出现的任意term的检索价值。比如下面的示例中，在计算文档与检索条件的相关性的时候，title字段中出现的相关词句（term），分数会是body中的两倍：
+schema = Schema(title=TEXT(field_boost=2.0), body=TEXT) Field types 前文列出的预设类型都是fields.FieldType的子类。FieldType是一个非常简单的类，它的属性中包含了定义字段行为的信息：
+   Attribute Type Description     format fields.Format Defines what kind of information a field records about each term, and how the information is stored on disk.   vector fields.Format Optional: if defined, the format in which to store per-document forward-index information for this field.   scorable bool If True, the length of (number of terms in) the field in each document is stored in the index. Slightly misnamed, since field lengths are not required for all scoring. However, field lengths are required to get proper results from BM25F.   stored bool If True, the value of this field is stored in the index.   unique bool If True, the value of this field may be used to replace documents with the same value when the user calls document_update() on an IndexWriter.    大多数类型的构造器都有一些参数让你能够自定义表中的内容。比如：
+ FieldType.stored TEXT()构造器就有analyzer关键字参数，这个参数的值会传给form对象。  Formats format对象定义了一个字段所记录的每一个term的信息，以及这些信息是如何存储在磁盘上的。
+比如，Existence存储posting：
+| Doc | | | &amp;mdash; | &amp;mdash; | | 10 | | | 20 | | | 30 | | 而，Positions存储posting：
+| Doc | Positions | | &amp;mdash; | &amp;mdash; | | 10 | [1,5,23] | | 20 | [45] | | 30 | [7,12] |
+索引代码将字段的unicode字符串发给字段的Format对象。Format对象调用它的解释器（analyzer）将字符串切分成一些标记，再为每一个标记编码。
+Wshoosh会忽略下表中的预设format：
+| 类名 | 描述 | | &amp;mdash; | &amp;mdash; | | Stored | A “null” format for fields that are stored but not indexed. | | Existence | Records only whether a term is in a document or not, i.e. it does not store term frequency. Useful for identifier fields (e.g. path or id) and “tag”-type fields, where the frequency is expected to always be 0 or 1. | | Frequency | Stores the number of times each term appears in each document. | | Positions | Stores the number of times each term appears in each document, and at what positions. |
+此外，还有一些不常用的format，它们主要是方便一些强者的使用：
+| 类名 | 描述 | | &amp;mdash; | &amp;mdash; | | DocBoosts|Like Existence, but also stores per-document boosts | | Characters|Like Positions, but also stores the start and end character indices of each term | | PositionBoosts|Like Positions, but also stores per-position boosts | | CharacterBoosts|Like Positions, but also stores the start and end character indices of each term and per-position boosts |
+Vectors 主要的index是一个反向索引。它将term映射到其所在的文档。它有时也有助于储存前向索引（亦称term vector），即把文档映射到文档中的term上。
+比如，你可以想象一个字段的反向索引：
+| Term | Postings | | &amp;mdash; | &amp;mdash; | | apple | [(doc=1, freq=2), (doc=2, freq=5), (doc=3, freq=1)] | | bear | [(doc=2, freq=7)] |
+相应的前向索引，或者说term vector，应该是这样的：
+| Doc | Postings | | &amp;mdash; | &amp;mdash; | | 1 | [(text=apple, freq=2)] | | 2 | [(text=apple, freq=5), (text=&#39;bear&amp;rsquo;, freq=7)] | | 3 | [(text=apple, freq=1)] |
+如果你为一个Format对象设置了FieldType.vector，那么索引代码就会使用这个Format对象来存储每一个文档中的那些term。目前，Whoosh默认不使用任何term vector，但是对于想要实现自己的字段类型的大神们而言，这个功能是可用的。
+How to index documents Creating an Index object 使用index.create_in在指定目录中创建一个index：
+import os, os.path from whoosh import index if not os.path.exists(&amp;#34;indexdir&amp;#34;): os.mkdir(&amp;#34;indexdir&amp;#34;) ix = index.create_in(&amp;#34;indexdir&amp;#34;, schema) 使用index.open_dir打开指定文件夹存在的index：
+import whoosh.index as index ix = index.open_dir(&amp;#34;indexdir&amp;#34;) 这儿还有些快捷函数(convenience functions)：
+from whoosh.filedb.filestore import FileStorage storage = FileStorage(&amp;#34;indexdir&amp;#34;) # Create an index ix = storage.create_index(schema) # Open an existing index storage.open_index() 你创建index所用的schame是和index深度捆绑且一起存储的。
+你可以在同一个文件中创建多个index，但是需要使用indexname关键字指定：
+# Using the convenience functions ix = index.create_in(&amp;#34;indexdir&amp;#34;, schema=schema, indexname=&amp;#34;usages&amp;#34;) ix = index.open_dir(&amp;#34;indexdir&amp;#34;, indexname=&amp;#34;usages&amp;#34;) # Using the Storage object ix = storage.create_index(schema, indexname=&amp;#34;usages&amp;#34;) ix = storage.open_index(indexname=&amp;#34;usages&amp;#34;) Clearing the index 调用index.create_in将会清除目录中已存在的index中的内容。
+使用index.exists_in可以判断目录中的是否包含有效index：
+exists = index.exists_in(&amp;#34;indexdir&amp;#34;) usages_exists = index.exists_in(&amp;#34;indexdir&amp;#34;, indexname=&amp;#34;usages&amp;#34;) （此外，也可以直接删除index的相关文件。如果目录中仅有一个index，你可以使用shutil.rmtree移除文件夹并重新创建它。）
+Indexing documents 一旦创建好Index对象，你就可以使用IndexWriter向index中添加文档了。获取IndexWriter对象的最简单的方式就是调用index.writer()：
+ix = index.open_dir(&amp;#34;index&amp;#34;) writer = ix.writer() 创建了writer的时候会锁定index。因此，同一时间，一个线程（或进程）只能存在一个writer：
+Note
+你需要有意识到，因为打开一个writer的时候会把index锁定，所以在多线程（多进程）的编程环境中，打开writer时可能会抛出异常（whoosh.store.LockError，如果已经有一个writer被打开了）。Whoosh包含了一组实现样例（whoosh.writing.AsyncWriter和whoosh.writing.BufferedWriter），它们可以绕开写入锁。  Note
+即便writer已打开且处于commit中，index仍然是可以被读取的。已存在的reader不受影响，新的reader也能正常地打开最新的index。但是，commit完成之后，已存在的reader只能获取先前的index（也就是说，它们不会自动更新最新的提交内容）。  IndexWriter的add_document(**kwargs)方法以参数的形式将字段名映射到值：
+writer = ix.writer() writer.add_document(title=u&amp;#34;My document&amp;#34;, content=u&amp;#34;This is my document!&amp;#34;, path=u&amp;#34;/a&amp;#34;, tags=u&amp;#34;first short&amp;#34;, icon=u&amp;#34;/icons/star.png&amp;#34;) writer.add_document(title=u&amp;#34;Second try&amp;#34;, content=u&amp;#34;This is the second example.&amp;#34;, path=u&amp;#34;/b&amp;#34;, tags=u&amp;#34;second short&amp;#34;, icon=u&amp;#34;/icons/sheep.png&amp;#34;) writer.add_document(title=u&amp;#34;Third time&amp;#39;s the charm&amp;#34;, content=u&amp;#34;Examples are many.&amp;#34;, path=u&amp;#34;/c&amp;#34;, tags=u&amp;#34;short&amp;#34;, icon=u&amp;#34;/icons/book.png&amp;#34;) writer.commit() 建立索引的字段必须赋予unicode编码的值；存储但不索引的字段可以使用任意编码。
+Whoosh允许使用同样的值添加文档，这可能会很有用，也有可能令人厌烦：
+writer.add_document(path=u&amp;#34;/a&amp;#34;, title=u&amp;#34;A&amp;#34;, content=u&amp;#34;Hello there&amp;#34;) writer.add_document(path=u&amp;#34;/a&amp;#34;, title=u&amp;#34;A&amp;#34;, content=u&amp;#34;Deja vu!&amp;#34;) 这个例子添加了具有相同path和title的两个文档。
+下文的“updating documents”会有关于update_document方法的介绍，它使用“unique”参数来替换旧文档，而不是新增文档。
+Indexing and storing different values for the same field 如果你有一个字段既能索引也能存储，那么，必要情况下，你可以索引一个unuicode编码的值并存储一个不同的值（通常这是不必要的，但有时这真的很有用 似曾相识的话 ）。使用一个特殊的关键字参数_stored_&amp;lt;fieldname&amp;gt;可以实现这个功能。一般的参数值会被分析并建立索引，而带有“stored”的参数的值会被展示在检索结果中：
+writer.add_document(title=u&amp;#34;Title to be indexed&amp;#34;, _stored_title=u&amp;#34;Stored title&amp;#34;) Finishing adding documents IndexWriter就像数据库事务一样。你进行一连串的操作，然后一次性提交它们。
+调用commit()保存添加到index中的文档：
+writer.commit() 一旦你的文档在index中，你就可以检索它们了。
+如果想要关闭writer而不提交，使用cancel()代替commit()：
+writer.cancel() 始终要记住，如果你要打开一个writer（或者已经打开过writer并且尚未关闭），那么就应当不会有其它线程或者进程会获取相同index的writer或修改该index。一个writer可能会占用多个打开的文件，所以你也应该记住在不需要writer的时候要调用commit()或者cancel()。
+Merging segments Whoosh的filedb索引实际上是一个容器，用于一个或多个称为段的子索引。当您将文档添加到索引中时，并不是将新文档整合进现有文档(这操作的代价可能非常昂贵，因为它涉及到在磁盘上使用所有已索引的term)，而是在现有段的后面创建一个新段。然后，当你检索索引时，Whoosh将分别搜索两个段并合并结果，使这些段看起来是一个统一的索引。(这个巧妙的设计是抄袭Lucene的。)
+所以，相交于每次添加文档都重写整个index，拥有几个搜索段将会使搜索更加高效。但是，在检索某些内容时，多段同时检索可能会变慢，并且段越多检索越慢。因此，whoosh采用了一种算法，在你调用commit()的时候，算法会检查较小的段，将提交的内容合并到小的段中，使得段的个数少些、段的大小大些。
+提交时，使用merge=False避免whoosh自动整合段：
+writer.commit(merge=False) 而，要合并所有段，将index优化为单一的段，请使用optimize=True：
+writer.commit(optimize=True) 由于优化会重写index中的所有信息，所以在大型index中会很慢。通常，最好还是依靠whoosh的算法，而不是一直使用优化功能。
+（Index对象也有一个optmize()方法可以用来优化index（合并为单一段）。它仅仅创建一个writer并调用commit(optimize=True)。）
+如果想要更好地控制合并段，你可以制定自己的合并策略，并且在commit()中指定它。参见whoosh.writing模块中NO_MERGE、MERGE_SMALL以及OPTIMIZE的实现。
+Deleting documents 你可以使用IndexWriter对象提供的如下方法删除文档，然后调用commit()提交修改。
+ delete_document(docnum)
+通过内部的文档编号删除文档，低级方法。 is_deleted(docnum)
+如果指定编号的文档已经被删除，返回True，低级方法？基础方法？基层方法？low-level。 delete_by_term(fieldname, termtext)
+删除指定字段名中包含指定内容的文档。通常用于ID或KEYWORD字段。 delete_by_query(query)
+删除所有与query匹配的文档  # Delete document by its path -- this field must be indexed ix.delete_by_term(&amp;#39;path&amp;#39;, u&amp;#39;/a/b/c&amp;#39;) # Save the deletion to disk ix.commit() 在filedb后台，“删除”文档仅仅是把文档的编号添加到已删文档列表中，这个列表仍然存储在index中。当检索index时，whoosh知道检索结果中不需要返回已经删除的文档。然而，文档的内容依旧储存在index中（，只是关于文档的一些统计信息不再更新），直到合并包含已删文档的段。（因为，立即从index中删除文档会涉及到重写磁盘上的整个index，这会非常低效。）
+Updating documents 如果你想替换文档，可以删除旧文档，再添加新的文档。或者，使用IndexWriter.update_document进行这一步操作。
+使用update_document，你必须在schema中标记至少一个字段为“unique”。whoosh会使用“unique”字段的内容去寻找需要删除的文档：
+from whoosh.fields import Schema, ID, TEXT schema = Schema(path = ID(unique=True), content=TEXT) ix = index.create_in(&amp;#34;index&amp;#34;) writer = ix.writer() writer.add_document(path=u&amp;#34;/a&amp;#34;, content=u&amp;#34;The first document&amp;#34;) writer.add_document(path=u&amp;#34;/b&amp;#34;, content=u&amp;#34;The second document&amp;#34;) writer.commit() writer = ix.writer() # Because &amp;#34;path&amp;#34; is marked as unique, calling update_document with path=&amp;#34;/a&amp;#34; # will delete any existing documents where the &amp;#34;path&amp;#34; field contains &amp;#34;/a&amp;#34;. writer.update_document(path=u&amp;#34;/a&amp;#34;, content=&amp;#34;Replacement for the first document&amp;#34;) writer.commit() “unique”字段必须是被索引的。
+如果需要更新的文档不存在，那么update_document的作用将和add_document相似。
+“unique”和undate_document仅仅是删除和添加的一个快捷方式。whoosh本身没有unique标志符的概念，当你使用add_document时并不能保证唯一性。
+Incremental indexing 索引一个文档集合的编程方式通常有两种：
+一种是从头索引所有文档；另一种是只更新改变的文档 (leaving aside web applications where you need to add/update documents according to user actions)。
+第一种方式很简单，示例如下：
+import os.path from whoosh import index from whoosh.fields import Schema, ID, TEXT def clean_index(dirname): # Always create the index from scratch ix = index.create_in(dirname, schema=get_schema()) writer = ix.writer() # Assume we have a function that gathers the filenames of the # documents to be indexed for path in my_docs(): add_doc(writer, path) writer.commit() def get_schema() return Schema(path=ID(unique=True, stored=True), content=TEXT) def add_doc(writer, path): fileobj = open(path, &amp;#34;rb&amp;#34;) content = fileobj.read() fileobj.close() writer.add_document(path=path, content=content) 对于少量的文档，这种方式是足够迅速的。但是，面对大量文档时，你就不想使用这种方式了。
+首先，我们需要记录每个文档的最近修改时间，以便在它更改时可以检查到它。简单起见，如下的示例中，我们仅使用mtime：
+def get_schema() return Schema(path=ID(unique=True, stored=True), time=STORED, content=TEXT) def add_doc(writer, path): fileobj = open(path, &amp;#34;rb&amp;#34;) content = fileobj.read() fileobj.close() modtime = os.path.getmtime(path) writer.add_document(path=path, content=content, time=modtime) 现在，我们修改之前的脚本，使其既可以选择从头建立索引，也可以增量建立索引：
+def index_my_docs(dirname, clean=False): if clean: clean_index(dirname) else: incremental_index(dirname) def incremental_index(dirname) ix = index.open_dir(dirname) # The set of all paths in the index indexed_paths = set() # The set of all paths we need to re-index to_index = set() with ix.searcher() as searcher: writer = ix.writer() # Loop over the stored fields in the index for fields in searcher.all_stored_fields(): indexed_path = fields[&amp;#39;path&amp;#39;] indexed_paths.add(indexed_path) if not os.path.exists(indexed_path): # This file was deleted since it was indexed writer.delete_by_term(&amp;#39;path&amp;#39;, indexed_path) else: # Check if this file was changed since it # was indexed indexed_time = fields[&amp;#39;time&amp;#39;] mtime = os.path.getmtime(indexed_path) if mtime &amp;gt; indexed_time: # The file has changed, delete it and add it to the list of # files to reindex writer.delete_by_term(&amp;#39;path&amp;#39;, indexed_path) to_index.add(indexed_path) # Loop over the files in the filesystem # Assume we have a function that gathers the filenames of the # documents to be indexed for path in my_docs(): if path in to_index or path not in indexed_paths: # This is either a file that&amp;#39;s changed, or a new file # that wasn&amp;#39;t indexed before. So index it! add_doc(writer, path) writer.commit() incremental_index方法中：
+ 遍历最近索引的文档路径：  如果文件不存在，则删除index中的相关文档形式。 如果文件存在，但是修改过了，则把它添加到重写列表中。 如果文件存在，无论有没有修改，把它添加到所有的索引路径中。   遍历磁盘上的所有文件路径：  如果文件路径不在索引中，这个文件就是新文件，需要添加到index中。 If a path is not in the set of all indexed paths, the file is new and we need to index it. 如果文件路径在重写列表中，就需要索引它。 If a path is in the set of paths to re-index, we need to index it. 或者，跳过这一步。 Otherwise, we can skip indexing the file.    Clearing the index 某些情况下，你需要在不破坏已经存在的reader的前提下，重头建立index：
+from whoosh import writing with myindex.writer() as mywriter: # You can optionally add documents to the writer here # e.g. mywriter.add_document(...) # Using mergetype=CLEAR clears all existing segments so the index will # only have any documents you&amp;#39;ve added to this writer mywriter.mergetype = writing.CLEAR 或者，不使用writer上下文管理器，直接调用commit()，像这样：
+mywriter = myindex.writer() # ... mywriter.commit(mergetype=writing.CLEAR) Note
+如果你不需要担心已经存在的reader，更高效的方式是直接删除index目录中的内容，然后重启。  </content>
+    </entry>
+    
+     <entry>
         <title>[Tips]颜色mark</title>
         <url>https://litmingc.github.io/post/tips/tips%E9%A2%9C%E8%89%B2mark/</url>
         <categories>
@@ -157,7 +314,7 @@ python2.7的自带库目录在
         <tags>
           <tag>tar</tag>
         </tags>
-        <content type="html"> 【宝贝网站】
+        <content type="html"> 【推荐网站】
 “小”命令   uname
 查看系统内核以及系统版本
 参数：
@@ -314,7 +471,7 @@ pkill [signal] [-t tty] [进程名]重要功能 -t：指定终端
     
      <entry>
         <title>QLineEdit</title>
-        <url>https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/</url>
+        <url>https://litmingc.github.io/post/python/%E7%AC%94%E8%AE%B0qlineedit/</url>
         <categories>
           <category>学习笔记</category><category>python</category>
         </categories>
