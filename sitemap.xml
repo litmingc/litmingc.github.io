@@ -10,7 +10,7 @@
           <tag>whoosh</tag><tag>文档检索</tag>
         </tags>
         <content type="html"> 英语小白，【原文地址】。store不知道怎么翻译合适，存储？
- Quick start  A quick introduction The Index and Schema objects The IndexWriter object The Searcher object   Designing a schema  About schemas and fields Built-in field types Creating a Schema Modifying the schema after indexing Dynamic fields Advanced schema setup  Field boosts Field types Formats Vectors     How to index documents  Creating an Index object Clearing the index Indexing documents Indexing and storing different values for the same field Finishing adding documents Merging segments Deleting documents Updating documents Incremental indexing Clearing the index    Quick start whoosh是一个为文本建立索引并搜索这个索引的方法库和类库。它允许你针对自己的内容开发自定义的搜索引擎。比如，如果你正在建立一个博客写作软件，你就可以使用Whoosh添加搜索方法，让用户搜索博文。
+ Quick start  A quick introduction The Index and Schema objects The IndexWriter object The Searcher object   Designing a schema  About schemas and fields Built-in field types Creating a Schema Modifying the schema after indexing Dynamic fields Advanced schema setup  Field boosts Field types Formats Vectors     How to index documents  Creating an Index object Clearing the index Indexing documents Indexing and storing different values for the same field Finishing adding documents Merging segments Deleting documents Updating documents Incremental indexing Clearing the index   How to search  The Searcher object    Quick start whoosh是一个为文本建立索引并搜索这个索引的方法库和类库。它允许你针对自己的内容开发自定义的搜索引擎。比如，如果你正在建立一个博客写作软件，你就可以使用Whoosh添加搜索方法，让用户搜索博文。
 A quick introduction from whoosh.index import create_in from whoosh.fields import * schema = Schema(title=TEXT(stored=True), path=ID(stored=True), content=TEXT) ix = create_in(&amp;#34;indexdir&amp;#34;, schema) writer = ix.writer() writer.add_document(title=u&amp;#34;First document&amp;#34;, path=u&amp;#34;/a&amp;#34;,content=u&amp;#34;This is the first document we&amp;#39;ve added!&amp;#34;) writer.add_document(title=u&amp;#34;Second document&amp;#34;, path=u&amp;#34;/b&amp;#34;,content=u&amp;#34;The second one is even more interesting!&amp;#34;) writer.commit() from whoosh.qparser import QueryParser with ix.searcher() as searcher: query = QueryParser(&amp;#34;content&amp;#34;, ix.schema).parse(&amp;#34;first&amp;#34;) results = searcher.search(query) print(results[0]) 输出：
 {&amp;quot;title&amp;quot;: u&amp;quot;First document&amp;quot;, &amp;quot;path&amp;quot;: u&amp;quot;/a&amp;quot;}
 The Index and Schema objects 首先，使用whoosh前，你需要有一个索引（index）对象；
@@ -154,7 +154,9 @@ def index_my_docs(dirname, clean=False): if clean: clean_index(dirname) else: in
  遍历最近索引的文档路径：  如果文件不存在，则删除index中的相关文档形式。 如果文件存在，但是修改过了，则把它添加到重写列表中。 如果文件存在，无论有没有修改，把它添加到所有的索引路径中。   遍历磁盘上的所有文件路径：  如果文件路径不在索引中，这个文件就是新文件，需要添加到index中。 If a path is not in the set of all indexed paths, the file is new and we need to index it. 如果文件路径在重写列表中，就需要索引它。 If a path is in the set of paths to re-index, we need to index it. 或者，跳过这一步。 Otherwise, we can skip indexing the file.    Clearing the index 某些情况下，你需要在不破坏已经存在的reader的前提下，重头建立index：
 from whoosh import writing with myindex.writer() as mywriter: # You can optionally add documents to the writer here # e.g. mywriter.add_document(...) # Using mergetype=CLEAR clears all existing segments so the index will # only have any documents you&amp;#39;ve added to this writer mywriter.mergetype = writing.CLEAR 或者，不使用writer上下文管理器，直接调用commit()，像这样：
 mywriter = myindex.writer() # ... mywriter.commit(mergetype=writing.CLEAR) Note
-如果你不需要担心已经存在的reader，更高效的方式是直接删除index目录中的内容，然后重启。  </content>
+如果你不需要担心已经存在的reader，更高效的方式是直接删除index目录中的内容，然后重启。  How to search 若你已经建立了索引，并且添加了文档，那么就可以检索这些文档了。
+The Searcher object 通过调用Index对象的searcher()获得whoosh.searching.Searcher对象：
+searcher = myindex.searcher() </content>
     </entry>
     
      <entry>

@@ -73,7 +73,7 @@ if (!doNotTrack) {
     </a>
   </div>
   <p class="site-subtitle">
-    <span id="typeitElement">云深不知处，花鸟易一相逢</span>
+    <span id="typeitElement">云深不知处，花鸟一相逢</span>
   </p>
 
 </div>
@@ -191,7 +191,7 @@ if (!doNotTrack) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">10041 字 ~21分钟</span>
+<span class="leancloud-visitors-count">10139 字 ~21分钟</span>
 </span>
       </div>
     </header>
@@ -236,6 +236,11 @@ if (!doNotTrack) {
 <li><a href="#updating-documents">Updating documents</a></li>
 <li><a href="#incremental-indexing">Incremental indexing</a></li>
 <li><a href="#clearing-the-index-1">Clearing the index</a></li>
+</ul>
+</li>
+<li><a href="#how-to-search">How to search</a>
+<ul>
+<li><a href="#the-searcher-object-1">The <code>Searcher</code> object</a></li>
 </ul>
 </li>
 </ul>
@@ -819,7 +824,13 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
             <p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p>
             <div class="admonition-content">如果你不需要担心已经存在的reader，更高效的方式是直接删除index目录中的内容，然后重启。</div>
         </div>
-
+<hr />
+<h3 id="how-to-search">How to search</h3>
+<p>若你已经建立了索引，并且添加了文档，那么就可以检索这些文档了。</p>
+<h4 id="the-searcher-object-1">The <code>Searcher</code> object</h4>
+<p>通过调用Index对象的<code>searcher()</code>获得<em>whoosh.searching.Searcher</em>对象：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">searcher <span style="color:#666">=</span> myindex<span style="color:#666">.</span>searcher()
+</code></pre></div>
     </div>
     <footer class="post-footer">
      
@@ -980,6 +991,7 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
         <li><a href="#quick-start">Quick start</a></li>
         <li><a href="#designing-a-schema">Designing a schema</a></li>
         <li><a href="#how-to-index-documents">How to index documents</a></li>
+        <li><a href="#how-to-search">How to search</a></li>
       </ul>
     </li>
   </ul>
