@@ -6,10 +6,28 @@
     <description>Recent content in Categories on LitMing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 04 Apr 2020 12:21:55 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jun 2020 14:30:22 +0800</lastBuildDate>
     
 	<atom:link href="https://litmingc.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unity</title>
+      <link>https://litmingc.github.io/categories/unity/</link>
+      <pubDate>Tue, 23 Jun 2020 14:30:22 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/categories/unity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>学习笔记</title>
+      <link>https://litmingc.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 23 Jun 2020 14:30:22 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>python</title>
@@ -35,15 +53,6 @@
       <pubDate>Thu, 12 Mar 2020 14:28:00 +0800</pubDate>
       
       <guid>https://litmingc.github.io/categories/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>学习笔记</title>
-      <link>https://litmingc.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Thu, 12 Mar 2020 14:28:00 +0800</pubDate>
-      
-      <guid>https://litmingc.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     

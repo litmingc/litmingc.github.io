@@ -1,6 +1,144 @@
 <search>
     
      <entry>
+        <title>[Unity]Learning Records (creat with code)</title>
+        <url>https://litmingc.github.io/post/unity/learning-records/</url>
+        <categories>
+          <category>Unity</category><category>学习笔记</category>
+        </categories>
+        <tags>
+          <tag>unity 学习</tag><tag>creat with code</tag><tag>unity 3d</tag>
+        </tags>
+        <content type="html"> 本文为跟随unity在B站的直播教学的学习记录。
+教程地址
+lesson 1 实现了一个小车的前进及转向控制。
+提要 素材导入
+在assets区域，右击鼠标。选择Import Package &amp;ndash;&amp;gt; Costum Package&amp;hellip;
+物体视角调整：
+鼠标右键 &#43; w、a、s、d、q、e &amp;mdash;-&amp;gt; wsad是前后左右，qe是升降视角；
+选中物体 &#43; Alt &#43; 鼠标左键 &amp;mdash;-&amp;gt; 以选中物体为中心旋转视角；
+鼠标放在Scene窗口 &#43; f键 &amp;mdash;-&amp;gt; 聚焦到当前选中物体
+脚本作为组件添加到物体上。
+物体的Transform编辑方法：
+transform.Translate();
+transform.Rotate();
+输入输出的获取方法：
+Input.GetAxis()
+设置变量
+代码中的public变量可以直接在unity界面修改。
+过程 略过相关安装过程。
+  打开unity hub，新建项目。
+模板选择3D，编辑项目名，选择创建地址。
+  认识界面。
+区域1选择各个窗口的布局，区域2为项目的资源窗口。
+  导入项目资源。 在assets区域，右击鼠标。选择Import Package &amp;ndash;&amp;gt; Costum Package&amp;hellip;，导入官方的资源 prototype1。
+导入资源之后，在Assets/Scenes/目录下出现了一个新的场景Prototype 1，把项目原先的空场景删除。
+  场景中添加GameObject
+在hierarchy窗口添加GameObject，可以将Assets/中的对象直接拖放到Scene中，也可以拖到hierarchy窗口。
+把小车（Assets/Course Library/Vehicles/Veh_Ute_Red_Z.prefab）和障碍物（Assets/Course Library/Obstacles/Crate_01.prefab）拖到场景中。
+  GameObject位置的调整
+在Inspector窗口中的Transform标签下，Position调整三维位置(这些字，X、Y、Z等等，都是可以拖动的)，或者在Scene窗口中拖动相应的箭头。
+物体视角调整：
+鼠标右键 &#43; w、a、s、d、q、e &amp;mdash;-&amp;gt; wsad是前后左右，qe是升降视角；
+选中物体 &#43; Alt &#43; 鼠标左键 &amp;mdash;-&amp;gt; 以选中物体为中心旋转视角；
+鼠标放在Scene窗口 &#43; f键 &amp;mdash;-&amp;gt; 聚焦到当前选中物体
+  摄像机的调整
+三维坐标的调整与上一部分相同。
+使用Rotation调整物体的旋转，X表示绕着X轴转动。
+在如图所示的工具栏中选择相应的工具，在Scene窗口拖动轴线也可以达到相同的效果。
+  为对象添加脚本
+习惯上，先创建Assets/Scripts/目录，在此目录下新建c#脚本PlyerController.cs。选中小车，把脚本PlyerController.cs拖到Inspector窗口中，或者使用Inspector窗口最下面的Add Component功能添加脚本为组件。
+之后，双击脚本可打开编辑器编辑脚本代码。
+设置编辑器：
+菜单栏选择Edit&amp;ndash;&amp;gt;Preferences&amp;ndash;&amp;gt;External Tools，在External Script Editor中选择相应的编辑器。
+使用visual studio的话，需要在visual studio安装unity的相应拓展。若不安装拓展，打开代码时会出现不兼容的问题。 使用vscode，也是一样的需要unity的相应插件（C#、Debugger for Unity、Unity Tool、Unity Code Snippets）
+  写代码了
+小车的脚本代码如下：
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class PlayerController : MonoBehaviour { //前进速度  public float speed; // 使用public则在unity编辑器中可以直观地设置speed值  //转向速度  public float turnspeed; //获取输入参数  public float verticalInput; public float horizontalInput; // Update is called once per frame  void Update() { //获取输入  verticalInput = Input.GetAxis(&amp;#34;Vertical&amp;#34;); // 取值为[-1,1]  horizontalInput = Input.GetAxis(&amp;#34;Horizontal&amp;#34;); //前进、后退  transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput); //转向  transform.Rotate(Vector3.up,Time.deltaTime * turnspeed * horizontalInput); // 绕着y轴旋转  } }  类中的public参数，在物体的Inspector窗口的脚本组件下可以直接设置它的值。
+ Input.GetAxis()获取输入，参数类型为string，取值根据unity的设置填写。unity中选择Edit&amp;ndash;&amp;gt;Project Setting&amp;ndash;&amp;gt;Input Manager查看unity中的输入方式的名称。按键未按下时，其值为0；按下时，取值范围为【-1，1】。 Time.deltaTime避免不同平台上时间计量的差异 transform.Translate()，transform.Rotate()控制物体的Transform属性对应的值。  创建另外一个脚本CameraFollow.cs添加到Main Camera中，控制摄像头跟随小车。代码如下：
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class CameraFollow : MonoBehaviour { public GameObject player; private Vector3 offset = new Vector3(0, 3.02f, -12.39f); // Start is called before the first frame update  void Start() { } // Update is called once per frame  void Update() { transform.position = player.transform.position &#43; offset; } } 设置Transform使得摄像头与小车保持相对位置。
+将player设置为小车：
+在unity界面中，将小车拖到public GameObject player;的位置，为其设值为小车。
+  添加物理效果 为障碍物以及小车添加刚体，添加重力。   lesson 2 射击&amp;amp;消除
+过程   新建3D项目，导入素材【Prototype_2】
+  向场景中添加物体，三只动物、一名农夫、一个食物。
+调整动物的面向（transform.rotation），面向农夫。
+为动物、食物添加碰撞体，为食物添加刚体（实现动物与食物碰撞相消的前提，两者都必须有碰撞体，两者至少有一个有刚体）。同时，调整碰撞体至合适大小，取消食物刚体的重力效果（以防向下掉出地面）。
+  将动物、食物添加为Prefab（预制建筑、预制体）
+新建目录Assets/Prefab，把动物、食物拖到目录中，并选择original prefab。
+  为物体添加脚本
+注意：编辑场景中的物体并不会改变预制体，所以这里需要编辑Asset中的预制体；也可以先编好脚本再添加预制体。总之，预制体和已添加的物体不是同步的。
+为食物和动物添加向前移动的脚本，并且，碰撞时销毁物体。代码如下：
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class MoveForward : MonoBehaviour { public float speed = 40f; // Update is called once per frame  void Update() { transform.Translate(Vector3.forward * speed * Time.deltaTime); if(transform.position.z &amp;gt; 40f || transform.position.z &amp;lt; -4f) Destroy(gameObject); } private void OnCollisionEnter(Collision other) { Destroy(gameObject); } } public变量，可在unity为不同的动物、食物设置不同速度；
+transform.Translate(Vector3.forward * speed * Time.deltaTime);沿着向前的方向移动，即沿Z轴移动；
+if(transform.position.z &amp;gt; 40f || transform.position.z &amp;lt; -4f) Destroy(gameObject);物体移动到上下边界以外的地方时，销毁自身（Z轴方向的边界，即视角的上下边界）。
+private void OnCollisionEnter(Collision other){}，这个方法发生碰撞时触发，参数other为碰撞的另一方。
+为农夫创建移动脚本，并设置发射食物的功能。代码如下：
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class PlayerController : MonoBehaviour { public float speed = 10f; private float HorizontalInput; public float HRange=16f; public GameObject ShootObjects; // Update is called once per frame  void Update() { // HorizontalInput = Input.GetAxis(&amp;#34;Horizontal&amp;#34;);  HorizontalInput = Input.GetAxisRaw(&amp;#34;Horizontal&amp;#34;); transform.Translate(Vector3.right * speed * Time.deltaTime * HorizontalInput); // 限制移动范围  if(transform.position.x &amp;gt; HRange) transform.position = new Vector3(HRange,0,0); if(transform.position.x &amp;lt; -HRange) transform.position = new Vector3(-HRange,0,0); // 空格按键触发  // 射击：生成新物体  if(Input.GetKeyDown(KeyCode.Space)) Instantiate(ShootObjects, transform.position, ShootObjects.transform.rotation); } } Input.GetAxisRaw(&amp;quot;Horizontal&amp;quot;)，与Input.GetAxis()不同。GetAxisRaw在按键按下时，取值为{-1,1}，它的值直接是1或者-1；而GetAxis则是渐变的，从0慢慢变到1或-1。因此使用GetAxisRaw时，农夫移动的反应更及时。
+Instantiate(ShootObjects, transform.position, ShootObjects.transform.rotation);，生成新物体，有多个重载方法。此处表示，在农夫的位置，以ShootObjects本身的面向，生成ShootObjects。
+在Unity中，将食物的预制体拖到变量ShootObjects中完成赋值。
+  随机生成动物
+先添加一个空的GameObject：在Hierarchy窗口的空白处右击，选择Create Empty，并命名为随便你（SpawnManager）。
+为SpawnManager添加一个同名脚本，用来生成动物。代码如下：
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class SpawnManager : MonoBehaviour { public GameObject[] animals; private int index=0; //上下左右  public float[] Range={0f,0f,0f,0f}; // Start is called before the first frame update  void Start() { InvokeRepeating(nameof(SpawnAnimals), 2, 2); } // Update is called once per frame  void Update() { } void SpawnAnimals(){ float xpos = Random.Range(Range[2],Range[3]); index = Random.Range(0,animals.Length); Instantiate(animals[index], new Vector3(xpos, 0f, Range[0]), animals[index].transform.rotation); } } public GameObject[] animals;，设置动物数组，在Unity中拖动动物预制体到变量上设置它的值。由于是数组，先编辑一下它的大小为3，再把不同动物的预制体拖到各个元素上。
+void SpawnAnimals()方法，实现随机选择动物种类（index）、随机生成刷新位置（X轴随机，Z轴为上边界，Y轴为地面坐标）。生成的方法和发射物ShootObjects一样，生成的旋转角度（rotation），也就是动物的面向，使用预制体本身的面向。
+注意设置好边界数组public float[] Range={0f,0f,0f,0f};，依次为上下左右。
+  把场景里的杂物清理一下，只留下农夫。可以开始游戏了。
+  challenge 2 在 lesson 2 的基础上，导入有错误的新场景，将它修改完善。
+原效果：
+完成效果：
+需要修改的内容  人物应当发射狗，随机掉落的物体应当是球。
+脚本变量的赋值搞反了。 球落地消失，狗跑远了应当消失，狗、球相遇要消失。
+DestroyOutOfBoundsX脚本中的判断条件，以及边界大小做相应的更改。transform.position的数值是以全局的坐标值，个体的坐标轴用于判断个体的面向（前后左右上下，Z轴表示前后）。 球落地要显示“Game Over！”。
+实现方式多种多样。
+此处借助已存在的private void OnTriggerEnter(){}方法实现触发。
+为地面设置碰撞体，并设置Tag为“Finish”。
+修改脚本DetectCollisionsX的内容，如下： private void OnTriggerEnter(Collider other) { if(other.CompareTag(&amp;#34;Finish&amp;#34;)) Debug.Log(&amp;#34;Game Over!&amp;#34;); else Destroy(gameObject); } Unity文档中，关于OnTriggerEnter方法，有如下描述：
+ Note: Both GameObjects must contain a Collider component. One must have Collider.isTrigger enabled, and contain a Rigidbody. If both GameObjects have Collider.isTrigger enabled, no collision happens. The same applies when both GameObjects do not have a Rigidbody component.
+触发OnTriggerEnter的条件，需要碰撞的双方具有碰撞体，至少有一方具有刚体且勾选Is Trigger。
+启用Is Trigger代表此刚体有形无实，不会碰撞，所以如果双方都启用Is Trigger，那么不会碰撞，但会触发OnTriggerEnter方法。如果双方都没有Is Trigger，且有一方具有刚体，则碰撞。
+  随机落下不同种类的球体  lesson 3 一个跑酷游戏。
+提要 GetCompontes()顺序的问题？
+过程   添加人物为player，控制其跳跃；不断生成的障碍物，向player移动，超出视线范围时销毁自身。
+效果如下：
+需要注意，人物跳跃时，不能触发二段跳。
+为障碍物添加碰撞体，为人物添加碰撞体、添加刚体组件使其具有物体特性，使得人物与障碍物可以产生碰撞。
+障碍物的生成与移动的代码和lesson1几乎一致，现给出人物脚本如下：
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class PlayerController : MonoBehaviour { public float jumpForce; public float gravityModifier; private bool isGround; public bool isGameOver; // 需要public，后面要用  private Rigidbody rb; private Animator anim; // Start is called before the first frame update  void Start() { rb = GetComponent&amp;lt;Rigidbody&amp;gt;(); anim = GetComponent&amp;lt;Animator&amp;gt;(); Physics.gravity *= gravityModifier; } // Update is called once per frame  void Update() { if(Input.GetKeyDown(KeyCode.Space) &amp;amp;&amp;amp; isGround){ rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); isGround = false; } } private void OnCollisionEnter(Collision other) { if(other.gameObject.CompareTag(&amp;#34;Ground&amp;#34;)) isGround = true; } } 跳跃的实现方法：
+跳跃时对人物添加向上的力。首先获取刚体组件，定义刚体组件为private Rigidbody rb;，获取刚体组件rb = GetComponent&amp;lt;Rigidbody&amp;gt;();。然后，触发按键时施加冲击力rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);（若不使用ForceMode.Impulse冲击，则只有一帧受力，跳不起来）。此外，Physics.gravity *= gravityModifier;修改重力加速度g，影响人物下落速度（参考数值：jumpForce=30；gravityModifier=10）。
+为了避免碰撞时，人物倒下、面向改变的问题，在刚体中，锁定其旋转角度。如图：
+  移动背景，使背景与障碍物保持相对静止。
+在背景上，添加脚本（MoveLeft.cs，障碍物也使用这一脚本）控制其移动。与障碍物不同的是，背景是一个重复的画面。因此，背景移动策略是移动半个背景长度时，背景位置复原。
+为了避免背景消失，在MoveLeft.cs中，销毁物体前判断一下是否为障碍物。或者，使用另一个脚本（DestroyObstcale.cs）来实现销毁，并添加给障碍物。
+为了背景可以复位，新建脚本组件BgRepeat.cs控制其复位，代码如下：
+public class BgRepeat : MonoBehaviour { BoxCollider rb; float repeatWidth; // 一半碰撞体长度（X轴）  Vector3 startPos; // 记录起始位置  // Start is called before the first frame update  void Start() { rb = GetComponent&amp;lt;BoxCollider&amp;gt;(); repeatWidth = rb.size.x / 2f; startPos = transform.position; } // Update is called once per frame  void Update() { if(transform.position.x &amp;lt; startPos.x - repeatWidth) transform.SetPositionAndRotation(startPos, transform.rotation); } } 效果如下：
+地面是纯色，不需要移动。
+  为人物添加跑动、跳跃动画。
+选中人物，双击Animator组件中的Controller，如图：
+在打开的动画界面中，选择Layers&amp;ndash;&amp;gt;Movement。选中“Run_Static”，右击，将其设置为default state（Entry指向它）。如图：
+同时，选中Parameters，设置Speed_f的值为1.0（大于0.5）。如图：
+此时，运行程序，可以看到人物跑动起来了。（如果人物跑动的速度与环境格格不入，可以适当调整动画播放速度）
+为什么设置Speed_f大于0.5？  选中Run_Static指向Walk_Static的状态，可以看到Conditions是Speed_f小于0.5，那么只要Speed_f大于0.5，动画就不会转变为走路。你还可以看一下其他的变化条件，它们之间都是不会冲突的。   查看一下Layers中的Jumping的情况，发现从Run到Running_Jump变化的条件是Jump_trig，且在Parameters中查到Jump_trig是一个触发变量。接下来，使用脚本（PlayController）控制Jump_trig，在跳跃的条件中加入Jump_trig的触发:
+if(Input.GetKeyDown(KeyCode.Space) &amp;amp;&amp;amp; isGround){ rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); isGround = false; anim.SetTrigger(&amp;#34;Jump_trig&amp;#34;); } 至此，人物跳跃时可以表现出跳跃的动作。但是，在跳跃时，人物的位置会向前进，因此，我们可以选择在刚体中锁定position的x值。
+实现效果如图：
+  人物碰撞到阻碍物时，播放死亡动画，同时环境不再移动，且障碍物不再生成。 播放死亡动画与跳跃异曲同工。先查看其条件，然后使用脚本设置条件（Death_b为true，DeathType_int为1）：
+PlayerController.cs:
+if(other.gameObject.CompareTag(&amp;#34;Obstacle&amp;#34;)){ isGameOver = true; Debug.Log(&amp;#34;GAME OVER!&amp;#34;); anim.SetBool(&amp;#34;Death_b&amp;#34;, true); anim.SetInteger(&amp;#34;DeathType_int&amp;#34;, 1); } MoveLeft.cs:
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class MoveLeft : MonoBehaviour { public float speed=5f; private PlayerController playerController; // Start is called before the first frame update  void Start() { playerController = FindObjectOfType&amp;lt;PlayerController&amp;gt;(); } // Update is called once per frame  void Update() { if(!playerController.isGameOver) transform.Translate(Vector3.left * speed * Time.deltaTime); } } SpawnObstacles.cs:
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class SpawnObstacles : MonoBehaviour { private PlayerController playerController; public GameObject[] obstacles; int index; public Vector3 spawnPosition; // Start is called before the first frame update  void Start() { InvokeRepeating(nameof(Spawn), 2f, 2f); playerController = FindObjectOfType&amp;lt;PlayerController&amp;gt;(); } // Update is called once per frame  void Update() { } void Spawn() { if (!playerController.isGameOver) { index = Random.Range(0, obstacles.Length); Instantiate(obstacles[index], spawnPosition, obstacles[index].transform.rotation); } } } 效果如图：
+  添加粒子特效。 效果如下：
+在Assets/Course Library/Particles中有俩个粒子特效，一个是灰尘的粒子，另一个是爆炸的粒子。
+首先，把粒子拖到Player上，作为人物的子集：
+然后用代码控制粒子的播放。灰尘粒子本身就设置了循环播放，所以要控制其跳跃时停止播放、死亡时不再播放；爆炸粒子不是循环播放的，并且在游戏开始时没有播放，所以用脚本控制其死亡时播放。代码如下，注意在Unity中对粒子变量赋值：
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class PlayerController : MonoBehaviour { private Rigidbody rb; private Animator anim; public ParticleSystem dirtParticle, explosionParticle; public float jumpForce; public float gravityModifier; public bool isGround; public bool isGameOver; // Start is called before the first frame update  void Start() { rb = GetComponent&amp;lt;Rigidbody&amp;gt;(); anim = GetComponent&amp;lt;Animator&amp;gt;(); Physics.gravity *= gravityModifier; } // Update is called once per frame  void Update() { if(Input.GetKeyDown(KeyCode.Space) &amp;amp;&amp;amp; isGround){ rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); isGround = false; anim.SetTrigger(&amp;#34;Jump_trig&amp;#34;); dirtParticle.Stop(); } } private void OnCollisionEnter(Collision other) { // isGameOver的判断，避免死亡且与地面碰撞时的粒子播放  if(other.gameObject.CompareTag(&amp;#34;Ground&amp;#34;) &amp;amp;&amp;amp; (!isGameOver)){ isGround = true; dirtParticle.Play(); } if(other.gameObject.CompareTag(&amp;#34;Obstacle&amp;#34;)){ isGameOver = true; Debug.Log(&amp;#34;GAME OVER!&amp;#34;); anim.SetBool(&amp;#34;Death_b&amp;#34;, true); anim.SetInteger(&amp;#34;DeathType_int&amp;#34;, 1); explosionParticle.Play(); dirtParticle.Stop(); } } }   添加音效。
+在MainCamera中有AudioListener用于收声，相当于你的耳朵。
+首先，在MainCamera中添加AudioSource并设置AudioClip作为音源。背景音要设置开始播放，设置循环播放：
+其次，在Player中添加AudioSource，但不要设置AudioClip，并且开始时不要播放，不要设置循环播放。在脚本中设置2个AudioClip变量，赋值碰撞以及跳跃的音效，并控制啥时候播放哪个AudioClip：
+using System.Collections; using System.Collections.Generic; using UnityEngine; public class PlayerController : MonoBehaviour { private Rigidbody rb; private Animator anim; private AudioSource audioSource; public ParticleSystem dirtParticle, explosionParticle; public AudioClip crashClip, jumpClip; public float jumpForce; public float gravityModifier; public bool isGround; public bool isGameOver; // Start is called before the first frame update  void Start() { rb = GetComponent&amp;lt;Rigidbody&amp;gt;(); anim = GetComponent&amp;lt;Animator&amp;gt;(); Physics.gravity *= gravityModifier; audioSource = GetComponent&amp;lt;AudioSource&amp;gt;(); } // Update is called once per frame  void Update() { if(Input.GetKeyDown(KeyCode.Space) &amp;amp;&amp;amp; isGround &amp;amp;&amp;amp; (!isGameOver)){ rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); isGround = false; anim.SetTrigger(&amp;#34;Jump_trig&amp;#34;); dirtParticle.Stop(); audioSource.PlayOneShot(jumpClip, 0.5f); } } private void OnCollisionEnter(Collision other) { // isGameOver的判断，避免死亡且与地面碰撞时的粒子播放  if(other.gameObject.CompareTag(&amp;#34;Ground&amp;#34;) &amp;amp;&amp;amp; (!isGameOver)){ isGround = true; dirtParticle.Play(); } if(other.gameObject.CompareTag(&amp;#34;Obstacle&amp;#34;)){ isGameOver = true; audioSource.PlayOneShot(crashClip, 1f); Debug.Log(&amp;#34;GAME OVER!&amp;#34;); anim.SetBool(&amp;#34;Death_b&amp;#34;, true); anim.SetInteger(&amp;#34;DeathType_int&amp;#34;, 1); explosionParticle.Play(); dirtParticle.Stop(); } } } audioSource.PlayOneShot(jumpClip, 0.5f);表示以0.5的音量播放jumpClip。
+  </content>
+    </entry>
+    
+     <entry>
         <title>[Translation]Whoosh 2.7.4 Documentation</title>
         <url>https://litmingc.github.io/post/translation/whoosh/</url>
         <categories>
@@ -220,6 +358,20 @@ searcher = myindex.searcher() </content>
  https://lele16.me/posts/leetcode%E9%9D%A2%E8%AF%95%E9%A2%9862.-%E5%9C%86%E5%9C%88%E4%B8%AD%E6%9C%80%E5%90%8E%E5%89%A9%E4%B8%8B%E7%9A%84%E6%95%B0%E5%AD%97-%E9%9A%8F%E7%AC%94/↩︎
  https://blog.csdn.net/u011500062/article/details/72855826↩︎
    </content>
+    </entry>
+    
+     <entry>
+        <title>[Tips]Git使用笔记</title>
+        <url>https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</url>
+        <categories>
+          
+        </categories>
+        <tags>
+          
+        </tags>
+        <content type="html"> 子模块 删除子模块  rm -rf 子模块目录 删除子模块目录及源码 vi .gitmodules 删除项目目录下.gitmodules文件中子模块相关条目 vi .git/config 删除配置项中子模块相关条目 rm .git/module/* 删除模块下的子模块目录  切换分支，保存内容，不提交 https://blog.csdn.net/weixin_42042680/article/details/94498198
+ 先add：git add xxx 再暂存：git stash xxx ==&amp;gt; 把add的内容暂存，你会发现你的工作区已经没有1.中add的内容了。 切换分支：git checkout xxx 工作结束后，要么提交，要么重复1.、2.进行暂存。 切换分支回来 把暂存的内容恢复：git stash apply [stash@{0}] 把暂存删除：git stash drop
+git stash pop [stash@{0}]是恢复并删除，是5.和6.的组合。git stash list列出当前的stash。  </content>
     </entry>
     
      <entry>

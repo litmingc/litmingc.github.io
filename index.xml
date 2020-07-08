@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>[Unity]Learning Records (creat with code)</title>
+      <link>https://litmingc.github.io/post/unity/learning-records/</link>
+      <pubDate>Tue, 23 Jun 2020 14:30:22 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/unity/learning-records/</guid>
+      <description>本文为跟随unity在B站的直播教学的学习记录。 教程地址 lesson 1 实现了一个小车的前进及转向控制。 提要 素材导入 在assets区域，右击鼠标。选择I</description>
+    </item>
+    
+    <item>
       <title>[Translation]Whoosh 2.7.4 Documentation</title>
       <link>https://litmingc.github.io/post/translation/whoosh/</link>
       <pubDate>Sat, 04 Apr 2020 12:21:55 +0800</pubDate>
@@ -36,6 +45,15 @@
       
       <guid>https://litmingc.github.io/post/tips/tips%E7%AE%97%E6%B3%95%E5%B0%8F%E6%8A%84/</guid>
       <description>说在前头，打小抄可不是什么可耻的事儿！ 欧几里得算法证明（最大公约数）1 \(a\) 整除 \(b\) 表示\(b\%a\)为\(0\)； \(a\) 除以 \(b\) 表示 \(b/a\)；</description>
+    </item>
+    
+    <item>
+      <title>[Tips]Git使用笔记</title>
+      <link>https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 23 Mar 2020 23:36:31 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>子模块 删除子模块 rm -rf 子模块目录 删除子模块目录及源码 vi .gitmodules 删除项目目录下.gitmodules文件中子模块相关条目 vi .git/config 删除配置项中子模块相关条目</description>
     </item>
     
     <item>

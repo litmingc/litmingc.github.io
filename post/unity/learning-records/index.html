@@ -1,0 +1,1068 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>[Unity]Learning Records (creat with code) - LitMing</title><meta name="keywords" content="unity,creat with code,">
+    <meta property="og:title" content="[Unity]Learning Records (creat with code)">
+    <meta property="og:site_name" content="LitMing">
+    <meta property="og:image" content="/img/izip.png"> 
+    <meta name="title" content="[Unity]Learning Records (creat with code) - LitMing" />
+    <meta name="description" content="Learning-records" />
+     
+    <link rel="shortcut icon" href="https://litmingc.github.io/img/izip30.png" />
+    <link rel="apple-touch-icon" href="" />
+    <link rel="apple-touch-icon-precomposed" href="" />
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    
+    
+    <link href="https://litmingc.github.io/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://litmingc.github.io/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: false, 
+    motion: true
+  };
+</script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-145827411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<style>
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_svpe1d3bg1m.eot');  
+  src: url('//at.alicdn.com/t/webfont_svpe1d3bg1m.eot?#iefix') format('embedded-opentype'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.woff2') format('woff2'),
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.woff') format('woff'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.ttf') format('truetype'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.svg#杨任东竹石体-Bold') format('svg');  
+}
+.webfont{
+    font-family: "webfont" !important;
+    font-size: 36px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+</style></head><body itemscope itemtype="https://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta  custom-logo ">
+  <div class="custom-logo-site-title">
+    <a href="https://litmingc.github.io/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">LitMing</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">
+    <span id="typeitElement">云深不知处，花鸟一相逢</span>
+  </p>
+
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/post/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/categories/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-folder"></i> <br />分类
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/tags/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-tags"></i> <br />标签
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/about/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fas fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
+    </ul>
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fas fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+</nav>
+
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content"><section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://litmingc.github.io/post/unity/learning-records/" itemprop="url">
+        [Unity]Learning Records (creat with code)
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-06-23">
+    2020-06-23
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/unity" itemprop="url" rel="index">
+        <span itemprop="name">Unity</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">学习笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">6455 字 ~13分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    <p>本文为跟随unity在B站的直播教学的学习记录。<br />
+教程地址<a href=""></a></p>
+<h2 id="lesson-1">lesson 1</h2>
+<p>实现了一个小车的前进及转向控制。</p>
+<h3 id="提要">提要</h3>
+<p><strong>素材导入</strong><br />
+在assets区域，右击鼠标。选择Import Package &ndash;&gt; Costum Package&hellip;<br />
+<img src="https://litmingc.github.io/fig/unity-1.gif" alt="gif" /></p>
+<p><strong>物体视角调整：</strong><br />
+鼠标<code>右</code>键 + w、a、s、d、q、e  &mdash;-&gt;  wsad是前后左右，qe是升降视角；<br />
+选中物体 + Alt + 鼠标<code>左</code>键  &mdash;-&gt;  以选中物体为中心旋转视角；<br />
+鼠标放在Scene窗口 + f键  &mdash;-&gt;  聚焦到当前选中物体</p>
+<p><strong>脚本作为组件添加到物体上。</strong></p>
+<p><strong>物体的Transform编辑方法：</strong><br />
+<code>transform.Translate();</code><br />
+<code>transform.Rotate();</code></p>
+<p><strong>输入输出的获取方法：</strong><br />
+<code>Input.GetAxis()</code></p>
+<p><strong>设置变量</strong><br />
+代码中的public变量可以直接在unity界面修改。</p>
+<h3 id="过程">过程</h3>
+<p>略过相关安装过程。</p>
+<ol>
+<li>
+<p>打开unity hub，新建项目。<br />
+模板选择3D，编辑项目名，选择创建地址。</p>
+</li>
+<li>
+<p>认识界面。<br />
+<img src="https://litmingc.github.io/fig/unity-ui1.png" alt="img" />
+区域1选择各个窗口的布局，区域2为项目的资源窗口。</p>
+</li>
+<li>
+<p>导入项目资源。
+在assets区域，右击鼠标。选择Import Package &ndash;&gt; Costum Package&hellip;，导入<a href="https://connect.unity.com/p/create_with_code_review">官方的资源 prototype1</a>。<br />
+导入资源之后，在Assets/Scenes/目录下出现了一个新的场景<code>Prototype 1</code>，把项目原先的空场景删除。</p>
+</li>
+<li>
+<p>场景中添加GameObject<br />
+在hierarchy窗口添加GameObject，可以将Assets/中的对象直接拖放到Scene中，也可以拖到hierarchy窗口。<br />
+把小车（Assets/Course Library/Vehicles/Veh_Ute_Red_Z.prefab）和障碍物（Assets/Course Library/Obstacles/Crate_01.prefab）拖到场景中。<br />
+<img src="https://litmingc.github.io/fig/unity-show1.png" alt="img" /></p>
+</li>
+<li>
+<p>GameObject位置的调整<br />
+在Inspector窗口中的Transform标签下，Position调整三维位置(这些字，X、Y、Z等等，都是可以拖动的)，或者在Scene窗口中拖动相应的箭头。<br />
+<img src="https://litmingc.github.io/fig/unity-2-transform-position.gif" alt="gif" />
+物体视角调整：<br />
+鼠标右键 + w、a、s、d、q、e  &mdash;-&gt;  wsad是前后左右，qe是升降视角；<br />
+选中物体 + Alt + 鼠标左键  &mdash;-&gt;  以选中物体为中心旋转视角；<br />
+鼠标放在Scene窗口 + f键  &mdash;-&gt;  聚焦到当前选中物体</p>
+</li>
+<li>
+<p>摄像机的调整<br />
+三维坐标的调整与上一部分相同。<br />
+使用Rotation调整物体的旋转，X表示绕着X轴转动。<br />
+在如图所示的工具栏中选择相应的工具，在Scene窗口拖动轴线也可以达到相同的效果。<br />
+<img src="https://litmingc.github.io/fig/unity-rotation1.png" alt="img" /></p>
+</li>
+<li>
+<p>为对象添加脚本<br />
+习惯上，先创建Assets/Scripts/目录，在此目录下新建c#脚本<code>PlyerController.cs</code>。选中小车，把脚本<code>PlyerController.cs</code>拖到Inspector窗口中，或者使用Inspector窗口最下面的<code>Add Component</code>功能添加脚本为组件。<br />
+之后，双击脚本可打开编辑器编辑脚本代码。<br />
+设置编辑器：<br />
+菜单栏选择Edit&ndash;&gt;Preferences&ndash;&gt;External Tools，在External Script Editor中选择相应的编辑器。<br />
+使用visual studio的话，需要在visual studio安装unity的相应拓展。若不安装拓展，打开代码时会出现不兼容的问题。
+使用vscode，也是一样的需要unity的相应插件（C#、Debugger for Unity、Unity Tool、Unity Code Snippets）</p>
+</li>
+<li>
+<p>写代码了<br />
+小车的脚本代码如下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">PlayerController</span> : MonoBehaviour
+{
+    <span style="color:#60a0b0;font-style:italic">//前进速度
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> speed; <span style="color:#60a0b0;font-style:italic">// 使用public则在unity编辑器中可以直观地设置speed值
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">//转向速度
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> turnspeed;
+    <span style="color:#60a0b0;font-style:italic">//获取输入参数
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> verticalInput;
+    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> horizontalInput;
+    <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">void</span> Update()
+    {
+        <span style="color:#60a0b0;font-style:italic">//获取输入
+</span><span style="color:#60a0b0;font-style:italic"></span>        verticalInput = Input.GetAxis(<span style="color:#4070a0">&#34;Vertical&#34;</span>);  <span style="color:#60a0b0;font-style:italic">// 取值为[-1,1]
+</span><span style="color:#60a0b0;font-style:italic"></span>        horizontalInput = Input.GetAxis(<span style="color:#4070a0">&#34;Horizontal&#34;</span>);
+        <span style="color:#60a0b0;font-style:italic">//前进、后退
+</span><span style="color:#60a0b0;font-style:italic"></span>        transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        <span style="color:#60a0b0;font-style:italic">//转向
+</span><span style="color:#60a0b0;font-style:italic"></span>        transform.Rotate(Vector3.up,Time.deltaTime * turnspeed * horizontalInput);  <span style="color:#60a0b0;font-style:italic">// 绕着y轴旋转
+</span><span style="color:#60a0b0;font-style:italic"></span>    }
+}
+</code></pre></div><ul>
+<li>类中的public参数，在物体的Inspector窗口的脚本组件下可以直接设置它的值。<br />
+<img src="https://litmingc.github.io/fig/unity-inspector1.png" alt="img" /></li>
+<li><code>Input.GetAxis()</code>获取输入，参数类型为string，取值根据unity的设置填写。unity中选择Edit&ndash;&gt;Project Setting&ndash;&gt;Input Manager查看unity中的输入方式的名称。按键未按下时，其值为0；按下时，取值范围为【-1，1】。</li>
+<li><code>Time.deltaTime</code>避免不同平台上时间计量的差异</li>
+<li><code>transform.Translate()</code>，<code>transform.Rotate()</code>控制物体的Transform属性对应的值。</li>
+</ul>
+<p>创建另外一个脚本<code>CameraFollow.cs</code>添加到Main Camera中，控制摄像头跟随小车。代码如下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+   
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">CameraFollow</span> : MonoBehaviour
+{
+    <span style="color:#007020;font-weight:bold">public</span> GameObject player;
+    <span style="color:#007020;font-weight:bold">private</span> Vector3 offset = <span style="color:#007020;font-weight:bold">new</span> Vector3(<span style="color:#40a070">0</span>, <span style="color:#40a070">3.02f</span>, -<span style="color:#40a070">12.39f</span>);
+    <span style="color:#60a0b0;font-style:italic">// Start is called before the first frame update
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">void</span> Start()
+    {
+           
+    }
+   
+    <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">void</span> Update()
+    {
+        transform.position = player.transform.position + offset;
+    }
+}
+</code></pre></div><p>设置Transform使得摄像头与小车保持相对位置。<br />
+将player设置为小车：<br />
+在unity界面中，将小车拖到<code>public GameObject player;</code>的位置，为其设值为小车。</p>
+</li>
+<li>
+<p>添加物理效果
+为障碍物以及小车添加刚体，添加重力。
+<img src="https://litmingc.github.io/fig/unity-add-rigidbody.gif" alt="gif" /></p>
+</li>
+</ol>
+<h2 id="lesson-2">lesson 2</h2>
+<p>射击&amp;消除<br />
+<img src="https://litmingc.github.io/fig/unity-lesson2-re.gif" alt="gif" /></p>
+<h3 id="过程-1">过程</h3>
+<ol>
+<li>
+<p>新建3D项目，导入素材【Prototype_2】</p>
+</li>
+<li>
+<p>向场景中添加物体，三只动物、一名农夫、一个食物。<br />
+调整动物的面向（transform.rotation），面向农夫。<br />
+为动物、食物添加碰撞体，为食物添加刚体（实现动物与食物碰撞相消的前提，两者都必须有碰撞体，两者至少有一个有刚体）。同时，调整碰撞体至合适大小，取消食物刚体的重力效果（以防向下掉出地面）。<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/Unity-lesson2-0.png" alt="添加动物、人物、食物" /></p>
+</li>
+<li>
+<p>将动物、食物添加为Prefab（预制建筑、预制体）<br />
+新建目录<code>Assets/Prefab</code>，把动物、食物拖到目录中，并选择original prefab。</p>
+</li>
+<li>
+<p>为物体添加脚本<br />
+<strong>注意</strong>：编辑场景中的物体并不会改变预制体，所以这里需要编辑Asset中的预制体；也可以先编好脚本再添加预制体。总之，预制体和已添加的物体不是同步的。<br />
+为食物和动物添加向前移动的脚本，并且，碰撞时销毁物体。代码如下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">MoveForward</span> : MonoBehaviour
+{
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> speed = <span style="color:#40a070">40f</span>;
+   <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Update()
+   {
+      transform.Translate(Vector3.forward * speed * Time.deltaTime);
+      <span style="color:#007020;font-weight:bold">if</span>(transform.position.z &gt; <span style="color:#40a070">40f</span> || transform.position.z &lt; -<span style="color:#40a070">4f</span>)
+            Destroy(gameObject);
+   }
+   <span style="color:#007020;font-weight:bold">private</span> <span style="color:#007020;font-weight:bold">void</span> OnCollisionEnter(Collision other) {
+      Destroy(gameObject);
+   }
+}
+</code></pre></div><p>public变量，可在unity为不同的动物、食物设置不同速度；<br />
+<code>transform.Translate(Vector3.forward * speed * Time.deltaTime);</code>沿着向前的方向移动，即沿Z轴移动；<br />
+<code>if(transform.position.z &gt; 40f || transform.position.z &lt; -4f)  Destroy(gameObject);</code>物体移动到上下边界以外的地方时，销毁自身（Z轴方向的边界，即视角的上下边界）。<br />
+<code>private void OnCollisionEnter(Collision other){}</code>，这个方法发生碰撞时触发，参数other为碰撞的另一方。</p>
+<p>为农夫创建移动脚本，并设置发射食物的功能。代码如下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">PlayerController</span> : MonoBehaviour
+{
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> speed = <span style="color:#40a070">10f</span>;
+   <span style="color:#007020;font-weight:bold">private</span> <span style="color:#902000">float</span> HorizontalInput;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> HRange=<span style="color:#40a070">16f</span>;
+   <span style="color:#007020;font-weight:bold">public</span> GameObject ShootObjects;
+
+   <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Update()
+   {
+      <span style="color:#60a0b0;font-style:italic">// HorizontalInput = Input.GetAxis(&#34;Horizontal&#34;);
+</span><span style="color:#60a0b0;font-style:italic"></span>      HorizontalInput = Input.GetAxisRaw(<span style="color:#4070a0">&#34;Horizontal&#34;</span>);
+      transform.Translate(Vector3.right * speed * Time.deltaTime * HorizontalInput);
+      <span style="color:#60a0b0;font-style:italic">// 限制移动范围
+</span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">if</span>(transform.position.x &gt; HRange)
+            transform.position = <span style="color:#007020;font-weight:bold">new</span> Vector3(HRange,<span style="color:#40a070">0</span>,<span style="color:#40a070">0</span>);
+      <span style="color:#007020;font-weight:bold">if</span>(transform.position.x &lt; -HRange)
+            transform.position = <span style="color:#007020;font-weight:bold">new</span> Vector3(-HRange,<span style="color:#40a070">0</span>,<span style="color:#40a070">0</span>);
+      <span style="color:#60a0b0;font-style:italic">// 空格按键触发
+</span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#60a0b0;font-style:italic">// 射击：生成新物体
+</span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">if</span>(Input.GetKeyDown(KeyCode.Space))
+            Instantiate(ShootObjects, transform.position, ShootObjects.transform.rotation);
+   }
+}
+
+</code></pre></div><p><code>Input.GetAxisRaw(&quot;Horizontal&quot;)</code>，与<code>Input.GetAxis()</code>不同。GetAxisRaw在按键按下时，取值为<code>{-1,1}</code>，它的值直接是1或者-1；而GetAxis则是渐变的，从0慢慢变到1或-1。因此使用GetAxisRaw时，农夫移动的反应更及时。<br />
+<code>Instantiate(ShootObjects, transform.position, ShootObjects.transform.rotation);</code>，生成新物体，有多个重载方法。此处表示，在农夫的位置，以ShootObjects本身的面向，生成ShootObjects。<br />
+在Unity中，将食物的预制体拖到变量ShootObjects中完成赋值。</p>
+</li>
+<li>
+<p>随机生成动物<br />
+先添加一个空的GameObject：在Hierarchy窗口的空白处右击，选择Create Empty，并命名为随便你（SpawnManager）。<br />
+为SpawnManager添加一个同名脚本，用来生成动物。代码如下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">SpawnManager</span> : MonoBehaviour
+{
+   <span style="color:#007020;font-weight:bold">public</span> GameObject[] animals;
+   <span style="color:#007020;font-weight:bold">private</span> <span style="color:#902000">int</span> index=<span style="color:#40a070">0</span>;
+   <span style="color:#60a0b0;font-style:italic">//上下左右
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span>[] Range={<span style="color:#40a070">0f</span>,<span style="color:#40a070">0f</span>,<span style="color:#40a070">0f</span>,<span style="color:#40a070">0f</span>};
+   <span style="color:#60a0b0;font-style:italic">// Start is called before the first frame update
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Start()
+   {
+      InvokeRepeating(nameof(SpawnAnimals), <span style="color:#40a070">2</span>, <span style="color:#40a070">2</span>);
+   }
+
+   <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Update()
+   {
+         
+   }
+
+   <span style="color:#007020;font-weight:bold">void</span> SpawnAnimals(){
+      <span style="color:#902000">float</span> xpos = Random.Range(Range[<span style="color:#40a070">2</span>],Range[<span style="color:#40a070">3</span>]);
+      index = Random.Range(<span style="color:#40a070">0</span>,animals.Length);
+      Instantiate(animals[index], <span style="color:#007020;font-weight:bold">new</span> Vector3(xpos, <span style="color:#40a070">0f</span>, Range[<span style="color:#40a070">0</span>]), animals[index].transform.rotation);
+   }
+}
+</code></pre></div><p><code>public GameObject[] animals;</code>，设置动物数组，在Unity中拖动动物预制体到变量上设置它的值。由于是数组，先编辑一下它的大小为3，再把不同动物的预制体拖到各个元素上。<br />
+<img src="https://litmingc.github.io/fig/unity-lesson2-arry.png" alt="img" /><br />
+<code>void SpawnAnimals()</code>方法，实现随机选择动物种类（index）、随机生成刷新位置（X轴随机，Z轴为上边界，Y轴为地面坐标）。生成的方法和发射物ShootObjects一样，生成的旋转角度（rotation），也就是动物的面向，使用预制体本身的面向。<br />
+注意设置好边界数组<code>public float[] Range={0f,0f,0f,0f};</code>，依次为上下左右。</p>
+</li>
+<li>
+<p>把场景里的杂物清理一下，只留下农夫。可以开始游戏了。</p>
+</li>
+</ol>
+<h2 id="challenge-2">challenge 2</h2>
+<p>在 lesson 2 的基础上，导入有错误的新场景，将它修改完善。<br />
+原效果：<br />
+<img src="https://litmingc.github.io/fig/unity-lesson2challenge-st.gif" alt="gif" /><br />
+完成效果：<br />
+<img src="" alt="gif" /></p>
+<h3 id="需要修改的内容">需要修改的内容</h3>
+<ol>
+<li>人物应当发射狗，随机掉落的物体应当是球。<br />
+脚本变量的赋值搞反了。</li>
+<li>球落地消失，狗跑远了应当消失，狗、球相遇要消失。<br />
+DestroyOutOfBoundsX脚本中的判断条件，以及边界大小做相应的更改。<code>transform.position</code>的数值是以全局的坐标值，个体的坐标轴用于判断个体的面向（前后左右上下，Z轴表示前后）。</li>
+<li>球落地要显示“Game Over！”。<br />
+实现方式多种多样。<br />
+此处借助已存在的<code>private void OnTriggerEnter(){}</code>方法实现触发。<br />
+为地面设置碰撞体，并设置Tag为“Finish”。<br />
+修改脚本DetectCollisionsX的内容，如下：
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">private</span> <span style="color:#007020;font-weight:bold">void</span> OnTriggerEnter(Collider other)
+ {
+     <span style="color:#007020;font-weight:bold">if</span>(other.CompareTag(<span style="color:#4070a0">&#34;Finish&#34;</span>))
+         Debug.Log(<span style="color:#4070a0">&#34;Game Over!&#34;</span>);
+     <span style="color:#007020;font-weight:bold">else</span>
+         Destroy(gameObject);
+ }
+</code></pre></div><p>Unity文档中，关于<code>OnTriggerEnter</code>方法，有如下描述：</p>
+<blockquote>
+<p>Note: Both GameObjects must contain a Collider component. One must have Collider.isTrigger enabled, and contain a Rigidbody. If both GameObjects have Collider.isTrigger enabled, no collision happens. The same applies when both GameObjects do not have a Rigidbody component.<br />
+触发<code>OnTriggerEnter</code>的条件，需要碰撞的双方具有碰撞体，至少有一方具有刚体且勾选<code>Is Trigger</code>。<br />
+启用<code>Is Trigger</code>代表此刚体有形无实，不会碰撞，所以如果双方都启用<code>Is Trigger</code>，那么不会碰撞，但会触发<code>OnTriggerEnter</code>方法。如果双方都没有<code>Is Trigger</code>，且有一方具有刚体，则碰撞。</p>
+</blockquote>
+</li>
+<li>随机落下不同种类的球体</li>
+</ol>
+<hr />
+<h2 id="lesson-3">lesson 3</h2>
+<p>一个跑酷游戏。</p>
+<h3 id="提要-1">提要</h3>
+<p>GetCompontes<T>()顺序的问题？</p>
+<h3 id="过程-2">过程</h3>
+<ol>
+<li>
+<p>添加人物为player，控制其跳跃；不断生成的障碍物，向player移动，超出视线范围时销毁自身。<br />
+效果如下：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-1.gif" alt="障碍物、跳跃" /><br />
+需要注意，人物跳跃时，不能触发二段跳。<br />
+为障碍物添加碰撞体，为人物添加碰撞体、添加刚体组件使其具有物体特性，使得人物与障碍物可以产生碰撞。<br />
+障碍物的生成与移动的代码和lesson1几乎一致，现给出人物脚本如下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">PlayerController</span> : MonoBehaviour
+{
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> jumpForce;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> gravityModifier;
+   <span style="color:#007020;font-weight:bold">private</span> <span style="color:#902000">bool</span> isGround;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">bool</span> isGameOver;  <span style="color:#60a0b0;font-style:italic">// 需要public，后面要用
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">private</span> Rigidbody rb;
+   <span style="color:#007020;font-weight:bold">private</span> Animator anim;
+   <span style="color:#60a0b0;font-style:italic">// Start is called before the first frame update
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Start()
+   {
+      rb = GetComponent&lt;Rigidbody&gt;();
+      anim = GetComponent&lt;Animator&gt;();
+      Physics.gravity *= gravityModifier;
+   }
+
+   <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Update()
+   {
+      <span style="color:#007020;font-weight:bold">if</span>(Input.GetKeyDown(KeyCode.Space) &amp;&amp; isGround){
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGround = <span style="color:#007020;font-weight:bold">false</span>;
+      }
+   }
+
+   <span style="color:#007020;font-weight:bold">private</span> <span style="color:#007020;font-weight:bold">void</span> OnCollisionEnter(Collision other) {
+      <span style="color:#007020;font-weight:bold">if</span>(other.gameObject.CompareTag(<span style="color:#4070a0">&#34;Ground&#34;</span>))
+         isGround = <span style="color:#007020;font-weight:bold">true</span>;
+   }
+}
+</code></pre></div><p>跳跃的实现方法：<br />
+跳跃时对人物添加向上的力。首先获取刚体组件，定义刚体组件为<code>private Rigidbody rb;</code>，获取刚体组件<code>rb = GetComponent&lt;Rigidbody&gt;();</code>。然后，触发按键时施加冲击力<code>rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);</code>（若不使用ForceMode.Impulse冲击，则只有一帧受力，跳不起来）。此外，<code>Physics.gravity *= gravityModifier;</code>修改重力加速度g，影响人物下落速度（参考数值：jumpForce=30；gravityModifier=10）。</p>
+<p>为了避免碰撞时，人物倒下、面向改变的问题，在刚体中，锁定其旋转角度。如图：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-20200702225425.png" alt="" /></p>
+</li>
+<li>
+<p>移动背景，使背景与障碍物保持相对静止。<br />
+在背景上，添加脚本（MoveLeft.cs，障碍物也使用这一脚本）控制其移动。与障碍物不同的是，背景是一个重复的画面。因此，背景移动策略是移动半个背景长度时，背景位置复原。<br />
+为了避免背景消失，在MoveLeft.cs中，销毁物体前判断一下是否为障碍物。或者，使用另一个脚本（DestroyObstcale.cs）来实现销毁，并添加给障碍物。<br />
+为了背景可以复位，新建脚本组件BgRepeat.cs控制其复位，代码如下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">BgRepeat</span> : MonoBehaviour
+{
+   BoxCollider rb;
+   <span style="color:#902000">float</span> repeatWidth;  <span style="color:#60a0b0;font-style:italic">// 一半碰撞体长度（X轴）
+</span><span style="color:#60a0b0;font-style:italic"></span>   Vector3 startPos;  <span style="color:#60a0b0;font-style:italic">// 记录起始位置
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#60a0b0;font-style:italic">// Start is called before the first frame update
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Start()
+   {
+      rb = GetComponent&lt;BoxCollider&gt;();
+      repeatWidth = rb.size.x / <span style="color:#40a070">2f</span>;
+      startPos = transform.position;
+   }
+
+   <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Update()
+   {
+      <span style="color:#007020;font-weight:bold">if</span>(transform.position.x &lt; startPos.x - repeatWidth)
+            transform.SetPositionAndRotation(startPos, transform.rotation);
+   }
+}
+</code></pre></div><p>效果如下：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-2-20200702164049.gif" alt="背景重复移动" /><br />
+地面是纯色，不需要移动。</p>
+</li>
+<li>
+<p>为人物添加跑动、跳跃动画。<br />
+选中人物，双击Animator组件中的Controller，如图：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-20200702224013.png" alt="" /><br />
+在打开的动画界面中，选择Layers&ndash;&gt;Movement。选中“Run_Static”，右击，将其设置为default state（Entry指向它）。如图：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-20200702224512.png" alt="" />
+同时，选中Parameters，设置Speed_f的值为1.0（大于0.5）。如图：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-20200703162134.png" alt="" /><br />
+此时，运行程序，可以看到人物跑动起来了。（如果人物跑动的速度与环境格格不入，可以适当调整动画播放速度）<br />
+<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><details class="admonition question">
+            <summary class="admonition-title">
+                <i class="icon fas fa-question-circle"></i>为什么设置Speed_f大于0.5？<i class="details fas fa-angle-down"></i>
+            </summary>
+            <div class="admonition-content">选中Run_Static指向Walk_Static的状态，可以看到Conditions是Speed_f小于0.5，那么只要Speed_f大于0.5，动画就不会转变为走路。你还可以看一下其他的变化条件，它们之间都是不会冲突的。
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-20200703163221.png" alt="动作变化条件" /></div>
+        </details>
+查看一下Layers中的Jumping的情况，发现从Run到Running_Jump变化的条件是Jump_trig，且在Parameters中查到Jump_trig是一个触发变量。接下来，使用脚本（PlayController）控制Jump_trig，在跳跃的条件中加入Jump_trig的触发:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">if</span>(Input.GetKeyDown(KeyCode.Space) &amp;&amp; isGround){
+   rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+   isGround = <span style="color:#007020;font-weight:bold">false</span>;
+   anim.SetTrigger(<span style="color:#4070a0">&#34;Jump_trig&#34;</span>);
+}
+</code></pre></div><p>至此，人物跳跃时可以表现出跳跃的动作。但是，在跳跃时，人物的位置会向前进，因此，我们可以选择在刚体中锁定position的x值。<br />
+实现效果如图：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-20200703214741.gif" alt="跳跃" /></p>
+</li>
+<li>
+<p>人物碰撞到阻碍物时，播放死亡动画，同时环境不再移动，且障碍物不再生成。
+播放死亡动画与跳跃异曲同工。先查看其条件，然后使用脚本设置条件（Death_b为true，DeathType_int为1）：<br />
+PlayerController.cs:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">if</span>(other.gameObject.CompareTag(<span style="color:#4070a0">&#34;Obstacle&#34;</span>)){
+   isGameOver = <span style="color:#007020;font-weight:bold">true</span>;
+   Debug.Log(<span style="color:#4070a0">&#34;GAME OVER!&#34;</span>);
+   anim.SetBool(<span style="color:#4070a0">&#34;Death_b&#34;</span>, <span style="color:#007020;font-weight:bold">true</span>);
+   anim.SetInteger(<span style="color:#4070a0">&#34;DeathType_int&#34;</span>, <span style="color:#40a070">1</span>);
+}
+</code></pre></div><p>MoveLeft.cs:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">MoveLeft</span> : MonoBehaviour
+{
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> speed=<span style="color:#40a070">5f</span>;
+   <span style="color:#007020;font-weight:bold">private</span> PlayerController playerController;
+   <span style="color:#60a0b0;font-style:italic">// Start is called before the first frame update
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Start()
+   {
+      playerController = FindObjectOfType&lt;PlayerController&gt;();
+   }
+
+   <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Update()
+   {
+      <span style="color:#007020;font-weight:bold">if</span>(!playerController.isGameOver)
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+   }
+}
+</code></pre></div><p>SpawnObstacles.cs:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">SpawnObstacles</span> : MonoBehaviour
+{
+   <span style="color:#007020;font-weight:bold">private</span> PlayerController playerController;
+   <span style="color:#007020;font-weight:bold">public</span> GameObject[] obstacles;
+   <span style="color:#902000">int</span> index;
+   <span style="color:#007020;font-weight:bold">public</span> Vector3 spawnPosition;
+   <span style="color:#60a0b0;font-style:italic">// Start is called before the first frame update
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Start()
+   {
+      InvokeRepeating(nameof(Spawn), <span style="color:#40a070">2f</span>, <span style="color:#40a070">2f</span>);
+      playerController = FindObjectOfType&lt;PlayerController&gt;();
+   }
+
+   <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Update()
+   {
+
+   }
+   <span style="color:#007020;font-weight:bold">void</span> Spawn()
+   {
+      <span style="color:#007020;font-weight:bold">if</span> (!playerController.isGameOver)
+      {
+            index = Random.Range(<span style="color:#40a070">0</span>, obstacles.Length);
+            Instantiate(obstacles[index], spawnPosition, obstacles[index].transform.rotation);
+      }
+   }
+}
+</code></pre></div><p>效果如图：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-20200703223729.gif" alt="人物死亡" /></p>
+</li>
+<li>
+<p>添加粒子特效。
+效果如下：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/unity-lesson3-20200704113709.gif" alt="粒子特效" />
+在Assets/Course Library/Particles中有俩个粒子特效，一个是灰尘的粒子，另一个是爆炸的粒子。<br />
+首先，把粒子拖到Player上，作为人物的子集：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/20200704114136.png" alt="" />
+然后用代码控制粒子的播放。灰尘粒子本身就设置了循环播放，所以要控制其跳跃时停止播放、死亡时不再播放；爆炸粒子不是循环播放的，并且在游戏开始时没有播放，所以用脚本控制其死亡时播放。代码如下，注意在Unity中对粒子变量赋值：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">PlayerController</span> : MonoBehaviour
+{
+   <span style="color:#007020;font-weight:bold">private</span> Rigidbody rb;
+   <span style="color:#007020;font-weight:bold">private</span> Animator anim;
+   <span style="color:#007020;font-weight:bold">public</span> ParticleSystem dirtParticle, explosionParticle;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> jumpForce;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> gravityModifier;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">bool</span> isGround;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">bool</span> isGameOver;
+   <span style="color:#60a0b0;font-style:italic">// Start is called before the first frame update
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Start()
+   {
+      rb = GetComponent&lt;Rigidbody&gt;();
+      anim = GetComponent&lt;Animator&gt;();
+      Physics.gravity *= gravityModifier;
+   }
+
+   <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Update()
+   {
+      <span style="color:#007020;font-weight:bold">if</span>(Input.GetKeyDown(KeyCode.Space) &amp;&amp; isGround){
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGround = <span style="color:#007020;font-weight:bold">false</span>;
+            anim.SetTrigger(<span style="color:#4070a0">&#34;Jump_trig&#34;</span>);
+            dirtParticle.Stop();
+      }
+   }
+
+   <span style="color:#007020;font-weight:bold">private</span> <span style="color:#007020;font-weight:bold">void</span> OnCollisionEnter(Collision other) {
+      <span style="color:#60a0b0;font-style:italic">// isGameOver的判断，避免死亡且与地面碰撞时的粒子播放
+</span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">if</span>(other.gameObject.CompareTag(<span style="color:#4070a0">&#34;Ground&#34;</span>) &amp;&amp; (!isGameOver)){
+            isGround = <span style="color:#007020;font-weight:bold">true</span>;
+            dirtParticle.Play();
+      }
+      <span style="color:#007020;font-weight:bold">if</span>(other.gameObject.CompareTag(<span style="color:#4070a0">&#34;Obstacle&#34;</span>)){
+            isGameOver = <span style="color:#007020;font-weight:bold">true</span>;
+            Debug.Log(<span style="color:#4070a0">&#34;GAME OVER!&#34;</span>);
+            anim.SetBool(<span style="color:#4070a0">&#34;Death_b&#34;</span>, <span style="color:#007020;font-weight:bold">true</span>);
+            anim.SetInteger(<span style="color:#4070a0">&#34;DeathType_int&#34;</span>, <span style="color:#40a070">1</span>);
+            explosionParticle.Play();
+            dirtParticle.Stop();
+      }
+   }
+}
+</code></pre></div></li>
+<li>
+<p>添加音效。<br />
+在MainCamera中有AudioListener用于收声，相当于你的耳朵。<br />
+首先，在MainCamera中添加AudioSource并设置AudioClip作为音源。背景音要设置开始播放，设置循环播放：<br />
+<img src="https://cdn.jsdelivr.net/gh/litmingc/blog_picBed/data/20200704122508.png" alt="" />
+其次，在Player中添加AudioSource，但不要设置AudioClip，并且开始时不要播放，不要设置循环播放。在脚本中设置2个AudioClip变量，赋值碰撞以及跳跃的音效，并控制啥时候播放哪个AudioClip：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">System.Collections.Generic</span>;
+<span style="color:#007020;font-weight:bold">using</span> <span style="color:#0e84b5;font-weight:bold">UnityEngine</span>;
+
+<span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">PlayerController</span> : MonoBehaviour
+{
+   <span style="color:#007020;font-weight:bold">private</span> Rigidbody rb;
+   <span style="color:#007020;font-weight:bold">private</span> Animator anim;
+   <span style="color:#007020;font-weight:bold">private</span> AudioSource audioSource;
+   <span style="color:#007020;font-weight:bold">public</span> ParticleSystem dirtParticle, explosionParticle;
+   <span style="color:#007020;font-weight:bold">public</span> AudioClip crashClip, jumpClip;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> jumpForce;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">float</span> gravityModifier;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">bool</span> isGround;
+   <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">bool</span> isGameOver;
+   <span style="color:#60a0b0;font-style:italic">// Start is called before the first frame update
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Start()
+   {
+      rb = GetComponent&lt;Rigidbody&gt;();
+      anim = GetComponent&lt;Animator&gt;();
+      Physics.gravity *= gravityModifier;
+      audioSource = GetComponent&lt;AudioSource&gt;();
+   }
+
+   <span style="color:#60a0b0;font-style:italic">// Update is called once per frame
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#007020;font-weight:bold">void</span> Update()
+   {
+      <span style="color:#007020;font-weight:bold">if</span>(Input.GetKeyDown(KeyCode.Space) &amp;&amp; isGround &amp;&amp; (!isGameOver)){
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGround = <span style="color:#007020;font-weight:bold">false</span>;
+            anim.SetTrigger(<span style="color:#4070a0">&#34;Jump_trig&#34;</span>);
+            dirtParticle.Stop();
+            audioSource.PlayOneShot(jumpClip, <span style="color:#40a070">0.5f</span>);
+      }
+   }
+
+   <span style="color:#007020;font-weight:bold">private</span> <span style="color:#007020;font-weight:bold">void</span> OnCollisionEnter(Collision other) {
+      <span style="color:#60a0b0;font-style:italic">// isGameOver的判断，避免死亡且与地面碰撞时的粒子播放
+</span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">if</span>(other.gameObject.CompareTag(<span style="color:#4070a0">&#34;Ground&#34;</span>) &amp;&amp; (!isGameOver)){
+            isGround = <span style="color:#007020;font-weight:bold">true</span>;
+            dirtParticle.Play();
+      }
+      <span style="color:#007020;font-weight:bold">if</span>(other.gameObject.CompareTag(<span style="color:#4070a0">&#34;Obstacle&#34;</span>)){
+            isGameOver = <span style="color:#007020;font-weight:bold">true</span>;
+            audioSource.PlayOneShot(crashClip, <span style="color:#40a070">1f</span>);
+            Debug.Log(<span style="color:#4070a0">&#34;GAME OVER!&#34;</span>);
+            anim.SetBool(<span style="color:#4070a0">&#34;Death_b&#34;</span>, <span style="color:#007020;font-weight:bold">true</span>);
+            anim.SetInteger(<span style="color:#4070a0">&#34;DeathType_int&#34;</span>, <span style="color:#40a070">1</span>);
+            explosionParticle.Play();
+            dirtParticle.Stop();
+      }
+   }
+}
+</code></pre></div><p><code>audioSource.PlayOneShot(jumpClip, 0.5f);</code>表示以0.5的音量播放jumpClip。</p>
+</li>
+</ol>
+
+    </div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://litmingc.github.io/tags/unity-%e5%ad%a6%e4%b9%a0" rel="tag" title="unity 学习">#unity 学习#</a>
+    
+    <a href="https://litmingc.github.io/tags/creat-with-code" rel="tag" title="creat with code">#creat with code#</a>
+    
+    <a href="https://litmingc.github.io/tags/unity-3d" rel="tag" title="unity 3d">#unity 3d#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+    </div>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://litmingc.github.io/post/translation/whoosh/" rel="prev" title="[Translation]Whoosh 2.7.4 Documentation">
+        [Translation]Whoosh 2.7.4 Documentation <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
+</div>
+      
+     
+     
+
+<script src='https://litmingc.github.io/js/Valine-1.3.10.min.js'></script>
+<div id="vcomments"></div>
+<script>
+  new Valine({
+        el: '#vcomments',
+        appId: "2guSOLy9NcQHOtR6lwkFIrmp-MdYXbMMI",
+        appKey: "xhgDfd5tc8sl0ODNj7ER8pND",
+        notify:  false ,
+        verify:  false ,
+        avatar: "mp",
+        visitor:  true ,
+        placeholder: "留下邮箱会收到回复提醒哦" 
+  })
+</script>
+<style>
+.icon-bigger {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger2 {
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger:hover {
+  transform:scale(1.6);
+}
+.icon-bigger2:hover {
+  transform:scale(1.6);
+}
+</style>
+<span id="/post/unity/learning-records/" class="leancloud_visitors" data-flag-title="Your Article Title">
+    <svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-yibenzhengjingbiaoqing"></use></svg>
+    <em class="post-meta-item-text">阅读量</em><br>
+    <svg class="icon-bigger2" aria-hidden="true"><use xlink:href="#icon-biaoqing-dai"></use></svg>
+    <em class="post-meta-item-text">居然有~~<i class="leancloud-visitors-count"></i></em>
+	<svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-xiangwenbiaoqing"></use></svg>
+</span>
+
+
+    </footer>
+  </article>
+</section></div>
+        </div><div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+  <ul class="sidebar-nav motion-element">
+    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+      文章目录
+    </li>
+    <li class="sidebar-nav-overview" data-target="site-overview">
+      站点概览
+    </li>
+  </ul>
+
+    <section class="site-overview sidebar-panel ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://litmingc.github.io/img/izip.png"
+        alt="litmingc" />
+    <p class="site-author-name" itemprop="name">litmingc</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        写代码？多数靠蒙！</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://litmingc.github.io/post/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://litmingc.github.io/categories/">      
+         
+        <span class="site-state-item-count">6</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://litmingc.github.io/tags/">
+         
+        <span class="site-state-item-count">14</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com/litmingc" target="_blank" title="GitHub">
+            <i class="fab fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+</div>
+
+      
+
+      
+    </section>
+    
+<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+    <div class="post-toc">
+        <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#lesson-1">lesson 1</a>
+      <ul>
+        <li><a href="#提要">提要</a></li>
+        <li><a href="#过程">过程</a></li>
+      </ul>
+    </li>
+    <li><a href="#lesson-2">lesson 2</a>
+      <ul>
+        <li><a href="#过程-1">过程</a></li>
+      </ul>
+    </li>
+    <li><a href="#challenge-2">challenge 2</a>
+      <ul>
+        <li><a href="#需要修改的内容">需要修改的内容</a></li>
+      </ul>
+    </li>
+    <li><a href="#lesson-3">lesson 3</a>
+      <ul>
+        <li><a href="#提要-1">提要</a></li>
+        <li><a href="#过程-2">过程</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div>
+</section>
+
+  </div>
+</aside>
+</div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"><div class="copyright" >
+  <span itemprop="copyrightYear">  &copy; 
+  2019 - 2020</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">LitMing</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.68.3</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+</div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://litmingc.github.io/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/utils.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/motion.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/affix.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/post-details.js"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/toc.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
+
+<script src="https://litmingc.github.io/js/iconfont.js"></script>
+<style>
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+</style>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><style>
+    code.mathcode {
+      font: inherit;
+      font-size: 110%;
+      background: inherit;
+      border: inherit;
+      color: #515151;
+    }
+</style><script src="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js"></script>
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js"></script><script>
+renderMathInElement(document.body,
+{
+    delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "··", right: "··", display: true},
+    {left: "·", right: "·", display: false},
+    {left: "\\(", right: "\\)", display: false},
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+}
+);
+var all=document.getElementsByClassName('katex'),i;
+for(i = 0; i < all.length; i += 1){
+     
+     
+    var tmp=all[i].parentNode;
+    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
+    if(tmp.nodeName == 'CODE')
+    tmp.className += ' mathcode';
+}
+</script><script src="https://litmingc.github.io/js/typeit.min.js"></script>
+<script>
+  new TypeIt("#typeitElement", {
+    cursor: false,
+    lifeLike: false,
+    speed: 100,
+    startDelay: 1000,
+  }).go();
+</script></body>
+</html>
