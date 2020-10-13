@@ -441,7 +441,7 @@ python2.7的自带库目录在
           <tag>挂载硬盘</tag><tag>berryconda</tag><tag>RaspberryPi</tag>
         </tags>
         <content type="html"> 常用初始化配置 新烧好系统之后，我常做的配置。列出来做个备忘。
- 修改主机名 sudo vim /etc/hostname 修改密码 修改hosts 主要是添加127.0.0.1对前面修改的主机名的映射 sudo vim /etc/hosts v2ray配置 aria2配置* samba配置 docker配置* 挂载移动硬盘  挂载移动硬盘 NTFS  安装ntfs-3g sudo apt-get install ntfs-3g 查看设备 fdisk -l 准备挂载目录 sudo mkdir /mnt/dir 暂时挂载硬盘 ntfs-3g /dev/sda1 /mnt/dir 开机自动挂载
+ 修改主机名 sudo vim /etc/hostname 修改密码 修改hosts 主要是添加127.0.0.1对前面修改的主机名的映射 sudo vim /etc/hosts v2ray配置 aria2配置* samba配置 docker配置* 挂载移动硬盘 修改地区  挂载移动硬盘 NTFS  安装ntfs-3g sudo apt-get install ntfs-3g 查看设备 fdisk -l 准备挂载目录 sudo mkdir /mnt/dir 暂时挂载硬盘 ntfs-3g /dev/sda1 /mnt/dir 开机自动挂载
 修改文件 /etc/fstab
 添加如下内容： /dev/sda1 /mnt/dir ntfs utf8,uid=1000,gid=1000,umask=022 0 0  berryconda  环境：raspbian armv7l    问题：网络不佳，使用conda insatll无法下载openssl
 解决：
