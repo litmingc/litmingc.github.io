@@ -569,7 +569,8 @@ MathJax Support
 &amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;手工分割线&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;
 这里还有一些问题。其中，如果配置delimiters: 选项，一定要把符号配全，pandoc似乎会把美元符号自动替换成其他符号。
 不用pandoc，用mmark也行，但官方表示mmark未来将会被移除。
-  修改代码块的样式 修改css文件的\&amp;lt;pre\&amp;gt;标签的样式，[样式参考](https://highlightjs.org/)  增加暗黑模式  新建一个html文件编写与暗黑模式相关的代码
+  修改代码块的样式 修改css文件的\&amp;lt;pre\&amp;gt;标签的样式，[样式参考](https://highlightjs.org/)  增加暗黑模式 参考：https://radu-matei.com/blog/dark-mode/
+ 新建一个html文件编写与暗黑模式相关的代码
 我选择在\layouts\partial\floater.html路径下创建文件
 在合适的位置（比如，header.html中），导入模板文件： {{- partial &amp;#34;floater.html&amp;#34; . -}} 为主题添加一个固定在角落里的图标，点击图标时触发主题的更改
 添加角落的图标： &amp;lt;style&amp;gt;.darkbutton{position:fixed;top:30px;right:50px;width: 2.3em;height: 2.3em;}&amp;lt;/style&amp;gt;&amp;lt;script src=&amp;#34;//at.alicdn.com/t/font_1706978_500bk6gzog3.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;div id=&amp;#34;togglebutton&amp;#34;&amp;gt;&amp;lt;svg class=&amp;#34;darkbutton&amp;#34; aria-hidden=&amp;#34;true&amp;#34;&amp;gt;&amp;lt;use id=&amp;#34;dark-mode-toggle&amp;#34; xlink:href=&amp;#34;#icon-taiyang&amp;#34;&amp;gt;&amp;lt;/use&amp;gt;&amp;lt;/svg&amp;gt;&amp;lt;/div&amp;gt;其中&amp;lt;style&amp;gt;中position:fixed;top:30px;right:50px;使html元素固定在右上角。 图标，使用了iconfont图标库。iconfont的使用方法官网有详细的使用说明。
