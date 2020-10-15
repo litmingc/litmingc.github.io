@@ -171,7 +171,7 @@ if (!doNotTrack) {
     </header>
     <div class="post-body" itemprop="articleBody">
     <hr />
-<h2 id="子模块">子模块</h2>
+<h3 id="子模块">子模块</h3>
 <h4 id="删除子模块">删除子模块</h4>
 <ol>
 <li><code>rm -rf 子模块目录</code> 删除子模块目录及源码</li>
@@ -179,7 +179,7 @@ if (!doNotTrack) {
 <li><code>vi .git/config</code> 删除配置项中子模块相关条目</li>
 <li><code>rm .git/module/*</code> 删除模块下的子模块目录</li>
 </ol>
-<h2 id="切换分支保存内容不提交">切换分支，保存内容，不提交</h2>
+<h3 id="切换分支保存内容不提交">切换分支，保存内容，不提交</h3>
 <p><a href="https://blog.csdn.net/weixin_42042680/article/details/94498198">https://blog.csdn.net/weixin_42042680/article/details/94498198</a></p>
 <ol>
 <li>先add：<code>git add xxx</code></li>
@@ -274,7 +274,16 @@ if (!doNotTrack) {
 <aside id="sidebar" class="sidebar">
   <div class="sidebar-inner">
 
-    <section class="site-overview sidebar-panel  sidebar-panel-active ">
+  <ul class="sidebar-nav motion-element">
+    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+      文章目录
+    </li>
+    <li class="sidebar-nav-overview" data-target="site-overview">
+      站点概览
+    </li>
+  </ul>
+
+    <section class="site-overview sidebar-panel ">
       <div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person">
     <img class="site-author-image" itemprop="image"
         src="https://litmingc.github.io/img/izip.png"
@@ -327,6 +336,21 @@ if (!doNotTrack) {
       
     </section>
     
+<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+    <div class="post-toc">
+        <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#子模块">子模块</a></li>
+        <li><a href="#切换分支保存内容不提交">切换分支，保存内容，不提交</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div>
+</section>
+
   </div>
 </aside>
 </div>
