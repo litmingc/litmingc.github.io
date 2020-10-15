@@ -371,7 +371,14 @@ searcher = myindex.searcher() </content>
         </tags>
         <content type="html"> 子模块 删除子模块  rm -rf 子模块目录 删除子模块目录及源码 vi .gitmodules 删除项目目录下.gitmodules文件中子模块相关条目 vi .git/config 删除配置项中子模块相关条目 rm .git/module/* 删除模块下的子模块目录  切换分支，保存内容，不提交 https://blog.csdn.net/weixin_42042680/article/details/94498198
  先add：git add xxx 再暂存：git stash xxx ==&amp;gt; 把add的内容暂存，你会发现你的工作区已经没有1.中add的内容了。 切换分支：git checkout xxx 工作结束后，要么提交，要么重复1.、2.进行暂存。 切换分支回来 把暂存的内容恢复：git stash apply [stash@{0}] 把暂存删除：git stash drop
-git stash pop [stash@{0}]是恢复并删除，是5.和6.的组合。git stash list列出当前的stash。  </content>
+git stash pop [stash@{0}]是恢复并删除，是5.和6.的组合。git stash list列出当前的stash。  设置忽略文件 参考链接：https://www.cnblogs.com/mracale/p/12396437.html
+  未跟踪的文件
+ 添加.gitignore文件 在.gitignore文件中列出需要忽略的文件匹配项    已经push的文件
+删除git库中的文件，本地保留文件：
+git rm --cached Xml/config.xml 不删除git远程库中相应文件，只是忽略更新：（亲测有效）
+git update-index --assume-unchanged Xml/config.xml  其中，Xml/config.xml为文件路径。
+如果需要忽略的是一个目录，那么cd到目标目录下，执行如下命令：
+git update-index --assume-unchanged $(git ls-files | tr &amp;#39;\n&amp;#39; &amp;#39; &amp;#39;)    </content>
     </entry>
     
      <entry>

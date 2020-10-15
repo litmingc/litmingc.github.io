@@ -165,7 +165,7 @@ if (!doNotTrack) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">268 字 ~1分钟</span>
+<span class="leancloud-visitors-count">499 字 ~1分钟</span>
 </span>
       </div>
     </header>
@@ -189,6 +189,29 @@ if (!doNotTrack) {
 <li>把暂存的内容恢复：<code>git stash apply [stash@{0}]</code></li>
 <li>把暂存删除：<code>git stash drop</code><br />
 <code>git stash pop [stash@{0}]</code>是恢复并删除，是<code>5.</code>和<code>6.</code>的组合。<code>git stash list</code>列出当前的stash。</li>
+</ol>
+<h3 id="设置忽略文件">设置忽略文件</h3>
+<p><a href="https://www.cnblogs.com/mracale/p/12396437.html">参考链接：https://www.cnblogs.com/mracale/p/12396437.html</a></p>
+<ol>
+<li>
+<p>未跟踪的文件</p>
+<ul>
+<li>添加<code>.gitignore</code>文件</li>
+<li>在<code>.gitignore</code>文件中列出需要忽略的文件匹配项</li>
+</ul>
+</li>
+<li>
+<p>已经push的文件<br />
+删除git库中的文件，本地保留文件：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git rm --cached Xml/config.xml
+</code></pre></div><p>不删除git远程库中相应文件，只是忽略更新：（亲测有效）</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git update-index --assume-unchanged Xml/config.xml
+</code></pre></div><blockquote>
+<p>其中，<code>Xml/config.xml</code>为文件路径。<br />
+如果需要忽略的是一个<strong>目录</strong>，那么cd到目标目录下，执行如下命令：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git update-index --assume-unchanged <span style="color:#007020;font-weight:bold">$(</span>git ls-files | tr <span style="color:#4070a0">&#39;\n&#39;</span> <span style="color:#4070a0">&#39; &#39;</span><span style="color:#007020;font-weight:bold">)</span>
+</code></pre></div></blockquote>
+</li>
 </ol>
 
     </div>
@@ -344,6 +367,7 @@ if (!doNotTrack) {
       <ul>
         <li><a href="#子模块">子模块</a></li>
         <li><a href="#切换分支保存内容不提交">切换分支，保存内容，不提交</a></li>
+        <li><a href="#设置忽略文件">设置忽略文件</a></li>
       </ul>
     </li>
   </ul>
@@ -364,7 +388,7 @@ if (!doNotTrack) {
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.68.3</a>
+  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.68.3</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
