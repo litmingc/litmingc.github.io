@@ -542,7 +542,7 @@ sudo rsync -Pa /backup_20160511 /
     </entry>
     
      <entry>
-        <title>[Tips]Hugo相关</title>
+        <title>[Tips]Hugo主题不满意的各种修改</title>
         <url>https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/</url>
         <categories>
           <category>Hugo</category>
@@ -551,9 +551,7 @@ sudo rsync -Pa /backup_20160511 /
           <tag>MathJax</tag>
         </tags>
         <content type="html"> 环境：
- hugo_extended_0.55.6_Windows-64bit    表达数学公式
-  hugo主题：Next
-  方案一： 先上参考：
+ hugo_extended_0.55.6_Windows-64bit hugo主题：Next  表达数学公式   方案一： 先上参考：
 MathJax Support
 在Hugo中使用MathJax
 修改公式显示的大小：
@@ -571,12 +569,18 @@ MathJax Support
 &amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;手工分割线&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo;
 这里还有一些问题。其中，如果配置delimiters: 选项，一定要把符号配全，pandoc似乎会把美元符号自动替换成其他符号。
 不用pandoc，用mmark也行，但官方表示mmark未来将会被移除。
-    修改代码块的样式
-主题：pure
-修改css文件的&amp;lt;pre&amp;gt;标签的样式，样式参考
-  使用tab键可能造成奇怪的渲染结局，应使用空格为宜
-分割线上下最好留空行
-   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
+  修改代码块的样式 修改css文件的\&amp;lt;pre\&amp;gt;标签的样式，[样式参考](https://highlightjs.org/)  增加暗黑模式  新建一个html文件编写与暗黑模式相关的代码
+我选择在\layouts\partial\floater.html路径下创建文件
+在合适的位置（比如，header.html中），导入模板文件： {{- partial &amp;#34;floater.html&amp;#34; . -}} 为主题添加一个固定在角落里的图标，点击图标时触发主题的更改
+添加角落的图标： &amp;lt;style&amp;gt;.darkbutton{position:fixed;top:30px;right:50px;width: 2.3em;height: 2.3em;}&amp;lt;/style&amp;gt;&amp;lt;script src=&amp;#34;//at.alicdn.com/t/font_1706978_500bk6gzog3.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;div id=&amp;#34;togglebutton&amp;#34;&amp;gt;&amp;lt;svg class=&amp;#34;darkbutton&amp;#34; aria-hidden=&amp;#34;true&amp;#34;&amp;gt;&amp;lt;use id=&amp;#34;dark-mode-toggle&amp;#34; xlink:href=&amp;#34;#icon-taiyang&amp;#34;&amp;gt;&amp;lt;/use&amp;gt;&amp;lt;/svg&amp;gt;&amp;lt;/div&amp;gt;其中&amp;lt;style&amp;gt;中position:fixed;top:30px;right:50px;使html元素固定在右上角。 图标，使用了iconfont图标库。iconfont的使用方法官网有详细的使用说明。
+当然，你可以使用其他的图标库，甚至是文字。
+ 获取dark模式下的css文件
+使用浏览器插件调成暗黑模式后，打开开发者管理工具下载源代码--&amp;gt;暗模式--&amp;gt;css--&amp;gt;global-new.css。使用其他拓展时，css的路径可能不一致。
+将css文件放到static\css目录下，重命名为dark.css
+在主题模板中导入css文件： &amp;lt;!-- 暗黑主题 --&amp;gt;&amp;lt;link disabled id=&amp;#34;dark-mode-theme&amp;#34; rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;/css/dark.css&amp;#34;&amp;gt;默认为不生效。
+ 添加js脚本控制css文件的效果 &amp;lt;script&amp;gt;var toggle = document.getElementById(&amp;#34;dark-mode-toggle&amp;#34;);var darkTheme = document.getElementById(&amp;#34;dark-mode-theme&amp;#34;);var button = document.getElementById(&amp;#34;togglebutton&amp;#34;);button.addEventListener(&amp;#34;click&amp;#34;, () =&amp;gt; {if (toggle.getAttribute(&amp;#34;xlink:href&amp;#34;) === &amp;#34;#icon-yueliang1&amp;#34;) {setTheme(&amp;#34;dark&amp;#34;);} else if (toggle.getAttribute(&amp;#34;xlink:href&amp;#34;) === &amp;#34;#icon-taiyang&amp;#34;) {setTheme(&amp;#34;light&amp;#34;);}});// the default theme is light// 持久化存储，防止转到其他页面时，模式恢复为lightvar savedTheme = localStorage.getItem(&amp;#34;dark-mode-storage&amp;#34;) || &amp;#34;light&amp;#34;;setTheme(savedTheme);function setTheme(mode) {// 持久化存储，防止转到其他页面时，模式恢复为light localStorage.setItem(&amp;#34;dark-mode-storage&amp;#34;, mode);if (mode === &amp;#34;dark&amp;#34;) {darkTheme.disabled = true;// 设置属性值 toggle.setAttribute(&amp;#34;xlink:href&amp;#34;,&amp;#34;#icon-taiyang&amp;#34;); } else if (mode === &amp;#34;light&amp;#34;) {darkTheme.disabled = false;toggle.setAttribute(&amp;#34;xlink:href&amp;#34;,&amp;#34;#icon-yueliang1&amp;#34;); }}&amp;lt;/script&amp;gt;其中，元素的class、id、以及图标内容，需要结合自己的代码做相应的更改。
+  杂项  使用tab键可能造成奇怪的渲染结局，应使用空格为宜
+分割线上下最好留空行   https://www.gohugo.org/doc/tutorials/mathjax/ &amp;ldquo;MathJax Support&amp;rdquo; &amp;#x21a9;&amp;#xfe0e;
  https://note.qidong.name/2018/03/hugo-mathjax/ &amp;#x21a9;&amp;#xfe0e;
  https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/ &amp;#x21a9;&amp;#xfe0e;
    </content>

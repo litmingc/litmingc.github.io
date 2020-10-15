@@ -1,14 +1,14 @@
-
+<!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>[Tips]Hugo相关 - LitMing</title><meta name="keywords" content="notebooks,linux,python,go,书摘文录,学习笔记">
-    <meta property="og:title" content="[Tips]Hugo相关">
+    <title>[Tips]Hugo主题不满意的各种修改 - LitMing</title><meta name="keywords" content="notebooks,linux,python,go,书摘文录,学习笔记">
+    <meta property="og:title" content="[Tips]Hugo主题不满意的各种修改">
     <meta property="og:site_name" content="LitMing">
     <meta property="og:image" content="/img/izip.png"> 
-    <meta name="title" content="[Tips]Hugo相关 - LitMing" />
+    <meta name="title" content="[Tips]Hugo主题不满意的各种修改 - LitMing" />
     <meta name="description" content="书摘文录、学习笔记"> 
     <link rel="shortcut icon" href="https://litmingc.github.io/img/izip30.png" />
     <link rel="apple-touch-icon" href="" />
@@ -63,7 +63,50 @@ if (!doNotTrack) {
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta  custom-logo ">
+      <div class="header-inner">
+<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
+
+<style>
+.darkbutton{
+    position:fixed;
+    top:30px;
+    right:50px;
+    width: 2.3em;
+    height: 2.3em;
+}
+</style>
+<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
+<div id="togglebutton">
+    <svg class="darkbutton" aria-hidden="true"><use id="dark-mode-toggle"  xlink:href="#icon-taiyang"></use></svg>
+</div>
+
+<script>
+var toggle = document.getElementById("dark-mode-toggle");
+var darkTheme = document.getElementById("dark-mode-theme");
+var button = document.getElementById("togglebutton");
+button.addEventListener("click", () => {
+    if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
+        setTheme("dark");
+    } else if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
+        setTheme("light");
+    }
+});
+
+
+var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
+setTheme(savedTheme);
+
+function setTheme(mode) {
+    localStorage.setItem("dark-mode-storage", mode);
+    if (mode === "dark") {
+        darkTheme.disabled = true;
+        toggle.setAttribute("xlink:href","#icon-taiyang"); 
+    } else if (mode === "light") {
+        darkTheme.disabled = false;
+        toggle.setAttribute("xlink:href","#icon-yueliang1"); 
+    }
+}
+</script><div class="site-meta  custom-logo ">
   <div class="custom-logo-site-title">
     <a href="https://litmingc.github.io/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
@@ -145,7 +188,7 @@ if (!doNotTrack) {
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link" href="https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/" itemprop="url">
-        [Tips]Hugo相关
+        [Tips]Hugo主题不满意的各种修改
         </a>
       </h1>
       <div class="post-meta">
@@ -183,7 +226,7 @@ if (!doNotTrack) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">882 字 ~2分钟</span>
+<span class="leancloud-visitors-count">1554 字 ~4分钟</span>
 </span>
       </div>
     </header>
@@ -191,15 +234,11 @@ if (!doNotTrack) {
     <p>环境：</p>
 <ul>
 <li>hugo_extended_0.55.6_Windows-64bit</li>
+<li>hugo主题：<a href="https://github.com/xtfly/hugo-theme-next">Next</a></li>
 </ul>
 <hr />
-<ol>
-<li>
-<p>表达数学公式</p>
+<h3 id="表达数学公式">表达数学公式</h3>
 <ul>
-<li>
-<p>hugo主题：<a href="https://github.com/xtfly/hugo-theme-next">Next</a></p>
-</li>
 <li>
 <p>方案一：
 先上参考：<br />
@@ -269,16 +308,82 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 不用pandoc，用mmark也行，但官方表示mmark未来将会被移除。</p>
 </li>
 </ul>
+<h3 id="修改代码块的样式">修改代码块的样式</h3>
+<pre><code>修改css文件的\&lt;pre\&gt;标签的样式，[样式参考](https://highlightjs.org/)  
+</code></pre>
+<h3 id="增加暗黑模式">增加暗黑模式</h3>
+<ol>
+<li>新建一个html文件编写与暗黑模式相关的代码<br />
+我选择在<code>\layouts\partial\floater.html</code>路径下创建文件<br />
+在合适的位置（比如，header.html中），导入模板文件：
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#666">-</span> partial <span style="color:#4070a0">&#34;floater.html&#34;</span> . <span style="color:#666">-</span>}}
+</code></pre></div></li>
+<li>为主题添加一个固定在角落里的<strong>图标</strong>，点击图标时触发主题的更改<br />
+添加角落的图标：
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
+.<span style="color:#0e84b5;font-weight:bold">darkbutton</span>{
+   <span style="color:#007020;font-weight:bold">position</span>:<span style="color:#007020;font-weight:bold">fixed</span>;
+   <span style="color:#007020;font-weight:bold">top</span>:<span style="color:#40a070">30</span><span style="color:#902000">px</span>;
+   <span style="color:#007020;font-weight:bold">right</span>:<span style="color:#40a070">50</span><span style="color:#902000">px</span>;
+   <span style="color:#007020;font-weight:bold">width</span>: <span style="color:#40a070">2.3</span><span style="color:#902000">em</span>;
+   <span style="color:#007020;font-weight:bold">height</span>: <span style="color:#40a070">2.3</span><span style="color:#902000">em</span>;
+}
+&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
+
+&lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;//at.alicdn.com/t/font_1706978_500bk6gzog3.js&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;togglebutton&#34;</span>&gt;
+   &lt;<span style="color:#062873;font-weight:bold">svg</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;darkbutton&#34;</span> <span style="color:#4070a0">aria-hidden</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;true&#34;</span>&gt;&lt;<span style="color:#062873;font-weight:bold">use</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;dark-mode-toggle&#34;</span>  <span style="color:#4070a0">xlink:href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#icon-taiyang&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">use</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">svg</span>&gt;
+&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+</code></pre></div><p>其中<code>&lt;style&gt;</code>中<code>position:fixed;top:30px;right:50px;</code>使html元素固定在右上角。
+图标，使用了<a href="https://www.iconfont.cn/">iconfont图标库</a>。iconfont的使用方法官网有详细的使用说明。<br />
+当然，你可以使用其他的图标库，甚至是文字。</p>
 </li>
-<li>
-<p>修改代码块的样式<br />
-主题：pure<br />
-修改css文件的&lt;pre&gt;标签的样式，<a href="https://highlightjs.org/">样式参考</a></p>
+<li>获取dark模式下的css文件<br />
+使用<a href="https://microsoftedge.microsoft.com/addons/detail/%E6%9A%97%E6%A8%A1%E5%BC%8F/ebljihalgmnchcjgimaclocclnlgjnhl">浏览器插件</a>调成暗黑模式后，打开开发者管理工具下载<code>源代码--&gt;暗模式--&gt;css--&gt;global-new.css</code>。使用其他拓展时，css的路径可能不一致。<br />
+将css文件放到<code>static\css</code>目录下，重命名为<code>dark.css</code><br />
+在主题模板中导入css文件：
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#60a0b0;font-style:italic">&lt;!-- 暗黑主题 --&gt;</span>
+&lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">disabled</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;dark-mode-theme&#34;</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;/css/dark.css&#34;</span>&gt;
+</code></pre></div><p>默认为不生效。</p>
 </li>
-<li>
-<p>使用tab键可能造成奇怪的渲染结局，应使用空格为宜<br />
-<strong>分割线上下最好留空行</strong></p>
+<li>添加js脚本控制css文件的效果
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+<span style="color:#007020;font-weight:bold">var</span> toggle <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;dark-mode-toggle&#34;</span>);
+<span style="color:#007020;font-weight:bold">var</span> darkTheme <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;dark-mode-theme&#34;</span>);
+<span style="color:#007020;font-weight:bold">var</span> button <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;togglebutton&#34;</span>);
+button.addEventListener(<span style="color:#4070a0">&#34;click&#34;</span>, () =&gt; {
+   <span style="color:#007020;font-weight:bold">if</span> (toggle.getAttribute(<span style="color:#4070a0">&#34;xlink:href&#34;</span>) <span style="color:#666">===</span> <span style="color:#4070a0">&#34;#icon-yueliang1&#34;</span>) {
+      setTheme(<span style="color:#4070a0">&#34;dark&#34;</span>);
+   } <span style="color:#007020;font-weight:bold">else</span> <span style="color:#007020;font-weight:bold">if</span> (toggle.getAttribute(<span style="color:#4070a0">&#34;xlink:href&#34;</span>) <span style="color:#666">===</span> <span style="color:#4070a0">&#34;#icon-taiyang&#34;</span>) {
+      setTheme(<span style="color:#4070a0">&#34;light&#34;</span>);
+   }
+});
+
+<span style="color:#60a0b0;font-style:italic">// the default theme is light
+</span><span style="color:#60a0b0;font-style:italic">// 持久化存储，防止转到其他页面时，模式恢复为light
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> savedTheme <span style="color:#666">=</span> localStorage.getItem(<span style="color:#4070a0">&#34;dark-mode-storage&#34;</span>) <span style="color:#666">||</span> <span style="color:#4070a0">&#34;light&#34;</span>;
+setTheme(savedTheme);
+
+<span style="color:#007020;font-weight:bold">function</span> setTheme(mode) {
+   <span style="color:#60a0b0;font-style:italic">// 持久化存储，防止转到其他页面时，模式恢复为light
+</span><span style="color:#60a0b0;font-style:italic"></span>   localStorage.setItem(<span style="color:#4070a0">&#34;dark-mode-storage&#34;</span>, mode);
+   <span style="color:#007020;font-weight:bold">if</span> (mode <span style="color:#666">===</span> <span style="color:#4070a0">&#34;dark&#34;</span>) {
+      darkTheme.disabled <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span>;
+      <span style="color:#60a0b0;font-style:italic">// 设置属性值
+</span><span style="color:#60a0b0;font-style:italic"></span>      toggle.setAttribute(<span style="color:#4070a0">&#34;xlink:href&#34;</span>,<span style="color:#4070a0">&#34;#icon-taiyang&#34;</span>); 
+   } <span style="color:#007020;font-weight:bold">else</span> <span style="color:#007020;font-weight:bold">if</span> (mode <span style="color:#666">===</span> <span style="color:#4070a0">&#34;light&#34;</span>) {
+      darkTheme.disabled <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">false</span>;
+      toggle.setAttribute(<span style="color:#4070a0">&#34;xlink:href&#34;</span>,<span style="color:#4070a0">&#34;#icon-yueliang1&#34;</span>); 
+   }
+}
+&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+</code></pre></div><p>其中，元素的class、id、以及图标内容，需要结合自己的代码做相应的更改。</p>
 </li>
+</ol>
+<h3 id="杂项">杂项</h3>
+<ol>
+<li>使用tab键可能造成奇怪的渲染结局，应使用空格为宜<br />
+<strong>分割线上下最好留空行</strong></li>
 </ol>
 <div class="footnotes" role="doc-endnotes">
 <hr />
@@ -493,6 +598,7 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
 <script src="https://litmingc.github.io/js/iconfont.js"></script>
+<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
 <style>
 .icon {
   width: 1em;

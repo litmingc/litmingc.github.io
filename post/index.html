@@ -1,4 +1,4 @@
-
+<!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
@@ -63,7 +63,50 @@ if (!doNotTrack) {
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta  custom-logo ">
+      <div class="header-inner">
+<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
+
+<style>
+.darkbutton{
+    position:fixed;
+    top:30px;
+    right:50px;
+    width: 2.3em;
+    height: 2.3em;
+}
+</style>
+<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
+<div id="togglebutton">
+    <svg class="darkbutton" aria-hidden="true"><use id="dark-mode-toggle"  xlink:href="#icon-taiyang"></use></svg>
+</div>
+
+<script>
+var toggle = document.getElementById("dark-mode-toggle");
+var darkTheme = document.getElementById("dark-mode-theme");
+var button = document.getElementById("togglebutton");
+button.addEventListener("click", () => {
+    if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
+        setTheme("dark");
+    } else if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
+        setTheme("light");
+    }
+});
+
+
+var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
+setTheme(savedTheme);
+
+function setTheme(mode) {
+    localStorage.setItem("dark-mode-storage", mode);
+    if (mode === "dark") {
+        darkTheme.disabled = true;
+        toggle.setAttribute("xlink:href","#icon-taiyang"); 
+    } else if (mode === "light") {
+        darkTheme.disabled = false;
+        toggle.setAttribute("xlink:href","#icon-yueliang1"); 
+    }
+}
+</script><div class="site-meta  custom-logo ">
   <div class="custom-logo-site-title">
     <a href="https://litmingc.github.io/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
@@ -317,7 +360,7 @@ if (!doNotTrack) {
     <header class="post-header">
       <h1 class="post-title">
         <a class="post-title-link" href="https://litmingc.github.io/post/tips/hugo%e7%9b%b8%e5%85%b3/" itemprop="url">
-            <span itemprop="name">[Tips]Hugo相关</span>
+            <span itemprop="name">[Tips]Hugo主题不满意的各种修改</span>
         </a>
       </h1>
 
@@ -500,6 +543,7 @@ if (!doNotTrack) {
 </script><script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
 <script src="https://litmingc.github.io/js/iconfont.js"></script>
+<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
 <style>
 .icon {
   width: 1em;
