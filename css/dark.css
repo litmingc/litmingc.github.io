@@ -1,4 +1,4 @@
-html {
+/* html {
   background: #000 !important;
 }
 
@@ -13,4 +13,26 @@ em, img, svg, image, video, audio, embed, iframe, object, button, canvas, figure
   filter: invert(100%) !important;
   -moz-filter: invert(100%) !important;
   -webkit-filter: invert(100%) !important;
+} */
+
+html {
+  background-color: #171717 !important;
+}
+
+html {
+  filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(85%);
+  -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(85%);
+}
+
+body {
+  background-color: #FFF !important;
+}
+
+img,
+video,
+body * [style*="background-image"],
+embed[type="application/x-shockwave-flash"],
+object[type="application/x-shockwave-flash"] {
+  filter: hue-rotate(180deg) contrast(100%) invert(100%);
+  -webkit-filter: hue-rotate(180deg) contrast(100%) invert(100%);
 }

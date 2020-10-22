@@ -74,9 +74,15 @@ if (!doNotTrack) {
     width: 2.3em;
     height: 2.3em;
 }
+
+.div-float{
+    position:fixed;
+    top:30px;
+    right:50px;
+}
 </style>
 <script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
-<div id="togglebutton">
+<div id="togglebutton" class="div-float">
     <svg class="darkbutton" aria-hidden="true"><use id="dark-mode-toggle"  xlink:href="#icon-taiyang"></use></svg>
 </div>
 
@@ -106,7 +112,20 @@ function setTheme(mode) {
         toggle.setAttribute("xlink:href","#icon-yueliang1"); 
     }
 }
-</script><div class="site-meta  custom-logo ">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+  server="netease"
+  type="playlist"
+  id="738642988"
+  fixed=true
+  volume=0.3
+  theme='#7b9cce'>
+</meting-js><div class="site-meta  custom-logo ">
   <div class="custom-logo-site-title">
     <a href="https://litmingc.github.io/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
@@ -426,8 +445,8 @@ function setTheme(mode) {
 
     <div class="post-nav-prev post-nav-item">
     
-        <a href="https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/" rel="prev" title="[Tips]Hugo主题不满意的各种修改">
-        [Tips]Hugo主题不满意的各种修改 <i class="fa fa-chevron-right"></i>
+        <a href="https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/" rel="prev" title="[Tips]Hugo相关">
+        [Tips]Hugo相关 <i class="fa fa-chevron-right"></i>
         </a>
     
     </div>

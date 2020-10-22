@@ -542,7 +542,7 @@ sudo rsync -Pa /backup_20160511 /
     </entry>
     
      <entry>
-        <title>[Tips]Hugo主题不满意的各种修改</title>
+        <title>[Tips]Hugo相关</title>
         <url>https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/</url>
         <categories>
           <category>Hugo</category>
