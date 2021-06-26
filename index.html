@@ -65,54 +65,50 @@ if (!doNotTrack) {
 
     <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
       <div class="header-inner">
-<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
 
+<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
 <style>
 .darkbutton{
-    position:fixed;
-    top:30px;
-    right:50px;
-    width: 2.3em;
-    height: 2.3em;
+    width: 2em;
+    height: 2em;
 }
 
 .div-float{
     position:fixed;
     top:30px;
-    right:50px;
+    right:30px;
 }
 </style>
-<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
 <div id="togglebutton" class="div-float">
     <svg class="darkbutton" aria-hidden="true"><use id="dark-mode-toggle"  xlink:href="#icon-taiyang"></use></svg>
 </div>
-
 <script>
-var toggle = document.getElementById("dark-mode-toggle");
-var darkTheme = document.getElementById("dark-mode-theme");
-var button = document.getElementById("togglebutton");
-button.addEventListener("click", () => {
-    if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
-        setTheme("dark");
-    } else if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
-        setTheme("light");
+
+    var toggle = document.getElementById("dark-mode-toggle");
+    var darkTheme = document.getElementById("dark-mode-theme");
+    var button = document.getElementById("togglebutton");
+    button.addEventListener("click", () => {
+        if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
+            setTheme("dark");
+        } else if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
+            setTheme("light");
+        }
+    });
+    
+    
+    var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
+    setTheme(savedTheme);
+    
+    function setTheme(mode) {
+        localStorage.setItem("dark-mode-storage", mode);
+        if (mode === "light") {
+            darkTheme.disabled = true;
+            toggle.setAttribute("xlink:href","#icon-taiyang"); 
+        } else if (mode === "dark") {
+            darkTheme.disabled = false;
+            toggle.setAttribute("xlink:href","#icon-yueliang1"); 
+        }
     }
-});
-
-
-var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
-setTheme(savedTheme);
-
-function setTheme(mode) {
-    localStorage.setItem("dark-mode-storage", mode);
-    if (mode === "dark") {
-        darkTheme.disabled = true;
-        toggle.setAttribute("xlink:href","#icon-taiyang"); 
-    } else if (mode === "light") {
-        darkTheme.disabled = false;
-        toggle.setAttribute("xlink:href","#icon-yueliang1"); 
-    }
-}
 </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
@@ -207,8 +203,8 @@ function setTheme(mode) {
     <section id="posts" class="posts-expand"><article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/" itemprop="url">
-        [Tips]Hugo相关
+        <a class="post-title-link" href="https://litmingc.github.io/post/tips/rime-settings/" itemprop="url">
+        [Tips]Rime Settings
         </a>
       </h1>
       <div class="post-meta"><span class="post-time">
@@ -216,8 +212,8 @@ function setTheme(mode) {
     <i class="fa fa-calendar-o"></i>
 </span>
 <span class="post-meta-item-text">时间：</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-02-27">
-    2020-02-27
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2021-06-26">
+    2021-06-26
 </time>
 </span>
 
@@ -229,8 +225,8 @@ function setTheme(mode) {
   <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-      <a href="https://litmingc.github.io/categories/hugo" itemprop="url" rel="index">
-        <span itemprop="name">Hugo</span>
+      <a href="https://litmingc.github.io/categories/tips" itemprop="url" rel="index">
+        <span itemprop="name">Tips</span>
       </a>
       &nbsp; 
     </span>
@@ -244,16 +240,16 @@ function setTheme(mode) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">1595 字 ~4分钟</span>
+<span class="leancloud-visitors-count">60700 字 ~122分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    环境： hugo_extended_0.55.6_Windows-64bit hugo主题：Next 表达数学公式 方案一： 先上参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 方法一：修改上述参考中的s
+    rime输入法的设置的备忘录。 文档备忘： 致第一次安装RIME的你 全局配置： 在用户目录修改文件default.custom.yaml，添加配置
     </div>
     
     <div class="post-more-link text-center">
-    <a target="_blank" class="btn" href="https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/" rel="contents">
+    <a target="_blank" class="btn" href="https://litmingc.github.io/post/tips/rime-settings/" rel="contents">
       阅读全文 &raquo;
     </a>
     </div>
@@ -262,8 +258,8 @@ function setTheme(mode) {
   </article><article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" itemprop="url">
-        [Tips]Git使用笔记
+        <a class="post-title-link" href="https://litmingc.github.io/post/cc&#43;&#43;/base-autotype/" itemprop="url">
+        [C&amp;C&#43;&#43;]Auto关键字
         </a>
       </h1>
       <div class="post-meta"><span class="post-time">
@@ -271,45 +267,8 @@ function setTheme(mode) {
     <i class="fa fa-calendar-o"></i>
 </span>
 <span class="post-meta-item-text">时间：</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-03-23">
-    2020-03-23
-</time>
-</span>
-       <span>
-&nbsp; | &nbsp;
-<span class="post-meta-item-icon">
-    <i class="fa fa-eye"></i>
-</span>
-<span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">499 字 ~1分钟</span>
-</span>
-      </div>
-    </header>
-    <div class="post-body" itemprop="articleBody">
-    子模块 删除子模块 rm -rf 子模块目录 删除子模块目录及源码 vi .gitmodules 删除项目目录下.gitmodules文件中子模块相关条目 vi .git/config 删除配置项中子模块相关条目
-    </div>
-    
-    <div class="post-more-link text-center">
-    <a target="_blank" class="btn" href="https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" rel="contents">
-      阅读全文 &raquo;
-    </a>
-    </div>
-    
-    <footer class="post-footer"><div class="post-eof"></div></footer>
-  </article><article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://litmingc.github.io/post/tips/raspberrypi%E7%9B%B8%E5%85%B3/" itemprop="url">
-        [Tips]Raspberrypi相关
-        </a>
-      </h1>
-      <div class="post-meta"><span class="post-time">
-<span class="post-meta-item-icon">
-    <i class="fa fa-calendar-o"></i>
-</span>
-<span class="post-meta-item-text">时间：</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-03-04">
-    2020-03-04
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2021-06-08">
+    2021-06-08
 </time>
 </span>
 
@@ -321,15 +280,8 @@ function setTheme(mode) {
   <span class="post-meta-item-text">分类：</span>
   
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-      <a href="https://litmingc.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
-        <span itemprop="name">学习笔记</span>
-      </a>
-      &nbsp; 
-    </span>
-  
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-      <a href="https://litmingc.github.io/categories/linux" itemprop="url" rel="index">
-        <span itemprop="name">Linux</span>
+      <a href="https://litmingc.github.io/categories/cc&#43;&#43;" itemprop="url" rel="index">
+        <span itemprop="name">C&amp;C&#43;&#43;</span>
       </a>
       &nbsp; 
     </span>
@@ -343,16 +295,16 @@ function setTheme(mode) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">757 字 ~2分钟</span>
+<span class="leancloud-visitors-count">370 字 ~1分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    常用初始化配置 新烧好系统之后，我常做的配置。列出来做个备忘。 修改主机名 sudo vim /etc/hostname 修改密码 修改hosts 主要是添加127.0.0.1对前面修改的主
+    auto关键字主要功能为类型推导。 基本用法 int a=10; auto x=a; // x的类型为int auto *x=&amp;a; // x的类型为int* auto x=&amp;a; // x的类型为int* auto&amp; x=a; // x的类型为int&
     </div>
     
     <div class="post-more-link text-center">
-    <a target="_blank" class="btn" href="https://litmingc.github.io/post/tips/raspberrypi%E7%9B%B8%E5%85%B3/" rel="contents">
+    <a target="_blank" class="btn" href="https://litmingc.github.io/post/cc&#43;&#43;/base-autotype/" rel="contents">
       阅读全文 &raquo;
     </a>
     </div>
@@ -415,6 +367,68 @@ function setTheme(mode) {
     
     <div class="post-more-link text-center">
     <a target="_blank" class="btn" href="https://litmingc.github.io/post/python/%E7%AC%94%E8%AE%B0pyqt5-notebook/" rel="contents">
+      阅读全文 &raquo;
+    </a>
+    </div>
+    
+    <footer class="post-footer"><div class="post-eof"></div></footer>
+  </article><article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://litmingc.github.io/post/translation/whoosh/" itemprop="url">
+        [Translation]Whoosh 2.7.4 Documentation
+        </a>
+      </h1>
+      <div class="post-meta"><span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-04-04">
+    2020-04-04
+</time>
+</span>
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/translation" itemprop="url" rel="index">
+        <span itemprop="name">Translation</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/python" itemprop="url" rel="index">
+        <span itemprop="name">Python</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">10139 字 ~21分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    英语小白，【原文地址】。store不知道怎么翻译合适，存储？ Quick start A quick introduction The Index and Schema objects The IndexWriter object The Searcher object Designing a schema About schemas and fields Built-in field types Creating a Schema Modifying the schema after indexing Dynamic fields Advanced schema setup Field
+    </div>
+    
+    <div class="post-more-link text-center">
+    <a target="_blank" class="btn" href="https://litmingc.github.io/post/translation/whoosh/" rel="contents">
       阅读全文 &raquo;
     </a>
     </div>
@@ -508,14 +522,14 @@ function setTheme(mode) {
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://litmingc.github.io/post/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
     <div class="site-state-item site-state-categories">    
         <a href="https://litmingc.github.io/categories/">      
          
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         
         <span class="site-state-item-name">分类</span>
         
@@ -564,7 +578,7 @@ function setTheme(mode) {
     <footer id="footer" class="footer">
       <div class="footer-inner"><div class="copyright" >
   <span itemprop="copyrightYear">  &copy; 
-  2019 - 2020</span>
+  2019 - 2021</span>
   <span class="with-love"><i class="fa fa-heart"></i></span>
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
@@ -608,7 +622,6 @@ function setTheme(mode) {
   $('.archive-year').velocity('transition.slideLeftIn');
 </script><script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
-<script src="https://litmingc.github.io/js/iconfont.js"></script>
 <script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
 <style>
 .icon {
@@ -659,5 +672,16 @@ for(i = 0; i < all.length; i += 1){
     speed: 100,
     startDelay: 1000,
   }).go();
-</script></body>
+</script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.4/mermaid.min.js"></script>
+<script>
+    
+    Array.from(document.getElementsByClassName('language-mermaid')).forEach(el => {
+        el.parentElement.outerHTML = `<div class="mermaid">${el.innerText}</div>`
+    })
+</script>
+
+</body>
 </html>

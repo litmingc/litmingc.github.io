@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>文档检索 - LitMing</title><meta name="keywords" content="notebooks,linux,python,go,书摘文录,学习笔记">
-    <meta property="og:title" content="文档检索">
+    <title>[C&amp;C&#43;&#43;]Auto关键字 - LitMing</title><meta name="keywords" content="notebooks,linux,python,go,书摘文录,学习笔记">
+    <meta property="og:title" content="[C&amp;C&#43;&#43;]Auto关键字">
     <meta property="og:site_name" content="LitMing">
     <meta property="og:image" content="/img/izip.png"> 
-    <meta name="title" content="文档检索 - LitMing" />
-    <meta name="description" content="书摘文录、学习笔记"> 
+    <meta name="title" content="[C&amp;C&#43;&#43;]Auto关键字 - LitMing" />
+    <meta name="description" content="base-autotype" />
+     
     <link rel="shortcut icon" href="https://litmingc.github.io/img/izip30.png" />
     <link rel="apple-touch-icon" href="" />
     <link rel="apple-touch-icon-precomposed" href="" />
@@ -59,7 +60,7 @@ if (!doNotTrack) {
     -moz-osx-font-smoothing: grayscale;
 }
 </style></head><body itemscope itemtype="https://schema.org/WebPage" lang="zh-Hans">
-<div class="container one-collumn sidebar-position-left   ">
+<div class="container one-collumn sidebar-position-left page-home  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
@@ -198,42 +199,190 @@ if (!doNotTrack) {
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
-<section id="posts" class="posts-collapse">
-<div class="collection-title">
-    <h2 >文档检索
-    <small>标签</small>
-    </h2>
-</div>
-
-<div class="collection-title">
-  <h2 class="archive-year motion-element" id="archive-year-2020">2020</h2>
-</div>
-
-  <article class="post post-type-normal }}" itemscope itemtype="https://schema.org/Article">
+          <div id="content" class="content"><section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
     <header class="post-header">
-      <h1 class="post-title">
-        <a class="post-title-link" href="https://litmingc.github.io/post/translation/whoosh/" itemprop="url">
-            <span itemprop="name">[Translation]Whoosh 2.7.4 Documentation</span>
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://litmingc.github.io/post/cc&#43;&#43;/base-autotype/" itemprop="url">
+        [C&amp;C&#43;&#43;]Auto关键字
         </a>
       </h1>
-
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-04"
-              content="04-04" >
-          04-04
-        </time>
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2021-06-08">
+    2021-06-08
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/cc&#43;&#43;" itemprop="url" rel="index">
+        <span itemprop="name">C&amp;C&#43;&#43;</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">370 字 ~1分钟</span>
+</span>
       </div>
     </header>
-  </article>
+    <div class="post-body" itemprop="articleBody">
+    <p><code>auto</code>关键字主要功能为类型推导。</p>
+<ol>
+<li>基本用法
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#902000">int</span> a<span style="color:#666">=</span><span style="color:#40a070">10</span>;
+<span style="color:#007020;font-weight:bold">auto</span> x<span style="color:#666">=</span>a;    <span style="color:#60a0b0;font-style:italic">// x的类型为int
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">auto</span> <span style="color:#666">*</span>x<span style="color:#666">=&amp;</span>a;  <span style="color:#60a0b0;font-style:italic">// x的类型为int*
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">auto</span> x<span style="color:#666">=&amp;</span>a;   <span style="color:#60a0b0;font-style:italic">// x的类型为int*
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">auto</span><span style="color:#666">&amp;</span> x<span style="color:#666">=</span>a;   <span style="color:#60a0b0;font-style:italic">// x的类型为int&amp;
+</span></code></pre></div></li>
+<li>去除or保持<code>const</code>语义（<code>volatile</code>相同）
+<ul>
+<li>去除<code>const</code>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">int</span> a<span style="color:#666">=</span><span style="color:#40a070">10</span>;
+<span style="color:#007020;font-weight:bold">auto</span> x<span style="color:#666">=</span>a;
+<span style="color:#60a0b0;font-style:italic">// x的类型为int，可以修改x的值
+</span></code></pre></div><p>此时，x是一个新的int变量。</p>
+</li>
+<li>保持<code>const</code>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">int</span> a<span style="color:#666">=</span><span style="color:#40a070">10</span>;
+<span style="color:#007020;font-weight:bold">auto</span><span style="color:#666">&amp;</span> x<span style="color:#666">=</span>a;
+<span style="color:#60a0b0;font-style:italic">// x的类型是const int&amp;，保持const，不可以修改x
+</span></code></pre></div><p>此时，x是a的一个引用。<code>&amp;x</code>与<code>&amp;a</code>的值一样。</p>
+</li>
+</ul>
+</li>
+<li>对数组做推断
+<ul>
+<li>
+<p>指针类型</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#902000">int</span> a[<span style="color:#40a070">3</span>] <span style="color:#666">=</span> {<span style="color:#40a070">1</span>,<span style="color:#40a070">2</span>,<span style="color:#40a070">3</span>};
+<span style="color:#007020;font-weight:bold">auto</span> x<span style="color:#666">=</span>a;
+cout <span style="color:#666">&lt;&lt;</span> <span style="color:#007020;font-weight:bold">typeid</span>(x).name();
+<span style="color:#60a0b0;font-style:italic">// 输出类型： int *
+</span></code></pre></div><p>x为指针类型，指向a的首地址。</p>
+</li>
+<li>
+<p>数组类型</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#902000">int</span> a[<span style="color:#40a070">3</span>] <span style="color:#666">=</span> {<span style="color:#40a070">1</span>,<span style="color:#40a070">2</span>,<span style="color:#40a070">3</span>};
+<span style="color:#007020;font-weight:bold">auto</span><span style="color:#666">&amp;</span> x<span style="color:#666">=</span>a;
+cout <span style="color:#666">&lt;&lt;</span> <span style="color:#007020;font-weight:bold">typeid</span>(x).name();
+<span style="color:#60a0b0;font-style:italic">// 输出类型：int [3]
+</span></code></pre></div><p>x为数组类型，可以用<code>sizeof()</code>计算数组大小。</p>
+<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><details class="admonition tip">
+            <summary class="admonition-title">
+                <i class="icon fas fa-lightbulb"></i>不使用auto声明数组的引用<i class="details fas fa-angle-down"></i>
+            </summary>
+            <div class="admonition-content"><pre><code>    int a[3] = {1,2,3};
+    int (&amp;x)[3] = a;
+</code></pre></div>
+        </details>
+</li>
+</ul>
+</li>
+<li>连续的推导<br />
+auto的推导结果应当是前后一致的。
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#902000">int</span> a<span style="color:#666">=</span><span style="color:#40a070">10</span>;
+<span style="color:#007020;font-weight:bold">auto</span> <span style="color:#666">*</span>x<span style="color:#666">=&amp;</span>a, y<span style="color:#666">=</span><span style="color:#40a070">20</span>;  <span style="color:#60a0b0;font-style:italic">// 正确
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">auto</span> <span style="color:#666">*</span>x<span style="color:#666">=&amp;</span>a, y<span style="color:#666">=</span><span style="color:#40a070">3.0</span>; <span style="color:#60a0b0;font-style:italic">// 编译失败
+</span></code></pre></div></li>
+</ol>
+
+    </div>
+    <footer class="post-footer">
+     
 
 
- </section>
 
-  <nav class="pagination"><span class="page-number current">1</span></nav>
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://litmingc.github.io/post/tips/rime-settings/" rel="next" title="[Tips]Rime Settings">
+        <i class="fa fa-chevron-left"></i> [Tips]Rime Settings
+        </a>
+    
+    </div>
 
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://litmingc.github.io/post/unity/learning-records/" rel="prev" title="[Unity]Learning Records (creat with code)">
+        [Unity]Learning Records (creat with code) <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
 </div>
+      
+     
+     
+
+<script src='https://litmingc.github.io/js/Valine-1.3.10.min.js'></script>
+<div id="vcomments"></div>
+<script>
+  new Valine({
+        el: '#vcomments',
+        appId: "2guSOLy9NcQHOtR6lwkFIrmp-MdYXbMMI",
+        appKey: "xhgDfd5tc8sl0ODNj7ER8pND",
+        notify:  false ,
+        verify:  false ,
+        avatar: "mp",
+        visitor:  true ,
+        placeholder: "留下邮箱会收到回复提醒哦" 
+  })
+</script>
+<style>
+.icon-bigger {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger2 {
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger:hover {
+  transform:scale(1.6);
+}
+.icon-bigger2:hover {
+  transform:scale(1.6);
+}
+</style>
+<span id="/post/cc&#43;&#43;/base-autotype/" class="leancloud_visitors" data-flag-title="Your Article Title">
+    <svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-yibenzhengjingbiaoqing"></use></svg>
+    <em class="post-meta-item-text">阅读量</em><br>
+    <svg class="icon-bigger2" aria-hidden="true"><use xlink:href="#icon-biaoqing-dai"></use></svg>
+    <em class="post-meta-item-text">居然有~~<i class="leancloud-visitors-count"></i></em>
+	<svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-xiangwenbiaoqing"></use></svg>
+</span>
+
+
+    </footer>
+  </article>
+</section></div>
         </div><div class="sidebar-toggle">
   <div class="sidebar-toggle-line-wrap">
     <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
@@ -280,13 +429,6 @@ if (!doNotTrack) {
     </div>
 </nav>
       
-<div class="feed-link motion-element">
-<a href="https://litmingc.github.io/tags/%E6%96%87%E6%A1%A3%E6%A3%80%E7%B4%A2/index.xml" rel="alternate" type="application/rss+xml" target="_blank">
-    <i class="fa fa-rss"></i>
-    RSS 订阅
-</a>
-</div>
-
       
 <div class="links-of-author motion-element">
     
@@ -350,11 +492,12 @@ if (!doNotTrack) {
 <script type="text/javascript" src="https://litmingc.github.io/js/affix.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/schemes/pisces.js"></script>
 
-<script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/post-details.js"></script>
 
-<script type="text/javascript" id="motion.page.archive">
-  $('.archive-year').velocity('transition.slideLeftIn');
-</script><script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/toc.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
 <script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
 <style>

@@ -64,54 +64,50 @@ if (!doNotTrack) {
 
     <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
       <div class="header-inner">
-<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
 
+<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
 <style>
 .darkbutton{
-    position:fixed;
-    top:30px;
-    right:50px;
-    width: 2.3em;
-    height: 2.3em;
+    width: 2em;
+    height: 2em;
 }
 
 .div-float{
     position:fixed;
     top:30px;
-    right:50px;
+    right:30px;
 }
 </style>
-<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
 <div id="togglebutton" class="div-float">
     <svg class="darkbutton" aria-hidden="true"><use id="dark-mode-toggle"  xlink:href="#icon-taiyang"></use></svg>
 </div>
-
 <script>
-var toggle = document.getElementById("dark-mode-toggle");
-var darkTheme = document.getElementById("dark-mode-theme");
-var button = document.getElementById("togglebutton");
-button.addEventListener("click", () => {
-    if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
-        setTheme("dark");
-    } else if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
-        setTheme("light");
+
+    var toggle = document.getElementById("dark-mode-toggle");
+    var darkTheme = document.getElementById("dark-mode-theme");
+    var button = document.getElementById("togglebutton");
+    button.addEventListener("click", () => {
+        if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
+            setTheme("dark");
+        } else if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
+            setTheme("light");
+        }
+    });
+    
+    
+    var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
+    setTheme(savedTheme);
+    
+    function setTheme(mode) {
+        localStorage.setItem("dark-mode-storage", mode);
+        if (mode === "light") {
+            darkTheme.disabled = true;
+            toggle.setAttribute("xlink:href","#icon-taiyang"); 
+        } else if (mode === "dark") {
+            darkTheme.disabled = false;
+            toggle.setAttribute("xlink:href","#icon-yueliang1"); 
+        }
     }
-});
-
-
-var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
-setTheme(savedTheme);
-
-function setTheme(mode) {
-    localStorage.setItem("dark-mode-storage", mode);
-    if (mode === "dark") {
-        darkTheme.disabled = true;
-        toggle.setAttribute("xlink:href","#icon-taiyang"); 
-    } else if (mode === "light") {
-        darkTheme.disabled = false;
-        toggle.setAttribute("xlink:href","#icon-yueliang1"); 
-    }
-}
 </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
@@ -245,7 +241,7 @@ function setTheme(mode) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">1595 字 ~4分钟</span>
+<span class="leancloud-visitors-count">1834 字 ~4分钟</span>
 </span>
       </div>
     </header>
@@ -400,7 +396,30 @@ setTheme(savedTheme);
 </code></pre></div><p>其中，元素的class、id、以及图标内容，需要结合自己的代码做相应的更改。</p>
 </li>
 </ol>
-<h3 id="杂项">杂项</h3>
+<h3 id="使用mermaid绘制图">使用mermaid绘制图</h3>
+<p><a href="https://note.qidong.name/2020/07/mermaid/">参考：https://note.qidong.name/2020/07/mermaid/</a></p>
+<p>在合适的位置添加如下js代码，将代码块替换为<code>&lt;div class=&quot;mermaid&quot;&gt;&lt;/div&gt;</code>，同时引入mermaid的js：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#666">&lt;</span>script src<span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.4/mermaid.min.js&#34;</span><span style="color:#666">&gt;&lt;</span><span style="">/script&gt;</span>
+<span style="color:#666">&lt;</span>script<span style="color:#666">&gt;</span>
+    <span style="color:#60a0b0;font-style:italic">// Replace mermaid pre.code to div
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020">Array</span>.from(<span style="color:#007020">document</span>.getElementsByClassName(<span style="color:#4070a0">&#39;language-mermaid&#39;</span>)).forEach(el =&gt; {
+        el.parentElement.outerHTML <span style="color:#666">=</span> <span style="color:#4070a0">`&lt;div class=&#34;mermaid&#34;&gt;</span><span style="color:#70a0d0;font-style:italic">${</span>el.innerText<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&lt;/div&gt;`</span>
+    })
+<span style="color:#666">&lt;</span><span style="">/script&gt;</span>
+</code></pre></div><p>使用代码块绘图，vscode的插件<code>Markdown Preview Enhanced</code>也支持预览：</p>
+<pre><code>` ` ` mermaid
+graph TD  
+A[Hard] --&gt;|Text| B(Round)  
+B --&gt; C{Decision}  
+C --&gt;|One| D[Result 1]  
+C --&gt;|Two| E[Result 2]  
+` ` `
+</code></pre><pre><code class="language-mermaid" data-lang="mermaid">graph TD
+A[Hard] --&gt;|Text| B(Round)
+B --&gt; C{Decision}
+C --&gt;|One| D[Result 1]
+C --&gt;|Two| E[Result 2]
+</code></pre><h3 id="杂项">杂项</h3>
 <ol>
 <li>使用tab键可能造成奇怪的渲染结局，应使用空格为宜<br />
 <strong>分割线上下最好留空行</strong></li>
@@ -532,14 +551,14 @@ setTheme(savedTheme);
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://litmingc.github.io/post/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
     <div class="site-state-item site-state-categories">    
         <a href="https://litmingc.github.io/categories/">      
          
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         
         <span class="site-state-item-name">分类</span>
         
@@ -582,6 +601,7 @@ setTheme(savedTheme);
         <li><a href="#表达数学公式">表达数学公式</a></li>
         <li><a href="#修改代码块的样式">修改代码块的样式</a></li>
         <li><a href="#增加暗黑模式">增加暗黑模式</a></li>
+        <li><a href="#使用mermaid绘制图">使用mermaid绘制图</a></li>
         <li><a href="#杂项">杂项</a></li>
       </ul>
     </li>
@@ -598,7 +618,7 @@ setTheme(savedTheme);
     <footer id="footer" class="footer">
       <div class="footer-inner"><div class="copyright" >
   <span itemprop="copyrightYear">  &copy; 
-  2019 - 2020</span>
+  2019 - 2021</span>
   <span class="with-love"><i class="fa fa-heart"></i></span>
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
@@ -643,7 +663,6 @@ setTheme(savedTheme);
 <script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
-<script src="https://litmingc.github.io/js/iconfont.js"></script>
 <script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
 <style>
 .icon {
@@ -694,5 +713,16 @@ for(i = 0; i < all.length; i += 1){
     speed: 100,
     startDelay: 1000,
   }).go();
-</script></body>
+</script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.4/mermaid.min.js"></script>
+<script>
+    
+    Array.from(document.getElementsByClassName('language-mermaid')).forEach(el => {
+        el.parentElement.outerHTML = `<div class="mermaid">${el.innerText}</div>`
+    })
+</script>
+
+</body>
 </html>

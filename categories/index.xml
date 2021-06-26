@@ -6,10 +6,28 @@
     <description>Recent content in Categories on LitMing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 23 Jun 2020 14:30:22 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Jun 2021 01:24:42 +0800</lastBuildDate>
     
 	<atom:link href="https://litmingc.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tips</title>
+      <link>https://litmingc.github.io/categories/tips/</link>
+      <pubDate>Sat, 26 Jun 2021 01:24:42 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/categories/tips/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&amp;C&#43;&#43;</title>
+      <link>https://litmingc.github.io/categories/cc&#43;&#43;/</link>
+      <pubDate>Tue, 08 Jun 2021 13:29:10 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/categories/cc&#43;&#43;/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Unity</title>

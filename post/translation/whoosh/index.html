@@ -65,54 +65,50 @@ if (!doNotTrack) {
 
     <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
       <div class="header-inner">
-<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
 
+<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
 <style>
 .darkbutton{
-    position:fixed;
-    top:30px;
-    right:50px;
-    width: 2.3em;
-    height: 2.3em;
+    width: 2em;
+    height: 2em;
 }
 
 .div-float{
     position:fixed;
     top:30px;
-    right:50px;
+    right:30px;
 }
 </style>
-<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
 <div id="togglebutton" class="div-float">
     <svg class="darkbutton" aria-hidden="true"><use id="dark-mode-toggle"  xlink:href="#icon-taiyang"></use></svg>
 </div>
-
 <script>
-var toggle = document.getElementById("dark-mode-toggle");
-var darkTheme = document.getElementById("dark-mode-theme");
-var button = document.getElementById("togglebutton");
-button.addEventListener("click", () => {
-    if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
-        setTheme("dark");
-    } else if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
-        setTheme("light");
+
+    var toggle = document.getElementById("dark-mode-toggle");
+    var darkTheme = document.getElementById("dark-mode-theme");
+    var button = document.getElementById("togglebutton");
+    button.addEventListener("click", () => {
+        if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
+            setTheme("dark");
+        } else if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
+            setTheme("light");
+        }
+    });
+    
+    
+    var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
+    setTheme(savedTheme);
+    
+    function setTheme(mode) {
+        localStorage.setItem("dark-mode-storage", mode);
+        if (mode === "light") {
+            darkTheme.disabled = true;
+            toggle.setAttribute("xlink:href","#icon-taiyang"); 
+        } else if (mode === "dark") {
+            darkTheme.disabled = false;
+            toggle.setAttribute("xlink:href","#icon-yueliang1"); 
+        }
     }
-});
-
-
-var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
-setTheme(savedTheme);
-
-function setTheme(mode) {
-    localStorage.setItem("dark-mode-storage", mode);
-    if (mode === "dark") {
-        darkTheme.disabled = true;
-        toggle.setAttribute("xlink:href","#icon-taiyang"); 
-    } else if (mode === "light") {
-        darkTheme.disabled = false;
-        toggle.setAttribute("xlink:href","#icon-yueliang1"); 
-    }
-}
 </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
@@ -403,12 +399,12 @@ writer<span style="color:#666">.</span>commit()
     searcher<span style="color:#666">.</span>close()
 </code></pre></div><p><code>Searcher</code>对象的<code>search()</code>方法需要一个查询(<code>Query</code>)对象。你可以直接构造<code>query</code>对象，也可以使用<code>query</code>分析器分析<code>query</code>字符串。</p>
 <p>比如，下面的查询对象将会匹配在“content”字段中同时包含“apple”和“bear”的文档：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Construct query objects directly</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Construct query objects directly</span>
 
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.query</span> <span style="color:#007020;font-weight:bold">import</span> <span style="color:#666">*</span>
 myquery <span style="color:#666">=</span> And([Term(<span style="color:#4070a0">&#34;content&#34;</span>, <span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;apple&#34;</span>), Term(<span style="color:#4070a0">&#34;content&#34;</span>, <span style="color:#4070a0">&#34;bear&#34;</span>)])
 </code></pre></div><p>此外，你也可以使用<code>qparser</code>模块中默认的查询分析器去分析查询字符串。<code>QueryParser</code>构造器的第一个参数是默认的搜索字段，它通常传入“文本主体”所在的字段。第二个可选参数是一个<code>schema</code>，用来让分析器理解如何分析字段：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Parse a query string</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Parse a query string</span>
 
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.qparser</span> <span style="color:#007020;font-weight:bold">import</span> QueryParser
 parser <span style="color:#666">=</span> QueryParser(<span style="color:#4070a0">&#34;content&#34;</span>, ix<span style="color:#666">.</span>schema)
@@ -416,7 +412,7 @@ myquery <span style="color:#666">=</span> parser<span style="color:#666">.</span
 </code></pre></div><p>只要你有了<code>Searcher</code>和<code>query</code>对象，你就可以使用<code>Searcher</code>的<code>search()</code>方法来执行查询，获得<code>Results</code>对象：</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; <span style="color:#bb60d5">results</span> <span style="color:#666">=</span> searcher.search<span style="color:#666">(</span>myquery<span style="color:#666">)</span>
 &gt;&gt;&gt; print<span style="color:#666">(</span>len<span style="color:#666">(</span>results<span style="color:#666">))</span>
-<span style="color:#40a070">1</span>
+1
 &gt;&gt;&gt; print<span style="color:#666">(</span>results<span style="color:#666">[</span>0<span style="color:#666">])</span>
 <span style="color:#666">{</span><span style="color:#4070a0">&#34;title&#34;</span>: <span style="color:#4070a0">&#34;Second try&#34;</span>, <span style="color:#4070a0">&#34;path&#34;</span>: <span style="color:#4070a0">&#34;/b&#34;</span>, <span style="color:#4070a0">&#34;icon&#34;</span>: <span style="color:#4070a0">&#34;/icons/sheep.png&#34;</span><span style="color:#666">}</span>
 </code></pre></div><p>默认的<code>QueryParser</code>实现查询语言的方式和Lucene中的非常相似。它允许使用<code>AND</code>或者<code>OR</code>联系语句，使用<code>NOT</code>排除语句，把语句组合成带括号的子句，进行范围、前缀以及通配符查询，并指定不同字段去搜索。默认情况下，它使用<code>AND</code>组合查询子句（所以，默认情况下，你所指定的全部搜索词必须全在文档中，文档才能被匹配）：</p>
@@ -510,15 +506,15 @@ writer<span style="color:#666">.</span>commit(optimize<span style="color:#666">=
 </code></pre></div><p>因为数据是和字段名一起存储在磁盘上的，所以<em>不要</em>在移除字段且不设置<code>optimize</code>的情况下，添加同名的字段：</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 writer<span style="color:#666">.</span>delete_field(<span style="color:#4070a0">&#34;path&#34;</span>)
-<span style="color:#60a0b0;font-style:italic"># Don&#39;t do this!!!</span>
+<span style="color:#60a0b0;font-style:italic"># Don&#39;t do this!!!</span>
 writer<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;path&#34;</span>, fields<span style="color:#666">.</span>KEYWORD)
 </code></pre></div><p>（未来，whoosh也许会自动避免这个错误。）</p>
 <h4 id="dynamic-fields">Dynamic fields</h4>
 <p>动态字段就是把类型与一组字段联系起来，这些字段能够被给定的“通配符”匹配（通配符（glob）指一种命名模板，包含<code>*</code>、<code>？</code>以及<code>[abc]</code>通配符）。</p>
 <p>你可以使用带<code>glob</code>关键字的<code>add()</code>方法添加动态字段（设置<code>glob=True</code>：</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">schema <span style="color:#666">=</span> fields<span style="color:#666">.</span>Schema(<span style="color:#666">...</span>)
-<span style="color:#60a0b0;font-style:italic"># Any name ending in &#34;_d&#34; will be treated as a stored</span>
-<span style="color:#60a0b0;font-style:italic"># DATETIME field</span>
+<span style="color:#60a0b0;font-style:italic"># Any name ending in &#34;_d&#34; will be treated as a stored</span>
+<span style="color:#60a0b0;font-style:italic"># DATETIME field</span>
 schema<span style="color:#666">.</span>add(<span style="color:#4070a0">&#34;*_d&#34;</span>, fields<span style="color:#666">.</span>DATETIME(stored<span style="color:#666">=</span>True), glob<span style="color:#666">=</span>True)
 </code></pre></div><p>和添加普通的字段一样，你可以使用<code>IndexWriter.add_field()</code>添加动态字段。但是，需要设置<code>glob=True</code>：</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
@@ -537,7 +533,7 @@ ix <span style="color:#666">=</span> index<span style="color:#666">.</span>creat
 w <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 w<span style="color:#666">.</span>add_document(path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>, test_id<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;alfa&#34;</span>)
 w<span style="color:#666">.</span>add_document(path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/b&#34;</span>, class_id<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;MyClass&#34;</span>)
-<span style="color:#60a0b0;font-style:italic"># ...</span>
+<span style="color:#60a0b0;font-style:italic"># ...</span>
 w<span style="color:#666">.</span>commit()
 
 qp <span style="color:#666">=</span> qparser<span style="color:#666">.</span>QueryParser(<span style="color:#4070a0">&#34;path&#34;</span>, schema<span style="color:#666">=</span>schema)
@@ -653,18 +649,18 @@ ix <span style="color:#666">=</span> index<span style="color:#666">.</span>open_
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.filedb.filestore</span> <span style="color:#007020;font-weight:bold">import</span> FileStorage
 storage <span style="color:#666">=</span> FileStorage(<span style="color:#4070a0">&#34;indexdir&#34;</span>)
 
-<span style="color:#60a0b0;font-style:italic"># Create an index</span>
+<span style="color:#60a0b0;font-style:italic"># Create an index</span>
 ix <span style="color:#666">=</span> storage<span style="color:#666">.</span>create_index(schema)
 
-<span style="color:#60a0b0;font-style:italic"># Open an existing index</span>
+<span style="color:#60a0b0;font-style:italic"># Open an existing index</span>
 storage<span style="color:#666">.</span>open_index()
 </code></pre></div><p>你创建index所用的schame是和index深度捆绑且一起存储的。</p>
 <p>你可以在同一个文件中创建多个index，但是需要使用<code>indexname</code>关键字指定：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Using the convenience functions</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Using the convenience functions</span>
 ix <span style="color:#666">=</span> index<span style="color:#666">.</span>create_in(<span style="color:#4070a0">&#34;indexdir&#34;</span>, schema<span style="color:#666">=</span>schema, indexname<span style="color:#666">=</span><span style="color:#4070a0">&#34;usages&#34;</span>)
 ix <span style="color:#666">=</span> index<span style="color:#666">.</span>open_dir(<span style="color:#4070a0">&#34;indexdir&#34;</span>, indexname<span style="color:#666">=</span><span style="color:#4070a0">&#34;usages&#34;</span>)
 
-<span style="color:#60a0b0;font-style:italic"># Using the Storage object</span>
+<span style="color:#60a0b0;font-style:italic"># Using the Storage object</span>
 ix <span style="color:#666">=</span> storage<span style="color:#666">.</span>create_index(schema, indexname<span style="color:#666">=</span><span style="color:#4070a0">&#34;usages&#34;</span>)
 ix <span style="color:#666">=</span> storage<span style="color:#666">.</span>open_index(indexname<span style="color:#666">=</span><span style="color:#4070a0">&#34;usages&#34;</span>)
 </code></pre></div><h4 id="clearing-the-index">Clearing the index</h4>
@@ -734,9 +730,9 @@ writer<span style="color:#666">.</span>add_document(path<span style="color:#666"
 <li><code>delete_by_query(query)</code><br />
 删除所有与query匹配的文档</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Delete document by its path -- this field must be indexed</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Delete document by its path -- this field must be indexed</span>
 ix<span style="color:#666">.</span>delete_by_term(<span style="color:#4070a0">&#39;path&#39;</span>, <span style="color:#4070a0">u</span><span style="color:#4070a0">&#39;/a/b/c&#39;</span>)
-<span style="color:#60a0b0;font-style:italic"># Save the deletion to disk</span>
+<span style="color:#60a0b0;font-style:italic"># Save the deletion to disk</span>
 ix<span style="color:#666">.</span>commit()
 </code></pre></div><p>在<code>filedb</code>后台，“删除”文档仅仅是把文档的编号添加到已删文档列表中，这个列表仍然存储在index中。当检索index时，whoosh知道检索结果中不需要返回已经删除的文档。然而，文档的内容依旧储存在index中（，只是关于文档的一些统计信息不再更新），直到合并包含已删文档的段。（因为，立即从index中删除文档会涉及到重写磁盘上的整个index，这会非常低效。）</p>
 <h4 id="updating-documents">Updating documents</h4>
@@ -753,8 +749,8 @@ writer<span style="color:#666">.</span>add_document(path<span style="color:#666"
 writer<span style="color:#666">.</span>commit()
 
 writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
-<span style="color:#60a0b0;font-style:italic"># Because &#34;path&#34; is marked as unique, calling update_document with path=&#34;/a&#34;</span>
-<span style="color:#60a0b0;font-style:italic"># will delete any existing documents where the &#34;path&#34; field contains &#34;/a&#34;.</span>
+<span style="color:#60a0b0;font-style:italic"># Because &#34;path&#34; is marked as unique, calling update_document with path=&#34;/a&#34;</span>
+<span style="color:#60a0b0;font-style:italic"># will delete any existing documents where the &#34;path&#34; field contains &#34;/a&#34;.</span>
 writer<span style="color:#666">.</span>update_document(path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">&#34;Replacement for the first document&#34;</span>)
 writer<span style="color:#666">.</span>commit()
 </code></pre></div><p>“unique”字段必须是被索引的。<br />
@@ -769,12 +765,12 @@ writer<span style="color:#666">.</span>commit()
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, ID, TEXT
 
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">clean_index</span>(dirname):
-  <span style="color:#60a0b0;font-style:italic"># Always create the index from scratch</span>
+  <span style="color:#60a0b0;font-style:italic"># Always create the index from scratch</span>
   ix <span style="color:#666">=</span> index<span style="color:#666">.</span>create_in(dirname, schema<span style="color:#666">=</span>get_schema())
   writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 
-  <span style="color:#60a0b0;font-style:italic"># Assume we have a function that gathers the filenames of the</span>
-  <span style="color:#60a0b0;font-style:italic"># documents to be indexed</span>
+  <span style="color:#60a0b0;font-style:italic"># Assume we have a function that gathers the filenames of the</span>
+  <span style="color:#60a0b0;font-style:italic"># documents to be indexed</span>
   <span style="color:#007020;font-weight:bold">for</span> path <span style="color:#007020;font-weight:bold">in</span> my_docs():
     add_doc(writer, path)
 
@@ -812,41 +808,41 @@ writer<span style="color:#666">.</span>commit()
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">incremental_index</span>(dirname)
     ix <span style="color:#666">=</span> index<span style="color:#666">.</span>open_dir(dirname)
 
-    <span style="color:#60a0b0;font-style:italic"># The set of all paths in the index</span>
+    <span style="color:#60a0b0;font-style:italic"># The set of all paths in the index</span>
     indexed_paths <span style="color:#666">=</span> <span style="color:#007020">set</span>()
-    <span style="color:#60a0b0;font-style:italic"># The set of all paths we need to re-index</span>
+    <span style="color:#60a0b0;font-style:italic"># The set of all paths we need to re-index</span>
     to_index <span style="color:#666">=</span> <span style="color:#007020">set</span>()
 
     <span style="color:#007020;font-weight:bold">with</span> ix<span style="color:#666">.</span>searcher() <span style="color:#007020;font-weight:bold">as</span> searcher:
       writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 
-      <span style="color:#60a0b0;font-style:italic"># Loop over the stored fields in the index</span>
+      <span style="color:#60a0b0;font-style:italic"># Loop over the stored fields in the index</span>
       <span style="color:#007020;font-weight:bold">for</span> fields <span style="color:#007020;font-weight:bold">in</span> searcher<span style="color:#666">.</span>all_stored_fields():
         indexed_path <span style="color:#666">=</span> fields[<span style="color:#4070a0">&#39;path&#39;</span>]
         indexed_paths<span style="color:#666">.</span>add(indexed_path)
 
         <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>exists(indexed_path):
-          <span style="color:#60a0b0;font-style:italic"># This file was deleted since it was indexed</span>
+          <span style="color:#60a0b0;font-style:italic"># This file was deleted since it was indexed</span>
           writer<span style="color:#666">.</span>delete_by_term(<span style="color:#4070a0">&#39;path&#39;</span>, indexed_path)
 
         <span style="color:#007020;font-weight:bold">else</span>:
-          <span style="color:#60a0b0;font-style:italic"># Check if this file was changed since it</span>
-          <span style="color:#60a0b0;font-style:italic"># was indexed</span>
+          <span style="color:#60a0b0;font-style:italic"># Check if this file was changed since it</span>
+          <span style="color:#60a0b0;font-style:italic"># was indexed</span>
           indexed_time <span style="color:#666">=</span> fields[<span style="color:#4070a0">&#39;time&#39;</span>]
           mtime <span style="color:#666">=</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>getmtime(indexed_path)
           <span style="color:#007020;font-weight:bold">if</span> mtime <span style="color:#666">&gt;</span> indexed_time:
-            <span style="color:#60a0b0;font-style:italic"># The file has changed, delete it and add it to the list of</span>
-            <span style="color:#60a0b0;font-style:italic"># files to reindex</span>
+            <span style="color:#60a0b0;font-style:italic"># The file has changed, delete it and add it to the list of</span>
+            <span style="color:#60a0b0;font-style:italic"># files to reindex</span>
             writer<span style="color:#666">.</span>delete_by_term(<span style="color:#4070a0">&#39;path&#39;</span>, indexed_path)
             to_index<span style="color:#666">.</span>add(indexed_path)
 
-      <span style="color:#60a0b0;font-style:italic"># Loop over the files in the filesystem</span>
-      <span style="color:#60a0b0;font-style:italic"># Assume we have a function that gathers the filenames of the</span>
-      <span style="color:#60a0b0;font-style:italic"># documents to be indexed</span>
+      <span style="color:#60a0b0;font-style:italic"># Loop over the files in the filesystem</span>
+      <span style="color:#60a0b0;font-style:italic"># Assume we have a function that gathers the filenames of the</span>
+      <span style="color:#60a0b0;font-style:italic"># documents to be indexed</span>
       <span style="color:#007020;font-weight:bold">for</span> path <span style="color:#007020;font-weight:bold">in</span> my_docs():
         <span style="color:#007020;font-weight:bold">if</span> path <span style="color:#007020;font-weight:bold">in</span> to_index <span style="color:#007020;font-weight:bold">or</span> path <span style="color:#007020;font-weight:bold">not</span> <span style="color:#007020;font-weight:bold">in</span> indexed_paths:
-          <span style="color:#60a0b0;font-style:italic"># This is either a file that&#39;s changed, or a new file</span>
-          <span style="color:#60a0b0;font-style:italic"># that wasn&#39;t indexed before. So index it!</span>
+          <span style="color:#60a0b0;font-style:italic"># This is either a file that&#39;s changed, or a new file</span>
+          <span style="color:#60a0b0;font-style:italic"># that wasn&#39;t indexed before. So index it!</span>
           add_doc(writer, path)
 
       writer<span style="color:#666">.</span>commit()
@@ -872,15 +868,15 @@ writer<span style="color:#666">.</span>commit()
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh</span> <span style="color:#007020;font-weight:bold">import</span> writing
 
 <span style="color:#007020;font-weight:bold">with</span> myindex<span style="color:#666">.</span>writer() <span style="color:#007020;font-weight:bold">as</span> mywriter:
-    <span style="color:#60a0b0;font-style:italic"># You can optionally add documents to the writer here</span>
-    <span style="color:#60a0b0;font-style:italic"># e.g. mywriter.add_document(...)</span>
+    <span style="color:#60a0b0;font-style:italic"># You can optionally add documents to the writer here</span>
+    <span style="color:#60a0b0;font-style:italic"># e.g. mywriter.add_document(...)</span>
 
-    <span style="color:#60a0b0;font-style:italic"># Using mergetype=CLEAR clears all existing segments so the index will</span>
-    <span style="color:#60a0b0;font-style:italic"># only have any documents you&#39;ve added to this writer</span>
+    <span style="color:#60a0b0;font-style:italic"># Using mergetype=CLEAR clears all existing segments so the index will</span>
+    <span style="color:#60a0b0;font-style:italic"># only have any documents you&#39;ve added to this writer</span>
     mywriter<span style="color:#666">.</span>mergetype <span style="color:#666">=</span> writing<span style="color:#666">.</span>CLEAR
 </code></pre></div><p>或者，不使用writer上下文管理器，直接调用<code>commit()</code>，像这样：</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mywriter <span style="color:#666">=</span> myindex<span style="color:#666">.</span>writer()
-<span style="color:#60a0b0;font-style:italic"># ...</span>
+<span style="color:#60a0b0;font-style:italic"># ...</span>
 mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666">=</span>writing<span style="color:#666">.</span>CLEAR)
 </code></pre></div><link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition note">
             <p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p>
@@ -1007,14 +1003,14 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://litmingc.github.io/post/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
     <div class="site-state-item site-state-categories">    
         <a href="https://litmingc.github.io/categories/">      
          
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         
         <span class="site-state-item-name">分类</span>
         
@@ -1073,7 +1069,7 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
     <footer id="footer" class="footer">
       <div class="footer-inner"><div class="copyright" >
   <span itemprop="copyrightYear">  &copy; 
-  2019 - 2020</span>
+  2019 - 2021</span>
   <span class="with-love"><i class="fa fa-heart"></i></span>
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
@@ -1118,7 +1114,6 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
 <script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
-<script src="https://litmingc.github.io/js/iconfont.js"></script>
 <script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
 <style>
 .icon {
@@ -1169,5 +1164,16 @@ for(i = 0; i < all.length; i += 1){
     speed: 100,
     startDelay: 1000,
   }).go();
-</script></body>
+</script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.4/mermaid.min.js"></script>
+<script>
+    
+    Array.from(document.getElementsByClassName('language-mermaid')).forEach(el => {
+        el.parentElement.outerHTML = `<div class="mermaid">${el.innerText}</div>`
+    })
+</script>
+
+</body>
 </html>

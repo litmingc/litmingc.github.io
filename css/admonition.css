@@ -237,6 +237,7 @@
 }
 
 .post-body details.admonition summary {
+    font-size: 0.8em;
     display: block;
     outline: none;
     cursor : pointer
