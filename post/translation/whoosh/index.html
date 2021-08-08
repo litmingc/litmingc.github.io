@@ -249,7 +249,7 @@ if (!doNotTrack) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">10139 字 ~21分钟</span>
+<span class="leancloud-visitors-count">10323 字 ~21分钟</span>
 </span>
       </div>
     </header>
@@ -306,9 +306,26 @@ if (!doNotTrack) {
 <h3 id="quick-start">Quick start</h3>
 <p>whoosh是一个为文本建立索引并搜索这个索引的方法库和类库。它允许你针对自己的内容开发自定义的搜索引擎。比如，如果你正在建立一个博客写作软件，你就可以使用Whoosh添加搜索方法，让用户搜索博文。</p>
 <h4 id="a-quick-introduction">A quick introduction</h4>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.index</span> <span style="color:#007020;font-weight:bold">import</span> create_in
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.index</span> <span style="color:#007020;font-weight:bold">import</span> create_in
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> <span style="color:#666">*</span>
-schema <span style="color:#666">=</span> Schema(title<span style="color:#666">=</span>TEXT(stored<span style="color:#666">=</span>True), path<span style="color:#666">=</span>ID(stored<span style="color:#666">=</span>True), content<span style="color:#666">=</span>TEXT)
+schema <span style="color:#666">=</span> Schema(title<span style="color:#666">=</span>TEXT(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>), path<span style="color:#666">=</span>ID(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>), content<span style="color:#666">=</span>TEXT)
 ix <span style="color:#666">=</span> create_in(<span style="color:#4070a0">&#34;indexdir&#34;</span>, schema)
 writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;First document&#34;</span>, path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>,content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;This is the first document we&#39;ve added!&#34;</span>)
@@ -318,17 +335,27 @@ writer<span style="color:#666">.</span>commit()
 <span style="color:#007020;font-weight:bold">with</span> ix<span style="color:#666">.</span>searcher() <span style="color:#007020;font-weight:bold">as</span> searcher:
     query <span style="color:#666">=</span> QueryParser(<span style="color:#4070a0">&#34;content&#34;</span>, ix<span style="color:#666">.</span>schema)<span style="color:#666">.</span>parse(<span style="color:#4070a0">&#34;first&#34;</span>)
     results <span style="color:#666">=</span> searcher<span style="color:#666">.</span>search(query)
-<span style="color:#007020;font-weight:bold">print</span>(results[<span style="color:#40a070">0</span>])
-</code></pre></div><p>输出：<br />
+<span style="color:#007020">print</span>(results[<span style="color:#40a070">0</span>])
+</code></pre></td></tr></table>
+</div>
+</div><p>输出：<br />
 <code>{&quot;title&quot;: u&quot;First document&quot;, &quot;path&quot;: u&quot;/a&quot;}</code></p>
 <h4 id="the-index-and-schema-objects">The <code>Index</code> and <code>Schema</code> objects</h4>
 <p>首先，使用whoosh前，你需要有一个索引（<em>index</em>）对象；<br />
 其次，使用<em>index</em>前，你必须定义好<code>index</code>的<code>schema</code>(结构模式)。<br />
 <code>schema</code>列出了<em>index</em>中的字段（<em>field</em>）。一个字段（<em>field</em>）就是索引中记录的文档的一项信息。<code>field</code>能够被索引(<em>indexed</em>)（可以搜索<code>field</code>）、被存储(<em>stored</em>)（被索引的<code>field</code>的值会和结果一起返回；在标题等字段中，这一点很有用）。</p>
 <p>下面的<code>schema</code>示例中有两个字段，“title”和“content”：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, TEXT
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, TEXT
 schema <span style="color:#666">=</span> Schema(title<span style="color:#666">=</span>TEXT, content<span style="color:#666">=</span>TEXT)
-</code></pre></div><p>创建<em>index</em>时，你只需要创建一个<em>schema</em>。这个<em>schema</em>和<em>index</em>深度绑定。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>创建<em>index</em>时，你只需要创建一个<em>schema</em>。这个<em>schema</em>和<em>index</em>深度绑定。</p>
 <p>创建<em>schema</em>对象时，你使用关键字参数来把字段名和字段类型绑定在一起。字段列表以及他们的类型决定了“哪些会被索引，哪些能被检索”。Whoosh自带了一些非常有用的字段类型，并且你也可以轻易的定义自己的类型。</p>
 <ul>
 <li><strong>whoosh.fields.ID</strong><br />
@@ -349,24 +376,65 @@ schema <span style="color:#666">=</span> Schema(title<span style="color:#666">=<
 这个类型把字段的文本以及单个的术语打散，将它们组成N元组(N-grams)。更多信息参见<a href="https://whoosh.readthedocs.io/en/stable/ngrams.html">Indexing and searching N-grams</a></li>
 </ul>
 <p>（如果你不需要向字段类型传递参数，那么只要给出类名就可以了。Whoosh会帮你实例化。）</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, STORED, ID, KEYWORD, TEXT
-schema <span style="color:#666">=</span> Schema(title<span style="color:#666">=</span>TEXT(stored<span style="color:#666">=</span>True), content<span style="color:#666">=</span>TEXT,
-                path<span style="color:#666">=</span>ID(stored<span style="color:#666">=</span>True), tags<span style="color:#666">=</span>KEYWORD, icon<span style="color:#666">=</span>STORED)
-</code></pre></div><p>更多信息参见<a href="https://whoosh.readthedocs.io/en/stable/schema.html">Designing a schema</a></p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, STORED, ID, KEYWORD, TEXT
+schema <span style="color:#666">=</span> Schema(title<span style="color:#666">=</span>TEXT(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>), content<span style="color:#666">=</span>TEXT,
+                path<span style="color:#666">=</span>ID(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>), tags<span style="color:#666">=</span>KEYWORD, icon<span style="color:#666">=</span>STORED)
+</code></pre></td></tr></table>
+</div>
+</div><p>更多信息参见<a href="https://whoosh.readthedocs.io/en/stable/schema.html">Designing a schema</a></p>
 <p>一旦你有了schema，你就可以使用<code>create_in</code>方法创建index:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">os.path</span>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">os.path</span>
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.index</span> <span style="color:#007020;font-weight:bold">import</span> create_in
 
 <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>exists(<span style="color:#4070a0">&#34;index&#34;</span>):
     os<span style="color:#666">.</span>mkdir(<span style="color:#4070a0">&#34;index&#34;</span>)
 ix <span style="color:#666">=</span> create_in(<span style="color:#4070a0">&#34;index&#34;</span>, schema)
-</code></pre></div><p>（这一步创建了一个包含索引&quot;index&quot;的存储对象。<code>Storage</code>对象是将被储存的index的中间件。通常，存储对象会是<code>FileStorage</code>对象，将index存储为一组文件，存储到某个文件夹中。）</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>（这一步创建了一个包含索引&quot;index&quot;的存储对象。<code>Storage</code>对象是将被储存的index的中间件。通常，存储对象会是<code>FileStorage</code>对象，将index存储为一组文件，存储到某个文件夹中。）</p>
 <p>在创建了一个index之后，你可以使用<code>open_dir</code>方法，很方便的打开它：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.index</span> <span style="color:#007020;font-weight:bold">import</span> open_dir
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.index</span> <span style="color:#007020;font-weight:bold">import</span> open_dir
 ix <span style="color:#666">=</span> open_dir(<span style="color:#4070a0">&#34;index&#34;</span>)
-</code></pre></div><h4 id="the-indexwriter-object">The <code>IndexWriter</code> object</h4>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="the-indexwriter-object">The <code>IndexWriter</code> object</h4>
 <p>好的，既然我们已经有的index对象了，那现在就可以添加文档了。index对象的<code>writer()</code>方法会返回一个<code>IndexWriter</code>对象，可以用来将文档添加进index。<code>IndexWriter</code>对象的<code>add_document(**kwargs)</code>方法通过传入的关键字参数，将字段名映射到具体的值。</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;My document&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;This is my document!&#34;</span>,
                     path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>, tags<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;first short&#34;</span>, icon<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/icons/star.png&#34;</span>)
 writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Second try&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;This is the second example.&#34;</span>,
@@ -374,49 +442,135 @@ writer<span style="color:#666">.</span>add_document(title<span style="color:#666
 writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Third time&#39;s the charm&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Examples are many.&#34;</span>,
                     path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/c&#34;</span>, tags<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;short&#34;</span>, icon<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/icons/book.png&#34;</span>)
 writer<span style="color:#666">.</span>commit()
-</code></pre></div><p>其中，有两点需要注意：</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>其中，有两点需要注意：</p>
 <ul>
 <li>你不一定要为所有的字段赋值。Whoosh根本不在乎。</li>
 <li>建立索引的字段的文本参数必须是以unicode编码的字符串。那些只存储不建立索引的字段（STORED类型）可以传入任何编码的对象。</li>
 </ul>
 <p>如果你有一个文本字段，既要建立索引，也要被存储，那么你可以为unicode编码值建立索引，然后再用下面展示的技巧存储一个不同的对象（如果必要的话，但是通常没必要。 <del>又</del> 但是，有时候，这真的很有用）：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Title to be indexed&#34;</span>, _stored_title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Stored title&#34;</span>)
-</code></pre></div><p>调用<code>IndexWriter</code>的<code>commit()</code>来提交那些添加到index中的文档：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>commit()
-</code></pre></div><p>更多信息参见<a href="https://whoosh.readthedocs.io/en/stable/indexing.html">How to index documents</a><br />
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Title to be indexed&#34;</span>, _stored_title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Stored title&#34;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>调用<code>IndexWriter</code>的<code>commit()</code>来提交那些添加到index中的文档：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>commit()
+</code></pre></td></tr></table>
+</div>
+</div><p>更多信息参见<a href="https://whoosh.readthedocs.io/en/stable/indexing.html">How to index documents</a><br />
 一旦文档被提交到index中，那你就可以搜索它们了。</p>
 <h4 id="the-searcher-object">The <code>Searcher</code> object</h4>
 <p>为了检索index，我们需要一个<code>Searcher</code>对象：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">searcher <span style="color:#666">=</span> ix<span style="color:#666">.</span>searcher()
-</code></pre></div><p>你通常会想要通过<code>with</code>语句打开检索器(Searcher)。这样，当你使用完检索器，它就会自动关闭了（<code>Searcher</code>对象表示很多打开的文件。所以，如果你没有显式地关闭他们，而且系统收集他们的速度也慢的话，你可能会花光文件句柄）。</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">with</span> ix<span style="color:#666">.</span>searcher() <span style="color:#007020;font-weight:bold">as</span> searcher:
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">searcher <span style="color:#666">=</span> ix<span style="color:#666">.</span>searcher()
+</code></pre></td></tr></table>
+</div>
+</div><p>你通常会想要通过<code>with</code>语句打开检索器(Searcher)。这样，当你使用完检索器，它就会自动关闭了（<code>Searcher</code>对象表示很多打开的文件。所以，如果你没有显式地关闭他们，而且系统收集他们的速度也慢的话，你可能会花光文件句柄）。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">with</span> ix<span style="color:#666">.</span>searcher() <span style="color:#007020;font-weight:bold">as</span> searcher:
     <span style="color:#007020;font-weight:bold">pass</span>
-</code></pre></div><p>等价于：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">try</span>:
+</code></pre></td></tr></table>
+</div>
+</div><p>等价于：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">try</span>:
     searcher <span style="color:#666">=</span> ix<span style="color:#666">.</span>searcher()
     <span style="color:#007020;font-weight:bold">pass</span>
 <span style="color:#007020;font-weight:bold">finally</span>:
     searcher<span style="color:#666">.</span>close()
-</code></pre></div><p><code>Searcher</code>对象的<code>search()</code>方法需要一个查询(<code>Query</code>)对象。你可以直接构造<code>query</code>对象，也可以使用<code>query</code>分析器分析<code>query</code>字符串。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Searcher</code>对象的<code>search()</code>方法需要一个查询(<code>Query</code>)对象。你可以直接构造<code>query</code>对象，也可以使用<code>query</code>分析器分析<code>query</code>字符串。</p>
 <p>比如，下面的查询对象将会匹配在“content”字段中同时包含“apple”和“bear”的文档：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Construct query objects directly</span>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Construct query objects directly</span>
 
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.query</span> <span style="color:#007020;font-weight:bold">import</span> <span style="color:#666">*</span>
 myquery <span style="color:#666">=</span> And([Term(<span style="color:#4070a0">&#34;content&#34;</span>, <span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;apple&#34;</span>), Term(<span style="color:#4070a0">&#34;content&#34;</span>, <span style="color:#4070a0">&#34;bear&#34;</span>)])
-</code></pre></div><p>此外，你也可以使用<code>qparser</code>模块中默认的查询分析器去分析查询字符串。<code>QueryParser</code>构造器的第一个参数是默认的搜索字段，它通常传入“文本主体”所在的字段。第二个可选参数是一个<code>schema</code>，用来让分析器理解如何分析字段：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Parse a query string</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>此外，你也可以使用<code>qparser</code>模块中默认的查询分析器去分析查询字符串。<code>QueryParser</code>构造器的第一个参数是默认的搜索字段，它通常传入“文本主体”所在的字段。第二个可选参数是一个<code>schema</code>，用来让分析器理解如何分析字段：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Parse a query string</span>
 
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.qparser</span> <span style="color:#007020;font-weight:bold">import</span> QueryParser
 parser <span style="color:#666">=</span> QueryParser(<span style="color:#4070a0">&#34;content&#34;</span>, ix<span style="color:#666">.</span>schema)
 myquery <span style="color:#666">=</span> parser<span style="color:#666">.</span>parse(querystring)
-</code></pre></div><p>只要你有了<code>Searcher</code>和<code>query</code>对象，你就可以使用<code>Searcher</code>的<code>search()</code>方法来执行查询，获得<code>Results</code>对象：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; <span style="color:#bb60d5">results</span> <span style="color:#666">=</span> searcher.search<span style="color:#666">(</span>myquery<span style="color:#666">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>只要你有了<code>Searcher</code>和<code>query</code>对象，你就可以使用<code>Searcher</code>的<code>search()</code>方法来执行查询，获得<code>Results</code>对象：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; <span style="color:#bb60d5">results</span> <span style="color:#666">=</span> searcher.search<span style="color:#666">(</span>myquery<span style="color:#666">)</span>
 &gt;&gt;&gt; print<span style="color:#666">(</span>len<span style="color:#666">(</span>results<span style="color:#666">))</span>
-1
+<span style="color:#40a070">1</span>
 &gt;&gt;&gt; print<span style="color:#666">(</span>results<span style="color:#666">[</span>0<span style="color:#666">])</span>
 <span style="color:#666">{</span><span style="color:#4070a0">&#34;title&#34;</span>: <span style="color:#4070a0">&#34;Second try&#34;</span>, <span style="color:#4070a0">&#34;path&#34;</span>: <span style="color:#4070a0">&#34;/b&#34;</span>, <span style="color:#4070a0">&#34;icon&#34;</span>: <span style="color:#4070a0">&#34;/icons/sheep.png&#34;</span><span style="color:#666">}</span>
-</code></pre></div><p>默认的<code>QueryParser</code>实现查询语言的方式和Lucene中的非常相似。它允许使用<code>AND</code>或者<code>OR</code>联系语句，使用<code>NOT</code>排除语句，把语句组合成带括号的子句，进行范围、前缀以及通配符查询，并指定不同字段去搜索。默认情况下，它使用<code>AND</code>组合查询子句（所以，默认情况下，你所指定的全部搜索词必须全在文档中，文档才能被匹配）：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; print<span style="color:#666">(</span>parser.parse<span style="color:#666">(</span>u<span style="color:#4070a0">&#34;render shade animate&#34;</span><span style="color:#666">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>默认的<code>QueryParser</code>实现查询语言的方式和Lucene中的非常相似。它允许使用<code>AND</code>或者<code>OR</code>联系语句，使用<code>NOT</code>排除语句，把语句组合成带括号的子句，进行范围、前缀以及通配符查询，并指定不同字段去搜索。默认情况下，它使用<code>AND</code>组合查询子句（所以，默认情况下，你所指定的全部搜索词必须全在文档中，文档才能被匹配）：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">&gt;&gt;&gt; print<span style="color:#666">(</span>parser.parse<span style="color:#666">(</span>u<span style="color:#4070a0">&#34;render shade animate&#34;</span><span style="color:#666">))</span>
 And<span style="color:#666">([</span>Term<span style="color:#666">(</span><span style="color:#4070a0">&#34;content&#34;</span>, <span style="color:#4070a0">&#34;render&#34;</span><span style="color:#666">)</span>, Term<span style="color:#666">(</span><span style="color:#4070a0">&#34;content&#34;</span>, <span style="color:#4070a0">&#34;shade&#34;</span><span style="color:#666">)</span>, Term<span style="color:#666">(</span><span style="color:#4070a0">&#34;content&#34;</span>, <span style="color:#4070a0">&#34;animate&#34;</span><span style="color:#666">)])</span>
 
 &gt;&gt;&gt; print<span style="color:#666">(</span>parser.parse<span style="color:#666">(</span>u<span style="color:#4070a0">&#34;render OR (title:shade keyword:animate)&#34;</span><span style="color:#666">))</span>
@@ -424,7 +578,9 @@ Or<span style="color:#666">([</span>Term<span style="color:#666">(</span><span s
 
 &gt;&gt;&gt; print<span style="color:#666">(</span>parser.parse<span style="color:#666">(</span>u<span style="color:#4070a0">&#34;rend*&#34;</span><span style="color:#666">))</span>
 Prefix<span style="color:#666">(</span><span style="color:#4070a0">&#34;content&#34;</span>, <span style="color:#4070a0">&#34;rend&#34;</span><span style="color:#666">)</span>
-</code></pre></div><p>Whoosh还有额外的功能处理检索结果，比如：</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Whoosh还有额外的功能处理检索结果，比如：</p>
 <ul>
 <li>以索引字段的值排序，而不是相关程度</li>
 <li>在原文的节选中，高亮搜索字段</li>
@@ -470,81 +626,201 @@ TBD.</li>
 </ul>
 <h4 id="creating-a-schema">Creating a Schema</h4>
 <p>举个栗子：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, TEXT, KEYWORD, ID, STORED
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, TEXT, KEYWORD, ID, STORED
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.analysis</span> <span style="color:#007020;font-weight:bold">import</span> StemmingAnalyzer
 
-schema <span style="color:#666">=</span> Schema(from_addr<span style="color:#666">=</span>ID(stored<span style="color:#666">=</span>True),
-                to_addr<span style="color:#666">=</span>ID(stored<span style="color:#666">=</span>True),
-                subject<span style="color:#666">=</span>TEXT(stored<span style="color:#666">=</span>True),
+schema <span style="color:#666">=</span> Schema(from_addr<span style="color:#666">=</span>ID(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>),
+                to_addr<span style="color:#666">=</span>ID(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>),
+                subject<span style="color:#666">=</span>TEXT(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>),
                 body<span style="color:#666">=</span>TEXT(analyzer<span style="color:#666">=</span>StemmingAnalyzer()),
                 tags<span style="color:#666">=</span>KEYWORD)
-</code></pre></div><p>如果不需要为原生的字段类型构造器提供参数，可以省略<code>()</code>（比如，用<code>fieldname=TEXT</code>代替<code>fieldname=TEXT()</code>）。whoosh会帮你实例化。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果不需要为原生的字段类型构造器提供参数，可以省略<code>()</code>（比如，用<code>fieldname=TEXT</code>代替<code>fieldname=TEXT()</code>）。whoosh会帮你实例化。</p>
 <p>此外，你还可以使用<code>SchemaClass</code>基础类来声明一个Schema：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> SchemaClass, TEXT, KEYWORD, ID, STORED
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> SchemaClass, TEXT, KEYWORD, ID, STORED
 
 <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">MySchema</span>(SchemaClass):
-    path <span style="color:#666">=</span> ID(stored<span style="color:#666">=</span>True)
-    title <span style="color:#666">=</span> TEXT(stored<span style="color:#666">=</span>True)
+    path <span style="color:#666">=</span> ID(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>)
+    title <span style="color:#666">=</span> TEXT(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>)
     content <span style="color:#666">=</span> TEXT
     tags <span style="color:#666">=</span> KEYWORD
-</code></pre></div><p>你可以将上述声明类当参数传给方法<code>create_in()</code>或者<code>create_index()</code>，而不必使用<code>Schema</code>实例。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>你可以将上述声明类当参数传给方法<code>create_in()</code>或者<code>create_index()</code>，而不必使用<code>Schema</code>实例。</p>
 <h4 id="modifying-the-schema-after-indexing">Modifying the schema after indexing</h4>
 <p>在已经建立索引之后，你可以使用<code>add_field()</code>和<code>remove_field()</code>增减字段。这两个方法是<code>writer</code>对象的成员方法：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
-writer<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;fieldname&#34;</span>, fields<span style="color:#666">.</span>TEXT(stored<span style="color:#666">=</span>True))
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
+writer<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;fieldname&#34;</span>, fields<span style="color:#666">.</span>TEXT(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>))
 writer<span style="color:#666">.</span>remove_field(<span style="color:#4070a0">&#34;content&#34;</span>)
 writer<span style="color:#666">.</span>commit()
-</code></pre></div><p>（如果增减字段和添加文档使用的是同一个<code>writer</code>，你必须确保在添加文档前调用<code>add_field()</code>以及<code>remove_field()</code>。）</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>（如果增减字段和添加文档使用的是同一个<code>writer</code>，你必须确保在添加文档前调用<code>add_field()</code>以及<code>remove_field()</code>。）</p>
 <p>在<code>index</code>对象中，这些方法使用起来也很方便：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ix<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;fieldname&#34;</span>, fields<span style="color:#666">.</span>KEYWORD)
-</code></pre></div><p>但是，当你这么用的时候，<code>index</code>对象实际上是创建了<code>writer</code>，并调用了对应的函数再提交（commit）的。所以，若是你想增减多个字段，使用<code>writer</code>会更有效率。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ix<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;fieldname&#34;</span>, fields<span style="color:#666">.</span>KEYWORD)
+</code></pre></td></tr></table>
+</div>
+</div><p>但是，当你这么用的时候，<code>index</code>对象实际上是创建了<code>writer</code>，并调用了对应的函数再提交（commit）的。所以，若是你想增减多个字段，使用<code>writer</code>会更有效率。</p>
 <p>在<code>filedb</code>后台，移除一个字段仅仅对<em>schema</em>做了修改，index并不会变小，index有关那个字段的数据仍然存在，除非你commit的时候使用了<code>optimize</code>（优化）。优化可以重构索引，移除相应字段的引用。示例如下：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
-writer<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;uuid&#34;</span>, fields<span style="color:#666">.</span>ID(stored<span style="color:#666">=</span>True))
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
+writer<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;uuid&#34;</span>, fields<span style="color:#666">.</span>ID(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>))
 writer<span style="color:#666">.</span>remove_field(<span style="color:#4070a0">&#34;path&#34;</span>)
-writer<span style="color:#666">.</span>commit(optimize<span style="color:#666">=</span>True)
-</code></pre></div><p>因为数据是和字段名一起存储在磁盘上的，所以<em>不要</em>在移除字段且不设置<code>optimize</code>的情况下，添加同名的字段：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
+writer<span style="color:#666">.</span>commit(optimize<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>因为数据是和字段名一起存储在磁盘上的，所以<em>不要</em>在移除字段且不设置<code>optimize</code>的情况下，添加同名的字段：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 writer<span style="color:#666">.</span>delete_field(<span style="color:#4070a0">&#34;path&#34;</span>)
-<span style="color:#60a0b0;font-style:italic"># Don&#39;t do this!!!</span>
+<span style="color:#60a0b0;font-style:italic"># Don&#39;t do this!!!</span>
 writer<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;path&#34;</span>, fields<span style="color:#666">.</span>KEYWORD)
-</code></pre></div><p>（未来，whoosh也许会自动避免这个错误。）</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>（未来，whoosh也许会自动避免这个错误。）</p>
 <h4 id="dynamic-fields">Dynamic fields</h4>
 <p>动态字段就是把类型与一组字段联系起来，这些字段能够被给定的“通配符”匹配（通配符（glob）指一种命名模板，包含<code>*</code>、<code>？</code>以及<code>[abc]</code>通配符）。</p>
 <p>你可以使用带<code>glob</code>关键字的<code>add()</code>方法添加动态字段（设置<code>glob=True</code>：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">schema <span style="color:#666">=</span> fields<span style="color:#666">.</span>Schema(<span style="color:#666">...</span>)
-<span style="color:#60a0b0;font-style:italic"># Any name ending in &#34;_d&#34; will be treated as a stored</span>
-<span style="color:#60a0b0;font-style:italic"># DATETIME field</span>
-schema<span style="color:#666">.</span>add(<span style="color:#4070a0">&#34;*_d&#34;</span>, fields<span style="color:#666">.</span>DATETIME(stored<span style="color:#666">=</span>True), glob<span style="color:#666">=</span>True)
-</code></pre></div><p>和添加普通的字段一样，你可以使用<code>IndexWriter.add_field()</code>添加动态字段。但是，需要设置<code>glob=True</code>：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
-writer<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;*_d&#34;</span>, fields<span style="color:#666">.</span>DATETIME(stored<span style="color:#666">=</span>True), glob<span style="color:#666">=</span>True)
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">schema <span style="color:#666">=</span> fields<span style="color:#666">.</span>Schema(<span style="color:#666">...</span>)
+<span style="color:#60a0b0;font-style:italic"># Any name ending in &#34;_d&#34; will be treated as a stored</span>
+<span style="color:#60a0b0;font-style:italic"># DATETIME field</span>
+schema<span style="color:#666">.</span>add(<span style="color:#4070a0">&#34;*_d&#34;</span>, fields<span style="color:#666">.</span>DATETIME(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>), glob<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>和添加普通的字段一样，你可以使用<code>IndexWriter.add_field()</code>添加动态字段。但是，需要设置<code>glob=True</code>：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
+writer<span style="color:#666">.</span>add_field(<span style="color:#4070a0">&#34;*_d&#34;</span>, fields<span style="color:#666">.</span>DATETIME(stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>), glob<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>)
 writer<span style="color:#666">.</span>commit()
-</code></pre></div><p>移除动态字段时，使用<code>IndexWriter.remove_field()</code>，并给出“统配符字段名”：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
+</code></pre></td></tr></table>
+</div>
+</div><p>移除动态字段时，使用<code>IndexWriter.remove_field()</code>，并给出“统配符字段名”：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 writer<span style="color:#666">.</span>remove_field(<span style="color:#4070a0">&#34;*_d&#34;</span>)
 writer<span style="color:#666">.</span>commit()
-</code></pre></div><p>下面是一个示例，展示了如何允许文档包含任何以<code>_id</code>结尾的字段名，并指定其为<code>ID</code>类型：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">schema <span style="color:#666">=</span> fields<span style="color:#666">.</span>Schema(path<span style="color:#666">=</span>fields<span style="color:#666">.</span>ID)
-schema<span style="color:#666">.</span>add(<span style="color:#4070a0">&#34;*_id&#34;</span>, fields<span style="color:#666">.</span>ID, glob<span style="color:#666">=</span>True)
+</code></pre></td></tr></table>
+</div>
+</div><p>下面是一个示例，展示了如何允许文档包含任何以<code>_id</code>结尾的字段名，并指定其为<code>ID</code>类型：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">schema <span style="color:#666">=</span> fields<span style="color:#666">.</span>Schema(path<span style="color:#666">=</span>fields<span style="color:#666">.</span>ID)
+schema<span style="color:#666">.</span>add(<span style="color:#4070a0">&#34;*_id&#34;</span>, fields<span style="color:#666">.</span>ID, glob<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>)
 
 ix <span style="color:#666">=</span> index<span style="color:#666">.</span>create_in(<span style="color:#4070a0">&#34;myindex&#34;</span>, schema)
 
 w <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 w<span style="color:#666">.</span>add_document(path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>, test_id<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;alfa&#34;</span>)
 w<span style="color:#666">.</span>add_document(path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/b&#34;</span>, class_id<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;MyClass&#34;</span>)
-<span style="color:#60a0b0;font-style:italic"># ...</span>
+<span style="color:#60a0b0;font-style:italic"># ...</span>
 w<span style="color:#666">.</span>commit()
 
 qp <span style="color:#666">=</span> qparser<span style="color:#666">.</span>QueryParser(<span style="color:#4070a0">&#34;path&#34;</span>, schema<span style="color:#666">=</span>schema)
 q <span style="color:#666">=</span> qp<span style="color:#666">.</span>parse(<span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;test_id:alfa&#34;</span>)
 <span style="color:#007020;font-weight:bold">with</span> ix<span style="color:#666">.</span>searcher() <span style="color:#007020;font-weight:bold">as</span> s:
     results <span style="color:#666">=</span> s<span style="color:#666">.</span>search(q)
-</code></pre></div><h4 id="advanced-schema-setup">Advanced schema setup</h4>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="advanced-schema-setup">Advanced schema setup</h4>
 <h5 id="field-boosts">Field boosts</h5>
 <p>你可以为字段指定<em>field boost</em>（字段增强器），它可以倍增某个字段中出现的任意<em>term</em>的检索价值。比如下面的示例中，在计算文档与检索条件的相关性的时候，<em>title</em>字段中出现的相关词句（<em>term</em>），分数会是<em>body</em>中的两倍：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">schema <span style="color:#666">=</span> Schema(title<span style="color:#666">=</span>TEXT(field_boost<span style="color:#666">=</span><span style="color:#40a070">2.0</span>), body<span style="color:#666">=</span>TEXT)
-</code></pre></div><h5 id="field-types">Field types</h5>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">schema <span style="color:#666">=</span> Schema(title<span style="color:#666">=</span>TEXT(field_boost<span style="color:#666">=</span><span style="color:#40a070">2.0</span>), body<span style="color:#666">=</span>TEXT)
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="field-types">Field types</h5>
 <p>前文列出的预设类型都是<code>fields.FieldType</code>的子类。<code>FieldType</code>是一个非常简单的类，它的属性中包含了定义字段行为的信息：</p>
 <table>
 <thead>
@@ -589,91 +865,262 @@ q <span style="color:#666">=</span> qp<span style="color:#666">.</span>parse(<sp
 </ul>
 <h5 id="formats">Formats</h5>
 <p><code>format</code>对象定义了一个字段所记录的每一个<em>term</em>的信息，以及这些信息是如何存储在磁盘上的。</p>
-<p>比如，<code>Existence</code>存储posting：<br />
-| Doc |  |
-| &mdash; | &mdash; |
-| 10 | |
-| 20 | |
-| 30 | |
-而，<code>Positions</code>存储posting：<br />
-| Doc | Positions |
-| &mdash; | &mdash; |
-| 10 | [1,5,23] |
-| 20 | [45] |
-| 30 | [7,12] |</p>
+<p>比如，<code>Existence</code>存储posting：  </p>
+<table>
+<thead>
+<tr>
+<th>Doc</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>20</td>
+<td></td>
+</tr>
+<tr>
+<td>30</td>
+<td></td>
+</tr>
+<tr>
+<td>而，<code>Positions</code>存储posting：</td>
+<td></td>
+</tr>
+<tr>
+<td>Doc</td>
+<td>Positions</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>&mdash;</td>
+</tr>
+<tr>
+<td>10</td>
+<td>[1,5,23]</td>
+</tr>
+<tr>
+<td>20</td>
+<td>[45]</td>
+</tr>
+<tr>
+<td>30</td>
+<td>[7,12]</td>
+</tr>
+</tbody>
+</table>
 <p>索引代码将字段的unicode字符串发给字段的<code>Format</code>对象。<code>Format</code>对象调用它的解释器（analyzer）将字符串切分成一些标记，再为每一个标记编码。</p>
-<p>Wshoosh会忽略下表中的预设format：<br />
-| 类名 | 描述 |
-| &mdash; | &mdash; |
-| Stored | A “null” format for fields that are stored but not indexed. |
-| Existence | Records only whether a term is in a document or not, i.e. it does not store term frequency. Useful for identifier fields (e.g. path or id) and “tag”-type fields, where the frequency is expected to always be 0 or 1. |
-| Frequency | Stores the number of times each term appears in each document. |
-| Positions | Stores the number of times each term appears in each document, and at what positions. |</p>
-<p>此外，还有一些不常用的format，它们主要是方便一些强者的使用：<br />
-| 类名 | 描述 |
-| &mdash; | &mdash; |
-| DocBoosts|Like Existence, but also stores per-document boosts |
-| Characters|Like Positions, but also stores the start and end character indices of each term |
-| PositionBoosts|Like Positions, but also stores per-position boosts |
-| CharacterBoosts|Like Positions, but also stores the start and end character indices of each term and per-position boosts |</p>
+<p>Wshoosh会忽略下表中的预设format：  </p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stored</td>
+<td>A “null” format for fields that are stored but not indexed.</td>
+</tr>
+<tr>
+<td>Existence</td>
+<td>Records only whether a term is in a document or not, i.e. it does not store term frequency. Useful for identifier fields (e.g. path or id) and “tag”-type fields, where the frequency is expected to always be 0 or 1.</td>
+</tr>
+<tr>
+<td>Frequency</td>
+<td>Stores the number of times each term appears in each document.</td>
+</tr>
+<tr>
+<td>Positions</td>
+<td>Stores the number of times each term appears in each document, and at what positions.</td>
+</tr>
+</tbody>
+</table>
+<p>此外，还有一些不常用的format，它们主要是方便一些强者的使用：  </p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DocBoosts</td>
+<td>Like Existence, but also stores per-document boosts</td>
+</tr>
+<tr>
+<td>Characters</td>
+<td>Like Positions, but also stores the start and end character indices of each term</td>
+</tr>
+<tr>
+<td>PositionBoosts</td>
+<td>Like Positions, but also stores per-position boosts</td>
+</tr>
+<tr>
+<td>CharacterBoosts</td>
+<td>Like Positions, but also stores the start and end character indices of each term and per-position boosts</td>
+</tr>
+</tbody>
+</table>
 <h5 id="vectors">Vectors</h5>
 <p>主要的index是一个反向索引。它将<em>term</em>映射到其所在的文档。它有时也有助于储存前向索引（亦称term vector），即把文档映射到文档中的<em>term</em>上。</p>
-<p>比如，你可以想象一个字段的反向索引：<br />
-| Term | Postings |
-| &mdash; | &mdash; |
-| apple | [(doc=1, freq=2), (doc=2, freq=5), (doc=3, freq=1)] |
-| bear | [(doc=2, freq=7)] |</p>
-<p>相应的前向索引，或者说term vector，应该是这样的：<br />
-| Doc | Postings |
-| &mdash; | &mdash; |
-| 1 | [(text=apple, freq=2)] |
-| 2 | [(text=apple, freq=5), (text='bear&rsquo;, freq=7)] |
-| 3 | [(text=apple, freq=1)] |</p>
+<p>比如，你可以想象一个字段的反向索引：  </p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Postings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>apple</td>
+<td>[(doc=1, freq=2), (doc=2, freq=5), (doc=3, freq=1)]</td>
+</tr>
+<tr>
+<td>bear</td>
+<td>[(doc=2, freq=7)]</td>
+</tr>
+</tbody>
+</table>
+<p>相应的前向索引，或者说term vector，应该是这样的：  </p>
+<table>
+<thead>
+<tr>
+<th>Doc</th>
+<th>Postings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[(text=apple, freq=2)]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[(text=apple, freq=5), (text=&lsquo;bear&rsquo;, freq=7)]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>[(text=apple, freq=1)]</td>
+</tr>
+</tbody>
+</table>
 <p>如果你为一个<code>Format</code>对象设置了<code>FieldType.vector</code>，那么索引代码就会使用这个<code>Format</code>对象来存储每一个文档中的那些<em>term</em>。目前，Whoosh默认不使用任何term vector，但是对于想要实现自己的字段类型的大神们而言，这个功能是可用的。</p>
 <hr />
 <h3 id="how-to-index-documents">How to index documents</h3>
 <h4 id="creating-an-index-object">Creating an Index object</h4>
 <p>使用<code>index.create_in</code>在指定目录中创建一个index：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">os</span><span style="color:#666">,</span> <span style="color:#0e84b5;font-weight:bold">os.path</span>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">os</span><span style="color:#666">,</span> <span style="color:#0e84b5;font-weight:bold">os.path</span>
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh</span> <span style="color:#007020;font-weight:bold">import</span> index
 
 <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>exists(<span style="color:#4070a0">&#34;indexdir&#34;</span>):
     os<span style="color:#666">.</span>mkdir(<span style="color:#4070a0">&#34;indexdir&#34;</span>)
 
 ix <span style="color:#666">=</span> index<span style="color:#666">.</span>create_in(<span style="color:#4070a0">&#34;indexdir&#34;</span>, schema)
-</code></pre></div><p>使用<code>index.open_dir</code>打开指定文件夹存在的index：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">whoosh.index</span> <span style="color:#007020;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">index</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用<code>index.open_dir</code>打开指定文件夹存在的index：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">whoosh.index</span> <span style="color:#007020;font-weight:bold">as</span> <span style="color:#0e84b5;font-weight:bold">index</span>
 
 ix <span style="color:#666">=</span> index<span style="color:#666">.</span>open_dir(<span style="color:#4070a0">&#34;indexdir&#34;</span>)
-</code></pre></div><p>这儿还有些快捷函数(convenience functions)：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.filedb.filestore</span> <span style="color:#007020;font-weight:bold">import</span> FileStorage
+</code></pre></td></tr></table>
+</div>
+</div><p>这儿还有些快捷函数(convenience functions)：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.filedb.filestore</span> <span style="color:#007020;font-weight:bold">import</span> FileStorage
 storage <span style="color:#666">=</span> FileStorage(<span style="color:#4070a0">&#34;indexdir&#34;</span>)
 
-<span style="color:#60a0b0;font-style:italic"># Create an index</span>
+<span style="color:#60a0b0;font-style:italic"># Create an index</span>
 ix <span style="color:#666">=</span> storage<span style="color:#666">.</span>create_index(schema)
 
-<span style="color:#60a0b0;font-style:italic"># Open an existing index</span>
+<span style="color:#60a0b0;font-style:italic"># Open an existing index</span>
 storage<span style="color:#666">.</span>open_index()
-</code></pre></div><p>你创建index所用的schame是和index深度捆绑且一起存储的。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>你创建index所用的schame是和index深度捆绑且一起存储的。</p>
 <p>你可以在同一个文件中创建多个index，但是需要使用<code>indexname</code>关键字指定：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Using the convenience functions</span>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Using the convenience functions</span>
 ix <span style="color:#666">=</span> index<span style="color:#666">.</span>create_in(<span style="color:#4070a0">&#34;indexdir&#34;</span>, schema<span style="color:#666">=</span>schema, indexname<span style="color:#666">=</span><span style="color:#4070a0">&#34;usages&#34;</span>)
 ix <span style="color:#666">=</span> index<span style="color:#666">.</span>open_dir(<span style="color:#4070a0">&#34;indexdir&#34;</span>, indexname<span style="color:#666">=</span><span style="color:#4070a0">&#34;usages&#34;</span>)
 
-<span style="color:#60a0b0;font-style:italic"># Using the Storage object</span>
+<span style="color:#60a0b0;font-style:italic"># Using the Storage object</span>
 ix <span style="color:#666">=</span> storage<span style="color:#666">.</span>create_index(schema, indexname<span style="color:#666">=</span><span style="color:#4070a0">&#34;usages&#34;</span>)
 ix <span style="color:#666">=</span> storage<span style="color:#666">.</span>open_index(indexname<span style="color:#666">=</span><span style="color:#4070a0">&#34;usages&#34;</span>)
-</code></pre></div><h4 id="clearing-the-index">Clearing the index</h4>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="clearing-the-index">Clearing the index</h4>
 <p>调用<code>index.create_in</code>将会清除目录中已存在的index中的内容。<br />
 使用<code>index.exists_in</code>可以判断目录中的是否包含有效index：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">exists <span style="color:#666">=</span> index<span style="color:#666">.</span>exists_in(<span style="color:#4070a0">&#34;indexdir&#34;</span>)
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">exists <span style="color:#666">=</span> index<span style="color:#666">.</span>exists_in(<span style="color:#4070a0">&#34;indexdir&#34;</span>)
 usages_exists <span style="color:#666">=</span> index<span style="color:#666">.</span>exists_in(<span style="color:#4070a0">&#34;indexdir&#34;</span>, indexname<span style="color:#666">=</span><span style="color:#4070a0">&#34;usages&#34;</span>)
-</code></pre></div><p>（此外，也可以直接删除index的相关文件。如果目录中仅有一个index，你可以使用<code>shutil.rmtree</code>移除文件夹并重新创建它。）</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>（此外，也可以直接删除index的相关文件。如果目录中仅有一个index，你可以使用<code>shutil.rmtree</code>移除文件夹并重新创建它。）</p>
 <h4 id="indexing-documents">Indexing documents</h4>
 <p>一旦创建好Index对象，你就可以使用IndexWriter向index中添加文档了。获取IndexWriter对象的最简单的方式就是调用<code>index.writer()</code>：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ix <span style="color:#666">=</span> index<span style="color:#666">.</span>open_dir(<span style="color:#4070a0">&#34;index&#34;</span>)
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ix <span style="color:#666">=</span> index<span style="color:#666">.</span>open_dir(<span style="color:#4070a0">&#34;index&#34;</span>)
 writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
-</code></pre></div><p>创建了writer的时候会锁定index。因此，同一时间，一个线程（或进程）只能存在一个writer：<br />
+</code></pre></td></tr></table>
+</div>
+</div><p>创建了writer的时候会锁定index。因此，同一时间，一个线程（或进程）只能存在一个writer：<br />
 <link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition note">
             <p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p>
             <div class="admonition-content">你需要有意识到，因为打开一个writer的时候会把index锁定，所以在多线程（多进程）的编程环境中，打开writer时可能会抛出异常（<code>whoosh.store.LockError</code>，如果已经有一个writer被打开了）。Whoosh包含了一组实现样例（<code>whoosh.writing.AsyncWriter</code>和<code>whoosh.writing.BufferedWriter</code>），它们可以绕开写入锁。</div>
@@ -683,7 +1130,19 @@ writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writ
             <div class="admonition-content">即便writer已打开且处于commit中，index仍然是可以被读取的。已存在的reader不受影响，新的reader也能正常地打开最新的index。但是，commit完成之后，已存在的reader只能获取先前的index（也就是说，它们不会自动更新最新的提交内容）。</div>
         </div>
 IndexWriter的<code>add_document(**kwargs)</code>方法以参数的形式将字段名映射到值：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;My document&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;This is my document!&#34;</span>,
                     path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>, tags<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;first short&#34;</span>, icon<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/icons/star.png&#34;</span>)
 writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Second try&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;This is the second example.&#34;</span>,
@@ -691,31 +1150,76 @@ writer<span style="color:#666">.</span>add_document(title<span style="color:#666
 writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Third time&#39;s the charm&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Examples are many.&#34;</span>,
                     path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/c&#34;</span>, tags<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;short&#34;</span>, icon<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/icons/book.png&#34;</span>)
 writer<span style="color:#666">.</span>commit()
-</code></pre></div><p>建立索引的字段必须赋予unicode编码的值；存储但不索引的字段可以使用任意编码。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>建立索引的字段必须赋予unicode编码的值；存储但不索引的字段可以使用任意编码。</p>
 <p>Whoosh允许使用同样的值添加文档，这可能会很有用，也有可能令人厌烦：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>add_document(path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>, title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;A&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Hello there&#34;</span>)
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>add_document(path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>, title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;A&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Hello there&#34;</span>)
 writer<span style="color:#666">.</span>add_document(path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>, title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;A&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Deja vu!&#34;</span>)
-</code></pre></div><p>这个例子添加了具有相同path和title的两个文档。<br />
+</code></pre></td></tr></table>
+</div>
+</div><p>这个例子添加了具有相同path和title的两个文档。<br />
 下文的“updating documents”会有关于<code>update_document</code>方法的介绍，它使用“unique”参数来替换旧文档，而不是新增文档。</p>
 <h4 id="indexing-and-storing-different-values-for-the-same-field">Indexing and storing different values for the same field</h4>
 <p>如果你有一个字段既能索引也能存储，那么，必要情况下，你可以索引一个unuicode编码的值并存储一个不同的值（通常这是不必要的，但有时这真的很有用 <del>似曾相识的话</del> ）。使用一个特殊的关键字参数<code>_stored_&lt;fieldname&gt;</code>可以实现这个功能。一般的参数值会被分析并建立索引，而带有“stored”的参数的值会被展示在检索结果中：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Title to be indexed&#34;</span>, _stored_title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Stored title&#34;</span>)
-</code></pre></div><h4 id="finishing-adding-documents">Finishing adding documents</h4>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>add_document(title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Title to be indexed&#34;</span>, _stored_title<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;Stored title&#34;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="finishing-adding-documents">Finishing adding documents</h4>
 <p>IndexWriter就像数据库事务一样。你进行一连串的操作，然后一次性提交它们。<br />
 调用<code>commit()</code>保存添加到index中的文档：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>commit()
-</code></pre></div><p>一旦你的文档在index中，你就可以检索它们了。<br />
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>commit()
+</code></pre></td></tr></table>
+</div>
+</div><p>一旦你的文档在index中，你就可以检索它们了。<br />
 如果想要关闭writer而不提交，使用<code>cancel()</code>代替<code>commit()</code>：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>cancel()
-</code></pre></div><p>始终要记住，如果你要打开一个writer（或者已经打开过writer并且尚未关闭），那么就应当不会有其它线程或者进程会获取相同index的writer或修改该index。一个writer可能会占用多个打开的文件，所以你也应该记住在不需要writer的时候要调用<code>commit()</code>或者<code>cancel()</code>。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>cancel()
+</code></pre></td></tr></table>
+</div>
+</div><p>始终要记住，如果你要打开一个writer（或者已经打开过writer并且尚未关闭），那么就应当不会有其它线程或者进程会获取相同index的writer或修改该index。一个writer可能会占用多个打开的文件，所以你也应该记住在不需要writer的时候要调用<code>commit()</code>或者<code>cancel()</code>。</p>
 <h4 id="merging-segments">Merging segments</h4>
 <p>Whoosh的filedb索引实际上是一个容器，用于一个或多个称为段的子索引。当您将文档添加到索引中时，并不是将新文档整合进现有文档(这操作的代价可能非常昂贵，因为它涉及到在磁盘上使用所有已索引的term)，而是在现有段的后面创建一个新段。然后，当你检索索引时，Whoosh将分别搜索两个段并合并结果，使这些段看起来是一个统一的索引。(这个巧妙的设计是抄袭Lucene的。)</p>
 <p>所以，相交于每次添加文档都重写整个index，拥有几个搜索段将会使搜索更加高效。但是，在检索某些内容时，多段同时检索可能会变慢，并且段越多检索越慢。因此，whoosh采用了一种算法，在你调用<code>commit()</code>的时候，算法会检查较小的段，将提交的内容合并到小的段中，使得段的个数少些、段的大小大些。<br />
 提交时，使用<code>merge=False</code>避免whoosh自动整合段：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>commit(merge<span style="color:#666">=</span>False)
-</code></pre></div><p>而，要合并所有段，将index优化为单一的段，请使用<code>optimize=True</code>：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>commit(optimize<span style="color:#666">=</span>True)
-</code></pre></div><p>由于优化会重写index中的所有信息，所以在大型index中会很慢。通常，最好还是依靠whoosh的算法，而不是一直使用优化功能。<br />
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>commit(merge<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">False</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>而，要合并所有段，将index优化为单一的段，请使用<code>optimize=True</code>：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">writer<span style="color:#666">.</span>commit(optimize<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p>由于优化会重写index中的所有信息，所以在大型index中会很慢。通常，最好还是依靠whoosh的算法，而不是一直使用优化功能。<br />
 （Index对象也有一个<code>optmize()</code>方法可以用来优化index（合并为单一段）。它仅仅创建一个writer并调用<code>commit(optimize=True)</code>。）<br />
 如果想要更好地控制合并段，你可以制定自己的合并策略，并且在<code>commit()</code>中指定它。参见<code>whoosh.writing</code>模块中<code>NO_MERGE</code>、<code>MERGE_SMALL</code>以及<code>OPTIMIZE</code>的实现。</p>
 <h4 id="deleting-documents">Deleting documents</h4>
@@ -730,17 +1234,46 @@ writer<span style="color:#666">.</span>add_document(path<span style="color:#666"
 <li><code>delete_by_query(query)</code><br />
 删除所有与query匹配的文档</li>
 </ul>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Delete document by its path -- this field must be indexed</span>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#60a0b0;font-style:italic"># Delete document by its path -- this field must be indexed</span>
 ix<span style="color:#666">.</span>delete_by_term(<span style="color:#4070a0">&#39;path&#39;</span>, <span style="color:#4070a0">u</span><span style="color:#4070a0">&#39;/a/b/c&#39;</span>)
-<span style="color:#60a0b0;font-style:italic"># Save the deletion to disk</span>
+<span style="color:#60a0b0;font-style:italic"># Save the deletion to disk</span>
 ix<span style="color:#666">.</span>commit()
-</code></pre></div><p>在<code>filedb</code>后台，“删除”文档仅仅是把文档的编号添加到已删文档列表中，这个列表仍然存储在index中。当检索index时，whoosh知道检索结果中不需要返回已经删除的文档。然而，文档的内容依旧储存在index中（，只是关于文档的一些统计信息不再更新），直到合并包含已删文档的段。（因为，立即从index中删除文档会涉及到重写磁盘上的整个index，这会非常低效。）</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>在<code>filedb</code>后台，“删除”文档仅仅是把文档的编号添加到已删文档列表中，这个列表仍然存储在index中。当检索index时，whoosh知道检索结果中不需要返回已经删除的文档。然而，文档的内容依旧储存在index中（，只是关于文档的一些统计信息不再更新），直到合并包含已删文档的段。（因为，立即从index中删除文档会涉及到重写磁盘上的整个index，这会非常低效。）</p>
 <h4 id="updating-documents">Updating documents</h4>
 <p>如果你想替换文档，可以删除旧文档，再添加新的文档。或者，使用<code>IndexWriter.update_document</code>进行这一步操作。</p>
 <p>使用<code>update_document</code>，你必须在schema中标记至少一个字段为“unique”。whoosh会使用“unique”字段的内容去寻找需要删除的文档：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, ID, TEXT
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, ID, TEXT
 
-schema <span style="color:#666">=</span> Schema(path <span style="color:#666">=</span> ID(unique<span style="color:#666">=</span>True), content<span style="color:#666">=</span>TEXT)
+schema <span style="color:#666">=</span> Schema(path <span style="color:#666">=</span> ID(unique<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>), content<span style="color:#666">=</span>TEXT)
 
 ix <span style="color:#666">=</span> index<span style="color:#666">.</span>create_in(<span style="color:#4070a0">&#34;index&#34;</span>)
 writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
@@ -749,28 +1282,60 @@ writer<span style="color:#666">.</span>add_document(path<span style="color:#666"
 writer<span style="color:#666">.</span>commit()
 
 writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
-<span style="color:#60a0b0;font-style:italic"># Because &#34;path&#34; is marked as unique, calling update_document with path=&#34;/a&#34;</span>
-<span style="color:#60a0b0;font-style:italic"># will delete any existing documents where the &#34;path&#34; field contains &#34;/a&#34;.</span>
+<span style="color:#60a0b0;font-style:italic"># Because &#34;path&#34; is marked as unique, calling update_document with path=&#34;/a&#34;</span>
+<span style="color:#60a0b0;font-style:italic"># will delete any existing documents where the &#34;path&#34; field contains &#34;/a&#34;.</span>
 writer<span style="color:#666">.</span>update_document(path<span style="color:#666">=</span><span style="color:#4070a0">u</span><span style="color:#4070a0">&#34;/a&#34;</span>, content<span style="color:#666">=</span><span style="color:#4070a0">&#34;Replacement for the first document&#34;</span>)
 writer<span style="color:#666">.</span>commit()
-</code></pre></div><p>“unique”字段必须是被索引的。<br />
+</code></pre></td></tr></table>
+</div>
+</div><p>“unique”字段必须是被索引的。<br />
 如果需要更新的文档不存在，那么<code>update_document</code>的作用将和<code>add_document</code>相似。<br />
 “unique”和<code>undate_document</code>仅仅是删除和添加的一个快捷方式。whoosh本身没有unique标志符的概念，当你使用<code>add_document</code>时并不能保证唯一性。</p>
 <h4 id="incremental-indexing">Incremental indexing</h4>
 <p>索引一个文档集合的编程方式通常有两种：<br />
 一种是从头索引所有文档；另一种是只更新改变的文档 (leaving aside web applications where you need to add/update documents according to user actions)。</p>
 <p>第一种方式很简单，示例如下：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">os.path</span>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">os.path</span>
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh</span> <span style="color:#007020;font-weight:bold">import</span> index
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh.fields</span> <span style="color:#007020;font-weight:bold">import</span> Schema, ID, TEXT
 
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">clean_index</span>(dirname):
-  <span style="color:#60a0b0;font-style:italic"># Always create the index from scratch</span>
+  <span style="color:#60a0b0;font-style:italic"># Always create the index from scratch</span>
   ix <span style="color:#666">=</span> index<span style="color:#666">.</span>create_in(dirname, schema<span style="color:#666">=</span>get_schema())
   writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 
-  <span style="color:#60a0b0;font-style:italic"># Assume we have a function that gathers the filenames of the</span>
-  <span style="color:#60a0b0;font-style:italic"># documents to be indexed</span>
+  <span style="color:#60a0b0;font-style:italic"># Assume we have a function that gathers the filenames of the</span>
+  <span style="color:#60a0b0;font-style:italic"># documents to be indexed</span>
   <span style="color:#007020;font-weight:bold">for</span> path <span style="color:#007020;font-weight:bold">in</span> my_docs():
     add_doc(writer, path)
 
@@ -778,7 +1343,7 @@ writer<span style="color:#666">.</span>commit()
 
 
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">get_schema</span>()
-  <span style="color:#007020;font-weight:bold">return</span> Schema(path<span style="color:#666">=</span>ID(unique<span style="color:#666">=</span>True, stored<span style="color:#666">=</span>True), content<span style="color:#666">=</span>TEXT)
+  <span style="color:#007020;font-weight:bold">return</span> Schema(path<span style="color:#666">=</span>ID(unique<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>, stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>), content<span style="color:#666">=</span>TEXT)
 
 
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">add_doc</span>(writer, path):
@@ -786,10 +1351,25 @@ writer<span style="color:#666">.</span>commit()
   content <span style="color:#666">=</span> fileobj<span style="color:#666">.</span>read()
   fileobj<span style="color:#666">.</span>close()
   writer<span style="color:#666">.</span>add_document(path<span style="color:#666">=</span>path, content<span style="color:#666">=</span>content)
-</code></pre></div><p>对于少量的文档，这种方式是足够迅速的。但是，面对大量文档时，你就不想使用这种方式了。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>对于少量的文档，这种方式是足够迅速的。但是，面对大量文档时，你就不想使用这种方式了。</p>
 <p>首先，我们需要记录每个文档的最近修改时间，以便在它更改时可以检查到它。简单起见，如下的示例中，我们仅使用mtime：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">get_schema</span>()
-  <span style="color:#007020;font-weight:bold">return</span> Schema(path<span style="color:#666">=</span>ID(unique<span style="color:#666">=</span>True, stored<span style="color:#666">=</span>True), time<span style="color:#666">=</span>STORED, content<span style="color:#666">=</span>TEXT)
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">get_schema</span>()
+  <span style="color:#007020;font-weight:bold">return</span> Schema(path<span style="color:#666">=</span>ID(unique<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>, stored<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">True</span>), time<span style="color:#666">=</span>STORED, content<span style="color:#666">=</span>TEXT)
 
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">add_doc</span>(writer, path):
   fileobj <span style="color:#666">=</span> <span style="color:#007020">open</span>(path, <span style="color:#4070a0">&#34;rb&#34;</span>)
@@ -797,8 +1377,62 @@ writer<span style="color:#666">.</span>commit()
   fileobj<span style="color:#666">.</span>close()
   modtime <span style="color:#666">=</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>getmtime(path)
   writer<span style="color:#666">.</span>add_document(path<span style="color:#666">=</span>path, content<span style="color:#666">=</span>content, time<span style="color:#666">=</span>modtime)
-</code></pre></div><p>现在，我们修改之前的脚本，使其既可以选择从头建立索引，也可以增量建立索引：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">index_my_docs</span>(dirname, clean<span style="color:#666">=</span>False):
+</code></pre></td></tr></table>
+</div>
+</div><p>现在，我们修改之前的脚本，使其既可以选择从头建立索引，也可以增量建立索引：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">index_my_docs</span>(dirname, clean<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">False</span>):
   <span style="color:#007020;font-weight:bold">if</span> clean:
     clean_index(dirname)
   <span style="color:#007020;font-weight:bold">else</span>:
@@ -808,45 +1442,47 @@ writer<span style="color:#666">.</span>commit()
 <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">incremental_index</span>(dirname)
     ix <span style="color:#666">=</span> index<span style="color:#666">.</span>open_dir(dirname)
 
-    <span style="color:#60a0b0;font-style:italic"># The set of all paths in the index</span>
+    <span style="color:#60a0b0;font-style:italic"># The set of all paths in the index</span>
     indexed_paths <span style="color:#666">=</span> <span style="color:#007020">set</span>()
-    <span style="color:#60a0b0;font-style:italic"># The set of all paths we need to re-index</span>
+    <span style="color:#60a0b0;font-style:italic"># The set of all paths we need to re-index</span>
     to_index <span style="color:#666">=</span> <span style="color:#007020">set</span>()
 
     <span style="color:#007020;font-weight:bold">with</span> ix<span style="color:#666">.</span>searcher() <span style="color:#007020;font-weight:bold">as</span> searcher:
       writer <span style="color:#666">=</span> ix<span style="color:#666">.</span>writer()
 
-      <span style="color:#60a0b0;font-style:italic"># Loop over the stored fields in the index</span>
+      <span style="color:#60a0b0;font-style:italic"># Loop over the stored fields in the index</span>
       <span style="color:#007020;font-weight:bold">for</span> fields <span style="color:#007020;font-weight:bold">in</span> searcher<span style="color:#666">.</span>all_stored_fields():
         indexed_path <span style="color:#666">=</span> fields[<span style="color:#4070a0">&#39;path&#39;</span>]
         indexed_paths<span style="color:#666">.</span>add(indexed_path)
 
         <span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020;font-weight:bold">not</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>exists(indexed_path):
-          <span style="color:#60a0b0;font-style:italic"># This file was deleted since it was indexed</span>
+          <span style="color:#60a0b0;font-style:italic"># This file was deleted since it was indexed</span>
           writer<span style="color:#666">.</span>delete_by_term(<span style="color:#4070a0">&#39;path&#39;</span>, indexed_path)
 
         <span style="color:#007020;font-weight:bold">else</span>:
-          <span style="color:#60a0b0;font-style:italic"># Check if this file was changed since it</span>
-          <span style="color:#60a0b0;font-style:italic"># was indexed</span>
+          <span style="color:#60a0b0;font-style:italic"># Check if this file was changed since it</span>
+          <span style="color:#60a0b0;font-style:italic"># was indexed</span>
           indexed_time <span style="color:#666">=</span> fields[<span style="color:#4070a0">&#39;time&#39;</span>]
           mtime <span style="color:#666">=</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>getmtime(indexed_path)
           <span style="color:#007020;font-weight:bold">if</span> mtime <span style="color:#666">&gt;</span> indexed_time:
-            <span style="color:#60a0b0;font-style:italic"># The file has changed, delete it and add it to the list of</span>
-            <span style="color:#60a0b0;font-style:italic"># files to reindex</span>
+            <span style="color:#60a0b0;font-style:italic"># The file has changed, delete it and add it to the list of</span>
+            <span style="color:#60a0b0;font-style:italic"># files to reindex</span>
             writer<span style="color:#666">.</span>delete_by_term(<span style="color:#4070a0">&#39;path&#39;</span>, indexed_path)
             to_index<span style="color:#666">.</span>add(indexed_path)
 
-      <span style="color:#60a0b0;font-style:italic"># Loop over the files in the filesystem</span>
-      <span style="color:#60a0b0;font-style:italic"># Assume we have a function that gathers the filenames of the</span>
-      <span style="color:#60a0b0;font-style:italic"># documents to be indexed</span>
+      <span style="color:#60a0b0;font-style:italic"># Loop over the files in the filesystem</span>
+      <span style="color:#60a0b0;font-style:italic"># Assume we have a function that gathers the filenames of the</span>
+      <span style="color:#60a0b0;font-style:italic"># documents to be indexed</span>
       <span style="color:#007020;font-weight:bold">for</span> path <span style="color:#007020;font-weight:bold">in</span> my_docs():
         <span style="color:#007020;font-weight:bold">if</span> path <span style="color:#007020;font-weight:bold">in</span> to_index <span style="color:#007020;font-weight:bold">or</span> path <span style="color:#007020;font-weight:bold">not</span> <span style="color:#007020;font-weight:bold">in</span> indexed_paths:
-          <span style="color:#60a0b0;font-style:italic"># This is either a file that&#39;s changed, or a new file</span>
-          <span style="color:#60a0b0;font-style:italic"># that wasn&#39;t indexed before. So index it!</span>
+          <span style="color:#60a0b0;font-style:italic"># This is either a file that&#39;s changed, or a new file</span>
+          <span style="color:#60a0b0;font-style:italic"># that wasn&#39;t indexed before. So index it!</span>
           add_doc(writer, path)
 
       writer<span style="color:#666">.</span>commit()
-</code></pre></div><p><code>incremental_index</code>方法中：</p>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>incremental_index</code>方法中：</p>
 <ul>
 <li>遍历最近索引的文档路径：
 <ul>
@@ -865,20 +1501,44 @@ writer<span style="color:#666">.</span>commit()
 </ul>
 <h4 id="clearing-the-index-1">Clearing the index</h4>
 <p>某些情况下，你需要在不破坏已经存在的reader的前提下，重头建立index：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh</span> <span style="color:#007020;font-weight:bold">import</span> writing
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">whoosh</span> <span style="color:#007020;font-weight:bold">import</span> writing
 
 <span style="color:#007020;font-weight:bold">with</span> myindex<span style="color:#666">.</span>writer() <span style="color:#007020;font-weight:bold">as</span> mywriter:
-    <span style="color:#60a0b0;font-style:italic"># You can optionally add documents to the writer here</span>
-    <span style="color:#60a0b0;font-style:italic"># e.g. mywriter.add_document(...)</span>
+    <span style="color:#60a0b0;font-style:italic"># You can optionally add documents to the writer here</span>
+    <span style="color:#60a0b0;font-style:italic"># e.g. mywriter.add_document(...)</span>
 
-    <span style="color:#60a0b0;font-style:italic"># Using mergetype=CLEAR clears all existing segments so the index will</span>
-    <span style="color:#60a0b0;font-style:italic"># only have any documents you&#39;ve added to this writer</span>
+    <span style="color:#60a0b0;font-style:italic"># Using mergetype=CLEAR clears all existing segments so the index will</span>
+    <span style="color:#60a0b0;font-style:italic"># only have any documents you&#39;ve added to this writer</span>
     mywriter<span style="color:#666">.</span>mergetype <span style="color:#666">=</span> writing<span style="color:#666">.</span>CLEAR
-</code></pre></div><p>或者，不使用writer上下文管理器，直接调用<code>commit()</code>，像这样：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mywriter <span style="color:#666">=</span> myindex<span style="color:#666">.</span>writer()
-<span style="color:#60a0b0;font-style:italic"># ...</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>或者，不使用writer上下文管理器，直接调用<code>commit()</code>，像这样：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mywriter <span style="color:#666">=</span> myindex<span style="color:#666">.</span>writer()
+<span style="color:#60a0b0;font-style:italic"># ...</span>
 mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666">=</span>writing<span style="color:#666">.</span>CLEAR)
-</code></pre></div><link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition note">
+</code></pre></td></tr></table>
+</div>
+</div><link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition note">
             <p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p>
             <div class="admonition-content">如果你不需要担心已经存在的reader，更高效的方式是直接删除index目录中的内容，然后重启。</div>
         </div>
@@ -887,8 +1547,15 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
 <p>若你已经建立了索引，并且添加了文档，那么就可以检索这些文档了。</p>
 <h4 id="the-searcher-object-1">The <code>Searcher</code> object</h4>
 <p>通过调用Index对象的<code>searcher()</code>获得<em>whoosh.searching.Searcher</em>对象：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">searcher <span style="color:#666">=</span> myindex<span style="color:#666">.</span>searcher()
-</code></pre></div>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">searcher <span style="color:#666">=</span> myindex<span style="color:#666">.</span>searcher()
+</code></pre></td></tr></table>
+</div>
+</div>
     </div>
     <footer class="post-footer">
      
@@ -1003,7 +1670,7 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://litmingc.github.io/post/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -1020,7 +1687,7 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
     <div class="site-state-item site-state-tags">
         <a href="https://litmingc.github.io/tags/">
          
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         
         <span class="site-state-item-name">标签</span>
         </a>
@@ -1061,6 +1728,7 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
     </div>
 </section>
 
+
   </div>
 </aside>
 </div>
@@ -1074,7 +1742,7 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.68.3</a>
+  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.84.2</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -1095,6 +1763,7 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
     window.Promise = null;
   }
 </script>
+
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
@@ -1110,7 +1779,6 @@ mywriter<span style="color:#666">.</span>commit(mergetype<span style="color:#666
 <script type="text/javascript" src="https://litmingc.github.io/js/scrollspy.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/post-details.js"></script>
 
-<script type="text/javascript" src="https://litmingc.github.io/js/toc.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
@@ -1175,5 +1843,6 @@ for(i = 0; i < all.length; i += 1){
     })
 </script>
 
+<script  type="text/javascript" src="https://litmingc.github.io/js/genTOC.js"></script>
 </body>
 </html>

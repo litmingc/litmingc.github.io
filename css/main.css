@@ -1023,7 +1023,7 @@ pre .javascript .function {
 }
 .post-body {
   font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: large;
+  /* font-size: large; */
 }
 .post-body h1 {
   border-left: solid 5px #428bca;

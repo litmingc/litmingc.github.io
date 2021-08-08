@@ -248,7 +248,7 @@ if (!doNotTrack) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">1126 字 ~3分钟</span>
+<span class="leancloud-visitors-count">1205 字 ~3分钟</span>
 </span>
       </div>
     </header>
@@ -271,20 +271,41 @@ if (!doNotTrack) {
 </li>
 <li>
 <p>正则表达式</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Validator <span style="color:#666">=</span> QRegExpValidator(self)  <span style="color:#60a0b0;font-style:italic"># 校验器</span>
-<span style="color:#60a0b0;font-style:italic"># 为校验器配置QRegExp(), 参数r&#34;[0-9]&#34;为正则表达式 </span>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Validator <span style="color:#666">=</span> QRegExpValidator(self)  <span style="color:#60a0b0;font-style:italic"># 校验器</span>
+<span style="color:#60a0b0;font-style:italic"># 为校验器配置QRegExp(), 参数r&#34;[0-9]&#34;为正则表达式 </span>
 Validator<span style="color:#666">.</span>setRegExp(QRegExp(<span style="color:#4070a0">r</span><span style="color:#4070a0">&#34;[0-9]&#34;</span>))
-    
+
 c <span style="color:#666">=</span> QLineEdit()
 c<span style="color:#666">.</span>setValidator(Validator)
-</code></pre></div></li>
+</code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>掩码<br>
 <strong>掩码对比正则表达式</strong>：掩码使用占位符；正则表达式则没有占位。所以，在没有输入的情况下，掩码的光标可以在占下的位置间移动，而且输入方式相当于更新，而不是插入。</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">c <span style="color:#666">=</span> QLineEdit()
-c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;0&#39;</span>)  <span style="color:#60a0b0;font-style:italic"># 设置掩码：一位 0-9 的字符</span>
-c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;000&#39;</span>)  <span style="color:#60a0b0;font-style:italic"># 设置掩码：三位 0-9 的字符</span>
-</code></pre></div><p><strong>掩码占位符表</strong></p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">c <span style="color:#666">=</span> QLineEdit()
+c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;0&#39;</span>)  <span style="color:#60a0b0;font-style:italic"># 设置掩码：一位 0-9 的字符</span>
+c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;000&#39;</span>)  <span style="color:#60a0b0;font-style:italic"># 设置掩码：三位 0-9 的字符</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>掩码占位符表</strong></p>
 <p>参考<a href="https://blog.csdn.net/u013934107/article/details/93722054">网上搜到的表格</a>，但在应用时，原表中“必须输入”以及“不是必需的”的差异未有体现，下表为个人试验得出的意见。<br>
 【注】试验时，有效的代码部分仅为上述代码更换掩码而已。</p>
 <table>
@@ -337,7 +358,7 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
 </tr>
 <tr>
 <td align="center">!</td>
-<td align="left">搭配上述字符，<strong>从！的位置开始</strong>，关闭 &gt; 、&lt;的大小写转换效果。<br>例如：'&lt;aaa!aaa&rsquo;，前三个字符会转换为小写，后三个字符不会被转换成小写</td>
+<td align="left">搭配上述字符，<strong>从！的位置开始</strong>，关闭 &gt; 、&lt;的大小写转换效果。<br>例如：'&lt;aaa!aaa'，前三个字符会转换为小写，后三个字符不会被转换成小写</td>
 </tr>
 </tbody>
 </table>
@@ -345,7 +366,58 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
 </ul>
 <h3 id="鼠标事件">鼠标事件</h3>
 <h4 id="判断鼠标按键">判断鼠标按键</h4>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">sys</span>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">sys</span>
 
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">PyQt5</span> <span style="color:#007020;font-weight:bold">import</span> QtGui
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">PyQt5.QtCore</span> <span style="color:#007020;font-weight:bold">import</span> QEvent, Qt
@@ -354,7 +426,7 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
 
 <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">FillArea</span>(QWidget):
 
-    <span style="color:#007020;font-weight:bold">def</span> __init__(self) <span style="color:#666">-&gt;</span> None:
+    <span style="color:#007020;font-weight:bold">def</span> __init__(self) <span style="color:#666">-&gt;</span> <span style="color:#007020;font-weight:bold">None</span>:
         <span style="color:#007020">super</span>()<span style="color:#666">.</span>__init__()
         self<span style="color:#666">.</span>wordTip <span style="color:#666">=</span> QLabel(<span style="color:#4070a0">&#34;asdasd&#34;</span>, self)
         self<span style="color:#666">.</span>setGeometry(<span style="color:#40a070">300</span>, <span style="color:#40a070">300</span>, <span style="color:#40a070">350</span>, <span style="color:#40a070">100</span>)
@@ -363,26 +435,26 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
     <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">initWin</span>(self):
         <span style="color:#007020;font-weight:bold">pass</span>
 
-    <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">mousePressEvent</span>(self, event: QtGui<span style="color:#666">.</span>QMouseEvent) <span style="color:#666">-&gt;</span> None:
-        <span style="color:#60a0b0;font-style:italic"># 左键按下</span>
+    <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">mousePressEvent</span>(self, event: QtGui<span style="color:#666">.</span>QMouseEvent) <span style="color:#666">-&gt;</span> <span style="color:#007020;font-weight:bold">None</span>:
+        <span style="color:#60a0b0;font-style:italic"># 左键按下</span>
         <span style="color:#007020;font-weight:bold">if</span> event<span style="color:#666">.</span>buttons() <span style="color:#666">==</span> Qt<span style="color:#666">.</span>LeftButton:
             self<span style="color:#666">.</span>wordTip<span style="color:#666">.</span>setText (<span style="color:#4070a0">&#34;左&#34;</span>)
-        <span style="color:#60a0b0;font-style:italic"># 右键按下</span>
+        <span style="color:#60a0b0;font-style:italic"># 右键按下</span>
         <span style="color:#007020;font-weight:bold">elif</span> event<span style="color:#666">.</span>buttons() <span style="color:#666">==</span> Qt<span style="color:#666">.</span>RightButton:
             self<span style="color:#666">.</span>wordTip<span style="color:#666">.</span>setText (<span style="color:#4070a0">&#34;右&#34;</span>)
-        <span style="color:#60a0b0;font-style:italic"># 中键按下</span>
+        <span style="color:#60a0b0;font-style:italic"># 中键按下</span>
         <span style="color:#007020;font-weight:bold">elif</span> event<span style="color:#666">.</span>buttons() <span style="color:#666">==</span> Qt<span style="color:#666">.</span>MidButton:
             self<span style="color:#666">.</span>wordTip<span style="color:#666">.</span>setText (<span style="color:#4070a0">&#34;中&#34;</span>)
-        <span style="color:#60a0b0;font-style:italic"># 左右键同时按下</span>
+        <span style="color:#60a0b0;font-style:italic"># 左右键同时按下</span>
         <span style="color:#007020;font-weight:bold">elif</span> event<span style="color:#666">.</span>buttons() <span style="color:#666">==</span> Qt<span style="color:#666">.</span>LeftButton <span style="color:#666">|</span> Qt<span style="color:#666">.</span>RightButton:
             self<span style="color:#666">.</span>wordTip<span style="color:#666">.</span>setText (<span style="color:#4070a0">&#34;左右&#34;</span>)
-        <span style="color:#60a0b0;font-style:italic"># 左中键同时按下</span>
+        <span style="color:#60a0b0;font-style:italic"># 左中键同时按下</span>
         <span style="color:#007020;font-weight:bold">elif</span> event<span style="color:#666">.</span>buttons() <span style="color:#666">==</span> Qt<span style="color:#666">.</span>LeftButton <span style="color:#666">|</span> Qt<span style="color:#666">.</span>MidButton:
             self<span style="color:#666">.</span>wordTip<span style="color:#666">.</span>setText (<span style="color:#4070a0">&#34;左中&#34;</span>)
-        <span style="color:#60a0b0;font-style:italic"># 右中键同时按下</span>
+        <span style="color:#60a0b0;font-style:italic"># 右中键同时按下</span>
         <span style="color:#007020;font-weight:bold">elif</span> event<span style="color:#666">.</span>buttons() <span style="color:#666">==</span> Qt<span style="color:#666">.</span>MidButton <span style="color:#666">|</span> Qt<span style="color:#666">.</span>RightButton:
             self<span style="color:#666">.</span>wordTip<span style="color:#666">.</span>setText (<span style="color:#4070a0">&#34;右中&#34;</span>)
-        <span style="color:#60a0b0;font-style:italic"># 左中右键同时按下</span>
+        <span style="color:#60a0b0;font-style:italic"># 左中右键同时按下</span>
         <span style="color:#007020;font-weight:bold">elif</span> event<span style="color:#666">.</span>buttons() <span style="color:#666">==</span> Qt<span style="color:#666">.</span>LeftButton <span style="color:#666">|</span> Qt<span style="color:#666">.</span>MidButton <span style="color:#666">|</span> Qt<span style="color:#666">.</span>RightButton:
             self<span style="color:#666">.</span>wordTip<span style="color:#666">.</span>setText (<span style="color:#4070a0">&#34;左中右&#34;</span>)
         self<span style="color:#666">.</span>update()
@@ -392,8 +464,43 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
     app <span style="color:#666">=</span> QApplication(sys<span style="color:#666">.</span>argv)
     ex <span style="color:#666">=</span> FillArea()
     sys<span style="color:#666">.</span>exit(app<span style="color:#666">.</span>exec_())
-</code></pre></div><h4 id="鼠标位置监控">鼠标位置监控</h4>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">sys</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="鼠标位置监控">鼠标位置监控</h4>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007020;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">sys</span>
 
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">PyQt5</span> <span style="color:#007020;font-weight:bold">import</span> QtGui
 <span style="color:#007020;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">PyQt5.QtCore</span> <span style="color:#007020;font-weight:bold">import</span> QEvent, Qt
@@ -402,18 +509,18 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
 
 <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">FillArea</span>(QWidget):
 
-   <span style="color:#007020;font-weight:bold">def</span> __init__(self) <span style="color:#666">-&gt;</span> None:
+   <span style="color:#007020;font-weight:bold">def</span> __init__(self) <span style="color:#666">-&gt;</span> <span style="color:#007020;font-weight:bold">None</span>:
       <span style="color:#007020">super</span>()<span style="color:#666">.</span>__init__()
       self<span style="color:#666">.</span>wordTip <span style="color:#666">=</span> QLabel(<span style="color:#4070a0">&#34;asdasd-----------&#34;</span>, self)
       self<span style="color:#666">.</span>setGeometry(<span style="color:#40a070">300</span>, <span style="color:#40a070">300</span>, <span style="color:#40a070">350</span>, <span style="color:#40a070">100</span>)
-      <span style="color:#60a0b0;font-style:italic"># 跟踪鼠标</span>
-      self<span style="color:#666">.</span>setMouseTracking(True)
+      <span style="color:#60a0b0;font-style:italic"># 跟踪鼠标</span>
+      self<span style="color:#666">.</span>setMouseTracking(<span style="color:#007020;font-weight:bold">True</span>)
       self<span style="color:#666">.</span>show()
     
-   <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">mouseMoveEvent</span>(self, a0: QtGui<span style="color:#666">.</span>QMouseEvent) <span style="color:#666">-&gt;</span> None:
-      <span style="color:#60a0b0;font-style:italic"># 相对于整个屏幕的的位置</span>
+   <span style="color:#007020;font-weight:bold">def</span> <span style="color:#06287e">mouseMoveEvent</span>(self, a0: QtGui<span style="color:#666">.</span>QMouseEvent) <span style="color:#666">-&gt;</span> <span style="color:#007020;font-weight:bold">None</span>:
+      <span style="color:#60a0b0;font-style:italic"># 相对于整个屏幕的的位置</span>
       s <span style="color:#666">=</span> a0<span style="color:#666">.</span>screenPos()
-      self<span style="color:#666">.</span>wordTip<span style="color:#666">.</span>setText(<span style="color:#4070a0">&#34;X:{},Y:{}&#34;</span><span style="color:#666">.</span>format(s<span style="color:#666">.</span>x(),s<span style="color:#666">.</span>y()))
+      self<span style="color:#666">.</span>wordTip<span style="color:#666">.</span>setText(<span style="color:#4070a0">&#34;X:</span><span style="color:#70a0d0;font-style:italic">{}</span><span style="color:#4070a0">,Y:</span><span style="color:#70a0d0;font-style:italic">{}</span><span style="color:#4070a0">&#34;</span><span style="color:#666">.</span>format(s<span style="color:#666">.</span>x(),s<span style="color:#666">.</span>y()))
       self<span style="color:#666">.</span>update()
 
 
@@ -422,7 +529,9 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
     ex <span style="color:#666">=</span> FillArea()
     sys<span style="color:#666">.</span>exit(app<span style="color:#666">.</span>exec_())
 
-</code></pre></div><p>即使没有开启鼠标跟踪（<code>setMouseTracking</code>），当在控件内按下鼠标键移动时，会调用鼠标移动事件函数mouseMoveEvent()。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>即使没有开启鼠标跟踪（<code>setMouseTracking</code>），当在控件内按下鼠标键移动时，会调用鼠标移动事件函数mouseMoveEvent()。</p>
 <p><code>s = event.windowPos()</code>：相对于QT窗口的位置。<br />
 <code>s = PyQt5.Qt.QCursor.pos()</code>：可以获取全局的鼠标位置，相对于整个桌面。需要考虑怎么触发获取。<br />
 此外，QCursor还可以用来操纵鼠标。</p>
@@ -454,8 +563,8 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
 
     <div class="post-nav-prev post-nav-item">
     
-        <a href="https://litmingc.github.io/about/" rel="prev" title="About">
-        About <i class="fa fa-chevron-right"></i>
+        <a href="https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/" rel="prev" title="QLineEdit">
+        QLineEdit <i class="fa fa-chevron-right"></i>
         </a>
     
     </div>
@@ -534,7 +643,7 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://litmingc.github.io/post/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -551,7 +660,7 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
     <div class="site-state-item site-state-tags">
         <a href="https://litmingc.github.io/tags/">
          
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         
         <span class="site-state-item-name">标签</span>
         </a>
@@ -575,6 +684,7 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
       
     </section>
     
+
   </div>
 </aside>
 </div>
@@ -588,7 +698,7 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.68.3</a>
+  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.84.2</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -609,6 +719,7 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
     window.Promise = null;
   }
 </script>
+
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
@@ -624,7 +735,6 @@ c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;
 <script type="text/javascript" src="https://litmingc.github.io/js/scrollspy.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/post-details.js"></script>
 
-<script type="text/javascript" src="https://litmingc.github.io/js/toc.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
@@ -689,5 +799,6 @@ for(i = 0; i < all.length; i += 1){
     })
 </script>
 
+<script  type="text/javascript" src="https://litmingc.github.io/js/genTOC.js"></script>
 </body>
 </html>

@@ -6,18 +6,23 @@
     <description>Recent content in PyQt5 on LitMing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 12 Aug 2019 14:17:58 +0800</lastBuildDate>
-    
-	<atom:link href="https://litmingc.github.io/tags/pyqt5/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 12 Aug 2019 14:17:58 +0800</lastBuildDate><atom:link href="https://litmingc.github.io/tags/pyqt5/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Python]PyQt5笔记</title>
       <link>https://litmingc.github.io/post/python/%E7%AC%94%E8%AE%B0pyqt5-notebook/</link>
       <pubDate>Mon, 12 Aug 2019 14:17:58 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/python/%E7%AC%94%E8%AE%B0pyqt5-notebook/</guid>
-      <description>环境： python 3.8 PyQt5 5.13.0 QLineEdit 控制输入 正则表达式 Validator = QRegExpValidator(self) # 校验器 # 为校验器配置QRegExp(), 参数r&amp;#34;[0-9]&amp;#34;为正则表达式 Validator.setRegExp(QRegExp(r&amp;#34;[0-9]&amp;#34;)) c = QLineEdit() c.setValidator(Validator)</description>
+      <description>环境： python 3.8 PyQt5 5.13.0 QLineEdit 控制输入 正则表达式 1 2 3 4 5 6 Validator = QRegExpValidator(self) # 校验器 # 为校验器配置QRegExp(), 参数r&amp;#34;[0-9]&amp;#34;为正则表达</description>
+    </item>
+    
+    <item>
+      <title>QLineEdit</title>
+      <link>https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/</link>
+      <pubDate>Mon, 12 Aug 2019 14:17:58 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/</guid>
+      <description>环境： python 3.7 PyQt5 5.13.0 QLineEdit 控制输入 正则表达式 1 2 3 4 5 6 Validator = QRegExpValidator(self) # 校验器 # 为校验器配置QRegExp(), 参数r&amp;#34;[0-9]&amp;#34;为正则表达</description>
     </item>
     
   </channel>

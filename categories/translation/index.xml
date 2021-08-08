@@ -6,11 +6,7 @@
     <description>Recent content in Translation on LitMing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 04 Apr 2020 12:21:55 +0800</lastBuildDate>
-    
-	<atom:link href="https://litmingc.github.io/categories/translation/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 04 Apr 2020 12:21:55 +0800</lastBuildDate><atom:link href="https://litmingc.github.io/categories/translation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Translation]Whoosh 2.7.4 Documentation</title>
       <link>https://litmingc.github.io/post/translation/whoosh/</link>

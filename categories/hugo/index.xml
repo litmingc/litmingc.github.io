@@ -6,18 +6,14 @@
     <description>Recent content in Hugo on LitMing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 27 Feb 2020 16:40:46 +0800</lastBuildDate>
-    
-	<atom:link href="https://litmingc.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 27 Feb 2020 16:40:46 +0800</lastBuildDate><atom:link href="https://litmingc.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Tips]Hugo相关</title>
       <link>https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/</link>
       <pubDate>Thu, 27 Feb 2020 16:40:46 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/</guid>
-      <description>环境： hugo_extended_0.55.6_Windows-64bit hugo主题：Next 表达数学公式 方案一： 先上参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 方法一：修改上述参考中的s</description>
+      <description>环境： hugo_extended_0.55.6_Windows-64bit 表达数学公式 hugo主题：Next 方案一： 先上参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 方法一：修改上述参考中的s</description>
     </item>
     
   </channel>

@@ -6,11 +6,7 @@
     <description>Recent content on LitMing</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 12 Aug 2019 11:16:18 +0800</lastBuildDate>
-    
-	<atom:link href="https://litmingc.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 26 Jun 2021 01:24:42 +0800</lastBuildDate><atom:link href="https://litmingc.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Tips]Rime Settings</title>
       <link>https://litmingc.github.io/post/tips/rime-settings/</link>
@@ -21,12 +17,30 @@
     </item>
     
     <item>
+      <title>[C&amp;C&#43;&#43;]Cmake</title>
+      <link>https://litmingc.github.io/post/cc&#43;&#43;/cmake/</link>
+      <pubDate>Sat, 19 Jun 2021 14:38:23 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/cc&#43;&#43;/cmake/</guid>
+      <description>本文为阅读官方教程CMake Tutorial的笔记。 Step1：hello world 新建一个project01目录，并添加一个tutorial.cp</description>
+    </item>
+    
+    <item>
       <title>[C&amp;C&#43;&#43;]Auto关键字</title>
       <link>https://litmingc.github.io/post/cc&#43;&#43;/base-autotype/</link>
       <pubDate>Tue, 08 Jun 2021 13:29:10 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/cc&#43;&#43;/base-autotype/</guid>
-      <description>auto关键字主要功能为类型推导。 基本用法 int a=10; auto x=a; // x的类型为int auto *x=&amp;amp;a; // x的类型为int* auto x=&amp;amp;a; // x的类型为int* auto&amp;amp; x=a; // x的类型为int&amp;</description>
+      <description>auto关键字主要功能为类型推导。 基本用法 1 2 3 4 5 int a=10; auto x=a; // x的类型为int auto *x=&amp;amp;a; // x的类型为int* auto x=&amp;amp;a; // x的类型为int* auto&amp;amp; x=a; // x的类型</description>
+    </item>
+    
+    <item>
+      <title>[C&amp;C&#43;&#43;]基础语法小记</title>
+      <link>https://litmingc.github.io/post/cc&#43;&#43;/base/</link>
+      <pubDate>Sat, 17 Oct 2020 19:34:48 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/cc&#43;&#43;/base/</guid>
+      <description>一些语法 const 可以用非常量引用初始化常量引用，反之不行。 宏 宏中的特殊符号#、@、##： 1 2 3 #define Conn(x,y) x##y #define ToChar(x) #@x #define ToString(x) #x ##表示连接，int n = Conn(</description>
     </item>
     
     <item>
@@ -62,16 +76,7 @@
       <pubDate>Wed, 25 Mar 2020 10:04:26 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/tips/tips%E7%AE%97%E6%B3%95%E5%B0%8F%E6%8A%84/</guid>
-      <description>说在前头，打小抄可不是什么可耻的事儿！ 欧几里得算法证明（最大公约数）1 \(a\) 整除 \(b\) 表示\(b\%a\)为\(0\)； \(a\) 除以 \(b\) 表示 \(b/a\)；</description>
-    </item>
-    
-    <item>
-      <title>[Tips]Git使用笔记</title>
-      <link>https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Mon, 23 Mar 2020 23:36:31 +0800</pubDate>
-      
-      <guid>https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
-      <description>子模块 删除子模块 rm -rf 子模块目录 删除子模块目录及源码 vi .gitmodules 删除项目目录下.gitmodules文件中子模块相关条目 vi .git/config 删除配置项中子模块相关条目</description>
+      <description>欧几里得算法证明（最大公约数）1 \(a\) 整除 \(b\) 表示\(b\%a\)为\(0\)； \(a\) 除以 \(b\) 表示 \(b/a\)；我总把除和除以搞混。 \(gcd(a,b</description>
     </item>
     
     <item>
@@ -98,16 +103,16 @@
       <pubDate>Wed, 04 Mar 2020 16:10:52 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/tips/raspberrypi%E7%9B%B8%E5%85%B3/</guid>
-      <description>常用初始化配置 新烧好系统之后，我常做的配置。列出来做个备忘。 修改主机名 sudo vim /etc/hostname 修改密码 修改hosts 主要是添加127.0.0.1对前面修改的主</description>
+      <description>常用初始化配置 新烧好系统之后，我常做的配置。列出来做个备忘。 修改主机名 1 sudo vim /etc/hostname 修改密码 修改hosts 主要是添加127.0.0.1对前面修改的</description>
     </item>
     
     <item>
-      <title>[linux]Linux命令</title>
+      <title>[linux]常见命令</title>
       <link>https://litmingc.github.io/post/linux/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Fri, 28 Feb 2020 12:56:00 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/linux/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</guid>
-      <description>【推荐网站】 “小”命令 uname 查看系统内核以及系统版本 参数： -a或&amp;ndash;all 显示全部的信息。 -m或&amp;ndash;machine 显示电脑类</description>
+      <description>linux使用过程中自己会用到的一些“小”命令 uname 查看系统内核以及系统版本 参数： -a或&amp;ndash;all 显示全部的信息。 -m或&amp;ndash;</description>
     </item>
     
     <item>
@@ -116,7 +121,7 @@
       <pubDate>Thu, 27 Feb 2020 16:40:46 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/tips/hugo%E7%9B%B8%E5%85%B3/</guid>
-      <description>环境： hugo_extended_0.55.6_Windows-64bit hugo主题：Next 表达数学公式 方案一： 先上参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 方法一：修改上述参考中的s</description>
+      <description>环境： hugo_extended_0.55.6_Windows-64bit 表达数学公式 hugo主题：Next 方案一： 先上参考： MathJax Support 在Hugo中使用MathJax 修改公式显示的大小： 方法一：修改上述参考中的s</description>
     </item>
     
     <item>
@@ -134,7 +139,16 @@
       <pubDate>Mon, 12 Aug 2019 14:17:58 +0800</pubDate>
       
       <guid>https://litmingc.github.io/post/python/%E7%AC%94%E8%AE%B0pyqt5-notebook/</guid>
-      <description>环境： python 3.8 PyQt5 5.13.0 QLineEdit 控制输入 正则表达式 Validator = QRegExpValidator(self) # 校验器 # 为校验器配置QRegExp(), 参数r&amp;#34;[0-9]&amp;#34;为正则表达式 Validator.setRegExp(QRegExp(r&amp;#34;[0-9]&amp;#34;)) c = QLineEdit() c.setValidator(Validator)</description>
+      <description>环境： python 3.8 PyQt5 5.13.0 QLineEdit 控制输入 正则表达式 1 2 3 4 5 6 Validator = QRegExpValidator(self) # 校验器 # 为校验器配置QRegExp(), 参数r&amp;#34;[0-9]&amp;#34;为正则表达</description>
+    </item>
+    
+    <item>
+      <title>QLineEdit</title>
+      <link>https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/</link>
+      <pubDate>Mon, 12 Aug 2019 14:17:58 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/</guid>
+      <description>环境： python 3.7 PyQt5 5.13.0 QLineEdit 控制输入 正则表达式 1 2 3 4 5 6 Validator = QRegExpValidator(self) # 校验器 # 为校验器配置QRegExp(), 参数r&amp;#34;[0-9]&amp;#34;为正则表达</description>
     </item>
     
     <item>

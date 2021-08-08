@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>笔记 on LitMing</title>
+    <link>https://litmingc.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 笔记 on LitMing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 19 Jun 2021 14:38:23 +0800</lastBuildDate><atom:link href="https://litmingc.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[C&amp;C&#43;&#43;]Cmake</title>
+      <link>https://litmingc.github.io/post/cc&#43;&#43;/cmake/</link>
+      <pubDate>Sat, 19 Jun 2021 14:38:23 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/cc&#43;&#43;/cmake/</guid>
+      <description>本文为阅读官方教程CMake Tutorial的笔记。 Step1：hello world 新建一个project01目录，并添加一个tutorial.cp</description>
+    </item>
+    
+  </channel>
+</rss>

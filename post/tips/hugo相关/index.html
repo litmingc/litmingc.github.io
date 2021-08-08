@@ -241,7 +241,7 @@ if (!doNotTrack) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">1834 字 ~4分钟</span>
+<span class="leancloud-visitors-count">1441 字 ~3分钟</span>
 </span>
       </div>
     </header>
@@ -249,11 +249,15 @@ if (!doNotTrack) {
     <p>环境：</p>
 <ul>
 <li>hugo_extended_0.55.6_Windows-64bit</li>
-<li>hugo主题：<a href="https://github.com/xtfly/hugo-theme-next">Next</a></li>
 </ul>
 <hr />
-<h3 id="表达数学公式">表达数学公式</h3>
+<ol>
+<li>
+<p>表达数学公式</p>
 <ul>
+<li>
+<p>hugo主题：<a href="https://github.com/xtfly/hugo-theme-next">Next</a></p>
+</li>
 <li>
 <p>方案一：
 先上参考：<br />
@@ -262,14 +266,59 @@ if (!doNotTrack) {
 <p>修改公式显示的大小：<br />
 方法一：修改上述参考中的<code>style</code>。<br />
 方法二：使用如下代码：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">type</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;text/x-mathjax-config&#34;</span>&gt;
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">type</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;text/x-mathjax-config&#34;</span>&gt;
 MathJax.Hub.Config({
    <span style="color:#4070a0">&#34;HTML-CSS&#34;</span><span style="color:#666">:</span> { scale<span style="color:#666">:</span> <span style="color:#40a070">175</span>}
 });
 &lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
-</code></pre></div><p><strong>但是，MathJax在渲染的时候，速度有些慢。<del>总要等很久</del>。</strong> 又因为听说KaTeX挺快的（用了一下，还真的）。<br />
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>但是，MathJax在渲染的时候，速度有些慢。<del>总要等很久</del>。</strong> 又因为听说KaTeX挺快的（用了一下，还真的）。<br />
 参考上述改法，KaTeX的配置如下：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;
 &lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 &lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 &lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
@@ -299,14 +348,30 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 <span style="color:#007020;font-weight:bold">color</span>: <span style="color:#40a070">#515151</span>;
 }
 &lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
-</code></pre></div><p>如同参考教程<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>所说的一样，公式中使用<code>_</code>等符号会和Markdown冲突造成渲染失败，上述解决方法是在公式外加一对<code>``</code>解决，同时调整公式父层<code>code</code>标签的样式（因为原先的<code>code</code>的样式背景是灰的）。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>如同参考教程<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>所说的一样，公式中使用<code>_</code>等符号会和Markdown冲突造成渲染失败，上述解决方法是在公式外加一对<code>``</code>解决，同时调整公式父层<code>code</code>标签的样式（因为原先的<code>code</code>的样式背景是灰的）。</p>
 </li>
 <li>
 <p>方案二<br />
 上一种方案需要<code>``</code>把数学公式括起来，因而在使用vscode等编辑文档时非常不便于预览。幸运的是，在使用方案一的几天后，我又找到了方案二。</p>
 <p>先上<a href="https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/">参考</a><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup><br />
 首先，和方案一一样引入KaTeX的代码块。因为不套用code块，也不需要调整code块的样式了，所以直接用官方默认的示例就行了：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;
 &lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">defer</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 &lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">defer</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 &lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
@@ -316,125 +381,163 @@ renderMathInElement(<span style="color:#007020">document</span>.body,
 </span><span style="color:#60a0b0;font-style:italic"></span>      });
    });
 &lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
-</code></pre></div><p>然后，<a href="https://pandoc.org/installing.html">安装pandoc</a>。<br />
+</code></pre></td></tr></table>
+</div>
+</div><p>然后，<a href="https://pandoc.org/installing.html">安装pandoc</a>。<br />
 最后，在MarkDown文件的front-matter部分加上<code>markup: &quot;pandoc&quot;</code>即可。<br />
 &laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;手工分割线&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;<br />
-这里还有一些问题。其中，如果配置<code>delimiters: </code>选项，一定要把符号配全，pandoc似乎会把美元符号自动替换成其他符号。<br />
-不用pandoc，用mmark也行，但官方表示mmark未来将会被移除。</p>
-</li>
-</ul>
-<h3 id="修改代码块的样式">修改代码块的样式</h3>
-<pre><code>修改css文件的\&lt;pre\&gt;标签的样式，[样式参考](https://highlightjs.org/)  
-</code></pre>
-<h3 id="增加暗黑模式">增加暗黑模式</h3>
-<p><a href="https://radu-matei.com/blog/dark-mode/">参考：https://radu-matei.com/blog/dark-mode/</a></p>
-<ol>
-<li>新建一个html文件编写与暗黑模式相关的代码<br />
-我选择在<code>\layouts\partial\floater.html</code>路径下创建文件<br />
-在合适的位置（比如，header.html中），导入模板文件：
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{<span style="color:#666">-</span> partial <span style="color:#4070a0">&#34;floater.html&#34;</span> . <span style="color:#666">-</span>}}
-</code></pre></div></li>
-<li>为主题添加一个固定在角落里的<strong>图标</strong>，点击图标时触发主题的更改<br />
-添加角落的图标：
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">style</span>&gt;
-.<span style="color:#0e84b5;font-weight:bold">darkbutton</span>{
-   <span style="color:#007020;font-weight:bold">position</span>:<span style="color:#007020;font-weight:bold">fixed</span>;
-   <span style="color:#007020;font-weight:bold">top</span>:<span style="color:#40a070">30</span><span style="color:#902000">px</span>;
-   <span style="color:#007020;font-weight:bold">right</span>:<span style="color:#40a070">50</span><span style="color:#902000">px</span>;
-   <span style="color:#007020;font-weight:bold">width</span>: <span style="color:#40a070">2.3</span><span style="color:#902000">em</span>;
-   <span style="color:#007020;font-weight:bold">height</span>: <span style="color:#40a070">2.3</span><span style="color:#902000">em</span>;
+这里还有一些问题。其中，无法像方案一那像配置<code>delimiters: </code>选项。一旦配置了就无法渲染，<del>我猜是不是pandoc和这个冲突？</del> 而且，front-matter部分加上<code>markup: &quot;pandoc&quot;</code>后不能渲染<code>&lt;details&gt;</code>标签了，可能需要pandoc额外的设置吧。<br />
+于是，使用方案二就无法用一些html标签了，使用方案一又不便于编辑器预览。但是不用纠结<br />
+因为小孩子才做选择，而我可以全都要：<br />
+我用了如下的傻瓜方法，通过条件判断，给不同页面添加不同的代码。<br />
+内心OS：什么妖魔鬼怪的方法啊！ミ(ﾉ゜д゜)ﾉ打你哦</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{- if (and .IsPage (eq .Params.markup &#34;pandoc&#34; ) ) -}}
+<span style="color:#60a0b0;font-style:italic">&lt;!-- 方案二 --&gt;</span>
+&lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;
+&lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">defer</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">defer</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+   <span style="color:#007020">document</span>.addEventListener(<span style="color:#4070a0">&#34;DOMContentLoaded&#34;</span>, <span style="color:#007020;font-weight:bold">function</span>() {
+      renderMathInElement(<span style="color:#007020">document</span>.body, {
+            <span style="color:#60a0b0;font-style:italic">// ...options...
+</span><span style="color:#60a0b0;font-style:italic"></span>      });
+   });
+&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+{{- else if eq .Site.Params.Math &#34;katex&#34; -}}
+<span style="color:#60a0b0;font-style:italic">&lt;!-- 方案其它 --&gt;</span>
+&lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;
+&lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js&#34;</span> <span style="color:#4070a0">integrity</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH&#34;</span> <span style="color:#4070a0">crossorigin</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+renderMathInElement(<span style="color:#007020">document</span>.body,
+{
+   delimiters<span style="color:#666">:</span> [
+   {left<span style="color:#666">:</span> <span style="color:#4070a0">&#34;$$&#34;</span>, right<span style="color:#666">:</span> <span style="color:#4070a0">&#34;$$&#34;</span>, display<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">true</span>},
+   {left<span style="color:#666">:</span> <span style="color:#4070a0">&#34;$&#34;</span>, right<span style="color:#666">:</span> <span style="color:#4070a0">&#34;$&#34;</span>, display<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">false</span>},
+   <span style="color:#60a0b0;font-style:italic">// 注意看这里，pandoc似乎会把$$ 转成\( \)
+</span><span style="color:#60a0b0;font-style:italic"></span>   <span style="color:#60a0b0;font-style:italic">// Next主题中，博文在首页的summary的公式都是\( \)这样的
+</span><span style="color:#60a0b0;font-style:italic"></span>   {left<span style="color:#666">:</span> <span style="color:#4070a0">&#34;\\(&#34;</span>, right<span style="color:#666">:</span> <span style="color:#4070a0">&#34;\\)&#34;</span>, display<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">false</span>},
+   ],
+   ignoredTags<span style="color:#666">:</span> [<span style="color:#4070a0">&#39;script&#39;</span>, <span style="color:#4070a0">&#39;noscript&#39;</span>, <span style="color:#4070a0">&#39;style&#39;</span>, <span style="color:#4070a0">&#39;textarea&#39;</span>, <span style="color:#4070a0">&#39;pre&#39;</span>],
 }
-&lt;/<span style="color:#062873;font-weight:bold">style</span>&gt;
-
-&lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;//at.alicdn.com/t/font_1706978_500bk6gzog3.js&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
-&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;togglebutton&#34;</span>&gt;
-   &lt;<span style="color:#062873;font-weight:bold">svg</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;darkbutton&#34;</span> <span style="color:#4070a0">aria-hidden</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;true&#34;</span>&gt;&lt;<span style="color:#062873;font-weight:bold">use</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;dark-mode-toggle&#34;</span>  <span style="color:#4070a0">xlink:href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;#icon-taiyang&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">use</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">svg</span>&gt;
-&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</code></pre></div><p>其中<code>&lt;style&gt;</code>中<code>position:fixed;top:30px;right:50px;</code>使html元素固定在右上角。
-图标，使用了<a href="https://www.iconfont.cn/">iconfont图标库</a>。iconfont的使用方法官网有详细的使用说明。<br />
-当然，你可以使用其他的图标库，甚至是文字。</p>
-</li>
-<li>获取dark模式下的css文件<br />
-使用<a href="https://microsoftedge.microsoft.com/addons/detail/%E6%9A%97%E6%A8%A1%E5%BC%8F/ebljihalgmnchcjgimaclocclnlgjnhl">浏览器插件</a>调成暗黑模式后，打开开发者管理工具下载<code>源代码--&gt;暗模式--&gt;css--&gt;global-new.css</code>。使用其他拓展时，css的路径可能不一致。<br />
-将css文件放到<code>static\css</code>目录下，重命名为<code>dark.css</code><br />
-在主题模板中导入css文件：
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#60a0b0;font-style:italic">&lt;!-- 暗黑主题 --&gt;</span>
-&lt;<span style="color:#062873;font-weight:bold">link</span> <span style="color:#4070a0">disabled</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;dark-mode-theme&#34;</span> <span style="color:#4070a0">rel</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;stylesheet&#34;</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;/css/dark.css&#34;</span>&gt;
-</code></pre></div><p>默认为不生效。</p>
-</li>
-<li>添加js脚本控制css文件的效果
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
-<span style="color:#007020;font-weight:bold">var</span> toggle <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;dark-mode-toggle&#34;</span>);
-<span style="color:#007020;font-weight:bold">var</span> darkTheme <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;dark-mode-theme&#34;</span>);
-<span style="color:#007020;font-weight:bold">var</span> button <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;togglebutton&#34;</span>);
-button.addEventListener(<span style="color:#4070a0">&#34;click&#34;</span>, () =&gt; {
-   <span style="color:#007020;font-weight:bold">if</span> (toggle.getAttribute(<span style="color:#4070a0">&#34;xlink:href&#34;</span>) <span style="color:#666">===</span> <span style="color:#4070a0">&#34;#icon-yueliang1&#34;</span>) {
-      setTheme(<span style="color:#4070a0">&#34;dark&#34;</span>);
-   } <span style="color:#007020;font-weight:bold">else</span> <span style="color:#007020;font-weight:bold">if</span> (toggle.getAttribute(<span style="color:#4070a0">&#34;xlink:href&#34;</span>) <span style="color:#666">===</span> <span style="color:#4070a0">&#34;#icon-taiyang&#34;</span>) {
-      setTheme(<span style="color:#4070a0">&#34;light&#34;</span>);
-   }
-});
-
-<span style="color:#60a0b0;font-style:italic">// the default theme is light
-</span><span style="color:#60a0b0;font-style:italic">// 持久化存储，防止转到其他页面时，模式恢复为light
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> savedTheme <span style="color:#666">=</span> localStorage.getItem(<span style="color:#4070a0">&#34;dark-mode-storage&#34;</span>) <span style="color:#666">||</span> <span style="color:#4070a0">&#34;light&#34;</span>;
-setTheme(savedTheme);
-
-<span style="color:#007020;font-weight:bold">function</span> setTheme(mode) {
-   <span style="color:#60a0b0;font-style:italic">// 持久化存储，防止转到其他页面时，模式恢复为light
-</span><span style="color:#60a0b0;font-style:italic"></span>   localStorage.setItem(<span style="color:#4070a0">&#34;dark-mode-storage&#34;</span>, mode);
-   <span style="color:#007020;font-weight:bold">if</span> (mode <span style="color:#666">===</span> <span style="color:#4070a0">&#34;dark&#34;</span>) {
-      darkTheme.disabled <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span>;
-      <span style="color:#60a0b0;font-style:italic">// 设置属性值
-</span><span style="color:#60a0b0;font-style:italic"></span>      toggle.setAttribute(<span style="color:#4070a0">&#34;xlink:href&#34;</span>,<span style="color:#4070a0">&#34;#icon-taiyang&#34;</span>); 
-   } <span style="color:#007020;font-weight:bold">else</span> <span style="color:#007020;font-weight:bold">if</span> (mode <span style="color:#666">===</span> <span style="color:#4070a0">&#34;light&#34;</span>) {
-      darkTheme.disabled <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">false</span>;
-      toggle.setAttribute(<span style="color:#4070a0">&#34;xlink:href&#34;</span>,<span style="color:#4070a0">&#34;#icon-yueliang1&#34;</span>); 
-   }
+);
+<span style="color:#007020;font-weight:bold">var</span> all<span style="color:#666">=</span><span style="color:#007020">document</span>.getElementsByClassName(<span style="color:#4070a0">&#39;katex&#39;</span>),i;
+<span style="color:#007020;font-weight:bold">for</span>(i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> all.length; i <span style="color:#666">+=</span> <span style="color:#40a070">1</span>){
+   <span style="color:#60a0b0;font-style:italic">/*  if(all[i].parentNode.parentNode.nodeName == &#39;CODE&#39;)  */</span>
+   <span style="color:#60a0b0;font-style:italic">/*  all[i].parentNode.parentNode.className += &#39; mathcode&#39;;  */</span>
+   <span style="color:#007020;font-weight:bold">var</span> tmp<span style="color:#666">=</span>all[i].parentNode;
+   <span style="color:#007020;font-weight:bold">for</span>(;tmp.nodeName<span style="color:#666">==</span><span style="color:#4070a0">&#39;SPAN&#39;</span>;tmp<span style="color:#666">=</span>tmp.parentNode);
+   <span style="color:#007020;font-weight:bold">if</span>(tmp.nodeName <span style="color:#666">==</span> <span style="color:#4070a0">&#39;CODE&#39;</span>)
+   tmp.className <span style="color:#666">+=</span> <span style="color:#4070a0">&#39; mathcode&#39;</span>;
 }
 &lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
-</code></pre></div><p>其中，元素的class、id、以及图标内容，需要结合自己的代码做相应的更改。</p>
+<span style="color:#60a0b0;font-style:italic">&lt;!-- 下略 --&gt;</span>
+{{- end -}}
+</code></pre></td></tr></table>
+</div>
+</div><p>这样的话，在文档中不指名使用pandoc则会使用方案一（需要设置.Site.Params.Math），算是个折中的方法。</p>
 </li>
-</ol>
-<h3 id="使用mermaid绘制图">使用mermaid绘制图</h3>
-<p><a href="https://note.qidong.name/2020/07/mermaid/">参考：https://note.qidong.name/2020/07/mermaid/</a></p>
-<p>在合适的位置添加如下js代码，将代码块替换为<code>&lt;div class=&quot;mermaid&quot;&gt;&lt;/div&gt;</code>，同时引入mermaid的js：</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#666">&lt;</span>script src<span style="color:#666">=</span><span style="color:#4070a0">&#34;https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.4/mermaid.min.js&#34;</span><span style="color:#666">&gt;&lt;</span><span style="">/script&gt;</span>
-<span style="color:#666">&lt;</span>script<span style="color:#666">&gt;</span>
-    <span style="color:#60a0b0;font-style:italic">// Replace mermaid pre.code to div
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020">Array</span>.from(<span style="color:#007020">document</span>.getElementsByClassName(<span style="color:#4070a0">&#39;language-mermaid&#39;</span>)).forEach(el =&gt; {
-        el.parentElement.outerHTML <span style="color:#666">=</span> <span style="color:#4070a0">`&lt;div class=&#34;mermaid&#34;&gt;</span><span style="color:#70a0d0;font-style:italic">${</span>el.innerText<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&lt;/div&gt;`</span>
-    })
-<span style="color:#666">&lt;</span><span style="">/script&gt;</span>
-</code></pre></div><p>使用代码块绘图，vscode的插件<code>Markdown Preview Enhanced</code>也支持预览：</p>
-<pre><code>` ` ` mermaid
-graph TD  
-A[Hard] --&gt;|Text| B(Round)  
-B --&gt; C{Decision}  
-C --&gt;|One| D[Result 1]  
-C --&gt;|Two| E[Result 2]  
-` ` `
-</code></pre><pre><code class="language-mermaid" data-lang="mermaid">graph TD
-A[Hard] --&gt;|Text| B(Round)
-B --&gt; C{Decision}
-C --&gt;|One| D[Result 1]
-C --&gt;|Two| E[Result 2]
-</code></pre><h3 id="杂项">杂项</h3>
-<ol>
-<li>使用tab键可能造成奇怪的渲染结局，应使用空格为宜<br />
-<strong>分割线上下最好留空行</strong></li>
+</ul>
+</li>
+<li>
+<p>修改代码块的样式<br />
+主题：pure<br />
+修改css文件的&lt;pre&gt;标签的样式，<a href="https://highlightjs.org/">样式参考</a></p>
+</li>
+<li>
+<p>使用tab键可能造成奇怪的渲染结局，应使用空格为宜</p>
+</li>
+<li>
+<p>google analytic<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">{{ <span style="color:#007020;font-weight:bold">if</span> not .Site.IsServer }}
+{{ template <span style="color:#4070a0">&#34;_internal/google_analytics_async.html&#34;</span> . }}
+{{ end }}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>好想用其它主题的shortcode<br />
+shortcode. 很强大。这是个<code>ref</code>的例子.<br />
+<code>
+[Neat]({{&lt; ref &ldquo;/blog/neat.md&rdquo; &gt;}})
+</code></p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">a</span> <span style="color:#4070a0">href</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;/blog/neat&#34;</span>&gt;Neat&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <div class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p><a href="https://www.gohugo.org/doc/tutorials/mathjax/">https://www.gohugo.org/doc/tutorials/mathjax/</a> &ldquo;MathJax Support&rdquo; <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://www.gohugo.org/doc/tutorials/mathjax/">https://www.gohugo.org/doc/tutorials/mathjax/</a> &ldquo;MathJax Support&rdquo;&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
-<p><a href="https://note.qidong.name/2018/03/hugo-mathjax/">https://note.qidong.name/2018/03/hugo-mathjax/</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://note.qidong.name/2018/03/hugo-mathjax/">https://note.qidong.name/2018/03/hugo-mathjax/</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p><a href="https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/">https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/</a> <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/">https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p><a href="https://note.qidong.name/2017/07/05/google-analytics-in-hugo/">https://note.qidong.name/2017/07/05/google-analytics-in-hugo/</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
@@ -454,8 +557,8 @@ C --&gt;|Two| E[Result 2]
      <div class="post-nav">
     <div class="post-nav-next post-nav-item">
     
-        <a href="https://litmingc.github.io/post/linux/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/" rel="next" title="[linux]Linux命令">
-        <i class="fa fa-chevron-left"></i> [linux]Linux命令
+        <a href="https://litmingc.github.io/post/linux/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/" rel="next" title="[linux]常见命令">
+        <i class="fa fa-chevron-left"></i> [linux]常见命令
         </a>
     
     </div>
@@ -530,16 +633,7 @@ C --&gt;|Two| E[Result 2]
 <aside id="sidebar" class="sidebar">
   <div class="sidebar-inner">
 
-  <ul class="sidebar-nav motion-element">
-    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-      文章目录
-    </li>
-    <li class="sidebar-nav-overview" data-target="site-overview">
-      站点概览
-    </li>
-  </ul>
-
-    <section class="site-overview sidebar-panel ">
+    <section class="site-overview sidebar-panel  sidebar-panel-active ">
       <div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person">
     <img class="site-author-image" itemprop="image"
         src="https://litmingc.github.io/img/izip.png"
@@ -551,7 +645,7 @@ C --&gt;|Two| E[Result 2]
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://litmingc.github.io/post/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -568,7 +662,7 @@ C --&gt;|Two| E[Result 2]
     <div class="site-state-item site-state-tags">
         <a href="https://litmingc.github.io/tags/">
          
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         
         <span class="site-state-item-name">标签</span>
         </a>
@@ -592,23 +686,6 @@ C --&gt;|Two| E[Result 2]
       
     </section>
     
-<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-    <div class="post-toc">
-        <div class="post-toc-content"><nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#表达数学公式">表达数学公式</a></li>
-        <li><a href="#修改代码块的样式">修改代码块的样式</a></li>
-        <li><a href="#增加暗黑模式">增加暗黑模式</a></li>
-        <li><a href="#使用mermaid绘制图">使用mermaid绘制图</a></li>
-        <li><a href="#杂项">杂项</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-    </div>
-</section>
 
   </div>
 </aside>
@@ -623,7 +700,7 @@ C --&gt;|Two| E[Result 2]
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.68.3</a>
+  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.84.2</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -644,6 +721,7 @@ C --&gt;|Two| E[Result 2]
     window.Promise = null;
   }
 </script>
+
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
@@ -659,7 +737,6 @@ C --&gt;|Two| E[Result 2]
 <script type="text/javascript" src="https://litmingc.github.io/js/scrollspy.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/post-details.js"></script>
 
-<script type="text/javascript" src="https://litmingc.github.io/js/toc.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
@@ -724,5 +801,6 @@ for(i = 0; i < all.length; i += 1){
     })
 </script>
 
+<script  type="text/javascript" src="https://litmingc.github.io/js/genTOC.js"></script>
 </body>
 </html>

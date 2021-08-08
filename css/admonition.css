@@ -10,6 +10,7 @@
 
 .post-body .admonition .admonition-title {
     margin          : 0 -0.75rem;
+    font-size       : 0.8rem;
     padding         : .2rem .75rem .2rem 1.8rem;
     border-bottom   : 0.05rem solid rgba(68, 138, 255, 0.1);
     background-color: rgba(68, 138, 255, 0.1)
@@ -237,7 +238,6 @@
 }
 
 .post-body details.admonition summary {
-    font-size: 0.8em;
     display: block;
     outline: none;
     cursor : pointer

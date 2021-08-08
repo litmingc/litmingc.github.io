@@ -1,0 +1,2010 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>[C&amp;C&#43;&#43;]Cmake - LitMing</title><meta name="keywords" content="notebooks,linux,python,go,书摘文录,学习笔记">
+    <meta property="og:title" content="[C&amp;C&#43;&#43;]Cmake">
+    <meta property="og:site_name" content="LitMing">
+    <meta property="og:image" content="/img/izip.png"> 
+    <meta name="title" content="[C&amp;C&#43;&#43;]Cmake - LitMing" />
+    <meta name="description" content="cmake tutorial阅读笔记" />
+     
+    <link rel="shortcut icon" href="https://litmingc.github.io/img/izip30.png" />
+    <link rel="apple-touch-icon" href="" />
+    <link rel="apple-touch-icon-precomposed" href="" />
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    
+    
+    <link href="https://litmingc.github.io/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://litmingc.github.io/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      scheme: 'Pisces',
+      sidebar: {"position":"left","display":"post"},
+      fancybox: false, 
+      motion: true
+    };
+    </script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-145827411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<style>
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_svpe1d3bg1m.eot');  
+  src: url('//at.alicdn.com/t/webfont_svpe1d3bg1m.eot?#iefix') format('embedded-opentype'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.woff2') format('woff2'),
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.woff') format('woff'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.ttf') format('truetype'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.svg#杨任东竹石体-Bold') format('svg');  
+}
+.webfont{
+    font-family: "webfont" !important;
+    font-size: 36px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+</style></head><body itemscope itemtype="https://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
+      <div class="header-inner">
+
+<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
+<style>
+.darkbutton{
+    width: 2em;
+    height: 2em;
+}
+
+.div-float{
+    position:fixed;
+    top:30px;
+    right:30px;
+}
+</style>
+<div id="togglebutton" class="div-float">
+    <svg class="darkbutton" aria-hidden="true"><use id="dark-mode-toggle"  xlink:href="#icon-taiyang"></use></svg>
+</div>
+<script>
+
+    var toggle = document.getElementById("dark-mode-toggle");
+    var darkTheme = document.getElementById("dark-mode-theme");
+    var button = document.getElementById("togglebutton");
+    button.addEventListener("click", () => {
+        if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
+            setTheme("dark");
+        } else if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
+            setTheme("light");
+        }
+    });
+    
+    
+    var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
+    setTheme(savedTheme);
+    
+    function setTheme(mode) {
+        localStorage.setItem("dark-mode-storage", mode);
+        if (mode === "light") {
+            darkTheme.disabled = true;
+            toggle.setAttribute("xlink:href","#icon-taiyang"); 
+        } else if (mode === "dark") {
+            darkTheme.disabled = false;
+            toggle.setAttribute("xlink:href","#icon-yueliang1"); 
+        }
+    }
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+  server="netease"
+  type="playlist"
+  id="738642988"
+  fixed=true
+  volume=0.3
+  theme='#7b9cce'>
+</meting-js><div class="site-meta  custom-logo ">
+  <div class="custom-logo-site-title">
+    <a href="https://litmingc.github.io/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">LitMing</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">
+    <span id="typeitElement">云深不知处，花鸟一相逢</span>
+  </p>
+
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/post/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/categories/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-folder"></i> <br />分类
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/tags/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-tags"></i> <br />标签
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/about/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fas fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
+    </ul>
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fas fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+</nav>
+
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content"><section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://litmingc.github.io/post/cc&#43;&#43;/cmake/" itemprop="url">
+        [C&amp;C&#43;&#43;]Cmake
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2021-06-19">
+    2021-06-19
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/cc&#43;&#43;" itemprop="url" rel="index">
+        <span itemprop="name">C&amp;C&#43;&#43;</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">7733 字 ~16分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    <p>本文为阅读官方教程<a href="https://cmake.org/cmake/help/v3.21/guide/tutorial/index.html#guide:CMake%20Tutorial">CMake Tutorial</a>的笔记。</p>
+<hr />
+<h2 id="step1hello-world">Step1：hello world</h2>
+<p>新建一个<code>project01</code>目录，并添加一个<code>tutorial.cpp</code>文件（其中输出hello world）。</p>
+<ol>
+<li>
+<p>在项目目录下创建一个<code>CMakeLists.txt</code>文件。<br />
+文件内容如下：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#60a0b0;font-style:italic"># 指定cmake最小版本
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">cmake_minimum_required</span>(<span style="color:#4070a0">VERSION</span> <span style="color:#4070a0">3.10</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># 设置项目的名称，没有其他设置的话，编译完成的可执行文件就是这个名称
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">project</span>(<span style="color:#4070a0">project001</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># 添加可执行文件，windows下，会编译生成Tutorial.exe
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">add_executable</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">tutorial.cpp</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>可执行文件的名字与项目的名字并没有关系，不一定要设置成一样的。</p>
+</li>
+<li>
+<p>添加cmake的头文件，添加版本号</p>
+<ul>
+<li>修改<code>CMakeLists.txt</code>文件，添加版本号的信息
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">project</span>(<span style="color:#4070a0">project001</span> <span style="color:#4070a0">VERSION</span> <span style="color:#4070a0">0.1</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>添加<code>tutorial.h.in</code>文件，编写相关的宏定义
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#60a0b0;font-style:italic">// the configured options and settings for Tutorial
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">#define Tutorial_VERSION_MAJOR @project001_VERSION_MAJOR@
+</span><span style="color:#007020">#define Tutorial_VERSION_MINOR @project001_VERSION_MINOR@
+</span></code></pre></td></tr></table>
+</div>
+</div><p>需要注意：<br />
+<code>@project001_VERSION_MAJOR@</code>的写法，其中包含了项目名称，不同项目名需要对应修改。</p>
+</li>
+<li>修改<code>CMakeLists.txt</code>文件，添加头文件的配置项，使cmake根据<code>XX.h.in</code>文件生成对应的<code>XX.h</code>文件
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">configure_file</span>(<span style="color:#4070a0">tutorial.h.in</span> <span style="color:#4070a0">tutorial.h</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">add_executable</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">tutorial.cpp</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">PUBLIC</span>
+                          <span style="color:#4070a0">&#34;${PROJECT_BINARY_DIR}&#34;</span>
+                          )<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>configure_file</code>指定了生成的头文件的名字；<br />
+<code>target_include_directories</code>指定头文件所在目录，其中第一个参数是目标文件，此处与<code>add_executable</code>一致，与项目名无关。因此，<code>target_include_directories</code>需要写在<code>add_executable</code>后面。<br />
+cmake构建之后可以在项目中检查生成的头文件，<code>@project001_VERSION_MAJOR@</code>被做了相应的替换：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#60a0b0;font-style:italic">// the configured options and settings for Tutorial
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">#define Tutorial_VERSION_MAJOR 0
+</span><span style="color:#007020">#define Tutorial_VERSION_MINOR 1
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>修改main函数，使用宏，输出cmake中定义的版本号信息
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007020">#include</span> <span style="color:#007020">&lt;iostream&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&#34;tutorial.h&#34;</span><span style="color:#007020">
+</span><span style="color:#007020"></span>
+<span style="color:#902000">int</span> <span style="color:#06287e">main</span>(<span style="color:#902000">int</span> argc, <span style="color:#902000">char</span><span style="color:#666">*</span> argv[])
+{
+    <span style="color:#007020;font-weight:bold">if</span> (argc <span style="color:#666">&lt;</span> <span style="color:#40a070">2</span>)
+    {
+        <span style="color:#60a0b0;font-style:italic">// report version
+</span><span style="color:#60a0b0;font-style:italic"></span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> argv[<span style="color:#40a070">0</span>] <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; Version &#34;</span> <span style="color:#666">&lt;&lt;</span> Tutorial_VERSION_MAJOR <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;.&#34;</span>
+                  <span style="color:#666">&lt;&lt;</span> Tutorial_VERSION_MINOR <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;Usage: &#34;</span> <span style="color:#666">&lt;&lt;</span> argv[<span style="color:#40a070">0</span>] <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; number&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+        <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">1</span>;
+    }
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">0</span>;
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>指定c++标准<br />
+当需要使用c++新的特性是，可以在cmake中指定：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#60a0b0;font-style:italic"># specify the C++ standard
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">set</span>(<span style="color:#4070a0">CMAKE_CXX_STANDARD</span> <span style="color:#4070a0">11</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">set</span>(<span style="color:#4070a0">CMAKE_CXX_STANDARD_REQUIRED</span> <span style="color:#4070a0">True</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>编译项目<br />
+新建一个<code>build</code>目录，在build目录下，执行命令：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cmake ../
+cmake --build ./
+</code></pre></td></tr></table>
+</div>
+</div><p>其中<code>cmake ../</code>指定的是<code>CMakeLists.txt</code>文件的位置，并在执行目录生成项目文件以及编译过程中需要的配置文件，其中有<code>CMakeCache.txt</code>等文件。<br />
+<code>cmake --build ./</code>指定的就是<code>CMakeCache.txt</code>的目录。</p>
+</li>
+</ol>
+<hr />
+<h2 id="step2添加库文件">Step2：添加库文件</h2>
+<p>新建子目录<code>MathFunctions</code>，构造我们的<code>mysqrt</code>函数，并在<code>main</code>函数中调用。<br />
+新建文件<code>MathFunctions.h</code>、<code>mysqrt.cpp</code>，内容如下：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#60a0b0;font-style:italic">// mysqrt.cpp
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#007020">#include</span> <span style="color:#007020">&lt;iostream&gt;</span><span style="color:#007020">
+</span><span style="color:#007020"></span>
+<span style="color:#60a0b0;font-style:italic">// a hack square root calculation using simple operations
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#902000">double</span> <span style="color:#06287e">mysqrt</span>(<span style="color:#902000">double</span> x)
+{
+  <span style="color:#007020;font-weight:bold">if</span> (x <span style="color:#666">&lt;=</span> <span style="color:#40a070">0</span>) {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">0</span>;
+  }
+
+  <span style="color:#902000">double</span> result <span style="color:#666">=</span> x;
+
+  <span style="color:#60a0b0;font-style:italic">// do ten iterations
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#902000">int</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10</span>; <span style="color:#666">++</span>i) {
+    <span style="color:#007020;font-weight:bold">if</span> (result <span style="color:#666">&lt;=</span> <span style="color:#40a070">0</span>) {
+      result <span style="color:#666">=</span> <span style="color:#40a070">0.1</span>;
+    }
+    <span style="color:#902000">double</span> delta <span style="color:#666">=</span> x <span style="color:#666">-</span> (result <span style="color:#666">*</span> result);
+    result <span style="color:#666">=</span> result <span style="color:#666">+</span> <span style="color:#40a070">0.5</span> <span style="color:#666">*</span> delta <span style="color:#666">/</span> result;
+    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;Computing sqrt of &#34;</span> <span style="color:#666">&lt;&lt;</span> x <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; to be &#34;</span> <span style="color:#666">&lt;&lt;</span> result <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+  }
+  <span style="color:#007020;font-weight:bold">return</span> result;
+}
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#60a0b0;font-style:italic">// mysqrt.cpp
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#902000">double</span> <span style="color:#06287e">mysqrt</span>(<span style="color:#902000">double</span> x);
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#60a0b0;font-style:italic">// main函数
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;iostream&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;string&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&#34;tutorial.h&#34;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&#34;MathFunctions.h&#34;</span><span style="color:#007020">
+</span><span style="color:#007020"></span>
+<span style="color:#902000">int</span> <span style="color:#06287e">main</span>(<span style="color:#902000">int</span> argc, <span style="color:#902000">char</span><span style="color:#666">*</span> argv[])
+{
+  <span style="color:#007020;font-weight:bold">if</span> (argc <span style="color:#666">&lt;</span> <span style="color:#40a070">2</span>) {
+    <span style="color:#60a0b0;font-style:italic">// report version
+</span><span style="color:#60a0b0;font-style:italic"></span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> argv[<span style="color:#40a070">0</span>] <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; Version &#34;</span> <span style="color:#666">&lt;&lt;</span> Tutorial_VERSION_MAJOR <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;.&#34;</span>
+              <span style="color:#666">&lt;&lt;</span> Tutorial_VERSION_MINOR <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;Usage: &#34;</span> <span style="color:#666">&lt;&lt;</span> argv[<span style="color:#40a070">0</span>] <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; number&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">1</span>;
+  }
+
+  <span style="color:#60a0b0;font-style:italic">// convert input to double
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">double</span> inputValue <span style="color:#666">=</span> std<span style="color:#666">::</span>stod(argv[<span style="color:#40a070">1</span>]);
+
+  <span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">double</span> outputValue <span style="color:#666">=</span> mysqrt(inputValue);
+
+  std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;The square root of &#34;</span> <span style="color:#666">&lt;&lt;</span> inputValue <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; is &#34;</span> <span style="color:#666">&lt;&lt;</span> outputValue
+            <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+  <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">0</span>;
+}
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>在<code>MathFunctions</code>子目录下，添加<code>CMakeLists.txt</code>文件，添加<code>MathFunctions</code>库。文件内容如下：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">add_library</span>(<span style="color:#4070a0">MyFunctions</span> <span style="color:#4070a0">mysqrt.cpp</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改顶层的<code>CMakeLists.txt</code>（项目目录下），为目标文件添加链接:</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">add_executable</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">tutorial.cpp</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#007020">add_subdirectory</span>(<span style="color:#4070a0">MathFunctions</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">target_link_libraries</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">PUBLIC</span> <span style="color:#4070a0">MyFunctions</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">PUBLIC</span>
+                          <span style="color:#4070a0">&#34;${PROJECT_BINARY_DIR}&#34;</span>
+                          <span style="color:#4070a0">&#34;${PROJECT_SOURCE_DIR}/MathFunctions&#34;</span>
+                          )<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>至此，<code>main</code>中已经可以正常调用<code>mysqrt</code>函数。</p>
+</li>
+</ul>
+<p>下面，添加控制变量，通过cmake的控制变量，在项目中调用不同的函数。</p>
+<ul>
+<li>
+<p>修改顶层的<code>CMakeLists.txt</code>，添加控制变量<code>USE_MYMATH</code>，使得<code>MathFunctions</code>成为<em>可选</em>的库文件：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">option</span>(<span style="color:#4070a0">USE_MYMATH</span> <span style="color:#4070a0">&#34;Use tutorial provided math implementation&#34;</span> <span style="color:#4070a0">ON</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#007020">configure_file</span>(<span style="color:#4070a0">tutorial.h.in</span> <span style="color:#4070a0">tutorial.h</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#007020">if</span>(<span style="color:#4070a0">USE_MYMATH</span>)<span style="">
+</span><span style=""></span>    <span style="color:#007020">add_subdirectory</span>(<span style="color:#4070a0">MathFunctions</span>)<span style="">
+</span><span style=""></span>    <span style="color:#007020">list</span>(<span style="color:#4070a0">APPEND</span> <span style="color:#4070a0">EXTRA_LIBS</span> <span style="color:#4070a0">MathFunctions</span>)<span style="">
+</span><span style=""></span>    <span style="color:#007020">list</span>(<span style="color:#4070a0">APPEND</span> <span style="color:#4070a0">EXTRA_INCLUDES</span> <span style="color:#4070a0">&#34;${PROJECT_SOURCE_DIR}/MathFunctions&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">endif</span>()<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># add the executable
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">add_executable</span>(<span style="color:#4070a0">Tutorial</span> <span style="color:#4070a0">tutorial.cxx</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#007020">target_link_libraries</span>(<span style="color:#4070a0">Tutorial</span> <span style="color:#4070a0">PUBLIC</span> <span style="color:#666">${</span><span style="color:#bb60d5">EXTRA_LIBS</span><span style="color:#666">}</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># add the binary tree to the search path for include files
+</span><span style="color:#60a0b0;font-style:italic"># so that we will find TutorialConfig.h
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">Tutorial</span> <span style="color:#4070a0">PUBLIC</span>
+                          <span style="color:#4070a0">&#34;${PROJECT_BINARY_DIR}&#34;</span>
+                          <span style="color:#666">${</span><span style="color:#bb60d5">EXTRA_INCLUDES</span><span style="color:#666">}</span>
+                          )<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>通过<code>option</code>设置<em>变量</em>，之后通过<code>.h.in</code>文件生成的头文件引入宏定义，通过宏修改代码中的相关逻辑。</p>
+</li>
+<li>
+<p>修改<code>tutorial.h.in</code>，引入<code>USE_MYMATH</code>的定义：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#60a0b0;font-style:italic">// tutorial.h.in
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">#cmakedefine USE_MYMATH
+</span></code></pre></td></tr></table>
+</div>
+</div><p>类似于<code>#cmakedefine VAR</code>的定义语句将会被替换为<code>#define VAR</code>或者<code>/* #undef VAR /</code>，如上例中<code>USE_MYMATH</code>当设定为ON的时候，<code>#cmakedefine USE_MYMATH</code>变成了<code>#define USE_MYMATH</code>，设定为OFF时，变成了<code>/ #undef USE_MYMATH */</code>；<br />
+同理，类似于<code>#cmakedefine01 VAR</code>的定义语句将会被替换为<code>#define VAR 1</code>或<code>#define VAR 0</code>。<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</li>
+<li>
+<p>修改<code>mian</code>函数，利用<code>USE_MYMATH</code>控制是否调用自定义的<code>mysqrt</code>函数：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007020">#include</span> <span style="color:#007020">&lt;math.h&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;iostream&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;string&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&#34;tutorial.h&#34;</span><span style="color:#007020">
+</span><span style="color:#007020"></span>
+<span style="color:#007020">#ifdef USE_MYMATH
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&#34;MathFunctions.h&#34;</span><span style="color:#007020">
+</span><span style="color:#007020">#endif
+</span><span style="color:#007020"></span>
+<span style="color:#902000">int</span> <span style="color:#06287e">main</span>(<span style="color:#902000">int</span> argc, <span style="color:#902000">char</span> <span style="color:#666">*</span>argv[])
+{
+    <span style="color:#007020;font-weight:bold">if</span> (argc <span style="color:#666">&lt;</span> <span style="color:#40a070">2</span>)
+    {
+        <span style="color:#60a0b0;font-style:italic">// report version
+</span><span style="color:#60a0b0;font-style:italic"></span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> argv[<span style="color:#40a070">0</span>] <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; Version &#34;</span> <span style="color:#666">&lt;&lt;</span> Tutorial_VERSION_MAJOR <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;.&#34;</span>
+                  <span style="color:#666">&lt;&lt;</span> Tutorial_VERSION_MINOR <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;Usage: &#34;</span> <span style="color:#666">&lt;&lt;</span> argv[<span style="color:#40a070">0</span>] <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; number&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+        <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">1</span>;
+    }
+
+    <span style="color:#60a0b0;font-style:italic">// convert input to double
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">double</span> inputValue <span style="color:#666">=</span> std<span style="color:#666">::</span>stod(argv[<span style="color:#40a070">1</span>]);
+
+<span style="color:#007020">#ifdef USE_MYMATH
+</span><span style="color:#007020"></span>    <span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">double</span> outputValue <span style="color:#666">=</span> mysqrt(inputValue);
+<span style="color:#007020">#else
+</span><span style="color:#007020"></span>    <span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">double</span> outputValue <span style="color:#666">=</span> sqrt(inputValue);
+<span style="color:#007020">#endif
+</span><span style="color:#007020"></span>
+    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;The square root of &#34;</span> <span style="color:#666">&lt;&lt;</span> inputValue <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; is &#34;</span> <span style="color:#666">&lt;&lt;</span> outputValue
+              <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">0</span>;
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>测试变量<br />
+在build目录下，使用如下命令设置<code>USE_MYMATH</code>，并编译：</p>
+</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cmake ../ -DUSE_MYMATH<span style="color:#666">=</span>OFF
+cmake --build ./
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cmake ../ -DUSE_MYMATH<span style="color:#666">=</span>ON
+cmake --build ./
+</code></pre></td></tr></table>
+</div>
+</div><link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition question">
+            <p class="admonition-title"><i class="icon fas fa-question-circle"></i>Step 2: Adding a Library</p>
+            <div class="admonition-content"><a href="https://cmake.org/cmake/help/v3.21/guide/tutorial/Adding%20a%20Library.html">Step 2: Adding a Library</a>中有一个问题：<br />
+<strong>Exercise</strong>: Why is it important that we configure <code>TutorialConfig.h.in</code> after the option for <code>USE_MYMATH</code>? What would happen if we inverted the two?<br />
+我也不知道答案，感觉没啥问题。删除顶层MakeList.txt中的<code>option()</code>之后，头文件中内容与<code>USE_MYMATH=ON</code>的时候一致。<br />
+也许，对于任意变量，默认值就是<code>ON</code>。因此，先处理<code>USE_MYMATH</code>再定义它，可以避免忘记处理而带来难以察觉的错误。</div>
+        </div>
+<hr />
+<h2 id="step3为library添加usage-requirement">Step3：为library添加<code>Usage Requirement</code></h2>
+<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition danger">
+            <p class="admonition-title"><i class="icon fas fa-skull-crossbones"></i>警告：个人理解，有待验证</p>
+            <div class="admonition-content">没有特别理解这一节的意思，这里对<code>consumers</code>的理解可能有错误。请先读<a href="https://cmake.org/cmake/help/v3.21/guide/tutorial/Adding%20Usage%20Requirements%20for%20a%20Library.html">官方文档</a>。</div>
+        </div>
+<blockquote>
+<p>Usage Requirement指的是<code>target_link_libraries()</code>、<code>target_include_directories()</code>等命令中的<code>PUBLIC</code>、<code>PRIVATE</code>、<code>INTERFACE</code>参数。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">target_link_libraries</span>(<span style="color:#4070a0">Tutorial</span> <span style="color:#4070a0">PUBLIC</span> <span style="color:#666">${</span><span style="color:#bb60d5">EXTRA_LIBS</span><span style="color:#666">}</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>首先，说明三个不同的Usage Requirement的使用场景：<br />
+<code>INTERFACE</code>：消费者需要，生产者不需要；<br />
+<code>PUBLIC</code>：消费者需要，生产者需要；<br />
+<code>PRIVATE</code>：消费者不需要，生产者需要；</p>
+<p>其次，什么是<strong>消费者</strong>、 <strong>生产者</strong>，什么是<strong>需要</strong>？<br />
+以<code>Step2</code>中的代码为例：</p>
+<ul>
+<li>
+<p>修改<code>MathFunctions</code>目录下的<code>CMakeLists.txt</code>，添加如下命令：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">add_library</span>(<span style="color:#4070a0">MyFunctions</span> <span style="color:#4070a0">mysqrt.cpp</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">MyFunctions</span> 
+    <span style="color:#4070a0">INTERFACE</span> <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_SOURCE_DIR</span><span style="color:#666">}</span>
+    )<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这里MyFunctions就是生产者，而上层的project01将是消费者，因为project01使用了MyFunctions。<code>${CMAKE_CURRENT_SOURCE_DIR}</code>这个目录是project01需要的，而MyFunctions不需要配置。</p>
+</li>
+<li>
+<p>修改顶层的<code>CMakeLists.txt</code>，删除一部分命令：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#007020">if</span>(<span style="color:#4070a0">USE_MYMATH</span>)<span style="">
+</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style=""></span><span style="color:#007020">add_subdirectory</span>(<span style="color:#4070a0">MathFunctions</span>)<span style="">
+</span></span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style=""></span><span style="color:#007020">list</span>(<span style="color:#4070a0">APPEND</span> <span style="color:#4070a0">EXTRA_LIBS</span> <span style="color:#4070a0">MyFunctions</span>)<span style="">
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span style=""></span><span style="color:#007020">endif</span>()<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span style="">
+</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span style=""></span><span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">PUBLIC</span>
+</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span>                        <span style="color:#4070a0">&#34;${PROJECT_BINARY_DIR}&#34;</span>
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span>                        )<span style="">
+</span></code></pre></div><p>这里Tutorial是生产者，没有消费者。</p>
+</li>
+</ul>
+<p>这两步只是删去了Tutorial的<code>target_include_directories</code>中<code>MathFunctions</code>的目录配置，下放到了下一级（<code>MathFunctions</code>中的cmake文件）里。</p>
+<p><strong>总结一下</strong>，Usage Requirements控制的是<strong>配置项</strong>的<strong>传递方式</strong>。<code>INTERFACE</code>会把配置项向上层（使用者、消费者）传递，而自己不保留配置项；<code>PUBLIC</code>会传递配置，自己也保留配置；<code>PRIVATE</code>不传递配置，配置只对自己生效。</p>
+<hr />
+<h2 id="step4安装与测试">Step4：安装与测试</h2>
+<h3 id="安装installing">安装installing</h3>
+<p>对于MathFunction，我们需要install的是lib文件和头文件，所以在<code>MathFunction/CMakeLists.txt</code>中添加命令：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">install</span>(<span style="color:#4070a0">TARGETS</span> <span style="color:#4070a0">MyFunctions</span> <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">lib</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">install</span>(<span style="color:#4070a0">FILES</span> <span style="color:#4070a0">MathFunctions.h</span> <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">include</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>对于Toturial，在顶层<code>CMakeList.txt</code>中添加命令：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">install</span>(<span style="color:#4070a0">TARGETS</span> <span style="color:#4070a0">project01</span> <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">bin</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">install</span>(<span style="color:#4070a0">FILES</span> <span style="color:#4070a0">&#34;${PROJECT_BINARY_DIR}/tutorial.h&#34;</span> 
+  <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">include</span>
+  )<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>添加完install的规则之后，先编译项目，之后使用命令<code>cmake --install</code>进行安装：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cmake --install . --prefix <span style="color:#4070a0">&#34;/home/myuser/installdir&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>--prefix</code>用于指定安装目录。执行完命令，在指定的目录下将生成bin、include、lib文件夹，并包含对应的文件。</p>
+<h3 id="测试">测试</h3>
+<p>修改顶层的cmake文件，添加测试命令：</p>
+<div class="highlight" lineno="true"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">enable_testing</span>()<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># does the application run
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">add_test</span>(<span style="color:#4070a0">NAME</span> <span style="color:#4070a0">Runs</span> <span style="color:#4070a0">COMMAND</span> <span style="color:#4070a0">project01</span> <span style="color:#4070a0">25</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># does the usage message work?
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">add_test</span>(<span style="color:#4070a0">NAME</span> <span style="color:#4070a0">Usage</span> <span style="color:#4070a0">COMMAND</span> <span style="color:#4070a0">project01</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">set_tests_properties</span>(<span style="color:#4070a0">Usage</span>
+  <span style="color:#4070a0">PROPERTIES</span> <span style="color:#4070a0">PASS_REGULAR_EXPRESSION</span> <span style="color:#4070a0">&#34;Usage:.*number&#34;</span>
+  )<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># define a function to simplify adding tests
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">function</span>(<span style="color:#4070a0">do_test</span> <span style="color:#4070a0">target</span> <span style="color:#4070a0">arg</span> <span style="color:#4070a0">result</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">add_test</span>(<span style="color:#4070a0">NAME</span> <span style="color:#4070a0">Comp</span><span style="color:#666">${</span><span style="color:#bb60d5">arg</span><span style="color:#666">}</span> <span style="color:#4070a0">COMMAND</span> <span style="color:#666">${</span><span style="color:#bb60d5">target</span><span style="color:#666">}</span> <span style="color:#666">${</span><span style="color:#bb60d5">arg</span><span style="color:#666">}</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">set_tests_properties</span>(<span style="color:#4070a0">Comp</span><span style="color:#666">${</span><span style="color:#bb60d5">arg</span><span style="color:#666">}</span>
+    <span style="color:#4070a0">PROPERTIES</span> <span style="color:#4070a0">PASS_REGULAR_EXPRESSION</span> <span style="color:#666">${</span><span style="color:#bb60d5">result</span><span style="color:#666">}</span>
+    )<span style="">
+</span><span style=""></span><span style="color:#007020">endfunction</span>(<span style="color:#4070a0">do_test</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># do a bunch of result based tests
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">do_test</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">4</span> <span style="color:#4070a0">&#34;4 is 2&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">do_test</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">9</span> <span style="color:#4070a0">&#34;9 is 3&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">do_test</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">5</span> <span style="color:#4070a0">&#34;5 is 2.236&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">do_test</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">7</span> <span style="color:#4070a0">&#34;7 is 2.645&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">do_test</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">25</span> <span style="color:#4070a0">&#34;25 is 5&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">do_test</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">-25</span> <span style="color:#4070a0">&#34;-25 is [-nan|nan|0]&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">do_test</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">0.0001</span> <span style="color:#4070a0">&#34;0.0001 is 0.01&#34;</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>enable_testing()</code>启用测试功能。</li>
+<li><code>add_test()</code>添加测试：<br />
+<code>line4</code>添加了一个测试。<em>NAME</em> 后面是定义测试的名字，可以随便起名，<strong>但是测试名不可重复，必须是唯一标识一个测试</strong>；<em>COMMAND</em>后面接执行的命令以及参数。</li>
+<li><code>set_tests_properties()</code>为测试添加属性：<br />
+<code>line8</code>为名为 <em>Usage</em>的测试添加了一条属性<code>PASS_REGULAR_EXPRESSION</code>，以及属性值<code>&quot;Usage:.*number&quot;</code>。从属性的名字来看，功能是匹配正则表达式是否通过，因此对于<code>line7</code>添加的测试，当它的输出可以与<code>&quot;Usage:.*number&quot;</code>匹配时，会显示<em>PASS</em>。</li>
+<li><code>function()</code>以及<code>endfunction()</code>定义了函数:<br />
+<code>line13</code>开始函数定义<em>do_test</em>并声明了参数，<code>line14-17</code>是函数内容，<code>line18</code>结束函数定义并命名函数为 <em>do_test</em>，随后的<code>line20</code>则调用了函数 <em>do_test</em>。<em>do_test</em>函数中，添加了名为<em>CompXX</em>系列的测试，并将测试结果与 <em>result</em>参数进行正则表达式的匹配。</li>
+</ul>
+<p>重新编译项目文件。<br />
+使用命令<code>ctest -N</code>查看将会执行哪些命令，只是列出可以执行的测试项，但不会执行测试。<br />
+<code>ctest -VV</code>执行测试，并且输出较为完整的测试信息（Enable more verbose output from tests.）。使用multi-config generators，比如Visual Studio，需要指定<em>configuration</em>，在<em>build</em>目录下使用<code>ctest -C Debug -VV</code>进行测试。</p>
+<hr />
+<h2 id="step5添加system-introspection">Step5：添加System Introspection</h2>
+<p>通过检查当前的平台系统，借助之前的可选参数来控制编译的配置项。<br />
+假定以下的情形：<br />
+我们的<code>mysqrt()</code>函数需要<code>log</code>、<code>exp</code>函数做一些事情，但是不确定系统支不支持，所以需要修改代码以及cmake的配置，以便适应不同情况。</p>
+<ul>
+<li>
+<p>首先，修改<code>mysqrt()</code>函数，添加<code>log</code>相关的操作，并且通过宏定义来判断系统是否支持<code>log</code>等函数。</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;iostream&gt;</span><span style="color:#007020">
+</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;cmath&gt;</span><span style="color:#007020">
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#007020"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span style="color:#60a0b0;font-style:italic">// a hack square root calculation using simple operations
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#902000">double</span> <span style="color:#06287e">mysqrt</span>(<span style="color:#902000">double</span> x)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>{
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>  <span style="color:#007020;font-weight:bold">if</span> (x <span style="color:#666">&lt;=</span> <span style="color:#40a070">0</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">0</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>  <span style="color:#902000">double</span> result <span style="color:#666">=</span> x;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>  <span style="color:#60a0b0;font-style:italic">// do ten iterations
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#902000">int</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10</span>; <span style="color:#666">++</span>i) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>    <span style="color:#007020;font-weight:bold">if</span> (result <span style="color:#666">&lt;=</span> <span style="color:#40a070">0</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>      result <span style="color:#666">=</span> <span style="color:#40a070">0.1</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>    <span style="color:#902000">double</span> delta <span style="color:#666">=</span> x <span style="color:#666">-</span> (result <span style="color:#666">*</span> result);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>    result <span style="color:#666">=</span> result <span style="color:#666">+</span> <span style="color:#40a070">0.5</span> <span style="color:#666">*</span> delta <span style="color:#666">/</span> result;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;Computing sqrt of &#34;</span> <span style="color:#666">&lt;&lt;</span> x <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; to be &#34;</span> <span style="color:#666">&lt;&lt;</span> result <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>
+<span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span style="color:#007020">#if defined(HAVE_LOG) &amp;&amp; defined(HAVE_EXP)
+</span></span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span style="color:#007020"></span>  <span style="color:#902000">double</span> result2 <span style="color:#666">=</span> exp(log(x) <span style="color:#666">*</span> <span style="color:#40a070">0.5</span>);
+</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>  std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;Computing sqrt of &#34;</span> <span style="color:#666">&lt;&lt;</span> x <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; to be &#34;</span> <span style="color:#666">&lt;&lt;</span> result
+</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>            <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; using log and exp&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span style="color:#007020">#else
+</span></span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span style="color:#007020"></span>  <span style="color:#902000">double</span> result2 <span style="color:#666">=</span> x;
+</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span style="color:#007020">#endif
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span style="color:#007020"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span>  <span style="color:#007020;font-weight:bold">return</span> result2;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span>}
+</code></pre></div></li>
+<li>
+<p>然后，借助<em>CheckSymbolExsits</em>模块来进行检查，若不支持则尝试在 <em>m</em> 库中获取这两个函数并链接。<br />
+修改<code>MathFunctions/CMakeLists.txt</code>，添加：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">include</span>(<span style="color:#4070a0">CheckSymbolExists</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">check_symbol_exists</span>(<span style="color:#4070a0">log</span> <span style="color:#4070a0">&#34;math.h&#34;</span> <span style="color:#4070a0">HAVE_LOG</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">check_symbol_exists</span>(<span style="color:#4070a0">exp</span> <span style="color:#4070a0">&#34;math.h&#34;</span> <span style="color:#4070a0">HAVE_EXP</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">if</span>(<span style="color:#4070a0">NOT</span> (<span style="color:#4070a0">HAVE_LOG</span> <span style="color:#4070a0">AND</span> <span style="color:#4070a0">HAVE_EXP</span>))<span style="">
+</span><span style=""></span>  <span style="color:#007020">unset</span>(<span style="color:#4070a0">HAVE_LOG</span> <span style="color:#4070a0">CACHE</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">unset</span>(<span style="color:#4070a0">HAVE_EXP</span> <span style="color:#4070a0">CACHE</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">set</span>(<span style="color:#4070a0">CMAKE_REQUIRED_LIBRARIES</span> <span style="color:#4070a0">&#34;m&#34;</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">check_symbol_exists</span>(<span style="color:#4070a0">log</span> <span style="color:#4070a0">&#34;math.h&#34;</span> <span style="color:#4070a0">HAVE_LOG</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">check_symbol_exists</span>(<span style="color:#4070a0">exp</span> <span style="color:#4070a0">&#34;math.h&#34;</span> <span style="color:#4070a0">HAVE_EXP</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">if</span>(<span style="color:#4070a0">HAVE_LOG</span> <span style="color:#4070a0">AND</span> <span style="color:#4070a0">HAVE_EXP</span>)<span style="">
+</span><span style=""></span>    <span style="color:#007020">target_link_libraries</span>(<span style="color:#4070a0">MyFunctions</span> <span style="color:#4070a0">PRIVATE</span> <span style="color:#4070a0">m</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">endif</span>()<span style="">
+</span><span style=""></span><span style="color:#007020">endif</span>()<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>如果系统中支持，那么就添加宏定义，使代码生效：<br />
+修改<code>MathFunctions/CMakeLists.txt</code>，添加：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">if</span>(<span style="color:#4070a0">HAVE_LOG</span> <span style="color:#4070a0">AND</span> <span style="color:#4070a0">HAVE_EXP</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">target_compile_definitions</span>(<span style="color:#4070a0">MathFunctions</span>
+                            <span style="color:#4070a0">PRIVATE</span> <span style="color:#4070a0">&#34;HAVE_LOG&#34;</span> <span style="color:#4070a0">&#34;HAVE_EXP&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">endif</span>()<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>target_compile_definitions()</code>为target添加编译定义，效果看起来就是<code>mysqrt()</code>中的<code>#if defined(HAVE_LOG) &amp;&amp; defined(HAVE_EXP)</code>结果为<code>true</code>了。这里的target，是由<code>add_executable()</code>or<code>add_library()</code>给定的。</p>
+</li>
+<li>
+<p>最后编译看看结果。</p>
+</li>
+</ul>
+<hr />
+<h2 id="step6添加custom-command生成文件">Step6：添加Custom Command，生成文件</h2>
+<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition tip">
+            <p class="admonition-title"><i class="icon fas fa-lightbulb"></i>删除*Step5*所做的修改，这次是新的需求了。</p>
+            <div class="admonition-content">新需求：通过生成新文件向<code>mysqrt</code>传递数据。具体而言，<code>Step6</code>通过一个编译可执行程序<code>MakeTable</code>，并执行，在项目中生成一个<code>Table.h</code>文件。然后，<code>Table.h</code>作为源文件参与 <em>project01</em> 的编译。</div>
+        </div>
+<ul>
+<li>
+<p>添加<code>MathFunctions/MakeTable.cpp</code>，功能是向文件中写入代码：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#60a0b0;font-style:italic">// A simple program that builds a sqrt table
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;cmath&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;fstream&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;iostream&gt;</span><span style="color:#007020">
+</span><span style="color:#007020"></span>
+<span style="color:#902000">int</span> <span style="color:#06287e">main</span>(<span style="color:#902000">int</span> argc, <span style="color:#902000">char</span><span style="color:#666">*</span> argv[])
+{
+  <span style="color:#60a0b0;font-style:italic">// make sure we have enough arguments
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">if</span> (argc <span style="color:#666">&lt;</span> <span style="color:#40a070">2</span>) {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">1</span>;
+  }
+
+  std<span style="color:#666">::</span>ofstream fout(argv[<span style="color:#40a070">1</span>], std<span style="color:#666">::</span>ios_base<span style="color:#666">::</span>out);
+  <span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">bool</span> fileOpen <span style="color:#666">=</span> fout.is_open();
+  <span style="color:#007020;font-weight:bold">if</span> (fileOpen) {
+    fout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;double sqrtTable[] = {&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+    <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#902000">int</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10</span>; <span style="color:#666">++</span>i) {
+      fout <span style="color:#666">&lt;&lt;</span> sqrt(<span style="color:#007020;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span><span style="color:#902000">double</span><span style="color:#666">&gt;</span>(i)) <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;,&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+    }
+    <span style="color:#60a0b0;font-style:italic">// close the table with a zero
+</span><span style="color:#60a0b0;font-style:italic"></span>    fout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;0};&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+    fout.close();
+  }
+  <span style="color:#007020;font-weight:bold">return</span> fileOpen <span style="color:#666">?</span> <span style="color:#40a070">0</span> <span style="color:#666">:</span> <span style="color:#40a070">1</span>; <span style="color:#60a0b0;font-style:italic">// return 0 if wrote the file
+</span><span style="color:#60a0b0;font-style:italic"></span>}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在<code>MathFunctions/CMakeLists.txt</code>中添加命令，将<code>MakeTable.cpp</code>编译并运行，并且这个过程是整个<em>project01</em>编译过程的一部分。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">add_executable</span>(<span style="color:#4070a0">MakeTable</span> <span style="color:#4070a0">MakeTable.cpp</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">add_custom_command</span>(
+  <span style="color:#4070a0">OUTPUT</span> <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#4070a0">/Table.h</span>
+  <span style="color:#4070a0">COMMAND</span> <span style="color:#4070a0">MakeTable</span> <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#4070a0">/Table.h</span>
+  <span style="color:#4070a0">DEPENDS</span> <span style="color:#4070a0">MakeTable</span>
+  )<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改<code>MathFunctions/mysqrt.cpp</code>，使用<code>Table.h</code>中定义的<code>double sqrtTable[]</code>变量：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;iostream&gt;</span><span style="color:#007020">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="color:#007020">#include</span> <span style="color:#007020">&#34;MathFunctions.h&#34;</span><span style="color:#007020">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#007020"></span>
+<span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span style="color:#60a0b0;font-style:italic">// include the generated table
+</span></span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">#include</span> <span style="color:#007020">&#34;Table.h&#34;</span><span style="color:#007020">
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#007020"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style="color:#60a0b0;font-style:italic">// a hack square root calculation using simple operations
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#902000">double</span> <span style="color:#06287e">mysqrt</span>(<span style="color:#902000">double</span> x)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>{
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>  <span style="color:#007020;font-weight:bold">if</span> (x <span style="color:#666">&lt;=</span> <span style="color:#40a070">0</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">0</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span>  <span style="color:#60a0b0;font-style:italic">// use the table to help find an initial value
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#902000">double</span> result <span style="color:#666">=</span> x;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>  <span style="color:#007020;font-weight:bold">if</span> (x <span style="color:#666">&gt;=</span> <span style="color:#40a070">1</span> <span style="color:#666">&amp;&amp;</span> x <span style="color:#666">&lt;</span> <span style="color:#40a070">10</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;Use the table to help find an initial value &#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>    result <span style="color:#666">=</span> sqrtTable[<span style="color:#007020;font-weight:bold">static_cast</span><span style="color:#666">&lt;</span><span style="color:#902000">int</span><span style="color:#666">&gt;</span>(x)];
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>  <span style="color:#60a0b0;font-style:italic">// do ten iterations
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#902000">int</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10</span>; <span style="color:#666">++</span>i) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>    <span style="color:#007020;font-weight:bold">if</span> (result <span style="color:#666">&lt;=</span> <span style="color:#40a070">0</span>) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span>      result <span style="color:#666">=</span> <span style="color:#40a070">0.1</span>;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span>    <span style="color:#902000">double</span> delta <span style="color:#666">=</span> x <span style="color:#666">-</span> (result <span style="color:#666">*</span> result);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span>    result <span style="color:#666">=</span> result <span style="color:#666">+</span> <span style="color:#40a070">0.5</span> <span style="color:#666">*</span> delta <span style="color:#666">/</span> result;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span>    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;Computing sqrt of &#34;</span> <span style="color:#666">&lt;&lt;</span> x <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; to be &#34;</span> <span style="color:#666">&lt;&lt;</span> result <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span>  <span style="color:#007020;font-weight:bold">return</span> result;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span>}
+</code></pre></div></li>
+<li>
+<p>此外，修改<code>MathFunctions/CMakeLists.txt</code>使<code>mysqrt.cpp</code>能找到<code>Table.h</code>文件。</p>
+</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">add_library</span>(<span style="color:#4070a0">MyFunctions</span> <span style="color:#4070a0">mysqrt.cpp</span> <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#4070a0">/Table.h</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">MyFunctions</span>
+  <span style="color:#4070a0">INTERFACE</span> <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_SOURCE_DIR</span><span style="color:#666">}</span>
+  <span style="color:#4070a0">PRIVATE</span> <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span>
+  )<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>编译项目后，可以发现多了一个<code>Table.h</code>，并且<code>mysqrt</code>执行无误。</p>
+<hr />
+<h2 id="step7打包可执行文件">Step7：打包可执行文件</h2>
+<p>修改顶层的<code>CMakeLists.txt</code>：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">include</span>(<span style="color:#4070a0">InstallRequiredSystemLibraries</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">set</span>(<span style="color:#4070a0">CPACK_PACKAGE_VERSION_MAJOR</span> <span style="color:#4070a0">&#34;${project001_VERSION_MAJOR}&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">set</span>(<span style="color:#4070a0">CPACK_PACKAGE_VERSION_MINOR</span> <span style="color:#4070a0">&#34;${project001_VERSION_MINOR}&#34;</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">include</span>(<span style="color:#4070a0">CPack</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>照常编译项目，使用<code>cpack</code>打包：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cpack -C Debug -G ZIP
+</code></pre></td></tr></table>
+</div>
+</div><p>打包后得到一个<code>.zip</code>文件，其中，<em>bin</em>目录下可以找到可执行文件。</p>
+<h2 id="step8添加testing-dashboard">Step8：添加Testing Dashboard</h2>
+<p>略</p>
+<h2 id="step9选择静态库或动态库">Step9：选择静态库或动态库</h2>
+<p>使用<code>BUILD_SHARED_LIBS</code>变量控制<code>add_library()</code>的行为。</p>
+<p>主程序链接 MyFunctions 库， MyFunctions 链接 SqrtLibrary 库。</p>
+<ul>
+<li>
+<p>在顶层<code>CMakeLists.txt</code>中添加<code>BUILD_SHARED_LIBS</code>变量，使用<code>option()</code>命令手动控制变量的值为ON或OFF；删除<code>USE_MYMATH</code>变量，将它移动到MathFuntions层次下。</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#007020">cmake_minimum_required</span>(<span style="color:#4070a0">VERSION</span> <span style="color:#4070a0">3.0.0</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style=""></span><span style="color:#007020">project</span>(<span style="color:#4070a0">project001</span> <span style="color:#4070a0">VERSION</span> <span style="color:#4070a0">0.1</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># specify the C++ standard
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">set</span>(<span style="color:#4070a0">CMAKE_CXX_STANDARD</span> <span style="color:#4070a0">11</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span style=""></span><span style="color:#007020">set</span>(<span style="color:#4070a0">CMAKE_CXX_STANDARD_REQUIRED</span> <span style="color:#4070a0">True</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span style=""></span><span style="color:#007020">option</span>(<span style="color:#4070a0">USE_MYMATH</span> <span style="color:#4070a0">&#34;use tutorial provided math implementation?&#34;</span> <span style="color:#4070a0">ON</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span style="">
+</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># 设置静态库、动态库编译输出的路径，方便之后运行可执行程序
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">set</span>(<span style="color:#4070a0">CMAKE_ARCHIVE_OUTPUT_DIRECTORY</span> <span style="color:#4070a0">&#34;${PROJECT_BINARY_DIR}&#34;</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span style=""></span><span style="color:#007020">set</span>(<span style="color:#4070a0">CMAKE_LIBRARY_OUTPUT_DIRECTORY</span> <span style="color:#4070a0">&#34;${PROJECT_BINARY_DIR}&#34;</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span style=""></span><span style="color:#007020">set</span>(<span style="color:#4070a0">CMAKE_RUNTIME_OUTPUT_DIRECTORY</span> <span style="color:#4070a0">&#34;${PROJECT_BINARY_DIR}&#34;</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span style=""></span><span style="color:#007020">option</span>(<span style="color:#4070a0">BUILD_SHARED_LIBS</span> <span style="color:#4070a0">&#34;Build using shared libraries&#34;</span> <span style="color:#4070a0">ON</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span style=""></span><span style="color:#007020">configure_file</span>(<span style="color:#4070a0">tutorial.h.in</span> <span style="color:#4070a0">tutorial.h</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># 添加目录
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">add_subdirectory</span>(<span style="color:#4070a0">MathFunctions</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span style=""></span><span style="color:#007020">add_executable</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">tutorial.cpp</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># 链接MyFunctions库
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">target_link_libraries</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">PUBLIC</span> <span style="color:#4070a0">MyFunctions</span>)<span style="">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span style=""></span><span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">project01</span> <span style="color:#4070a0">PUBLIC</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span>                          <span style="color:#4070a0">&#34;${PROJECT_BINARY_DIR}&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span>                          )<span style="">
+</span></code></pre></div></li>
+<li>
+<p>修改<code>MathFunctions/CMakeLists.txt</code>，添加SqrtLibrary库，并且使用 <code>USE_MYMATH</code>变量控制使用不同版本的函数：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#60a0b0;font-style:italic"># add the library that runs
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">add_library</span>(<span style="color:#4070a0">MyFunctions</span> <span style="color:#4070a0">MathFunctions.cpp</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># 声明链接到此库需要include的目录，以便检索头文件
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">MyFunctions</span>
+                          <span style="color:#4070a0">INTERFACE</span> <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_SOURCE_DIR</span><span style="color:#666">}</span>
+                          )<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># 控制变量
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">option</span>(<span style="color:#4070a0">USE_MYMATH</span> <span style="color:#4070a0">&#34;Use tutorial provided math implementation&#34;</span> <span style="color:#4070a0">ON</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">if</span>(<span style="color:#4070a0">USE_MYMATH</span>)<span style="">
+</span><span style=""></span>  <span style="color:#60a0b0;font-style:italic"># 定义宏
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020">target_compile_definitions</span>(<span style="color:#4070a0">MyFunctions</span> <span style="color:#4070a0">PRIVATE</span> <span style="color:#4070a0">&#34;USE_MYMATH&#34;</span>)<span style="">
+</span><span style="">
+</span><span style=""></span>  <span style="color:#60a0b0;font-style:italic"># 添加可执行程序，用来生成Table.h
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020">add_executable</span>(<span style="color:#4070a0">MakeTable</span> <span style="color:#4070a0">MakeTable.cpp</span>)<span style="">
+</span><span style="">
+</span><span style=""></span>  <span style="color:#60a0b0;font-style:italic"># 使用命令生成Table.h
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020">add_custom_command</span>(
+    <span style="color:#4070a0">OUTPUT</span> <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#4070a0">/Table.h</span>
+    <span style="color:#4070a0">COMMAND</span> <span style="color:#4070a0">MakeTable</span> <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#4070a0">/Table.h</span>
+    <span style="color:#4070a0">DEPENDS</span> <span style="color:#4070a0">MakeTable</span>
+    )<span style="">
+</span><span style="">
+</span><span style=""></span>  <span style="color:#60a0b0;font-style:italic"># 显式添加静态库
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020">add_library</span>(<span style="color:#4070a0">SqrtLibrary</span> <span style="color:#4070a0">STATIC</span>
+              <span style="color:#4070a0">mysqrt.cpp</span>
+              <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#4070a0">/Table.h</span>
+              )<span style="">
+</span><span style="">
+</span><span style=""></span>  <span style="color:#60a0b0;font-style:italic"># state that we depend on our binary dir to find Table.h
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">SqrtLibrary</span> <span style="color:#4070a0">PRIVATE</span>
+                            <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span>
+                            )<span style="">
+</span><span style="">
+</span><span style=""></span>  <span style="color:#007020">target_link_libraries</span>(<span style="color:#4070a0">MyFunctions</span> <span style="color:#4070a0">PRIVATE</span> <span style="color:#4070a0">SqrtLibrary</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">endif</span>()<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># define the symbol stating we are using the declspec(dllexport) when
+</span><span style="color:#60a0b0;font-style:italic"># building on windows
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">target_compile_definitions</span>(<span style="color:#4070a0">MyFunctions</span> <span style="color:#4070a0">PRIVATE</span> <span style="color:#4070a0">&#34;EXPORTING_MYMATH&#34;</span>)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># install rules
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">set</span>(<span style="color:#4070a0">installable_libs</span> <span style="color:#4070a0">MyFunctions</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">if</span>(<span style="color:#4070a0">TARGET</span> <span style="color:#4070a0">SqrtLibrary</span>)<span style="">
+</span><span style=""></span>  <span style="color:#007020">list</span>(<span style="color:#4070a0">APPEND</span> <span style="color:#4070a0">installable_libs</span> <span style="color:#4070a0">SqrtLibrary</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">endif</span>()<span style="">
+</span><span style=""></span><span style="color:#007020">install</span>(<span style="color:#4070a0">TARGETS</span> <span style="color:#666">${</span><span style="color:#bb60d5">installable_libs</span><span style="color:#666">}</span> <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">lib</span>)<span style="">
+</span><span style=""></span><span style="color:#007020">install</span>(<span style="color:#4070a0">FILES</span> <span style="color:#4070a0">MathFunctions.h</span> <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">include</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>不同于<a href="#step2%E6%B7%BB%E5%8A%A0%E5%BA%93%E6%96%87%E4%BB%B6">Step2</a>，这里使用<code>target_compile_definitions</code>配合<code>if()</code>，实现与<code>#cmakedefine</code>的相同的效果。</p>
+<p>同时，修改<code>MathFunctions</code>目录下的内容，添加相应文件，使用命名空间区分不同库中的sqrt：</p>
+<ul>
+<li>
+<p>添加<code>MathFuntions\MathFuntions.cpp</code>：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007020">#include</span> <span style="color:#007020">&#34;MathFunctions.h&#34;</span><span style="color:#007020">
+</span><span style="color:#007020"></span>
+<span style="color:#007020">#include</span> <span style="color:#007020">&lt;cmath&gt;</span><span style="color:#007020">
+</span><span style="color:#007020"></span>
+<span style="color:#007020">#ifdef USE_MYMATH
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&#34;mysqrt.h&#34;</span><span style="color:#007020">
+</span><span style="color:#007020">#endif
+</span><span style="color:#007020"></span>
+<span style="color:#007020;font-weight:bold">namespace</span> mathfunctions
+{
+    <span style="color:#902000">double</span> <span style="color:#06287e">sqrt</span>(<span style="color:#902000">double</span> x)
+    {
+<span style="color:#007020">#ifdef USE_MYMATH
+</span><span style="color:#007020"></span>        <span style="color:#007020;font-weight:bold">return</span> detail<span style="color:#666">::</span>mysqrt(x);
+<span style="color:#007020">#else
+</span><span style="color:#007020"></span>        <span style="color:#007020;font-weight:bold">return</span> std<span style="color:#666">::</span>sqrt(x);
+<span style="color:#007020">#endif
+</span><span style="color:#007020"></span>    }
+}
+
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>添加<code>MathFuntions\mysqrt.h</code>：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007020;font-weight:bold">namespace</span> mathfunctions
+{
+    <span style="color:#007020;font-weight:bold">namespace</span> detail
+    {
+        <span style="color:#902000">double</span> <span style="color:#06287e">mysqrt</span>(<span style="color:#902000">double</span> x);
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改<code>MathFuntions\mysqrt.cpp</code>，补上命名空间的代码。</p>
+</li>
+<li>
+<p>修改<code>MathFuntions\MathFuntions.h</code>，添加动态库的声明：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007020">#if defined(_WIN32)
+</span><span style="color:#007020">#if defined(EXPORTING_MYMATH)
+</span><span style="color:#007020">#define DECLSPEC __declspec(dllexport)
+</span><span style="color:#007020">#else
+</span><span style="color:#007020">#define DECLSPEC __declspec(dllimport)
+</span><span style="color:#007020">#endif
+</span><span style="color:#007020">#else </span><span style="color:#60a0b0;font-style:italic">// non windows
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">#define DECLSPEC
+</span><span style="color:#007020">#endif
+</span><span style="color:#007020"></span>
+<span style="color:#007020;font-weight:bold">namespace</span> mathfunctions
+{
+    <span style="color:#902000">double</span> DECLSPEC <span style="color:#06287e">sqrt</span>(<span style="color:#902000">double</span> x);
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>改动之后，相当于由 MyFunctions 根据不同情况选择不同的<code>sqrt()</code>，因此修改<code>tutorial.cpp</code>中的内容，删掉<code>USE_MYMATH</code>相关的控制，使用<code>MathFunctions\MathFunctions.h</code>声明的函数替换掉<code>mysqrt()</code>：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#007020">#include</span> <span style="color:#007020">&lt;math.h&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;iostream&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&lt;string&gt;</span><span style="color:#007020">
+</span><span style="color:#007020">#include</span> <span style="color:#007020">&#34;tutorial.h&#34;</span><span style="color:#007020">
+</span><span style="color:#007020"></span>
+<span style="color:#007020">#include</span> <span style="color:#007020">&#34;MathFunctions.h&#34;</span><span style="color:#007020">
+</span><span style="color:#007020"></span>
+<span style="color:#902000">int</span> <span style="color:#06287e">main</span>(<span style="color:#902000">int</span> argc, <span style="color:#902000">char</span> <span style="color:#666">*</span>argv[])
+{
+    <span style="color:#007020;font-weight:bold">if</span> (argc <span style="color:#666">&lt;</span> <span style="color:#40a070">2</span>)
+    {
+        <span style="color:#60a0b0;font-style:italic">// report version
+</span><span style="color:#60a0b0;font-style:italic"></span>        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> argv[<span style="color:#40a070">0</span>] <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; Version &#34;</span> <span style="color:#666">&lt;&lt;</span> Tutorial_VERSION_MAJOR <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;.&#34;</span>
+                  <span style="color:#666">&lt;&lt;</span> Tutorial_VERSION_MINOR <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+        std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;Usage: &#34;</span> <span style="color:#666">&lt;&lt;</span> argv[<span style="color:#40a070">0</span>] <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; number&#34;</span> <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+        <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">1</span>;
+    }
+
+    <span style="color:#60a0b0;font-style:italic">// convert input to double
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">double</span> inputValue <span style="color:#666">=</span> std<span style="color:#666">::</span>stod(argv[<span style="color:#40a070">1</span>]);
+
+
+    <span style="color:#007020;font-weight:bold">const</span> <span style="color:#902000">double</span> outputValue <span style="color:#666">=</span> mathfunctions<span style="color:#666">::</span>sqrt(inputValue);
+
+    std<span style="color:#666">::</span>cout <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34;The square root of &#34;</span> <span style="color:#666">&lt;&lt;</span> inputValue <span style="color:#666">&lt;&lt;</span> <span style="color:#4070a0">&#34; is &#34;</span> <span style="color:#666">&lt;&lt;</span> outputValue
+              <span style="color:#666">&lt;&lt;</span> std<span style="color:#666">::</span>endl;
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#40a070">0</span>;
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>编译项目，可以得到<code>build\Debug\MyFunctions.dll</code>文件，而 SqrtLibrary 为静态库。</p>
+<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><details class="admonition question">
+            <summary class="admonition-title">
+                <i class="icon fas fa-question-circle"></i>Exercise<i class="details fas fa-angle-down"></i>
+            </summary>
+            <div class="admonition-content">We modified <code>MathFunctions.h</code> to use dll export defines. Using CMake documentation can you find a helper module to simplify this?</div>
+        </details>
+<h2 id="step10生成表达式-generator-expressions">Step10：生成表达式 generator expressions</h2>
+<blockquote>
+<p><strong>interface library</strong><br />
+创建一个接口库</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">add_library</span>(<span style="color:#4070a0">&lt;name&gt;</span> <span style="color:#4070a0">INTERFACE</span> <span style="color:#4070a0">[IMPORTED</span> <span style="color:#4070a0">[GLOBAL]]</span>)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这类库有属性，能<code>install()</code>， <code>export</code> 和 <code>imported</code> ，但可能没有build过程。像纯头文件库或完全针对target的设计。<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+</blockquote>
+<h2 id="step11adding-export-configuration">Step11：Adding Export Configuration</h2>
+<p>添加导出配置，让其他项目可以使用我们的项目。</p>
+<ul>
+<li>
+<p>首先，更新<code>install(TARGETS)</code>，添加 EXPORT 。 EXPORT 关键字的作用是生成并安装一个CMake文件，用以导入安装命令所需的全部 TARGET 。<br />
+修改<code>MathFunctions\CMakeLists.txt</code>：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">install</span>(<span style="color:#4070a0">TARGETS</span> <span style="color:#666">${</span><span style="color:#bb60d5">installable_libs</span><span style="color:#666">}</span> 
+    <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">lib</span>
+    <span style="color:#4070a0">EXPORT</span> <span style="color:#4070a0">MathFunctionsTargets</span>
+)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>此外，修改顶层<code>CMakeLists.txt</code>，显式地安装生成的<code>.cmake</code>文件：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">install</span>(<span style="color:#4070a0">EXPORT</span> <span style="color:#4070a0">MathFunctionsTargets</span>
+    <span style="color:#4070a0">FILE</span> <span style="color:#4070a0">MathFunctionsTargets.cmake</span>
+    <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">lib/cmake/MathFunctions</span>
+)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>此时，编译并安装项目项目：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cmake --build ./ --config Release
+cmake --install . --prefix <span style="color:#4070a0">&#34;../install/&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在<code>../install/lib/cmake/MathFunctions</code>中可以查看到生成的<code>.cmake</code>文件。</p>
+<p><a href="https://cmake.org/cmake/help/v3.21/guide/tutorial/Adding%20Export%20Configuration.html">官网</a>提到的编译问题，我没有遇到。<br />
+其解决方法是，修改<code>target_include_directories()</code>，利用<a href="#step10%E7%94%9F%E6%88%90%E8%A1%A8%E8%BE%BE%E5%BC%8F-generator-expressions">生成器表达式</a>添加适当的<code>INTERFACE</code>路径：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">target_include_directories</span>(<span style="color:#4070a0">MathFunctions</span>
+    <span style="color:#4070a0">INTERFACE</span>
+    <span style="color:#666">$&lt;</span><span style="color:#bb60d5">BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}</span><span style="color:#666">&gt;</span>
+    <span style="color:#666">$&lt;</span><span style="color:#bb60d5">INSTALL_INTERFACE:include</span><span style="color:#666">&gt;</span>
+)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>至此，target信息都已打包完毕。但是，我们仍然需要一些配置，使得CMake 的<code>find_package()</code>指令可以找到已经准备好的项目。<br />
+在项目根目录下，添加<code>Config.cmake.in</code>文件：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="">@PACKAGE_INIT@
+</span><span style=""></span><span style="color:#007020">include</span> ( <span style="color:#4070a0">&#34;${CMAKE_CURRENT_LIST_DIR}/MathFunctionsTargets.cmake&#34;</span> 
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>为了正确地配置安装生成的文件，在顶层<code>CMakeLists.txt</code>中添加如下命令：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#60a0b0;font-style:italic"># 前几步已经配置了
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">install</span>(<span style="color:#4070a0">EXPORT</span> <span style="color:#4070a0">MathFunctionsTargets</span>
+  <span style="color:#4070a0">FILE</span> <span style="color:#4070a0">MathFunctionsTargets.cmake</span>
+  <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">lib/cmake/MathFunctions</span>
+)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#007020">include</span>(<span style="color:#4070a0">CMakePackageConfigHelpers</span>)<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># generate the config file that is includes the exports
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">configure_package_config_file</span>(<span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_SOURCE_DIR</span><span style="color:#666">}</span><span style="color:#4070a0">/Config.cmake.in</span>
+  <span style="color:#4070a0">&#34;${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfig.cmake&#34;</span>
+  <span style="color:#4070a0">INSTALL_DESTINATION</span> <span style="color:#4070a0">&#34;lib/cmake/example&#34;</span>
+  <span style="color:#4070a0">NO_SET_AND_CHECK_MACRO</span>
+  <span style="color:#4070a0">NO_CHECK_REQUIRED_COMPONENTS_MACRO</span>
+  )<span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># generate the version file for the config file
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">write_basic_package_version_file</span>(
+  <span style="color:#4070a0">&#34;${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfigVersion.cmake&#34;</span>
+  <span style="color:#4070a0">VERSION</span> <span style="color:#4070a0">&#34;${Tutorial_VERSION_MAJOR}.${Tutorial_VERSION_MINOR}&#34;</span>
+  <span style="color:#4070a0">COMPATIBILITY</span> <span style="color:#4070a0">AnyNewerVersion</span>
+)<span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#60a0b0;font-style:italic"># install the configuration file
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">install</span>(<span style="color:#4070a0">FILES</span>
+  <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#4070a0">/MathFunctionsConfig.cmake</span>
+  <span style="color:#666">${</span><span style="color:#bb60d5">CMAKE_CURRENT_BINARY_DIR</span><span style="color:#666">}</span><span style="color:#4070a0">/MathFunctionsConfigVersion.cmake</span>
+  <span style="color:#4070a0">DESTINATION</span> <span style="color:#4070a0">lib/cmake/MathFunctions</span>
+  )<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>至此，我们已经为项目生成了可重定位的的CMake配置。此后，只要项目已安装或打包，就可以被使用。<br />
+若希望项目可以在构建目录中被使用，则可以在项目根目录下的<code>CMakeLists.txt</code>末尾添加如下指令：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake"><span style="color:#007020">export</span>(<span style="color:#4070a0">EXPORT</span> <span style="color:#4070a0">MathFunctionsTargets</span>
+  <span style="color:#4070a0">FILE</span> <span style="color:#4070a0">&#34;${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsTargets.cmake&#34;</span>
+)<span style="">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>此时，在build目录下，生成了<code>MathFunctionsTargets.cmake</code>，允许构建目录中的<code>MathFunctionsConfig.cmake</code>配置供其他项目使用，而无需install。</p>
+</li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>作者：仙人掌D 链接：https://www.jianshu.com/p/f0f71d36411a&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://blog.csdn.net/LaineGates/article/details/108242803">https://blog.csdn.net/LaineGates/article/details/108242803</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://litmingc.github.io/tags/%e7%bf%bb%e8%af%91" rel="tag" title="翻译">#翻译#</a>
+    
+    <a href="https://litmingc.github.io/tags/%e7%ac%94%e8%ae%b0" rel="tag" title="笔记">#笔记#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://litmingc.github.io/post/tips/rime-settings/" rel="next" title="[Tips]Rime Settings">
+        <i class="fa fa-chevron-left"></i> [Tips]Rime Settings
+        </a>
+    
+    </div>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://litmingc.github.io/post/cc&#43;&#43;/base-autotype/" rel="prev" title="[C&amp;C&#43;&#43;]Auto关键字">
+        [C&amp;C&#43;&#43;]Auto关键字 <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
+</div>
+      
+     
+     
+
+<script src='https://litmingc.github.io/js/Valine-1.3.10.min.js'></script>
+<div id="vcomments"></div>
+<script>
+  new Valine({
+        el: '#vcomments',
+        appId: "2guSOLy9NcQHOtR6lwkFIrmp-MdYXbMMI",
+        appKey: "xhgDfd5tc8sl0ODNj7ER8pND",
+        notify:  false ,
+        verify:  false ,
+        avatar: "mp",
+        visitor:  true ,
+        placeholder: "留下邮箱会收到回复提醒哦" 
+  })
+</script>
+<style>
+.icon-bigger {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger2 {
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger:hover {
+  transform:scale(1.6);
+}
+.icon-bigger2:hover {
+  transform:scale(1.6);
+}
+</style>
+<span id="/post/cc&#43;&#43;/cmake/" class="leancloud_visitors" data-flag-title="Your Article Title">
+    <svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-yibenzhengjingbiaoqing"></use></svg>
+    <em class="post-meta-item-text">阅读量</em><br>
+    <svg class="icon-bigger2" aria-hidden="true"><use xlink:href="#icon-biaoqing-dai"></use></svg>
+    <em class="post-meta-item-text">居然有~~<i class="leancloud-visitors-count"></i></em>
+	<svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-xiangwenbiaoqing"></use></svg>
+</span>
+
+
+    </footer>
+  </article>
+</section></div>
+        </div><div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+  <ul class="sidebar-nav motion-element">
+    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+      文章目录
+    </li>
+    <li class="sidebar-nav-overview" data-target="site-overview">
+      站点概览
+    </li>
+  </ul>
+
+    <section class="site-overview sidebar-panel ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://litmingc.github.io/img/izip.png"
+        alt="litmingc" />
+    <p class="site-author-name" itemprop="name">litmingc</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        写代码？多数靠蒙！</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://litmingc.github.io/post/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://litmingc.github.io/categories/">      
+         
+        <span class="site-state-item-count">8</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://litmingc.github.io/tags/">
+         
+        <span class="site-state-item-count">15</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com/litmingc" target="_blank" title="GitHub">
+            <i class="fab fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+</div>
+
+      
+
+      
+    </section>
+    
+<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+    <div class="post-toc">
+        <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#step1hello-world">Step1：hello world</a></li>
+    <li><a href="#step2添加库文件">Step2：添加库文件</a></li>
+    <li><a href="#step3为library添加usage-requirement">Step3：为library添加<code>Usage Requirement</code></a></li>
+    <li><a href="#step4安装与测试">Step4：安装与测试</a>
+      <ul>
+        <li><a href="#安装installing">安装installing</a></li>
+        <li><a href="#测试">测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#step5添加system-introspection">Step5：添加System Introspection</a></li>
+    <li><a href="#step6添加custom-command生成文件">Step6：添加Custom Command，生成文件</a></li>
+    <li><a href="#step7打包可执行文件">Step7：打包可执行文件</a></li>
+    <li><a href="#step8添加testing-dashboard">Step8：添加Testing Dashboard</a></li>
+    <li><a href="#step9选择静态库或动态库">Step9：选择静态库或动态库</a></li>
+    <li><a href="#step10生成表达式-generator-expressions">Step10：生成表达式 generator expressions</a></li>
+    <li><a href="#step11adding-export-configuration">Step11：Adding Export Configuration</a></li>
+  </ul>
+</nav></div>
+    </div>
+</section>
+
+
+  </div>
+</aside>
+</div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"><div class="copyright" >
+  <span itemprop="copyrightYear">  &copy; 
+  2019 - 2021</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">LitMing</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.84.2</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+</div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://litmingc.github.io/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/utils.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/motion.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/affix.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/post-details.js"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
+
+<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
+<style>
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+</style>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><style>
+    code.mathcode {
+      font: inherit;
+      font-size: 110%;
+      background: inherit;
+      border: inherit;
+      color: #515151;
+    }
+</style><script src="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js"></script>
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js"></script><script>
+renderMathInElement(document.body,
+{
+    delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "··", right: "··", display: true},
+    {left: "·", right: "·", display: false},
+    {left: "\\(", right: "\\)", display: false},
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+}
+);
+var all=document.getElementsByClassName('katex'),i;
+for(i = 0; i < all.length; i += 1){
+     
+     
+    var tmp=all[i].parentNode;
+    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
+    if(tmp.nodeName == 'CODE')
+    tmp.className += ' mathcode';
+}
+</script><script src="https://litmingc.github.io/js/typeit.min.js"></script>
+<script>
+  new TypeIt("#typeitElement", {
+    cursor: false,
+    lifeLike: false,
+    speed: 100,
+    startDelay: 1000,
+  }).go();
+</script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.4/mermaid.min.js"></script>
+<script>
+    
+    Array.from(document.getElementsByClassName('language-mermaid')).forEach(el => {
+        el.parentElement.outerHTML = `<div class="mermaid">${el.innerText}</div>`
+    })
+</script>
+
+<script  type="text/javascript" src="https://litmingc.github.io/js/genTOC.js"></script>
+</body>
+</html>

@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <title>[linux]Linux命令 - LitMing</title><meta name="keywords" content="notebooks,linux,python,go,书摘文录,学习笔记">
-    <meta property="og:title" content="[linux]Linux命令">
+    <title>[linux]常见命令 - LitMing</title><meta name="keywords" content="notebooks,linux,python,go,书摘文录,学习笔记">
+    <meta property="og:title" content="[linux]常见命令">
     <meta property="og:site_name" content="LitMing">
     <meta property="og:image" content="/img/izip.png"> 
-    <meta name="title" content="[linux]Linux命令 - LitMing" />
+    <meta name="title" content="[linux]常见命令 - LitMing" />
     <meta name="description" content="书摘文录、学习笔记"> 
     <link rel="shortcut icon" href="https://litmingc.github.io/img/izip30.png" />
     <link rel="apple-touch-icon" href="" />
@@ -203,7 +203,7 @@ if (!doNotTrack) {
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link" href="https://litmingc.github.io/post/linux/%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/" itemprop="url">
-        [linux]Linux命令
+        [linux]常见命令
         </a>
       </h1>
       <div class="post-meta">
@@ -248,15 +248,12 @@ if (!doNotTrack) {
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">1706 字 ~4分钟</span>
+<span class="leancloud-visitors-count">211 字 ~1分钟</span>
 </span>
       </div>
     </header>
     <div class="post-body" itemprop="articleBody">
-    <hr />
-<p><a href="https://man.linuxde.net/">【推荐网站】</a></p>
-<hr />
-<h3 id="小命令">“小”命令</h3>
+    <p>linux使用过程中自己会用到的一些“小”命令</p>
 <ol>
 <li>
 <p>uname<br />
@@ -284,151 +281,10 @@ if (!doNotTrack) {
 显示当前系统中内存使用量信息</p>
 </li>
 </ol>
-<h3 id="打包与压缩">打包与压缩</h3>
-<p>打包和压缩是不一样的
-<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition tip">
-            <p class="admonition-title"><i class="icon fas fa-lightbulb"></i>打包</p>
-            <div class="admonition-content">利用<code>tar</code>命令，可以把一大堆的文件和目录全部打包成一个文件</div>
-        </div>
-<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition tip">
-            <p class="admonition-title"><i class="icon fas fa-lightbulb"></i>压缩</p>
-            <div class="admonition-content">利用<code>gzip</code> <code>bzip2</code>命令进行压缩</div>
-        </div></p>
-<h4 id="命令tar">命令<code>tar</code></h4>
-<p><code>.tar</code>包并没有被压缩，<code>tar</code>只做打包功能，需要其他工具进行压缩。<br />
-解压命令格式：<code>tar [选项] 压缩包</code><br />
-压缩命令格式：<code>tar [选项] 压缩包 源文件或目录</code><br />
-<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><div class="admonition example">
-            <p class="admonition-title"><i class="icon fas fa-list-ol"></i>示例</p>
-            <div class="admonition-content">解压<code>tar zxvf log.tar.gz</code><br />
-压缩<code>tar zcvf log.tar.gz log2012.log</code></div>
-        </div></p>
-<p>选项(<code>-</code>)：</p>
-<table>
-<thead>
-<tr>
-<th>短</th>
-<th>长</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>z</td>
-<td>gzip，ungzip</td>
-<td>调用<code>gzip</code>执行压缩或解压缩。   <code>.tar.gz</code>文件使用。</td>
-</tr>
-<tr>
-<td>j</td>
-<td>bzip2</td>
-<td>调用<code>bzip2</code>执行压缩或解压缩。  <code>.tar.bz2</code>文件使用。</td>
-</tr>
-<tr>
-<td>v</td>
-<td>verbose</td>
-<td>显示处理过程</td>
-</tr>
-<tr>
-<td>x</td>
-<td>extract，get</td>
-<td>从打包文件中还原文件，解压用。</td>
-</tr>
-<tr>
-<td>C</td>
-<td></td>
-<td>这个选项用在解压缩，在指定目录解压缩，<code>-C 目录</code>。</td>
-</tr>
-<tr>
-<td>f</td>
-<td>file</td>
-<td>指定目标文件。<code>tar -f 文件路径</code>或<code>tar --file=文件路径</code>。<br /><strong>所以，常用的解压组合中<code>tar zxvf 文件路径</code>中<code>f</code>必须放在最后，以获取参数。</strong></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>c</td>
-<td>create</td>
-<td>建立新的备份文件，新建打包。压缩用。</td>
-</tr>
-</tbody>
-</table>
-<h4 id="压缩解压缩gzip">压缩/解压缩<code>gzip</code></h4>
-<p>没咋单独用过。<br />
-执行压缩后，在原文件名后添加<code>.gz</code>后缀。
-<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><details class="admonition quote">
-            <summary class="admonition-title">
-                <i class="icon fas fa-quote-right"></i>选项<i class="details fas fa-angle-down"></i>
-            </summary>
-            <div class="admonition-content"><blockquote>
-<p><code>-a</code>或<code>--ascii</code>：使用ASCII文字模式；<br />
-<code>-d</code>或<code>--decompress</code>或<code>--uncompress</code>：解开压缩文件；<br />
-<code>-f</code>或<code>--force</code>：强行压缩文件。不理会文件名称或硬连接是否存在以及该文件是否为符号连接；<br />
-<code>-h</code>或<code>--help</code>：在线帮助；<br />
-<code>-l</code>或<code>--list</code>：列出压缩文件的相关信息；<br />
-<code>-L</code>或<code>--license</code>：显示版本与版权信息；<br />
-<code>-n</code>或<code>--no-name</code>：压缩文件时，不保存原来的文件名称及时间戳记；<br />
-<code>-N</code>或<code>--name</code>：压缩文件时，保存原来的文件名称及时间戳记；<br />
-<code>-q</code>或<code>--quiet</code>：不显示警告信息；<br />
-<code>-r</code>或<code>--recursive</code>：递归处理，将指定目录下的所有文件及子目录一并处理；<br />
-<code>-S</code>或&lt;压缩字尾字符串&gt;或&mdash;-suffix&lt;压缩字尾字符串&gt;：更改压缩字尾字符串；<br />
-<code>-t</code>或<code>--test</code>：测试压缩文件是否正确无误；<br />
-<code>-v</code>或<code>--verbose</code>：显示指令执行过程；<br />
-<code>-V</code>或<code>--version</code>：显示版本信息；<br />
-<code>-&lt;压缩效率&gt;</code>：压缩效率是一个介于1~9的数值，预设值为“6”，指定愈大的数值，压缩效率就会愈高；<br />
-<code>--best</code>：此参数的效果和指定“-9”参数相同；<br />
-<code>--fast</code>：此参数的效果和指定“-1”参数相同。</p>
-</blockquote></div>
-        </details></p>
-<h4 id="压缩解压缩bzip2">压缩/解压缩<code>bzip2</code></h4>
-<p>没咋单独用过。<br />
-执行压缩后，在原文件名后添加<code>.bz2</code>后缀。
-<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><details class="admonition quote">
-            <summary class="admonition-title">
-                <i class="icon fas fa-quote-right"></i>选项<i class="details fas fa-angle-down"></i>
-            </summary>
-            <div class="admonition-content"><blockquote>
-<p><code>-c</code>或<code>--stdout</code>：将压缩与解压缩的结果送到标准输出；<br />
-<code>-d</code>或<code>--decompress</code>：执行解压缩；<br />
-<code>-f</code>或<code>--force</code>：bzip2在压缩或解压缩时，若输出文件与现有文件同名，预设不会覆盖现有文件。若要覆盖。请使用此参数；<br />
-<code>-h</code>或<code>--help</code>：在线帮助；<br />
-<code>-k</code>或<code>--keep</code>：bzip2在压缩或解压缩后，会删除原始文件。若要保留原始文件，请使用此参数；<br />
-<code>-s</code>或<code>--small</code>：降低程序执行时内存的使用量；<br />
-<code>-t</code>或<code>--test</code>：测试.bz2压缩文件的完整性；<br />
-<code>-v</code>或<code>--verbose</code>：压缩或解压缩文件时，显示详细的信息；<br />
-<code>-z</code>或<code>--compress</code>：强制执行压缩；<br />
-<code>-V</code>或<code>--version</code>：显示版本信息；<br />
-<code>--repetitive-best</code>：若文件中有重复出现的资料时，可利用此参数提高压缩效果；<br />
-<code>--repetitive-fast</code>：若文件中有重复出现的资料时，可利用此参数加快执行效果。</p>
-</blockquote></div>
-        </details></p>
-<h4 id="备份系统与还原">备份系统与还原</h4>
-<p>就是，打包压缩整个系统。毕竟，linux一切都是以文件形式存在的。
-但我没试过。
-备份：<br />
-<code>sudo tar cvpzf backup.tgz --exclude=/proc --exclude=/mnt --exclude=/sys --exclude=/backup.tgz /</code>
-这个命令，需要注意的就是排除一些不要备份的文件。<br />
-还原：<br />
-<code>tar xvpfz backup.tgz -C /</code><br />
-此外，最好的选择还是备份工具。比如Rsync。<br />
-备份：<br />
-<code>sudo rsync -Pa / /backup_20141216 --exclude=/media/* --exclude=/sys/* --exclude=/proc/* --exclude=/mnt/* --exclude=/tmp/*</code><br />
-还原：<br />
-<code>sudo rsync -Pa /backup_20160511 /</code></p>
 
     </div>
     <footer class="post-footer">
      
- 
-<div class="post-tags">     
-     
-    <a href="https://litmingc.github.io/tags/tar" rel="tag" title="tar">#tar#</a>
-    
-</div>
-
-
 
      <div class="post-nav">
     <div class="post-nav-next post-nav-item">
@@ -530,7 +386,7 @@ if (!doNotTrack) {
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://litmingc.github.io/post/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -547,7 +403,7 @@ if (!doNotTrack) {
     <div class="site-state-item site-state-tags">
         <a href="https://litmingc.github.io/tags/">
          
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         
         <span class="site-state-item-name">标签</span>
         </a>
@@ -573,18 +429,10 @@ if (!doNotTrack) {
     
 <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
     <div class="post-toc">
-        <div class="post-toc-content"><nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#小命令">“小”命令</a></li>
-        <li><a href="#打包与压缩">打包与压缩</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
+        <div class="post-toc-content"><nav id="TableOfContents"></nav></div>
     </div>
 </section>
+
 
   </div>
 </aside>
@@ -599,7 +447,7 @@ if (!doNotTrack) {
   <span class="author" itemprop="copyrightHolder">LitMing</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.68.3</a>
+  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.84.2</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
@@ -620,6 +468,7 @@ if (!doNotTrack) {
     window.Promise = null;
   }
 </script>
+
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
 <script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
@@ -635,7 +484,6 @@ if (!doNotTrack) {
 <script type="text/javascript" src="https://litmingc.github.io/js/scrollspy.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/post-details.js"></script>
 
-<script type="text/javascript" src="https://litmingc.github.io/js/toc.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
 <script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
 
@@ -700,5 +548,6 @@ for(i = 0; i < all.length; i += 1){
     })
 </script>
 
+<script  type="text/javascript" src="https://litmingc.github.io/js/genTOC.js"></script>
 </body>
 </html>

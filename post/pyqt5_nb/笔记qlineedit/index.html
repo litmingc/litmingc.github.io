@@ -1,0 +1,629 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>QLineEdit - LitMing</title><meta name="keywords" content="notebooks,linux,python,go,书摘文录,学习笔记">
+    <meta property="og:title" content="QLineEdit">
+    <meta property="og:site_name" content="LitMing">
+    <meta property="og:image" content="/img/izip.png"> 
+    <meta name="title" content="QLineEdit - LitMing" />
+    <meta name="description" content="书摘文录、学习笔记"> 
+    <link rel="shortcut icon" href="https://litmingc.github.io/img/izip30.png" />
+    <link rel="apple-touch-icon" href="" />
+    <link rel="apple-touch-icon-precomposed" href="" />
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    
+    
+    <link href="https://litmingc.github.io/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://litmingc.github.io/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      scheme: 'Pisces',
+      sidebar: {"position":"left","display":"post"},
+      fancybox: false, 
+      motion: true
+    };
+    </script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-145827411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<style>
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_svpe1d3bg1m.eot');  
+  src: url('//at.alicdn.com/t/webfont_svpe1d3bg1m.eot?#iefix') format('embedded-opentype'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.woff2') format('woff2'),
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.woff') format('woff'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.ttf') format('truetype'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.svg#杨任东竹石体-Bold') format('svg');  
+}
+.webfont{
+    font-family: "webfont" !important;
+    font-size: 36px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+</style></head><body itemscope itemtype="https://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
+      <div class="header-inner">
+
+<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
+<style>
+.darkbutton{
+    width: 2em;
+    height: 2em;
+}
+
+.div-float{
+    position:fixed;
+    top:30px;
+    right:30px;
+}
+</style>
+<div id="togglebutton" class="div-float">
+    <svg class="darkbutton" aria-hidden="true"><use id="dark-mode-toggle"  xlink:href="#icon-taiyang"></use></svg>
+</div>
+<script>
+
+    var toggle = document.getElementById("dark-mode-toggle");
+    var darkTheme = document.getElementById("dark-mode-theme");
+    var button = document.getElementById("togglebutton");
+    button.addEventListener("click", () => {
+        if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
+            setTheme("dark");
+        } else if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
+            setTheme("light");
+        }
+    });
+    
+    
+    var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
+    setTheme(savedTheme);
+    
+    function setTheme(mode) {
+        localStorage.setItem("dark-mode-storage", mode);
+        if (mode === "light") {
+            darkTheme.disabled = true;
+            toggle.setAttribute("xlink:href","#icon-taiyang"); 
+        } else if (mode === "dark") {
+            darkTheme.disabled = false;
+            toggle.setAttribute("xlink:href","#icon-yueliang1"); 
+        }
+    }
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+  server="netease"
+  type="playlist"
+  id="738642988"
+  fixed=true
+  volume=0.3
+  theme='#7b9cce'>
+</meting-js><div class="site-meta  custom-logo ">
+  <div class="custom-logo-site-title">
+    <a href="https://litmingc.github.io/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">LitMing</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">
+    <span id="typeitElement">云深不知处，花鸟一相逢</span>
+  </p>
+
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/post/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/categories/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-folder"></i> <br />分类
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/tags/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-tags"></i> <br />标签
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/about/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fas fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
+    </ul>
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fas fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+</nav>
+
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content"><section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://litmingc.github.io/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/" itemprop="url">
+        QLineEdit
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2019-08-12">
+    2019-08-12
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">学习笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/python" itemprop="url" rel="index">
+        <span itemprop="name">python</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">550 字 ~2分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    <hr />
+<ul>
+<li>
+<p>环境：</p>
+<ul>
+<li>python 3.7</li>
+<li>PyQt5 5.13.0</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="qlineedit">QLineEdit</h3>
+<ul>
+<li>
+<h4 id="控制输入">控制输入</h4>
+</li>
+<li>
+<p>正则表达式</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Validator <span style="color:#666">=</span> QRegExpValidator(self)  <span style="color:#60a0b0;font-style:italic"># 校验器</span>
+<span style="color:#60a0b0;font-style:italic"># 为校验器配置QRegExp(), 参数r&#34;[0-9]&#34;为正则表达式 </span>
+Validator<span style="color:#666">.</span>setRegExp(QRegExp(<span style="color:#4070a0">r</span><span style="color:#4070a0">&#34;[0-9]&#34;</span>))
+
+c <span style="color:#666">=</span> QLineEdit()
+c<span style="color:#666">.</span>setValidator(Validator)
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>掩码<br>
+<strong>掩码对比正则表达式</strong>：掩码使用占位符；正则表达式则没有占位。所以，在没有输入的情况下，掩码的光标可以在占下的位置间移动，而且输入方式相当于更新，而不是插入。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">c <span style="color:#666">=</span> QLineEdit()
+c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;0&#39;</span>)  <span style="color:#60a0b0;font-style:italic"># 设置掩码：一位 0-9 的字符</span>
+c<span style="color:#666">.</span>setInputMask(<span style="color:#4070a0">&#39;000&#39;</span>)  <span style="color:#60a0b0;font-style:italic"># 设置掩码：三位 0-9 的字符</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>掩码占位符表</strong></p>
+<p>参考<a href="https://blog.csdn.net/u013934107/article/details/93722054">网上搜到的表格</a>，但在应用时，原表中“必须输入”以及“不是必需的”的差异未有体现，下表为个人试验得出的意见。<br>
+【注】试验时，有效的代码部分仅为上述代码更换掩码而已。</p>
+<table>
+<thead>
+<tr>
+<th align="center">占位字符</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">A，a</td>
+<td align="left">只允许输入【A~Z, a~z】以及汉字</td>
+</tr>
+<tr>
+<td align="center">N，n</td>
+<td align="left">只允许输入【A~Z, a~z, 0~9】以及汉字</td>
+</tr>
+<tr>
+<td align="center">X，x</td>
+<td align="left">允许输入各种字符，标点</td>
+</tr>
+<tr>
+<td align="center">9，0</td>
+<td align="left">只允许输入0-9的数字</td>
+</tr>
+<tr>
+<td align="center">D，d</td>
+<td align="left">只允许输入1-9的数字</td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="left">只允许输入1-9的数字、加号+、减号-</td>
+</tr>
+<tr>
+<td align="center">H，h</td>
+<td align="left">只允许输入A~F、 a~f、0-9，即十六进制数字</td>
+</tr>
+<tr>
+<td align="center">B，b</td>
+<td align="left">只允许输入0、1，即二进制数字</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="left">搭配上述字符，将字符自动变大写，可输入汉字</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="left">搭配上述字符，将字符自动变小写，可输入汉字</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="left">搭配上述字符，<strong>从！的位置开始</strong>，关闭 &gt; 、&lt;的大小写转换效果。<br>例如：'&lt;aaa!aaa'，前三个字符会转换为小写，后三个字符不会被转换成小写</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+
+    </div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://litmingc.github.io/tags/pyqt5" rel="tag" title="PyQt5">#PyQt5#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://litmingc.github.io/post/python/%E7%AC%94%E8%AE%B0pyqt5-notebook/" rel="next" title="[Python]PyQt5笔记">
+        <i class="fa fa-chevron-left"></i> [Python]PyQt5笔记
+        </a>
+    
+    </div>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://litmingc.github.io/about/" rel="prev" title="About">
+        About <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
+</div>
+      
+     
+     
+
+<script src='https://litmingc.github.io/js/Valine-1.3.10.min.js'></script>
+<div id="vcomments"></div>
+<script>
+  new Valine({
+        el: '#vcomments',
+        appId: "2guSOLy9NcQHOtR6lwkFIrmp-MdYXbMMI",
+        appKey: "xhgDfd5tc8sl0ODNj7ER8pND",
+        notify:  false ,
+        verify:  false ,
+        avatar: "mp",
+        visitor:  true ,
+        placeholder: "留下邮箱会收到回复提醒哦" 
+  })
+</script>
+<style>
+.icon-bigger {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger2 {
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger:hover {
+  transform:scale(1.6);
+}
+.icon-bigger2:hover {
+  transform:scale(1.6);
+}
+</style>
+<span id="/post/pyqt5_nb/%E7%AC%94%E8%AE%B0qlineedit/" class="leancloud_visitors" data-flag-title="Your Article Title">
+    <svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-yibenzhengjingbiaoqing"></use></svg>
+    <em class="post-meta-item-text">阅读量</em><br>
+    <svg class="icon-bigger2" aria-hidden="true"><use xlink:href="#icon-biaoqing-dai"></use></svg>
+    <em class="post-meta-item-text">居然有~~<i class="leancloud-visitors-count"></i></em>
+	<svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-xiangwenbiaoqing"></use></svg>
+</span>
+
+
+    </footer>
+  </article>
+</section></div>
+        </div><div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://litmingc.github.io/img/izip.png"
+        alt="litmingc" />
+    <p class="site-author-name" itemprop="name">litmingc</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        写代码？多数靠蒙！</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://litmingc.github.io/post/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://litmingc.github.io/categories/">      
+         
+        <span class="site-state-item-count">8</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://litmingc.github.io/tags/">
+         
+        <span class="site-state-item-count">15</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com/litmingc" target="_blank" title="GitHub">
+            <i class="fab fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+</div>
+
+      
+
+      
+    </section>
+    
+
+  </div>
+</aside>
+</div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"><div class="copyright" >
+  <span itemprop="copyrightYear">  &copy; 
+  2019 - 2021</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">LitMing</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.84.2</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+</div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://litmingc.github.io/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/utils.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/motion.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/affix.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/post-details.js"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
+
+<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
+<style>
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+</style>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><style>
+    code.mathcode {
+      font: inherit;
+      font-size: 110%;
+      background: inherit;
+      border: inherit;
+      color: #515151;
+    }
+</style><script src="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js"></script>
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js"></script><script>
+renderMathInElement(document.body,
+{
+    delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "··", right: "··", display: true},
+    {left: "·", right: "·", display: false},
+    {left: "\\(", right: "\\)", display: false},
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+}
+);
+var all=document.getElementsByClassName('katex'),i;
+for(i = 0; i < all.length; i += 1){
+     
+     
+    var tmp=all[i].parentNode;
+    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
+    if(tmp.nodeName == 'CODE')
+    tmp.className += ' mathcode';
+}
+</script><script src="https://litmingc.github.io/js/typeit.min.js"></script>
+<script>
+  new TypeIt("#typeitElement", {
+    cursor: false,
+    lifeLike: false,
+    speed: 100,
+    startDelay: 1000,
+  }).go();
+</script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.4/mermaid.min.js"></script>
+<script>
+    
+    Array.from(document.getElementsByClassName('language-mermaid')).forEach(el => {
+        el.parentElement.outerHTML = `<div class="mermaid">${el.innerText}</div>`
+    })
+</script>
+
+<script  type="text/javascript" src="https://litmingc.github.io/js/genTOC.js"></script>
+</body>
+</html>
