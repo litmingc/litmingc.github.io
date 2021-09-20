@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on LitMing</title>
+    <link>https://litmingc.github.io/tags/git/</link>
+    <description>Recent content in Git on LitMing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 23 Mar 2020 23:36:31 +0800</lastBuildDate><atom:link href="https://litmingc.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Tips]Git使用笔记</title>
+      <link>https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 23 Mar 2020 23:36:31 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>Git语法 子模块 删除子模块 rm -rf 子模块目录 删除子模块目录及源码 vi .gitmodules 删除项目目录下.gitmodules文件中子模块相关条目 vi .git/config 删除配置项中子模</description>
+    </item>
+    
+  </channel>
+</rss>

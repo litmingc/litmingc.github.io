@@ -1,0 +1,1419 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>[Node.js] Node.js技术栈（一）JavaScript基础 - LitMing</title><meta name="keywords" content="js,JavaScript,">
+    <meta property="og:title" content="[Node.js] Node.js技术栈（一）JavaScript基础">
+    <meta property="og:site_name" content="LitMing">
+    <meta property="og:image" content="/img/izip.png"> 
+    <meta name="title" content="[Node.js] Node.js技术栈（一）JavaScript基础 - LitMing" />
+    <meta name="description" content="js初学笔记" />
+     
+    <link rel="shortcut icon" href="https://litmingc.github.io/img/izip30.png" />
+    <link rel="apple-touch-icon" href="" />
+    <link rel="apple-touch-icon-precomposed" href="" />
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.css" rel="stylesheet">
+    
+    
+    <link href="https://litmingc.github.io/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://litmingc.github.io/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      scheme: 'Pisces',
+      sidebar: {"position":"left","display":"post"},
+      fancybox: false, 
+      motion: true
+    };
+    </script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-145827411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<style>
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_svpe1d3bg1m.eot');  
+  src: url('//at.alicdn.com/t/webfont_svpe1d3bg1m.eot?#iefix') format('embedded-opentype'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.woff2') format('woff2'),
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.woff') format('woff'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.ttf') format('truetype'),  
+  url('//at.alicdn.com/t/webfont_svpe1d3bg1m.svg#杨任东竹石体-Bold') format('svg');  
+}
+.webfont{
+    font-family: "webfont" !important;
+    font-size: 36px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+</style></head><body itemscope itemtype="https://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
+      <div class="header-inner">
+
+<link disabled id="dark-mode-theme" rel="stylesheet" href="https://litmingc.github.io/css/dark.css">
+<style>
+.darkbutton{
+    width: 2em;
+    height: 2em;
+}
+
+.div-float{
+    position:fixed;
+    top:30px;
+    right:30px;
+}
+</style>
+<div id="togglebutton" class="div-float">
+    <svg class="darkbutton" aria-hidden="true"><use id="dark-mode-toggle"  xlink:href="#icon-taiyang"></use></svg>
+</div>
+<script>
+
+    var toggle = document.getElementById("dark-mode-toggle");
+    var darkTheme = document.getElementById("dark-mode-theme");
+    var button = document.getElementById("togglebutton");
+    button.addEventListener("click", () => {
+        if (toggle.getAttribute("xlink:href") === "#icon-taiyang") {
+            setTheme("dark");
+        } else if (toggle.getAttribute("xlink:href") === "#icon-yueliang1") {
+            setTheme("light");
+        }
+    });
+    
+    
+    var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
+    setTheme(savedTheme);
+    
+    function setTheme(mode) {
+        localStorage.setItem("dark-mode-storage", mode);
+        if (mode === "light") {
+            darkTheme.disabled = true;
+            toggle.setAttribute("xlink:href","#icon-taiyang"); 
+        } else if (mode === "dark") {
+            darkTheme.disabled = false;
+            toggle.setAttribute("xlink:href","#icon-yueliang1"); 
+        }
+    }
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<meting-js
+  server="netease"
+  type="playlist"
+  id="738642988"
+  fixed=true
+  volume=0.3
+  theme='#7b9cce'>
+</meting-js><div class="site-meta  custom-logo ">
+  <div class="custom-logo-site-title">
+    <a href="https://litmingc.github.io/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">LitMing</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">
+    <span id="typeitElement">云深不知处，花鸟一相逢</span>
+  </p>
+
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/post/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/categories/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-folder"></i> <br />分类
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/tags/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-tags"></i> <br />标签
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://litmingc.github.io/about/" rel="section">
+              <i class="menu-item-icon fas fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fas fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
+    </ul>
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fas fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+</nav>
+
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content"><section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="https://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://litmingc.github.io/post/nodejs/route-js/" itemprop="url">
+        [Node.js] Node.js技术栈（一）JavaScript基础
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2021-08-04">
+    2021-08-04
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/javascript" itemprop="url" rel="index">
+        <span itemprop="name">JavaScript</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://litmingc.github.io/categories/node.js" itemprop="url" rel="index">
+        <span itemprop="name">Node.js</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">3898 字 ~8分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    <hr />
+<p>内容摘录自：<br />
+<a href="https://www.w3school.com.cn/js/index.asp">https://www.w3school.com.cn/js/index.asp</a></p>
+<hr />
+<h2 id="基础">基础</h2>
+<h3 id="一个简单的js实例">一个简单的js实例</h3>
+<h3 id="js简介">js简介</h3>
+<ul>
+<li>js由浏览器执行js语句</li>
+<li>js语句结束需要<code>;</code></li>
+<li>大小写敏感</li>
+<li>使用Unicode字符集</li>
+</ul>
+<h3 id="导入js代码">导入js代码</h3>
+<ul>
+<li><code>&lt;script&gt;</code>标签</li>
+<li>外部脚本
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">script</span> <span style="color:#4070a0">src</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;xxx.js&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>外部脚本的好处：<br />
+已经缓存的脚本不需要再加载，可以加速。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="js输出">js输出</h3>
+<p>输出方案：</p>
+<ul>
+<li><code>window.alert()</code>写入警告框</li>
+<li><code>document.write()</code>写入html</li>
+<li>先获取DOM元素（例如，<code>document.getElementById(id)</code>），再使用<code>innerHTML</code>写入HTML元素</li>
+<li><code>console.log()</code>写入浏览器控制台</li>
+</ul>
+<h3 id="值的类型">值的类型</h3>
+<p>js有两种类型：</p>
+<ul>
+<li>混合值，字面量</li>
+<li>变量值，变量</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#60a0b0;font-style:italic">// x是变量值，12.3是混合值
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#40a070">12.3</span>;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="变量">变量</h4>
+<ol>
+<li>
+<p>使用<code>var</code>声明变量</p>
+<ul>
+<li>重复声明不会丢失变量的值：
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#4070a0">&#34;value&#34;</span>;
+<span style="color:#007020;font-weight:bold">var</span> x;
+</code></pre></td></tr></table>
+</div>
+</div><p><code>x</code>值仍为<code>&quot;value&quot;</code>。</p>
+</li>
+<li>向未声明的变量赋值，它会自动成为全局变量；在“严格模式”中不会自动创建全局变量。</li>
+</ul>
+</li>
+<li>
+<p><strong>js变量必须以唯一的名称标识</strong><br />
+构造变量名称的通用规则：</p>
+<ul>
+<li>必须以字母、<code>_</code>、<code>$</code>开头</li>
+</ul>
+</li>
+</ol>
+<h4 id="运算">运算</h4>
+<ul>
+<li><code>+</code><br />
+数字与数字是求和运算，有字符串参与时则是级联运算。
+<ul>
+<li>字符串与字符串相加：
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">txt1 <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Bill&#34;</span>;
+txt2 <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Gates&#34;</span>;
+txt3 <span style="color:#666">=</span> txt1 <span style="color:#666">+</span> <span style="color:#4070a0">&#34; &#34;</span> <span style="color:#666">+</span> txt2; 
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>字符串与数字相加：
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">x <span style="color:#666">=</span> <span style="color:#40a070">7</span> <span style="color:#666">+</span> <span style="color:#40a070">8</span>;
+y <span style="color:#666">=</span> <span style="color:#4070a0">&#34;7&#34;</span> <span style="color:#666">+</span> <span style="color:#40a070">8</span>;
+z <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Hello&#34;</span> <span style="color:#666">+</span> <span style="color:#40a070">7</span>;
+</code></pre></td></tr></table>
+</div>
+</div><p><code>x</code>是一个数字；<br />
+<code>y</code>、<code>z</code>是字符串。</p>
+</li>
+</ul>
+</li>
+<li><code>A?B:C</code>三元运算符</li>
+<li><code>**</code>幂运算</li>
+<li><code>===</code>值相等并且类型相等；<code>!==</code>值不相等或类型不相等</li>
+</ul>
+<link rel="stylesheet" type="text/css" href="https://litmingc.github.io/css/admonition.css" /><details class="admonition quote">
+            <summary class="admonition-title">
+                <i class="icon fas fa-quote-right"></i>JavaScript运算符优先级<i class="details fas fa-angle-down"></i>
+            </summary>
+            <div class="admonition-content">好长的表，不抄了，还是放个链接吧！
+<a href="https://www.w3school.com.cn/js/js_arithmetic.asp">JavaScript运算符优先级</a></div>
+        </details>
+<h3 id="数据类型">数据类型</h3>
+<p>字符串、数值、布尔值、数组、对象</p>
+<p><strong>JavaScript是动态类型</strong>，相同变量可作不同类型。</p>
+<p>……</p>
+<ul>
+<li>字符串
+<ul>
+<li>单引号、双引号都可以</li>
+</ul>
+</li>
+<li>数值number
+<ul>
+<li>js只有一种数值</li>
+<li>科学计数法<code>var x=123e-5</code></li>
+</ul>
+</li>
+</ul>
+<p>……</p>
+<ul>
+<li>
+<p><code>typeof</code>运算符，返回类型</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">typeof</span> <span style="color:#4070a0">&#34;&#34;</span>  <span style="color:#60a0b0;font-style:italic">// 返回&#34;string&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>对于复杂类型：<br />
+<code>typeof</code> 运算符可返回以下两种类型之一：</p>
+<ul>
+<li>function</li>
+<li>object
+<code>typeof</code> 运算符把对象、数组或 <code>null</code> 返回 object。
+<code>typeof</code> 运算符不会把函数返回 object。</li>
+</ul>
+</li>
+<li>
+<p><code>undefined</code><br />
+没有值的变量，其值为<code>undefined</code>，其类型也是<code>undefined</code></p>
+</li>
+<li>
+<p><code>null</code>是一个对象类型，值是<code>null</code></p>
+</li>
+<li>
+<p><code>undefined</code>与<code>null</code>的值相等，类型不相同</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">null</span> <span style="color:#666">===</span> <span style="color:#007020;font-weight:bold">undefined</span>         <span style="color:#60a0b0;font-style:italic">// false
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">null</span> <span style="color:#666">==</span> <span style="color:#007020;font-weight:bold">undefined</span>          <span style="color:#60a0b0;font-style:italic">// true
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="字符串">字符串</h4>
+<ul>
+<li>
+<p>常用的字符串方法： </p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>indexOf(&quot;&quot;,20)</code></td>
+<td><code>&quot;asddsa&quot;.indexOf(&quot;ab&quot;,2)</code>，从索引2开始检索，返回字符串首次出现的索引，即<code>&quot;ab&quot;</code>中<code>a</code>的索引位置</td>
+</tr>
+<tr>
+<td><code>lastIndexOf()</code></td>
+<td>返回最后一次出现的索引</td>
+</tr>
+<tr>
+<td><code>search()</code></td>
+<td>类似indexOf，但是indexOf无法使用正则</td>
+</tr>
+<tr>
+<td><code>slice(x,y)</code></td>
+<td>提取索引x位置到y位置的字符串，索引可以取负数表示倒数，第二个参数默认为最大索引值</td>
+</tr>
+<tr>
+<td><code>substring()</code></td>
+<td>类似slice，但是不接受负数参数</td>
+</tr>
+<tr>
+<td><code>substr(x,n)</code></td>
+<td>类似slice，但是第二个参数表示子串长度</td>
+</tr>
+<tr>
+<td><code>replace(&quot;oldstr&quot;, &quot;newstr&quot;)</code></td>
+<td>默认只替换首个匹配，可以使用正则（不带引号）</td>
+</tr>
+<tr>
+<td><code>toUpperCae()</code>、<code>toLowerCase()</code></td>
+<td>大小写转换</td>
+</tr>
+<tr>
+<td><code>concat()</code></td>
+<td><code>&quot;Hello&quot;.concat(&quot; &quot;,&quot;World!&quot;)</code>的返回值等同于<code>&quot;Hello&quot; + &quot; &quot; + &quot;World!&quot;</code>；不改变原字符串的值</td>
+</tr>
+<tr>
+<td><code>trim()</code></td>
+<td>删除两端的空白符</td>
+</tr>
+<tr>
+<td><code>charAt(x)</code></td>
+<td>返回指定位置的字符</td>
+</tr>
+<tr>
+<td><code>charCodeAt(x)</code></td>
+<td>返回unicode值</td>
+</tr>
+<tr>
+<td><code>split(&quot;,&quot;)</code></td>
+<td>把字符串分割成数组；<code>split(&quot;,&quot;)</code>将把字符串分割成单个字符数组</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>注意</strong> ：<code>+</code>符号为级联运算，但是其它运算符（<code>/</code>、<code>-</code>、<code>*</code>）会尝试将字符串转为数字，进行数值运算。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#4070a0">&#34;100&#34;</span>;
+<span style="color:#007020;font-weight:bold">var</span> y <span style="color:#666">=</span> <span style="color:#4070a0">&#34;10&#34;</span>;
+<span style="color:#007020;font-weight:bold">var</span> z <span style="color:#666">=</span> x <span style="color:#666">/</span> y;       <span style="color:#60a0b0;font-style:italic">// z 将是 10
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> z <span style="color:#666">=</span> x <span style="color:#666">*</span> y;       <span style="color:#60a0b0;font-style:italic">// z 将是 1000
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> z <span style="color:#666">=</span> x <span style="color:#666">-</span> y;       <span style="color:#60a0b0;font-style:italic">// z 将是 90
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> z <span style="color:#666">=</span> x <span style="color:#666">+</span> y;       <span style="color:#60a0b0;font-style:italic">// z 不会是 110（而是 10010）
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="数字">数字</h4>
+<p><em>JavaScript 只有一种数值类型</em>。
+书写数值时带不带小数点均可，还<em>可以使用科学计数法</em>。</p>
+<p><strong>JavaScript 数值始终是 64 位的浮点数</strong>。</p>
+<ul>
+<li>
+<p>精度：<br />
+整数（不使用指数或科学计数法）会被精确到 15 位：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#40a070">999999999999999</span>;   <span style="color:#60a0b0;font-style:italic">// x 将是 999999999999999
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> y <span style="color:#666">=</span> <span style="color:#40a070">9999999999999999</span>;  <span style="color:#60a0b0;font-style:italic">// y 将是 10000000000000000
+</span></code></pre></td></tr></table>
+</div>
+</div><p>小数的最大数是 17 位，但是浮点的算数并不总是 100% 精准：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#40a070">0.2</span> <span style="color:#666">+</span> <span style="color:#40a070">0.1</span>;         <span style="color:#60a0b0;font-style:italic">// x 将是 0.30000000000000004
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#60a0b0;font-style:italic">// 使用乘除法有助于解决上面的问题：
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> (<span style="color:#40a070">0.2</span> <span style="color:#666">*</span> <span style="color:#40a070">10</span> <span style="color:#666">+</span> <span style="color:#40a070">0.1</span> <span style="color:#666">*</span> <span style="color:#40a070">10</span>) <span style="color:#666">/</span> <span style="color:#40a070">10</span>;       <span style="color:#60a0b0;font-style:italic">// x 将是 0.3
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>使用<code>+</code>时，注意是否有字符串<br />
+<strong>注意下列情况</strong>：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#40a070">10</span>;
+<span style="color:#007020;font-weight:bold">var</span> y <span style="color:#666">=</span> <span style="color:#40a070">20</span>;
+<span style="color:#007020;font-weight:bold">var</span> z <span style="color:#666">=</span> <span style="color:#4070a0">&#34;30&#34;</span>;
+<span style="color:#007020;font-weight:bold">var</span> result <span style="color:#666">=</span> x <span style="color:#666">+</span> y <span style="color:#666">+</span> z;
+</code></pre></td></tr></table>
+</div>
+</div><p><code>result</code>的结果是<code>&quot;3030&quot;</code>。因为，JavaScript 从左向右进行编译；x和y都是数，<code>10+20</code>将被相加；z是字符串，<code>30+&quot;30&quot;</code>被级联。</p>
+</li>
+<li>
+<p>进制<br />
+JavaScript 会把前缀为<code>0x</code>的数值常量解释为十六进制。<br />
+一些 JavaScript 版本会把带有前导零的数解释为八进制（<code>var a=07;</code>）。</p>
+<p>使用 <code>toString()</code> 方法把数输出为十六进制、八进制或二进制：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> myNumber <span style="color:#666">=</span> <span style="color:#40a070">128</span>;
+myNumber.toString(<span style="color:#40a070">16</span>);   <span style="color:#60a0b0;font-style:italic">// 返回 80
+</span><span style="color:#60a0b0;font-style:italic"></span>myNumber.toString(<span style="color:#40a070">8</span>);    <span style="color:#60a0b0;font-style:italic">// 返回 200
+</span><span style="color:#60a0b0;font-style:italic"></span>myNumber.toString(<span style="color:#40a070">2</span>);    <span style="color:#60a0b0;font-style:italic">// 返回 10000000
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>数值可以是对象，但是不建议使用数值对象。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#40a070">123</span>;
+<span style="color:#007020;font-weight:bold">var</span> y <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Number</span>(<span style="color:#40a070">123</span>);
+
+<span style="color:#60a0b0;font-style:italic">// typeof x 返回 number
+</span><span style="color:#60a0b0;font-style:italic">// typeof y 返回 object
+</span></code></pre></td></tr></table>
+</div>
+</div><p>不适当地使用数值对象，在使用 <code>===</code> 相等运算符时，<em>看似相等的数可能实际不相等</em>，因为 <code>===</code> 运算符需要类型和值同时相等：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#40a070">500</span>;
+<span style="color:#007020;font-weight:bold">var</span> y <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Number</span>(<span style="color:#40a070">500</span>);
+<span style="color:#60a0b0;font-style:italic">// (x === y) 为 false，因为 x 和 y 的类型不同
+</span><span style="color:#60a0b0;font-style:italic">// (x == y) 为 true，因为 x 和 y 有相等的值
+</span></code></pre></td></tr></table>
+</div>
+</div><p>而且，<em>JavaScript 对象无法进行比较</em>：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Number</span>(<span style="color:#40a070">500</span>);
+<span style="color:#007020;font-weight:bold">var</span> y <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Number</span>(<span style="color:#40a070">500</span>);
+<span style="color:#60a0b0;font-style:italic">// (x == y) 为 false，因为对象无法比较
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><a href="https://www.w3school.com.cn/js/js_number_methods.asp">JavaScript 数值方法</a></p>
+</li>
+</ul>
+<p>一些特殊的数：</p>
+<ul>
+<li><code>NaN</code>非数值
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#40a070">100</span> <span style="color:#666">/</span> <span style="color:#4070a0">&#34;Apple&#34;</span>;  <span style="color:#60a0b0;font-style:italic">// x 将是 NaN
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">isNaN</span>(x);               <span style="color:#60a0b0;font-style:italic">// 返回 true，因为 x 不是数
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#40a070">100</span> <span style="color:#666">/</span> <span style="color:#4070a0">&#34;10&#34;</span>;     <span style="color:#60a0b0;font-style:italic">// x 将是 10
+</span></code></pre></td></tr></table>
+</div>
+</div><p>注意：<code>NaN</code>是数，<code>typeof NaN</code>返回 number</p>
+</li>
+<li><code>Infinity</code>（或<code>-Infinity</code>）表示JavaScript在计算数时超出最大可能数范围时返回的值<br />
+除以 0（零）也会生成 <code>Infinity</code> 。</li>
+</ul>
+<h4 id="数组">数组</h4>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> cars <span style="color:#666">=</span> [
+    <span style="color:#4070a0">&#34;Saab&#34;</span>,
+    <span style="color:#4070a0">&#34;Volvo&#34;</span>,
+    <span style="color:#4070a0">&#34;BMW&#34;</span>
+];
+<span style="color:#007020;font-weight:bold">var</span> cars <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Array</span>(<span style="color:#4070a0">&#34;Saab&#34;</span>, <span style="color:#4070a0">&#34;Volvo&#34;</span>, <span style="color:#4070a0">&#34;BMW&#34;</span>);
+<span style="color:#60a0b0;font-style:italic">// 以上两个例子效果完全一样。无需使用 new Array()。
+</span><span style="color:#60a0b0;font-style:italic">// 出于简洁、可读性和执行速度的考虑，请使用第一种方法（数组文本方法）。
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>数组是一种特殊类型的对象。在 JavaScript 中对数组使用 <code>typeof</code> 运算符会返回 &ldquo;object&rdquo;</li>
+<li>如何识别数组：
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#60a0b0;font-style:italic">// ECMAScript 5 的方法 Array.isArray()
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">Array</span>.isArray(fruits);     <span style="color:#60a0b0;font-style:italic">// 返回 true
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#60a0b0;font-style:italic">// 创建自己的 isArray() 函数以解决此问题
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">function</span> isArray(x) {
+  <span style="color:#007020;font-weight:bold">return</span> x.constructor.toString().indexOf(<span style="color:#4070a0">&#34;Array&#34;</span>) <span style="color:#666">&gt;</span> <span style="color:#666">-</span><span style="color:#40a070">1</span>;
+}
+
+<span style="color:#60a0b0;font-style:italic">//假如对象由给定的构造器创建，则 instanceof 运算符返回 true 
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> fruits <span style="color:#666">=</span> [<span style="color:#4070a0">&#34;Banana&#34;</span>, <span style="color:#4070a0">&#34;Orange&#34;</span>, <span style="color:#4070a0">&#34;Apple&#34;</span>, <span style="color:#4070a0">&#34;Mango&#34;</span>];
+fruits <span style="color:#007020;font-weight:bold">instanceof</span> <span style="color:#007020">Array</span>     <span style="color:#60a0b0;font-style:italic">// 返回 true
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><a href="https://www.w3school.com.cn/js/js_array_methods.asp">数组的增删方法</a></li>
+<li><a href="https://www.w3school.com.cn/js/js_array_iteration.asp">数组的迭代方法</a>
+<ul>
+<li>Array.reduce()
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> numbers1 <span style="color:#666">=</span> [<span style="color:#40a070">45</span>, <span style="color:#40a070">4</span>, <span style="color:#40a070">9</span>, <span style="color:#40a070">16</span>, <span style="color:#40a070">25</span>];
+<span style="color:#007020;font-weight:bold">var</span> sum <span style="color:#666">=</span> numbers1.reduce(myFunction);
+
+<span style="color:#007020;font-weight:bold">function</span> myFunction(total, value, index, array) {
+  <span style="color:#007020;font-weight:bold">return</span> total <span style="color:#666">+</span> value;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>其中，<code>total</code>的初始值为<code>numbers1[0]</code>，之后<code>total</code>为函数返回值；遍历数组可以看作从<code>numbers1[1]</code>开始遍历求和。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="流程控制">流程控制</h3>
+<ol>
+<li>switch
+<ul>
+<li>switch case 使用严格比较（<code>===</code>）</li>
+</ul>
+</li>
+</ol>
+<h3 id="javascript-提升hoisting">JavaScript 提升（Hoisting）</h3>
+<p>在 JavaScript 中，可以在使用变量之后对其进行声明。<br />
+换句话说，可以在声明变量之前使用它。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">x <span style="color:#666">=</span> <span style="color:#40a070">5</span>; <span style="color:#60a0b0;font-style:italic">// 把 5 赋值给 x
+</span><span style="color:#60a0b0;font-style:italic"></span> 
+elem <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;demo&#34;</span>); <span style="color:#60a0b0;font-style:italic">// 查找元素
+</span><span style="color:#60a0b0;font-style:italic"></span>elem.innerHTML <span style="color:#666">=</span> x;                     <span style="color:#60a0b0;font-style:italic">// 在元素中显示 x
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#007020;font-weight:bold">var</span> x; <span style="color:#60a0b0;font-style:italic">// 声明 x
+</span></code></pre></td></tr></table>
+</div>
+</div><p>但是，<a href="https://www.w3school.com.cn/js/js_strict.asp">严格模式</a>中 <strong>在不声明对象的情况下使用对象也是不允许的</strong>。</p>
+<p><strong>JavaScript 初始化不会被提升</strong>：JavaScript 只提升声明，而非初始化。</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> x <span style="color:#666">=</span> <span style="color:#40a070">5</span>; <span style="color:#60a0b0;font-style:italic">// 初始化 x
+</span><span style="color:#60a0b0;font-style:italic"></span>elem <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;demo&#34;</span>); <span style="color:#60a0b0;font-style:italic">// 查找元素
+</span><span style="color:#60a0b0;font-style:italic"></span>elem.innerHTML <span style="color:#666">=</span> x <span style="color:#666">+</span> <span style="color:#4070a0">&#34; &#34;</span> <span style="color:#666">+</span> y;           <span style="color:#60a0b0;font-style:italic">// 显示 &#34;5 undefined&#34;
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> y <span style="color:#666">=</span> <span style="color:#40a070">7</span>; <span style="color:#60a0b0;font-style:italic">// 初始化 y 
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="this">This</h2>
+<p>实例：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> person <span style="color:#666">=</span> {
+  firstName<span style="color:#666">:</span> <span style="color:#4070a0">&#34;Bill&#34;</span>,
+  lastName <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Gates&#34;</span>,
+  id       <span style="color:#666">:</span> <span style="color:#40a070">678</span>,
+  fullName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>() {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.firstName <span style="color:#666">+</span> <span style="color:#4070a0">&#34; &#34;</span> <span style="color:#666">+</span> <span style="color:#007020;font-weight:bold">this</span>.lastName;
+  }
+};
+</code></pre></td></tr></table>
+</div>
+</div><p><strong><code>this</code> 是什么？</strong>
+JavaScript <code>this</code> 关键词指的是它所属的对象。</p>
+<p>它拥有不同的值，具体取决于它的使用位置：</p>
+<ul>
+<li>在方法中，<code>this</code> 指的是所有者对象。</li>
+<li>单独的情况下，<code>this</code> 指的是全局对象。<br />
+在函数中，<code>this</code> 指的是全局对象<code>[object Window]</code>。</li>
+<li>在函数中，严格模式下，<code>this</code> 是  undefined。</li>
+<li>在事件中，<code>this</code> 指的是接收事件的元 素。<br />
+像 <code>call()</code> 和 <code>apply()</code> 这样的方法可以将 <code>this</code> 引用到任何对象。</li>
+</ul>
+<h2 id="函数">函数</h2>
+<ul>
+<li>
+<p>函数定义</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> name(参数 <span style="color:#40a070">1</span>, 参数 <span style="color:#40a070">2</span>, 参数 <span style="color:#40a070">3</span>) {
+    要执行的代码
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>函数调用</p>
+</li>
+<li>
+<p>函数返回</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> toCelsius(fahrenheit) {
+    <span style="color:#007020;font-weight:bold">return</span> (<span style="color:#40a070">5</span><span style="color:#666">/</span><span style="color:#40a070">9</span>) <span style="color:#666">*</span> (fahrenheit<span style="color:#666">-</span><span style="color:#40a070">32</span>);
+}
+
+<span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;demo&#34;</span>).innerHTML <span style="color:#666">=</span> toCelsius;
+</code></pre></td></tr></table>
+</div>
+</div><p><code>toCelsius</code>将返回函数定义，demo代表的标签内容将是<code>toCelsius</code>的代码。</p>
+</li>
+</ul>
+<h2 id="对象">对象</h2>
+<p>所有 JavaScript 值，除了原始值（<code>string</code>、<code>number</code>、<code>boolean</code>、<code>null</code>、<code>undefined</code>），都是对象。</p>
+<h3 id="对象的定义">对象的定义</h3>
+<ul>
+<li>使用对象文字定义和创建单个对象：
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> car <span style="color:#666">=</span> {type<span style="color:#666">:</span><span style="color:#4070a0">&#34;porsche&#34;</span>, model<span style="color:#666">:</span><span style="color:#4070a0">&#34;911&#34;</span>, color<span style="color:#666">:</span><span style="color:#4070a0">&#34;white&#34;</span>};
+</code></pre></td></tr></table>
+</div>
+</div><p>js对象是 <strong>被命名值</strong> 的容器，以键值对的形式书写其 <strong>属性</strong> 与 <strong>属性值</strong>。<br />
+于简易性、可读性和执行速度的考虑，对象文字是比较好的创建方法。</p>
+</li>
+<li>通过关键词 <code>new</code> 定义和创建单个对象
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> person <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Object</span>();
+person.firstName <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Bill&#34;</span>;
+person.lastName <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Gates&#34;</span>;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>定义对象构造器，然后创建构造类型的对象</li>
+</ul>
+<h3 id="对象属性">对象属性</h3>
+<ul>
+<li>遍历对象属性：
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> txt <span style="color:#666">=</span> <span style="color:#4070a0">&#34;&#34;</span>;
+<span style="color:#007020;font-weight:bold">var</span> person <span style="color:#666">=</span> {fname<span style="color:#666">:</span><span style="color:#4070a0">&#34;Bill&#34;</span>, lname<span style="color:#666">:</span><span style="color:#4070a0">&#34;Gates&#34;</span>, age<span style="color:#666">:</span><span style="color:#40a070">62</span>}; 
+<span style="color:#007020;font-weight:bold">var</span> x;
+<span style="color:#007020;font-weight:bold">for</span> (x <span style="color:#007020;font-weight:bold">in</span> person) {
+  txt <span style="color:#666">+=</span> person[x] <span style="color:#666">+</span> <span style="color:#4070a0">&#34; &#34;</span>;
+}
+<span style="color:#60a0b0;font-style:italic">// txt 的值为 &#34;Bill Gates 62&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="对象访问器gettersetter">对象访问器（Getter/Setter）</h3>
+<h4 id="getter">Getter</h4>
+<p>使用关键字<code>get</code>定义Getter：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#60a0b0;font-style:italic">// 创建对象：
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> person <span style="color:#666">=</span> {
+  firstName<span style="color:#666">:</span> <span style="color:#4070a0">&#34;Bill&#34;</span>,
+  lastName <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Gates&#34;</span>,
+  language <span style="color:#666">:</span> <span style="color:#4070a0">&#34;en&#34;</span>,
+  <span style="color:#60a0b0;font-style:italic">// 本例使用 lang 属性来获取 language 属性的值
+</span><span style="color:#60a0b0;font-style:italic"></span>  get lang() {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.language;
+  }
+};
+
+<span style="color:#60a0b0;font-style:italic">// 使用 getter 来显示来自对象的数据：
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;demo&#34;</span>).innerHTML <span style="color:#666">=</span> person.lang;
+</code></pre></td></tr></table>
+</div>
+</div><p>使用函数实现相似效果：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> person <span style="color:#666">=</span> {
+  firstName<span style="color:#666">:</span> <span style="color:#4070a0">&#34;Bill&#34;</span>,
+  lastName <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Gates&#34;</span>,
+  fullName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>() {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.firstName <span style="color:#666">+</span> <span style="color:#4070a0">&#34; &#34;</span> <span style="color:#666">+</span> <span style="color:#007020;font-weight:bold">this</span>.lastName;
+  }
+};
+
+<span style="color:#60a0b0;font-style:italic">// 使用方法来显示来自对象的数据：
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;demo&#34;</span>).innerHTML <span style="color:#666">=</span> person.fullName();
+</code></pre></td></tr></table>
+</div>
+</div><p>注意访问形式不同，一种是方法调用，一种是访问属性的形式。</p>
+<h4 id="setter">Setter</h4>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> person <span style="color:#666">=</span> {
+  firstName<span style="color:#666">:</span> <span style="color:#4070a0">&#34;Bill&#34;</span>,
+  lastName <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Gates&#34;</span>,
+  language <span style="color:#666">:</span> <span style="color:#4070a0">&#34;&#34;</span>,
+  set lang(lang) {
+    <span style="color:#007020;font-weight:bold">this</span>.language <span style="color:#666">=</span> lang;
+  }
+};
+
+<span style="color:#60a0b0;font-style:italic">// 使用 setter 来设置对象属性：
+</span><span style="color:#60a0b0;font-style:italic"></span>person.lang <span style="color:#666">=</span> <span style="color:#4070a0">&#34;en&#34;</span>;
+
+<span style="color:#60a0b0;font-style:italic">// 显示来自对象的数据：
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;demo&#34;</span>).innerHTML <span style="color:#666">=</span> person.language;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="对象构造器">对象构造器</h3>
+<p>实例：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> Person(first, last, age, eye) {
+    <span style="color:#007020;font-weight:bold">this</span>.firstName <span style="color:#666">=</span> first;
+    <span style="color:#007020;font-weight:bold">this</span>.lastName <span style="color:#666">=</span> last;
+    <span style="color:#007020;font-weight:bold">this</span>.age <span style="color:#666">=</span> age;
+    <span style="color:#007020;font-weight:bold">this</span>.eyeColor <span style="color:#666">=</span> eye;
+}
+
+<span style="color:#007020;font-weight:bold">var</span> myFather <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Person(<span style="color:#4070a0">&#34;Bill&#34;</span>, <span style="color:#4070a0">&#34;Gates&#34;</span>, <span style="color:#40a070">62</span>, <span style="color:#4070a0">&#34;blue&#34;</span>);
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="原型">原型</h2>
+<p>所有 JavaScript 对象都从 原型 继承属性和方法。</p>
+<h3 id="原型继承">原型继承</h3>
+<p>日期对象继承自 Date.prototype。数组对象继承自 Array.prototype。Person 对象继承自 Person.prototype。</p>
+<p>Object.prototype 位于原型继承链的顶端：<br />
+日期对象、数组对象和 Person 对象都继承自 Object.prototype。</p>
+<h3 id="使用-prototype-属性-向对象添加属性和方法">使用 <code>prototype</code> 属性 向对象添加属性和方法</h3>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> Person(first, last, age, eyecolor) {
+    <span style="color:#007020;font-weight:bold">this</span>.firstName <span style="color:#666">=</span> first;
+    <span style="color:#007020;font-weight:bold">this</span>.lastName <span style="color:#666">=</span> last;
+    <span style="color:#007020;font-weight:bold">this</span>.age <span style="color:#666">=</span> age;
+    <span style="color:#007020;font-weight:bold">this</span>.eyeColor <span style="color:#666">=</span> eyecolor;
+}
+Person.prototype.nationality <span style="color:#666">=</span> <span style="color:#4070a0">&#34;English&#34;</span>;
+Person.prototype.name <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>() {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.firstName <span style="color:#666">+</span> <span style="color:#4070a0">&#34; &#34;</span> <span style="color:#666">+</span> <span style="color:#007020;font-weight:bold">this</span>.lastName;
+};
+</code></pre></td></tr></table>
+</div>
+</div><p><em>请只修改您自己的原型。绝不要修改标准 JavaScript 对象的原型</em>。</p>
+<h2 id="正则">正则</h2>
+<p>实例：</p>
+<div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> patt <span style="color:#666">=</span> <span style="color:#235388">/w3school/i</span>;
+</code></pre></td></tr></table>
+</div>
+</div><p>例子解释：<br />
+<code>/w3school/i</code> 是一个正则表达式。<br />
+<code>w3school</code> 是模式（pattern）（在搜索中使用）。<br />
+<code>i</code> 是修饰符（把搜索修改为大小写不敏感）。</p>
+<p>正则那么多，网上搜一搜。</p>
+
+    </div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://litmingc.github.io/tags/%e7%ac%94%e8%ae%b0" rel="tag" title="笔记">#笔记#</a>
+    
+    <a href="https://litmingc.github.io/tags/node.js%e5%ad%a6%e4%b9%a0%e8%b7%af%e7%ba%bf" rel="tag" title="Node.js学习路线">#Node.js学习路线#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+    </div>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://litmingc.github.io/post/tips/rime-settings/" rel="prev" title="[Tips]Rime Settings">
+        [Tips]Rime Settings <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
+</div>
+      
+     
+     
+
+<script src='https://litmingc.github.io/js/Valine-1.3.10.min.js'></script>
+<div id="vcomments"></div>
+<script>
+  new Valine({
+        el: '#vcomments',
+        appId: "2guSOLy9NcQHOtR6lwkFIrmp-MdYXbMMI",
+        appKey: "xhgDfd5tc8sl0ODNj7ER8pND",
+        notify:  false ,
+        verify:  false ,
+        avatar: "mp",
+        visitor:  true ,
+        placeholder: "留下邮箱会收到回复提醒哦" 
+  })
+</script>
+<style>
+.icon-bigger {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger2 {
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.icon-bigger:hover {
+  transform:scale(1.6);
+}
+.icon-bigger2:hover {
+  transform:scale(1.6);
+}
+</style>
+<span id="/post/nodejs/route-js/" class="leancloud_visitors" data-flag-title="Your Article Title">
+    <svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-yibenzhengjingbiaoqing"></use></svg>
+    <em class="post-meta-item-text">阅读量</em><br>
+    <svg class="icon-bigger2" aria-hidden="true"><use xlink:href="#icon-biaoqing-dai"></use></svg>
+    <em class="post-meta-item-text">居然有~~<i class="leancloud-visitors-count"></i></em>
+	<svg class="icon-bigger" aria-hidden="true"><use xlink:href="#icon-xiangwenbiaoqing"></use></svg>
+</span>
+
+
+    </footer>
+  </article>
+</section></div>
+        </div><div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+  <ul class="sidebar-nav motion-element">
+    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+      文章目录
+    </li>
+    <li class="sidebar-nav-overview" data-target="site-overview">
+      站点概览
+    </li>
+  </ul>
+
+    <section class="site-overview sidebar-panel ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://litmingc.github.io/img/izip.png"
+        alt="litmingc" />
+    <p class="site-author-name" itemprop="name">litmingc</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        写代码？多数靠蒙！</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://litmingc.github.io/post/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://litmingc.github.io/categories/">      
+         
+        <span class="site-state-item-count">11</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://litmingc.github.io/tags/">
+         
+        <span class="site-state-item-count">18</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com/litmingc" target="_blank" title="GitHub">
+            <i class="fab fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+</div>
+
+      
+
+      
+    </section>
+    
+<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+    <div class="post-toc">
+        <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础">基础</a>
+      <ul>
+        <li><a href="#一个简单的js实例">一个简单的js实例</a></li>
+        <li><a href="#js简介">js简介</a></li>
+        <li><a href="#导入js代码">导入js代码</a></li>
+        <li><a href="#js输出">js输出</a></li>
+        <li><a href="#值的类型">值的类型</a></li>
+        <li><a href="#数据类型">数据类型</a></li>
+        <li><a href="#流程控制">流程控制</a></li>
+        <li><a href="#javascript-提升hoisting">JavaScript 提升（Hoisting）</a></li>
+      </ul>
+    </li>
+    <li><a href="#this">This</a></li>
+    <li><a href="#函数">函数</a></li>
+    <li><a href="#对象">对象</a>
+      <ul>
+        <li><a href="#对象的定义">对象的定义</a></li>
+        <li><a href="#对象属性">对象属性</a></li>
+        <li><a href="#对象访问器gettersetter">对象访问器（Getter/Setter）</a></li>
+        <li><a href="#对象构造器">对象构造器</a></li>
+      </ul>
+    </li>
+    <li><a href="#原型">原型</a>
+      <ul>
+        <li><a href="#原型继承">原型继承</a></li>
+        <li><a href="#使用-prototype-属性-向对象添加属性和方法">使用 <code>prototype</code> 属性 向对象添加属性和方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#正则">正则</a></li>
+  </ul>
+</nav></div>
+    </div>
+</section>
+
+
+  </div>
+</aside>
+</div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"><div class="copyright" >
+  <span itemprop="copyrightYear">  &copy; 
+  2019 - 2021</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">LitMing</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="https://gohugo.io" target="_blank" title="hugo" >Hugo v0.84.2</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+</div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://litmingc.github.io/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/utils.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/motion.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/affix.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/post-details.js"></script>
+
+<script type="text/javascript" src="https://litmingc.github.io/js/bootstrap.js"></script>
+<script type="text/javascript" src="https://litmingc.github.io/js/search.js"></script>
+
+<script src="//at.alicdn.com/t/font_1706978_500bk6gzog3.js"></script>
+<style>
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+</style>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><style>
+    code.mathcode {
+      font: inherit;
+      font-size: 110%;
+      background: inherit;
+      border: inherit;
+      color: #515151;
+    }
+</style><script src="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js"></script>
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js"></script><script>
+renderMathInElement(document.body,
+{
+    delimiters: [
+    {left: "$$", right: "$$", display: true},
+    {left: "$", right: "$", display: false},
+    {left: "··", right: "··", display: true},
+    {left: "·", right: "·", display: false},
+    {left: "\\(", right: "\\)", display: false},
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+}
+);
+var all=document.getElementsByClassName('katex'),i;
+for(i = 0; i < all.length; i += 1){
+     
+     
+    var tmp=all[i].parentNode;
+    for(;tmp.nodeName=='SPAN';tmp=tmp.parentNode);
+    if(tmp.nodeName == 'CODE')
+    tmp.className += ' mathcode';
+}
+</script><script src="https://litmingc.github.io/js/typeit.min.js"></script>
+<script>
+  new TypeIt("#typeitElement", {
+    cursor: false,
+    lifeLike: false,
+    speed: 100,
+    startDelay: 1000,
+  }).go();
+</script>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.8.4/mermaid.min.js"></script>
+<script>
+    
+    Array.from(document.getElementsByClassName('language-mermaid')).forEach(el => {
+        el.parentElement.outerHTML = `<div class="mermaid">${el.innerText}</div>`
+    })
+</script>
+
+<script  type="text/javascript" src="https://litmingc.github.io/js/genTOC.js"></script>
+</body>
+</html>

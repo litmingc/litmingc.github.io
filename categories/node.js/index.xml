@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node.js on LitMing</title>
+    <link>https://litmingc.github.io/categories/node.js/</link>
+    <description>Recent content in Node.js on LitMing</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 04 Aug 2021 10:47:15 +0800</lastBuildDate><atom:link href="https://litmingc.github.io/categories/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Node.js] Node.js技术栈（一）JavaScript基础</title>
+      <link>https://litmingc.github.io/post/nodejs/route-js/</link>
+      <pubDate>Wed, 04 Aug 2021 10:47:15 +0800</pubDate>
+      
+      <guid>https://litmingc.github.io/post/nodejs/route-js/</guid>
+      <description>内容摘录自： https://www.w3school.com.cn/js/index.asp 基础 一个简单的js实例 js简介 js由浏览器执行js语句 js语句结束需要; 大小写敏感 使用Unicode字符集 导入js代码 &amp;lt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,6 +1,94 @@
 <search>
     
      <entry>
+        <title>[Node.js] Node.js技术栈（一）JavaScript基础</title>
+        <url>https://litmingc.github.io/post/nodejs/route-js/</url>
+        <categories>
+          <category>JavaScript</category><category>Node.js</category>
+        </categories>
+        <tags>
+          <tag>笔记</tag><tag>Node.js学习路线</tag>
+        </tags>
+        <content type="html"> 内容摘录自：
+https://www.w3school.com.cn/js/index.asp
+基础 一个简单的js实例 js简介  js由浏览器执行js语句 js语句结束需要; 大小写敏感 使用Unicode字符集  导入js代码  &amp;lt;script&amp;gt;标签 外部脚本 1  &amp;lt;script src=&amp;#34;xxx.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;    外部脚本的好处：
+已经缓存的脚本不需要再加载，可以加速。
+   js输出 输出方案：
+ window.alert()写入警告框 document.write()写入html 先获取DOM元素（例如，document.getElementById(id)），再使用innerHTML写入HTML元素 console.log()写入浏览器控制台  值的类型 js有两种类型：
+ 混合值，字面量 变量值，变量  1 2  // x是变量值，12.3是混合值 var x = 12.3;   变量   使用var声明变量
+ 重复声明不会丢失变量的值： 1 2  var x = &amp;#34;value&amp;#34;; var x;   x值仍为&amp;quot;value&amp;quot;。
+ 向未声明的变量赋值，它会自动成为全局变量；在“严格模式”中不会自动创建全局变量。    js变量必须以唯一的名称标识
+构造变量名称的通用规则：
+ 必须以字母、_、$开头    运算  &#43;
+数字与数字是求和运算，有字符串参与时则是级联运算。  字符串与字符串相加： 1 2 3  txt1 = &amp;#34;Bill&amp;#34;; txt2 = &amp;#34;Gates&amp;#34;; txt3 = txt1 &#43; &amp;#34; &amp;#34; &#43; txt2;    字符串与数字相加： 1 2 3  x = 7 &#43; 8; y = &amp;#34;7&amp;#34; &#43; 8; z = &amp;#34;Hello&amp;#34; &#43; 7;   x是一个数字；
+y、z是字符串。
+   A?B:C三元运算符 **幂运算 ===值相等并且类型相等；!==值不相等或类型不相等  JavaScript运算符优先级  好长的表，不抄了，还是放个链接吧！ JavaScript运算符优先级  数据类型 字符串、数值、布尔值、数组、对象
+JavaScript是动态类型，相同变量可作不同类型。
+……
+ 字符串  单引号、双引号都可以   数值number  js只有一种数值 科学计数法var x=123e-5    ……
+  typeof运算符，返回类型
+1  typeof &amp;#34;&amp;#34; // 返回&amp;#34;string&amp;#34;   对于复杂类型：
+typeof 运算符可返回以下两种类型之一：
+ function object typeof 运算符把对象、数组或 null 返回 object。 typeof 运算符不会把函数返回 object。    undefined
+没有值的变量，其值为undefined，其类型也是undefined
+  null是一个对象类型，值是null
+  undefined与null的值相等，类型不相同
+1 2  null === undefined // false null == undefined // true     字符串   常用的字符串方法：    方法 描述     indexOf(&amp;quot;&amp;quot;,20) &amp;quot;asddsa&amp;quot;.indexOf(&amp;quot;ab&amp;quot;,2)，从索引2开始检索，返回字符串首次出现的索引，即&amp;quot;ab&amp;quot;中a的索引位置   lastIndexOf() 返回最后一次出现的索引   search() 类似indexOf，但是indexOf无法使用正则   slice(x,y) 提取索引x位置到y位置的字符串，索引可以取负数表示倒数，第二个参数默认为最大索引值   substring() 类似slice，但是不接受负数参数   substr(x,n) 类似slice，但是第二个参数表示子串长度   replace(&amp;quot;oldstr&amp;quot;, &amp;quot;newstr&amp;quot;) 默认只替换首个匹配，可以使用正则（不带引号）   toUpperCae()、toLowerCase() 大小写转换   concat() &amp;quot;Hello&amp;quot;.concat(&amp;quot; &amp;quot;,&amp;quot;World!&amp;quot;)的返回值等同于&amp;quot;Hello&amp;quot; &#43; &amp;quot; &amp;quot; &#43; &amp;quot;World!&amp;quot;；不改变原字符串的值   trim() 删除两端的空白符   charAt(x) 返回指定位置的字符   charCodeAt(x) 返回unicode值   split(&amp;quot;,&amp;quot;) 把字符串分割成数组；split(&amp;quot;,&amp;quot;)将把字符串分割成单个字符数组      注意 ：&#43;符号为级联运算，但是其它运算符（/、-、*）会尝试将字符串转为数字，进行数值运算。
+1 2 3 4 5 6  var x = &amp;#34;100&amp;#34;; var y = &amp;#34;10&amp;#34;; var z = x / y; // z 将是 10 var z = x * y; // z 将是 1000 var z = x - y; // z 将是 90 var z = x &#43; y; // z 不会是 110（而是 10010）     数字 JavaScript 只有一种数值类型。 书写数值时带不带小数点均可，还可以使用科学计数法。
+JavaScript 数值始终是 64 位的浮点数。
+  精度：
+整数（不使用指数或科学计数法）会被精确到 15 位：
+1 2  var x = 999999999999999; // x 将是 999999999999999 var y = 9999999999999999; // y 将是 10000000000000000   小数的最大数是 17 位，但是浮点的算数并不总是 100% 精准：
+1 2 3 4  var x = 0.2 &#43; 0.1; // x 将是 0.30000000000000004  // 使用乘除法有助于解决上面的问题： var x = (0.2 * 10 &#43; 0.1 * 10) / 10; // x 将是 0.3     使用&#43;时，注意是否有字符串
+注意下列情况：
+1 2 3 4  var x = 10; var y = 20; var z = &amp;#34;30&amp;#34;; var result = x &#43; y &#43; z;   result的结果是&amp;quot;3030&amp;quot;。因为，JavaScript 从左向右进行编译；x和y都是数，10&#43;20将被相加；z是字符串，30&#43;&amp;quot;30&amp;quot;被级联。
+  进制
+JavaScript 会把前缀为0x的数值常量解释为十六进制。
+一些 JavaScript 版本会把带有前导零的数解释为八进制（var a=07;）。
+使用 toString() 方法把数输出为十六进制、八进制或二进制：
+1 2 3 4  var myNumber = 128; myNumber.toString(16); // 返回 80 myNumber.toString(8); // 返回 200 myNumber.toString(2); // 返回 10000000     数值可以是对象，但是不建议使用数值对象。
+1 2 3 4 5  var x = 123; var y = new Number(123); // typeof x 返回 number // typeof y 返回 object   不适当地使用数值对象，在使用 === 相等运算符时，看似相等的数可能实际不相等，因为 === 运算符需要类型和值同时相等：
+1 2 3 4  var x = 500; var y = new Number(500); // (x === y) 为 false，因为 x 和 y 的类型不同 // (x == y) 为 true，因为 x 和 y 有相等的值   而且，JavaScript 对象无法进行比较：
+1 2 3  var x = new Number(500); var y = new Number(500); // (x == y) 为 false，因为对象无法比较     JavaScript 数值方法
+  一些特殊的数：
+ NaN非数值 1 2 3  var x = 100 / &amp;#34;Apple&amp;#34;; // x 将是 NaN isNaN(x); // 返回 true，因为 x 不是数 var x = 100 / &amp;#34;10&amp;#34;; // x 将是 10   注意：NaN是数，typeof NaN返回 number
+ Infinity（或-Infinity）表示JavaScript在计算数时超出最大可能数范围时返回的值
+除以 0（零）也会生成 Infinity 。  数组 1 2 3 4 5 6 7 8  var cars = [ &amp;#34;Saab&amp;#34;, &amp;#34;Volvo&amp;#34;, &amp;#34;BMW&amp;#34; ]; var cars = new Array(&amp;#34;Saab&amp;#34;, &amp;#34;Volvo&amp;#34;, &amp;#34;BMW&amp;#34;); // 以上两个例子效果完全一样。无需使用 new Array()。 // 出于简洁、可读性和执行速度的考虑，请使用第一种方法（数组文本方法）。    数组是一种特殊类型的对象。在 JavaScript 中对数组使用 typeof 运算符会返回 &amp;ldquo;object&amp;rdquo; 如何识别数组： 1 2 3 4 5 6 7 8 9 10 11  // ECMAScript 5 的方法 Array.isArray() Array.isArray(fruits); // 返回 true  // 创建自己的 isArray() 函数以解决此问题 function isArray(x) { return x.constructor.toString().indexOf(&amp;#34;Array&amp;#34;) &amp;gt; -1; } //假如对象由给定的构造器创建，则 instanceof 运算符返回 true var fruits = [&amp;#34;Banana&amp;#34;, &amp;#34;Orange&amp;#34;, &amp;#34;Apple&amp;#34;, &amp;#34;Mango&amp;#34;]; fruits instanceof Array // 返回 true    数组的增删方法 数组的迭代方法  Array.reduce() 1 2 3 4 5 6  var numbers1 = [45, 4, 9, 16, 25]; var sum = numbers1.reduce(myFunction); function myFunction(total, value, index, array) { return total &#43; value; }   其中，total的初始值为numbers1[0]，之后total为函数返回值；遍历数组可以看作从numbers1[1]开始遍历求和。
+    流程控制  switch  switch case 使用严格比较（===）    JavaScript 提升（Hoisting） 在 JavaScript 中，可以在使用变量之后对其进行声明。
+换句话说，可以在声明变量之前使用它。
+1 2 3 4 5 6  x = 5; // 把 5 赋值给 x  elem = document.getElementById(&amp;#34;demo&amp;#34;); // 查找元素 elem.innerHTML = x; // 在元素中显示 x  var x; // 声明 x   但是，严格模式中 在不声明对象的情况下使用对象也是不允许的。
+JavaScript 初始化不会被提升：JavaScript 只提升声明，而非初始化。
+1 2 3 4  var x = 5; // 初始化 x elem = document.getElementById(&amp;#34;demo&amp;#34;); // 查找元素 elem.innerHTML = x &#43; &amp;#34; &amp;#34; &#43; y; // 显示 &amp;#34;5 undefined&amp;#34; var y = 7; // 初始化 y   This 实例：
+1 2 3 4 5 6 7 8  var person = { firstName: &amp;#34;Bill&amp;#34;, lastName : &amp;#34;Gates&amp;#34;, id : 678, fullName : function() { return this.firstName &#43; &amp;#34; &amp;#34; &#43; this.lastName; } };   this 是什么？ JavaScript this 关键词指的是它所属的对象。
+它拥有不同的值，具体取决于它的使用位置：
+ 在方法中，this 指的是所有者对象。 单独的情况下，this 指的是全局对象。
+在函数中，this 指的是全局对象[object Window]。 在函数中，严格模式下，this 是 undefined。 在事件中，this 指的是接收事件的元 素。
+像 call() 和 apply() 这样的方法可以将 this 引用到任何对象。  函数   函数定义
+1 2 3  function name(参数 1, 参数 2, 参数 3) { 要执行的代码 }     函数调用
+  函数返回
+1 2 3 4 5  function toCelsius(fahrenheit) { return (5/9) * (fahrenheit-32); } document.getElementById(&amp;#34;demo&amp;#34;).innerHTML = toCelsius;   toCelsius将返回函数定义，demo代表的标签内容将是toCelsius的代码。
+  对象 所有 JavaScript 值，除了原始值（string、number、boolean、null、undefined），都是对象。
+对象的定义  使用对象文字定义和创建单个对象： 1  var car = {type:&amp;#34;porsche&amp;#34;, model:&amp;#34;911&amp;#34;, color:&amp;#34;white&amp;#34;};   js对象是 被命名值 的容器，以键值对的形式书写其 属性 与 属性值。
+于简易性、可读性和执行速度的考虑，对象文字是比较好的创建方法。
+ 通过关键词 new 定义和创建单个对象 1 2 3  var person = new Object(); person.firstName = &amp;#34;Bill&amp;#34;; person.lastName = &amp;#34;Gates&amp;#34;;    定义对象构造器，然后创建构造类型的对象  对象属性  遍历对象属性： 1 2 3 4 5 6 7  var txt = &amp;#34;&amp;#34;; var person = {fname:&amp;#34;Bill&amp;#34;, lname:&amp;#34;Gates&amp;#34;, age:62}; var x; for (x in person) { txt &#43;= person[x] &#43; &amp;#34; &amp;#34;; } // txt 的值为 &amp;#34;Bill Gates 62&amp;#34;     对象访问器（Getter/Setter） Getter 使用关键字get定义Getter：
+1 2 3 4 5 6 7 8 9 10 11 12 13  // 创建对象： var person = { firstName: &amp;#34;Bill&amp;#34;, lastName : &amp;#34;Gates&amp;#34;, language : &amp;#34;en&amp;#34;, // 本例使用 lang 属性来获取 language 属性的值  get lang() { return this.language; } }; // 使用 getter 来显示来自对象的数据： document.getElementById(&amp;#34;demo&amp;#34;).innerHTML = person.lang;   使用函数实现相似效果：
+1 2 3 4 5 6 7 8 9 10  var person = { firstName: &amp;#34;Bill&amp;#34;, lastName : &amp;#34;Gates&amp;#34;, fullName : function() { return this.firstName &#43; &amp;#34; &amp;#34; &#43; this.lastName; } }; // 使用方法来显示来自对象的数据： document.getElementById(&amp;#34;demo&amp;#34;).innerHTML = person.fullName();   注意访问形式不同，一种是方法调用，一种是访问属性的形式。
+Setter 1 2 3 4 5 6 7 8 9 10 11 12 13 14  var person = { firstName: &amp;#34;Bill&amp;#34;, lastName : &amp;#34;Gates&amp;#34;, language : &amp;#34;&amp;#34;, set lang(lang) { this.language = lang; } }; // 使用 setter 来设置对象属性： person.lang = &amp;#34;en&amp;#34;; // 显示来自对象的数据： document.getElementById(&amp;#34;demo&amp;#34;).innerHTML = person.language;   对象构造器 实例：
+1 2 3 4 5 6 7 8  function Person(first, last, age, eye) { this.firstName = first; this.lastName = last; this.age = age; this.eyeColor = eye; } var myFather = new Person(&amp;#34;Bill&amp;#34;, &amp;#34;Gates&amp;#34;, 62, &amp;#34;blue&amp;#34;);   原型 所有 JavaScript 对象都从 原型 继承属性和方法。
+原型继承 日期对象继承自 Date.prototype。数组对象继承自 Array.prototype。Person 对象继承自 Person.prototype。
+Object.prototype 位于原型继承链的顶端：
+日期对象、数组对象和 Person 对象都继承自 Object.prototype。
+使用 prototype 属性 向对象添加属性和方法 1 2 3 4 5 6 7 8 9 10  function Person(first, last, age, eyecolor) { this.firstName = first; this.lastName = last; this.age = age; this.eyeColor = eyecolor; } Person.prototype.nationality = &amp;#34;English&amp;#34;; Person.prototype.name = function() { return this.firstName &#43; &amp;#34; &amp;#34; &#43; this.lastName; };   请只修改您自己的原型。绝不要修改标准 JavaScript 对象的原型。
+正则 实例：
+1  var patt = /w3school/i;   例子解释：
+/w3school/i 是一个正则表达式。
+w3school 是模式（pattern）（在搜索中使用）。
+i 是修饰符（把搜索修改为大小写不敏感）。
+正则那么多，网上搜一搜。
+</content>
+    </entry>
+    
+     <entry>
         <title>[Tips]Rime Settings</title>
         <url>https://litmingc.github.io/post/tips/rime-settings/</url>
         <categories>
@@ -553,6 +641,38 @@ The Searcher object 通过调用Index对象的searcher()获得whoosh.searching.S
 所以，\(k_2\)与\((k_1-k_2*q)\)互质，\(c\)为\(b\)、\(r\)的最大公约数。 即，\(gcd(a,b)=gcd(b,r)=gcd(b,a\%b)=c\)
 从上述证明中不难发现a、b、r（\(a\%b\)）有共同的最大公约数，所以不断取其中最小的两个数相除得到更小的一组数，直到这组数中一个数本身就是最大公约数，算法结束。
  https://blog.csdn.net/weixin_43406046/article/details/84197255?depth_1-utm_source=distribute.pc_relevant.none-task&amp;amp;utm_source=distribute.pc_relevant.none-task “欧几里德算法 CSDN”↩︎
+   </content>
+    </entry>
+    
+     <entry>
+        <title>[Tips]Git使用笔记</title>
+        <url>https://litmingc.github.io/post/tips/tipsgit%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</url>
+        <categories>
+          <category>Git</category>
+        </categories>
+        <tags>
+          <tag>学习笔记</tag><tag>Git</tag>
+        </tags>
+        <content type="html"> Git语法 子模块 删除子模块  rm -rf 子模块目录 删除子模块目录及源码 vi .gitmodules 删除项目目录下.gitmodules文件中子模块相关条目 vi .git/config 删除配置项中子模块相关条目 rm .git/module/* 删除模块下的子模块目录  Git Hook http://www.worldhello.net/gotgit/08-git-misc/070-hooks-and-templates.html
+任意版本库.git/hooks目录下默认都是有一些脚本文件的（需要删除.sample后缀才会执行），当Git执行特定操作时会调用特定的钩子脚本。脚本返回非0值时，对应阶段的git操作将被终止。
+案例：
+使用commit-msg，在git commit执行时校验 commit message 。
+commit-msg脚本包含一个参数.git/COMMIT_EDITMSG，.git/COMMIT_EDITMSG是记录 commit message 的文件路径，因此可以在commit-msg脚本中校验 commit message 。案例脚本如下：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26  echo &amp;#34;&amp;gt;&amp;gt;&amp;gt; 校验 commit message&amp;#34; # feat： 新功能（feature） # fix： 修补bug # docs： 文档（documentation） # style： 格式（不影响代码运行的变动） # refactor： 重构（即不是新增功能，也不是修改bug的代码变动） # test： 增加测试 # chore： 构建过程或辅助工具的变动 # 正则表达式：匹配案例&amp;#34;fix 20210606&amp;#34; mode=&amp;#34;(feat|fix|doc|style|refactor|test|chore) [0-9]{8,}&amp;#34; firstline=`head -1 $1 | grep -E &amp;#34;$mode&amp;#34;` if test &amp;#34;&amp;#34;=$firstline then echo &amp;#34;&amp;gt;&amp;gt;&amp;gt; 失败&amp;#34; echo &amp;#34;&amp;gt;&amp;gt;&amp;gt; Input: $firstline&amp;#34; echo &amp;#34;&amp;gt;&amp;gt;&amp;gt; Mode : $mode&amp;#34; echo &amp;#34;&amp;#34; exit 1 else echo &amp;#34;&amp;gt;&amp;gt;&amp;gt; 成功&amp;#34; echo &amp;#34;&amp;#34; fi   Git工作流 Gitflow12 Gitflow 工作流是目前非常成熟的一个方案，它定义了一个围绕项目发布的严格分支模型，通过为代码研发、项目发布以及维护分配独立的分支来让项目的迭代过程更加地顺畅，不同于之前的集中式工作流以及功能分支工作流，gitflow 工作流常驻的分支有两个：
+ 主干分支 master 开发分支 dev
+此外针对项目研发的各个阶段，设定了特定的分支。  阶段分支常驻:
+ Production master
+master 分支主要跟踪项目正式发布的代码历史；
+master 分支上通常会为某次版本发布分配一个标签来记录版本号； 这个分支只能从其他分支合并，不能在这个分支直接修改。一般情况下Master不存在Commit； dev
+dev 分支主要跟踪项目代码研发的提交历史,包含所有要发布到下一个Release的代码；
+这个主要合并于其他分支，比如Feature分支 研发 feature
+开发阶段开启某一个需求时需要从 dev 分支上新建功能分支 feature;在需求开发完成之后需要提交 PR 请求合并进 dev 分支，完成之后即可删除对应的功能分支。 发布 release
+Release分支基于Develop分支创建，打完Release分支之后，我们可以在这个Release分支上测试，修改Bug等；
+这个分支不做任何功能上的任务；
+完成之后将 release 分支再分别合并进 master/dev 分支；
+同时，其它开发人员可以基于Develop分支新建Feature (记住：一旦打了Release分支之后不要从Develop分支上合并新的改动到Release分支) 热修复 hotfix
+当我们在Production发现新的Bug时候，我们需要创建一个Hotfix, 完成Hotfix后，我们合并回Master和Develop分支，所以Hotfix的改动会进入下一个Release（Tag）  规范git commit  https://zhuanlan.zhihu.com/p/316302079&amp;#160;&amp;#x21a9;&amp;#xfe0e;
+ https://www.jianshu.com/p/41910dc6ef29&amp;#160;&amp;#x21a9;&amp;#xfe0e;
    </content>
     </entry>
     
