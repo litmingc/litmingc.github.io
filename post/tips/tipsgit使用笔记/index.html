@@ -307,7 +307,7 @@ if (!doNotTrack) {
 
 <span style="color:#bb60d5">firstline</span><span style="color:#666">=</span><span style="color:#4070a0">`</span>head -1 <span style="color:#bb60d5">$1</span> | grep -E <span style="color:#4070a0">&#34;</span><span style="color:#bb60d5">$mode</span><span style="color:#4070a0">&#34;</span><span style="color:#4070a0">`</span>
 
-<span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020">test</span> <span style="color:#4070a0">&#34;&#34;</span><span style="color:#666">=</span><span style="color:#bb60d5">$firstline</span>
+<span style="color:#007020;font-weight:bold">if</span> <span style="color:#007020">test</span> <span style="color:#4070a0">&#34;&#34;</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;</span><span style="color:#bb60d5">$firstline</span><span style="color:#4070a0">&#34;</span>
 <span style="color:#007020;font-weight:bold">then</span>
 	<span style="color:#007020">echo</span> <span style="color:#4070a0">&#34;&gt;&gt;&gt; 失败&#34;</span>
 	<span style="color:#007020">echo</span> <span style="color:#4070a0">&#34;&gt;&gt;&gt; Input: </span><span style="color:#bb60d5">$firstline</span><span style="color:#4070a0">&#34;</span>
